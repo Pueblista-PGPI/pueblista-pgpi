@@ -21,7 +21,8 @@ El cliente, el ayuntamiento de Villanueva de las Cruces, solicita este proyecto 
 ## DESCRIPCIÓN DE ALTO NIVEL
 El producto que con este proyecto se quiere presentar es una aplicación web de fácil usabilidad y con interfaz de usuario agradable, que permita a los usuarios de Villanueva de las Cruces realizar la reserva de los espacios comunes de la localidad. 
 Los habitantes censados en la localidad, tendrán la opción de registrarse en la aplicación para realizar reservas y cancelaciones de los espacios de uso común del pueblo, estos son, inicialmente: la biblioteca municipal, la sala Guadalinfo, el salón de reuniones, el Salón San Sebastián, club social El Patio y Asociación La Candela.
-Por otro lado, las personas del ayuntamiento encargadas de administrar los espacios mencionados, podrán modificar la información, retirarlos de la aplicación si procediera y añadir nuevos. 
+Por otro lado, las personas del ayuntamiento encargadas de administrar los espacios mencionados, podrán modificar la información, retirarlos de la aplicación si procediera y añadir nuevos.
+Las reservas se harán en intervalos de mínimo una hora desde las 9:00 hasta las 21:00, pudiendo realizar reservas de varias horas seguidas, incluso el día completo.
 
 ## EXCLUIDO DEL PROYECTO
 Este proyecto realizará el desarrollo y pruebas de la aplicación web antes mencionada, excluyendo un mantenimiento a posteriori así como la gestión física de los espacios reservados y el alojamiento y gestión de los servicios de la aplicación.
@@ -32,7 +33,7 @@ Esta sección identifica los entregables del proyecto. Un entregable es un objet
 
 | Id  | Nombre   | Descripción   |
 |-----|----------|---------------|
-|     |          |               |
+| EP-0001 | Manual de uso de la aplicación | Manual de uso de la aplicación sencillo que aborde todas las posibles funciones tanto por los usuarios como por los administradores   |
 |     |          |               |
 
 ---
@@ -40,10 +41,15 @@ Esta sección identifica los entregables del proyecto. Un entregable es un objet
 ## OBJETIVOS DEL PROYECTO
 
 
-| Id  | Objetivo |
-|-----|----------|
-|     |          |
-|     |          |
+| Id      | Objetivo |
+|---------|----------|
+| OP-0001 | Conseguir que los ciudadanos de Villanueva de las Crueces puedan reservar citas sin tener que ir al bar del pueblo. |
+| OP-0002 | Conseguir que los ciudadanos de Villanueva de las Crueces puedan cancelar las reservas.                             |
+| OP-0003 |       |
+| OP-0004 |       |
+| OP-0005 |       |
+| OP-0006 |       |
+| OP-000N |       |
 
 ---
 
@@ -53,8 +59,8 @@ Esta sección define las características esperadas de los entregables que se en
 
 | Id  | Requisito |
 |-----|-----------|
-|     |           |
-|     |           |
+|  R-0001   | El cliente quiere que la aplicación web tenga un diseño apropiado y fácil de usar acorde a la edad de los ciudadanos de Villanueva de las Cruces. |
+| R-0002    | El cliente quiere asegurarse de que sus          
 
 ---
 
@@ -83,10 +89,11 @@ Proporcionar el coste total para el propietario del proyecto de la solución ent
 
 ## INTERESADOS CLAVE
 
-| Interesado  | Rol   |
-|-------------|-------|
-|             |       |
-|             |       |
+| Interesado   | Rol   |
+|--------------|-------|
+| Alcaldesa de Villanueva de las Crueces            | Product Owner                                       |
+| Administradores del ayuntamiento de la localidad  | Futuros administradores y mantenedores del servicio |
+| Ciudadanos de la localidad                        | Futuros clientes (usuarios) del servicio            |
 
 ---
 

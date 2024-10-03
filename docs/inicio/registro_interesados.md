@@ -12,7 +12,7 @@
 
 | ID  | NOMBRE  | ORGANIZACIÓN  | CARGO EN LA ORGANIZACIÓN  | ROL EN EL PROYECTO  | CORREO  | TELÉFONO  | GRADO DE INFLUENCIA  | EXPECTATIVAS  |
 |-----|---------|---------------|--------------------------|---------------------|---------|-----------|----------------------|---------------|
-| 1   |         |               |                          |                     |         |           |                      |               |
+| 1   | Maria José Escalona        |    Ayuntamiento de Villanueva de las Cruces           |    Alcaldesa  |   Cliente y patrocinador  |         |           |                      |               |
 | 2   |         |               |                          |                     |         |           |                      |               |
 | 3   |         |               |                          |                     |         |           |                      |               |
 | 4   |         |               |                          |                     |         |           |                      |               |
