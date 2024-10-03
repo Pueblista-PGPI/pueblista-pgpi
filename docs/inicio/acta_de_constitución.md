@@ -38,7 +38,7 @@ Esta sección identifica los entregables del proyecto. Un entregable es un objet
 
 ---
 
-## OBJETIVOS DEL PROYECTO
+## OBJETIVOS DEL PROYECTO (RAMÓN)
 
 
 | Id      | Objetivo |
@@ -53,7 +53,7 @@ Esta sección identifica los entregables del proyecto. Un entregable es un objet
 
 ---
 
-## REQUISITOS DE ALTO NIVEL
+## REQUISITOS DE ALTO NIVEL (ANTONIO)
 
 Esta sección define las características esperadas de los entregables que se entregarán al cliente. Piense en las características como las capacidades de alto nivel asociadas a los entregables que son necesarias para aportar los beneficios esperados a los usuarios.
 
@@ -64,13 +64,13 @@ Esta sección define las características esperadas de los entregables que se en
 
 ---
 
-## CRITERIOS DE ÉXITO
+## CRITERIOS DE ÉXITO (JOSEMI)
 
 Esta sección describe los criterios de éxito del proyecto. Los criterios de éxito son medibles y se utilizan para determinar si el proyecto es un éxito o un fracaso.
 
 ---
 
-## HITOS CLAVE
+## HITOS CLAVE (JOSEMI)
 
 Esta sección enumera los hitos importantes en el ciclo de vida del proyecto, incluyendo indicaciones sobre el calendario previsto para las fases principales.
 
@@ -81,13 +81,13 @@ Esta sección enumera los hitos importantes en el ciclo de vida del proyecto, in
 
 ---
 
-## PRESUPUESTO RESUMIDO
+## PRESUPUESTO RESUMIDO (RAMÓN)
 
 Proporcionar el coste total para el propietario del proyecto de la solución entregada (productos del proyecto).
 
 ---
 
-## INTERESADOS CLAVE
+## INTERESADOS CLAVE (ANTONIO)
 
 | Interesado   | Rol   |
 |--------------|-------|
@@ -103,13 +103,13 @@ Esta sección describe los supuestos del proyecto relacionados con el negocio, l
 
 ---
 
-## RIESGOS DE ALTO NIVEL
+## RIESGOS DE ALTO NIVEL (RAFA)
 
 Añadir los riesgos iniciales que deban ser identificados, focalizándose especialmente en los riesgos de negocio.
 
 ---
 
-## NIVEL DE AUTORIDAD DEL DIRECTOR DEL PROYECTO
+## NIVEL DE AUTORIDAD DEL DIRECTOR DEL PROYECTO (RAFA)
 
 Indicar el nivel de autoridad del director del proyecto en relación a:
 
