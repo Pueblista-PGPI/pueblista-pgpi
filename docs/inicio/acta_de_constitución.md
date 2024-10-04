@@ -1,3 +1,17 @@
+---
+title: "ACTA DE CONSTITUCIÓN"
+date: "02/10/2024"
+subject: "PGPI"
+lang: "es"
+toc: true
+toc-own-page: true
+titlepage: true,
+titlepage-text-color: "1C1C1C"
+titlepage-rule-color: "1C1C1C"
+titlepage-rule-height: 0
+titlepage-background: "background.pdf"
+...
+
 # ACTA DE CONSTITUCIÓN
 
 - **NOMBRE DEL PROYECTO:** Pueblista
@@ -53,15 +67,20 @@ Esta sección identifica los entregables del proyecto. Un entregable es un objet
 
 ---
 
-## REQUISITOS DE ALTO NIVEL (ANTONIO)
+## REQUISITOS DE ALTO NIVEL
 
 Esta sección define las características esperadas de los entregables que se entregarán al cliente. Piense en las características como las capacidades de alto nivel asociadas a los entregables que son necesarias para aportar los beneficios esperados a los usuarios.
 
 | Id  | Requisito |
 |-----|-----------|
-|  R-0001   | El cliente quiere que la aplicación web tenga un diseño apropiado y fácil de usar acorde a la edad de los ciudadanos de Villanueva de las Cruces. |
-| R-0002    | El cliente quiere asegurarse de que sus          
-
+|  R-0001   | El cliente quiere que la aplicación web tenga un **diseño apropiado y fácil de usar** acorde a la edad de los ciudadanos de Villanueva de las Cruces. |
+| R-0002    | El cliente quiere asegurarse de que los ciudadanos puedan **consultar el horario y la disponibilidad** de lugares de uso común del pueblo, procurando que sean siempre correctos. |
+| R-0003    | El cliente quiere que **el horario de los espacios pueda ser actualizado** y mantenido por los administradores del ayuntamiento. |
+| R-0004    | El cliente quiere que los **cuidadanos puedan reservar** los espacios de uso común del pueblo. |   
+| R-0005    | El cliente quiere que esas **reservas puedan ser también canceladas** si el ciudadano lo desea. |   
+| R-0006    | El cliente quiere que los ciudadanos puedan **acceder a la aplicación de forma fácil**, sin necesidad de correos electrónicos ni otros mecanismos más sofisticados. |   
+| R-0007    | El cliente quiere que **la reserva de un espacio se puedan liberar si nadie se preseta pasados 15 minutos.** |   
+| R-0008    | El cliente quiere que **se pueda comunicar** de froma clara y rápida **si algún espacio común no está disponible** por alguna incidencia. Por ejemplo, si la biblioteca no está dispobile porque se esté realizando un evento grande en la Sala del Pueblo. |   
 ---
 
 ## CRITERIOS DE ÉXITO (JOSEMI)
@@ -87,7 +106,7 @@ Proporcionar el coste total para el propietario del proyecto de la solución ent
 
 ---
 
-## INTERESADOS CLAVE (ANTONIO)
+## INTERESADOS CLAVE
 
 | Interesado   | Rol   |
 |--------------|-------|
