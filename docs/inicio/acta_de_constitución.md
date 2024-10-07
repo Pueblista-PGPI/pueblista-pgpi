@@ -64,20 +64,32 @@ Esta sección define las características esperadas de los entregables que se en
 
 ---
 
-## CRITERIOS DE ÉXITO (JOSEMI)
+## CRITERIOS DE ÉXITO
 
 Esta sección describe los criterios de éxito del proyecto. Los criterios de éxito son medibles y se utilizan para determinar si el proyecto es un éxito o un fracaso.
 
+- **Producto entregado y aceptado:** La aplicación web estará completamente desarrollada, probada y aceptada por el cliente, el Ayuntamiento de Villanueva de las Cruces.
+- **Documentación entregada:** Se entregará toda la documentación técnica y de usuario relacionada con la aplicación web, incluyendo manuales de instalación, uso y mantenimiento.
+- **Formación realizada:** El personal encargado de la gestión de los espacios recibirá la formación adecuada para utilizar y administrar la plataforma de reservas.
+- **Estudio de satisfacción de los usuarios positivo:** Se llevará a cabo una encuesta de satisfacción dirigida a los habitantes censados en la localidad que hayan utilizado la plataforma, con el objetivo de obtener un índice de satisfacción mínimo del 80%.
+- **Cumplimiento del plazo y presupuesto:** El proyecto se debe entregar dentro de los tiempos establecidos y sin exceder el presupuesto acordado.
+- **Cumplimiento de los requisitos funcionales:** La aplicación debe incluir todas las funcionalidades acordadas, permitiendo a los usuarios y administradores realizar y gestionar reservas de manera eficaz.
+- **Usabilidad y accesibilidad de la plataforma:** La aplicación debe ser fácil de usar y cumplir con los estándares de accesibilidad para asegurar que cualquier usuario pueda utilizarla, independientemente de su experiencia tecnológica.
+
 ---
 
-## HITOS CLAVE (JOSEMI)
+## HITOS CLAVE
 
 Esta sección enumera los hitos importantes en el ciclo de vida del proyecto, incluyendo indicaciones sobre el calendario previsto para las fases principales.
 
-| Hito  | Fecha   |
-|-------|---------|
-|       |         |
-|       |         |
+| Hito                      | Fecha         |
+|---------------------------|---------------|
+| Inicio del proyecto        | 02/10/2024   |
+| Entrega Plan de Proyecto   | 08/11/2024   |
+| Entrega Documentación      | 06/12/2024   |
+| Producto desplegado        | 06/12/2024   |
+| Inicio Formación           | 06/12/2024   |
+| Cierre del proyecto        | 20/12/2024   |
 
 ---
 
