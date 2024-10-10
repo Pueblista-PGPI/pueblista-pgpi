@@ -103,7 +103,7 @@ Satisfacción del cliente: se valorará el grado de satisfacción del cliente al
 |----------------------------------|--------------|
 | Inicio del proyecto              | 2/10/2024    |
 | Plan de proyecto                 | 8/11/2024    |
-| Entrega informes de accesibilidad| 4/11/2024    |
+| Entrega informes de accesibilidad| 4/12/2024    |
 | Entrega producto                 | 6/12/2024    |
 | Entrega manuales                 | 6/12/2024    |
 | Cierre del proyecto              | 6/12/2024    |

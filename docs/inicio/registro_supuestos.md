@@ -1,5 +1,5 @@
 ---
-title: "Acta de constitución" # modificar 
+title: "Registro de supuestos" # modificar 
 subtitle: "Proyecto Pueblista - PGPI" 
 date: "02/10/2024"  # modificar
 subject: "PGPI" 
