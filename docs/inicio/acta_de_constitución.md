@@ -49,12 +49,16 @@ La aplicación incluirá un sistema de notificaciones para mantener a los usuari
 El personal del ayuntamiento responsable de la administración de los espacios tendrá la capacidad de gestionar la información de los mismos, así como de retirar espacios de la aplicación o añadir nuevos según sea necesario, garantizando así una solución adaptable y flexible para la gestión de los recursos municipales.
 
 
+
 ## EXCLUIDO DEL PROYECTO
 - Formación a usuarios
 - La instalación y configuración de entornos y máquinas (Infraestructura), así como servicios de alojamiento y hosting. 
 - Servicio de mantenimiento post-implantación del sistema en entorno productivo.
 - Servicio de soporte posterior a la puesta en producción
-- No se consideran gastos de desplazamientos ni dietas fuera de Sevilla, de producirse se facturarán al cliente previa aprobación. 
+- No se consideran gastos de desplazamientos ni dietas fuera de Sevilla, de producirse se facturarán al cliente previa aprobación.
+- Requisitos fuera del alcance del proyecto.
+
+\newpage
 
 ## ENTREGABLES DEL PROYECTO
 
@@ -77,6 +81,8 @@ El personal del ayuntamiento responsable de la administración de los espacios t
 | 003 | Aumento de la satisfacción de los habitantes del pueblo y un aumento en el uso de estos espacios públicos.                     |
 | 004 | Mejorar la eficiencia del pueblo en la gestión de reservas de espacios públicos, reduciendo el tiempo y los recursos necesarios en comparación con el método tradicional de reservas. |
 | 005 | Aumentar la adopción de tecnologías digitales en el municipio.                                                                 |
+
+\newpage
 
 ## REQUISITOS DE ALTO NIVEL
 
@@ -155,9 +161,9 @@ El departamento comercial ha realizado una oferta de 14.000€ + 21% de IVA.
 -	Ante conflictos entre los miembros del equipo, el director tiene autoridad total para resolverlos. 
 
 ## APROBACIÓN
-
-| Cargo  | Firma  | Fecha  |
-|--------|--------|--------|
-|        |        |        |
+| Cargo               | Firma | Fecha  |
+|---------------------|-------|--------|
+| Patrocinador        |       |        |
+| Director del Proyecto |       |        |
 
 ---
