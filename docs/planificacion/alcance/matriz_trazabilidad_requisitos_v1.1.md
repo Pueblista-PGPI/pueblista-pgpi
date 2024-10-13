@@ -3,7 +3,7 @@ title: "Matriz de trazabilidad de requisitos"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
 date: "13/10/2024"  # modificar
 subject: "PGPI"
-author: [José Miguel Iborra Conejo, Rafael Pulido Cifuentes, Ramón Gavira Sánchez, Antonio Macías Ferrera, Daniel Fernández Caballero]
+author: [Daniel Fernández Caballero, Ramón Gavira Sánchez, José Miguel Iborra Conejo, Antonio Macías Ferrera, Rafael Pulido Cifuentes]
 lang: "es"
 toc: true
 toc-own-page: true

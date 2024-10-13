@@ -3,7 +3,7 @@ title: "Plan de Dirección del Proyecto"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
 date: "10/10/2024"  # modificar
 subject: "PGPI"
-author: [José Miguel Iborra Conejo, Rafael Pulido Cifuentes, Ramón Gavira Sánchez, Antonio Macías Ferrera, Daniel Fernández Caballero]
+author: [Daniel Fernández Caballero, Ramón Gavira Sánchez, José Miguel Iborra Conejo, Antonio Macías Ferrera, Rafael Pulido Cifuentes]
 lang: "es"
 toc: true
 toc-own-page: true
@@ -30,6 +30,7 @@ footer-right: "\\thepage"
 - **VERSIÓN DEL DOCUMENTO:** 1.0
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO** 
+
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
 |10/10/24             | Ramón Gavira Sánchez              |   Inicio del Plan del Proyecto                              |
@@ -63,16 +64,18 @@ Cada Sprint incluirá actividades clave como el diseño de prototipos, desarroll
 
 En la siguiente tabla se detallan las fases del proyecto, las actividades clave, los entregables clave y los criterios de salida de cada fase.
 
-| FASE | ACTIVIDADES CLAVE | ENTREGABLES CLAVE | CRITERIO DE SALIDA DE LA FASE |
-|------|-------------------|-------------------|-------------------------------|
+| FASE  | ACTIVIDADES CLAVE | ENTREGABLES CLAVE | CRITERIO DE SALIDA DE LA FASE |
+|---------------|-------------------|-------------------|-------------------------------|
 | INICIO   | Definir objetivos, identificación de interesados, elaboración del acta de constitución                  |  Acta de constitución                  |  Aprobación del acta de constitución del proyecto                      |
 | PLANIFICACIÓN      | Creación del plan de gestion del proyecto, estimación de recursos, identificación y análisis de requisitos, definición del PB                  | Plan de gestión del proyecto, cronograma, PB inicial                   | Aprobación del plan de gestión del Proyecto y entrega del PB                              |
 | EJECUCIÓN      | Diseño de prototipos, desarrollo en sprints, revisiones de sprint, testing continuo (agile testing). |  Prototipos validados, producto final e informes de accesibilidad               |  Prototipo validado y cumplimiento de los objetivos de cada sprint y del producto final.                      |
 | CIERRE |  Elaboración de manuales y encuestas de satisfacción | Entrega formal del producto, acta de cierre del proyecto, manuales de usuario y administrador, encuestas de satisfacción | Aprobación del acta de cierre del proyecto|
 
+\newpage
+
 ## DESVIACIONES AUTORIZADAS (NO GENERAN SOLICITUD DE CAMBIO)
 | ASPECTO | UMBRALES |
-|---------|----------|
+|--|----------|
 | ALCANCE | Se permiten cambios menores en el prototipado sugeridos por el cliente siempre que no impliquen un cambio significativo de los requisitos previamente acordados. Estos cambios deben realizarse antes de iniciar la fase de desarrollo y no deben suponer una ampliación del alcance del producto final. **No se admitirán cambios funcionales que añadan nuevas características o funcionalidades que no hayan sido previamente validadas y aprobadas.**       |
 | CRONOGRAMA |  Se autoriza un pequeño desvío en el número de tareas sin finalizar al final de cada sprint, siempre que el retraso no supere el 10% de las tareas planificadas y que la carga de trabajo restante pueda ser redistribuida sin comprometer la entrega final ni generar un impacto en los costos del proyecto. Esta tolerancia no se aplica al último sprint, ya que la fecha de entrega final es inamovible.       |
 | PRESUPUESTO |  Se permite una desviación de hasta el 5% del presupuesto total, para cubrir gastos imprevistos menores que no afecten a la ejecución general del proyecto. Esto puede incluir ajustes en materiales, herramientas o servicios que se requieran para mantener el ritmo de trabajo durante los sprints.    |
@@ -122,6 +125,7 @@ Como documentos anexos que son contenido del Plan de Dirección del Proyecto enc
 
 
 **APROBACIÓN**
+
 | Cargo               | Firma | Fecha  |
 |---------------------|-------|--------|
 | Patrocinador        |       |        |
