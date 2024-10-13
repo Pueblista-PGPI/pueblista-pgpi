@@ -1,151 +1,49 @@
-# HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO
-
-| Fecha       | Realizada por  | Breve descripción de los cambios |
-|-------------|----------------|----------------------------------|
-|  05/10/2024           | Daniel Fernández  | Primera iteración de registro de supuestos |
-
+---
+title: "Registro de supuestos" # modificar 
+subtitle: "Proyecto Pueblista - PGPI" 
+date: "02/10/2024"  # modificar
+subject: "PGPI" 
+author: [José Miguel Iborra Conejo, Rafael Pulido Cifuentes, Ramón Gavira Sánchez, Antonio Macías Ferrera, Daniel Fernández Caballero] 
+lang: "es"
+toc: true
+toc-own-page: true
+titlepage: true,
+titlepage-text-color: "1C1C1C"
+titlepage-rule-color: "1C1C1C"
+titlepage-rule-height: 0
+titlepage-background: "../../plantilla-markdown/backgroundH.pdf" # modificar si el doc es horizontal
+page-background: "../../plantilla-markdown/background1.pdf" # opcional, para fondo pagina
+toc: true
+toc-own-page: true
+footer-left: "Pueblista - PGPI"
+footer-right: "\\thepage"
 ---
 
-# SUPUESTOS 
 
-ID: S-001
+# REGISTRO DE INTERESADOS
 
-SUPUESTO: La información proporcionada por el cliente será la principal fuente de requisitos, siendo el proyecto planificado y gestionado en torno a esta.
+- **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
+- **CÓDIGO DEL PROYECTO:** 2.15
+- **FECHA DE CREACIÓN:** 02/10/2024
+- **VERSIÓN DEL DOCUMENTO:** 1.1
 
-RESPONSABLE: Equipo Director y de Trabajo del proyecto.
 
-VENCIMIENTO: 11/12/2024
+## HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO
+|Fecha	|Realizada por	|Breve descripción de los cambios
+| ----- | ------------- | ----------------- |
+|08/10/2024	| Ramón Gavira Sánchez, Daniel Fernández Caballero	| Versión inicial de los supuestos |
 
-ESTADO: En curso
+<br>
 
-Comentarios: No procede.
+\newpage
 
----
+## SUPUESTOS
 
-ID: S-002
-
-SUPUESTO: la mayoría de los usuarios de la aplicación serán personas de avanzada edad con pocos conocimientos sobre las nuevas tecnologías.
-
-RESPONSABLE: Equipo Director y de Trabajo del proyecto.
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: En curso
-
-Comentarios: Esto afecta al diseño de la aplicación.
-
----
-
-ID: S-003
-
-SUPUESTO: Las salas para alquilar se podrán cambiar a petición del cliente.
-
-RESPONSABLE: Equipo de Trabajo del proyecto. 
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: Pendiente
-
-Comentarios: No procede.
-
----
-
-ID: S-004
-
-SUPUESTO: Los usuarios de la aplicación hablarán el idioma del español.
-
-RESPONSABLE: Equipo de Trabajo del proyecto.
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: Pendiente
-
-Comentarios: No procede.
-
----
-
-ID: S-005
-
-SUPUESTO/RESTRICCIÓN: El soporte de la aplicación estará a cargo del ayuntamiento de Villanueva de las Cruces
-
-RESPONSABLE: Cliente.
-
-VENCIMIENTO: Hasta el fin de ciclo de vida del producto.
-
-ESTADO: Pendiente
-
-Comentarios: No procede.
-
----
-
-ID: S-006
-
-SUPUESTO/RESTRICCIÓN: los recursos económicos necesarios serán proporcionados por el ayuntamiento de Villanueva de las Cruces.
-
-RESPONSABLE: Cliente.
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: En curso
-
-Comentarios: No procede
-
----
-
-# RESTRICCIONES
-
-ID: R-001
-
-RESTRICCIÓN: El presupuesto máximo para el desarrollo del proyecto no puede ser superior a 20.000 €.
-
-RESPONSABLE: Equipo Director del proyecto.
-
-VENCIMIENTO: 06/11/2024
-
-ESTADO: En curso
-
-Comentarios: Esta restricción acabará cuando comience la fase de desarrollo, donde no deberían de producirse más cambios en el presupuesto.
-
----
-
-ID: R-002
-
-RESTRICCIÓN: El método de inicio de sesión será a través del Documento Nacional de Identidad.
-
-RESPONSABLE: Equipo de Trabajo.
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: Pendiente
-
-Comentarios: No procede
-
----
-
-ID: R-003
-
-RESTRICCIÓN: La interfaz estará principalmente diseñada para dispositivos móviles.
-
-RESPONSABLE: Equipo de Trabajo del proyecto.
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: Pendiente
-
-Comentarios: No procede.
-
---- 
-
-ID: R-004
-
-RESTRICCIÓN: La aplicación deberá tener reflejados los colores característicos del escudo de Villanueva de las Cruces.
-
-RESPONSABLE: Equipo de Trabajo del proyecto.
-
-VENCIMIENTO: 11/12/2024
-
-ESTADO: Pendiente
-
-Comentarios: No procede.
-
----
+| ID  | SUPUESTO/RESTRICCIÓN                                                                 | Responsable                         | Fecha | Estado | Comentarios |
+|-----|--------------------------------------------------------------------------------------|-------------------------------------|-------------|--------|-------------|
+| 1   | La infraestructura para el alojamiento de la aplicación será proporcionada por el cliente | Ayto. Villanueva de las Cruces      |             |        |             |
+| 2   | La aplicación será entregada con una carga de datos inicial de espacios municipales, el resto de los datos deberá ser cargado por el cliente | Ayto. Villanueva de las Cruces / Equipo de desarrollo |             |        |             |
+| 3   | No se contempla migración de datos ni importación de información desde otros sistemas municipales | Ayto. Villanueva de las Cruces      |             |        |             |
+| 4   | El equipo de desarrollo será el que decida la tecnología a utilizar para el desarrollo de la aplicación | Equipo de desarrollo                |             |        |             |
+| 5   | Los recursos económicos necesarios serán proporcionados por el ayuntamiento de Villanueva de las Cruces. | Ayto. Villanueva de las Cruces      |             |        |             |
+| 6   | La información proporcionada por el cliente será la principal fuente de requisitos, siendo el proyecto planificado y gestionado en torno a esta. | Ayto. Villanueva de las Cruces      |             |        |             |
