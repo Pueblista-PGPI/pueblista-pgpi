@@ -1,3 +1,23 @@
+---
+title: "Plan de Dirección del Proyecto"  # modificar
+subtitle: "Proyecto Pueblista - PGPI"
+date: "10/10/2024"  # modificar
+subject: "PGPI"
+author: [José Miguel Iborra Conejo, Rafael Pulido Cifuentes, Ramón Gavira Sánchez, Antonio Macías Ferrera, Daniel Fernández Caballero]
+lang: "es"
+toc: true
+toc-own-page: true
+titlepage: true,
+titlepage-text-color: "1C1C1C"
+titlepage-rule-color: "1C1C1C"
+titlepage-rule-height: 0
+titlepage-background: "../../plantilla-markdown/background2V.pdf" # modificar si el doc es horizontal
+toc: true
+toc-own-page: true
+footer-left: "Pueblista - PGPI"
+footer-right: "\\thepage"
+---
+
 # PLAN DE DIRECCIÓN DEL PROYECTO
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces 
@@ -9,46 +29,13 @@
 - **ELABORADO POR:** Ramón Gavira Sánchez
 - **VERSIÓN DEL DOCUMENTO:** 1.0
 
-## HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO
+**HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO** 
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
 |10/10/24             | Ramón Gavira Sánchez              |   Inicio del Plan del Proyecto                              |
 |             |               |                                  |
 
 En este documeto se desarrolla el Plan de Dirección del Proyecto, como fuente principal de información a consutlar en el que se determinará como se planificará, ejecutará, supervisará y cerrará el proyecto.
-
-Como documentos anexos que son contenido del Plan de Dirección del Proyecto encontramos los siguientes documentos:
-
-### PLANES SUBSIDIARIOS
-
-- PLAN DE GESTIÓN DE REQUISITOS
-- PLAN DE GESTIÓN DEL ALCANCE
-- PLAN DE GESTIÓN DEL CRONOGRAMA
-- PLAN DE GESTIÓN DE COSTES
-- PLAN DE GESTIÓN DE CALIDAD
-- PLAN DE GESTIÓN DE RECURSOS
-- PLAN DE GESTIÓN DE LAS COMUNICACIONES
-- PLAN DE GESTIÓN DE RIESGOS
-- PLAN DE GESTIÓN DE ADQUISICIONES
-- PLAN DE GESTIÓN DE CAMBIOS
-- PLAN DE GESTIÓN DE LA CONFIGURACIÓN
-
-### LÍNEAS BASE
-
-- LÍNEA BASE DEL ALCANCE: ENUNCIADO DEL ALCANCE, EDT, DICCIONARIO EDT
-- LÍNEA BASE DEL CRONOGRAMA: CRONOGRAMA (INFORME MSPROJECT), LISTA DE HITOS
-- LÍNEA BASE DEL PRESUPUESTO: PRESUPUESTO (INFORME MSPROJECT)
-
-### MATRICES Y REGISTROS
-
-- MATRIZ DE TRAZABILIDAD DE REQUISITOS
-- MATRIZ DE ASIGNACIÓN DE RESPONSABILIDADES
-- REGISTRO DE REQUISITOS
-- REGISTRO DE SUPUESTOS
-- REGISTRO DE INTERESADOS
-- REGISTRO DE RIESGOS
-
----
 
 El plan de dirección del proyecto es un documento vivo que irá evolucionando a lo largo del ciclo de vida del proyecto, adaptándose a las necesidades y circunstancias que se vayan presentando. Una vez definidas las líneas base, no será posible modificar el Plan de Proyecto salvo a través de los procesos que queden definidos en el **Plan de Gestión de Cambios**.
 
@@ -98,10 +85,43 @@ Costes: se valorará el coste del proyecto y el ahorro que se consiga. Si el aho
 
 Satisfacción del cliente: se valorará el grado de satisfacción del cliente al cierre del proyecto. Si como mínimo es un 8/10 se considerará un éxito
 
+---
+
+Como documentos anexos que son contenido del Plan de Dirección del Proyecto encontramos los siguientes documentos:
+
+## DOCUMENTOS ANEXOS
+
+### PLANES SUBSIDIARIOS
+
+- PLAN DE GESTIÓN DE REQUISITOS
+- PLAN DE GESTIÓN DEL ALCANCE
+- PLAN DE GESTIÓN DEL CRONOGRAMA
+- PLAN DE GESTIÓN DE COSTES
+- PLAN DE GESTIÓN DE CALIDAD
+- PLAN DE GESTIÓN DE RECURSOS
+- PLAN DE GESTIÓN DE LAS COMUNICACIONES
+- PLAN DE GESTIÓN DE RIESGOS
+- PLAN DE GESTIÓN DE ADQUISICIONES
+- PLAN DE GESTIÓN DE CAMBIOS
+- PLAN DE GESTIÓN DE LA CONFIGURACIÓN
+
+### LÍNEAS BASE
+
+- LÍNEA BASE DEL ALCANCE: ENUNCIADO DEL ALCANCE, EDT, DICCIONARIO EDT
+- LÍNEA BASE DEL CRONOGRAMA: CRONOGRAMA (INFORME MSPROJECT), LISTA DE HITOS
+- LÍNEA BASE DEL PRESUPUESTO: PRESUPUESTO (INFORME MSPROJECT)
+
+### MATRICES Y REGISTROS
+
+- MATRIZ DE TRAZABILIDAD DE REQUISITOS
+- MATRIZ DE ASIGNACIÓN DE RESPONSABILIDADES
+- REGISTRO DE REQUISITOS
+- REGISTRO DE SUPUESTOS
+- REGISTRO DE INTERESADOS
+- REGISTRO DE RIESGOS
 
 
-
-## APROBACIÓN
+**APROBACIÓN**
 | Cargo               | Firma | Fecha  |
 |---------------------|-------|--------|
 | Patrocinador        |       |        |
