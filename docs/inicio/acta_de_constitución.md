@@ -11,7 +11,7 @@ titlepage: true,
 titlepage-text-color: "1C1C1C"
 titlepage-rule-color: "1C1C1C"
 titlepage-rule-height: 0
-titlepage-background: "../../plantilla-markdown/backgroundV.pdf" # modificar si el doc es horizontal
+titlepage-background: "../../plantilla-markdown/background1V.pdf" # modificar si el doc es horizontal
 toc: true
 toc-own-page: true
 footer-left: "Pueblista - PGPI"
@@ -49,12 +49,16 @@ La aplicación incluirá un sistema de notificaciones para mantener a los usuari
 El personal del ayuntamiento responsable de la administración de los espacios tendrá la capacidad de gestionar la información de los mismos, así como de retirar espacios de la aplicación o añadir nuevos según sea necesario, garantizando así una solución adaptable y flexible para la gestión de los recursos municipales.
 
 
+
 ## EXCLUIDO DEL PROYECTO
 - Formación a usuarios
 - La instalación y configuración de entornos y máquinas (Infraestructura), así como servicios de alojamiento y hosting. 
 - Servicio de mantenimiento post-implantación del sistema en entorno productivo.
 - Servicio de soporte posterior a la puesta en producción
-- No se consideran gastos de desplazamientos ni dietas fuera de Sevilla, de producirse se facturarán al cliente previa aprobación. 
+- No se consideran gastos de desplazamientos ni dietas fuera de Sevilla, de producirse se facturarán al cliente previa aprobación.
+- Requisitos fuera del alcance del proyecto.
+
+\newpage
 
 ## ENTREGABLES DEL PROYECTO
 
@@ -77,6 +81,8 @@ El personal del ayuntamiento responsable de la administración de los espacios t
 | 003 | Aumento de la satisfacción de los habitantes del pueblo y un aumento en el uso de estos espacios públicos.                     |
 | 004 | Mejorar la eficiencia del pueblo en la gestión de reservas de espacios públicos, reduciendo el tiempo y los recursos necesarios en comparación con el método tradicional de reservas. |
 | 005 | Aumentar la adopción de tecnologías digitales en el municipio.                                                                 |
+
+\newpage
 
 ## REQUISITOS DE ALTO NIVEL
 
@@ -109,56 +115,10 @@ Satisfacción del cliente: se valorará el grado de satisfacción del cliente al
 | Cierre del proyecto              | 6/12/2024    |
 | Realización encuestas de satisfacción | 6/12/2024 |
 
-<<<<<<< HEAD
-## CRITERIOS DE ÉXITO
-=======
 ## PRESUPUESTO RESUMIDO 
->>>>>>> main
 
 El departamento comercial ha realizado una oferta de 14.000€ + 21% de IVA. 
 
-<<<<<<< HEAD
-- **Producto entregado y aceptado:** La aplicación web estará completamente desarrollada, probada y aceptada por el cliente, el Ayuntamiento de Villanueva de las Cruces.
-- **Documentación entregada:** Se entregará toda la documentación técnica y de usuario relacionada con la aplicación web, incluyendo manuales de instalación, uso y mantenimiento.
-- **Formación realizada:** El personal encargado de la gestión de los espacios recibirá la formación adecuada para utilizar y administrar la plataforma de reservas.
-- **Estudio de satisfacción de los usuarios positivo:** Se llevará a cabo una encuesta de satisfacción dirigida a los habitantes censados en la localidad que hayan utilizado la plataforma, con el objetivo de obtener un índice de satisfacción mínimo del 80%.
-- **Cumplimiento del plazo y presupuesto:** El proyecto se debe entregar dentro de los tiempos establecidos y sin exceder el presupuesto acordado.
-- **Cumplimiento de los requisitos funcionales:** La aplicación debe incluir todas las funcionalidades acordadas, permitiendo a los usuarios y administradores realizar y gestionar reservas de manera eficaz.
-- **Usabilidad y accesibilidad de la plataforma:** La aplicación debe ser fácil de usar y cumplir con los estándares de accesibilidad para asegurar que cualquier usuario pueda utilizarla, independientemente de su experiencia tecnológica.
-
----
-
-## HITOS CLAVE
-
-Esta sección enumera los hitos importantes en el ciclo de vida del proyecto, incluyendo indicaciones sobre el calendario previsto para las fases principales.
-
-| Hito                      | Fecha         |
-|---------------------------|---------------|
-| Inicio del proyecto        | 02/10/2024   |
-| Entrega Plan de Proyecto   | 08/11/2024   |
-| Entrega Documentación      | 06/12/2024   |
-| Producto desplegado        | 06/12/2024   |
-| Inicio Formación           | 06/12/2024   |
-| Cierre del proyecto        | 20/12/2024   |
-
----
-
-## PRESUPUESTO RESUMIDO (RAMÓN)
-
-Proporcionar el coste total para el propietario del proyecto de la solución entregada (productos del proyecto).
-
----
-
-## INTERESADOS CLAVE (ANTONIO)
-
-| Interesado   | Rol   |
-|--------------|-------|
-| Alcaldesa de Villanueva de las Crueces            | Product Owner                                       |
-| Administradores del ayuntamiento de la localidad  | Futuros administradores y mantenedores del servicio |
-| Ciudadanos de la localidad                        | Futuros clientes (usuarios) del servicio            |
-
----
-=======
 ## INTERESADOS CLAVE
 
 | Interesado                          | Rol                         |
@@ -166,7 +126,6 @@ Proporcionar el coste total para el propietario del proyecto de la solución ent
 | Ayuntamiento de Villanueva de las Cruces | Propietario del proyecto (Cliente) |
 | María José Escalona Cuaresma        | Patrocinadora del proyecto   |
 | Ciudadanos de la localidad          | Usuarios finales             |
->>>>>>> main
 
 ## SUPUESTOS/RESTRICCIONES DE ALTO NIVEL
 
@@ -202,9 +161,9 @@ Proporcionar el coste total para el propietario del proyecto de la solución ent
 -	Ante conflictos entre los miembros del equipo, el director tiene autoridad total para resolverlos. 
 
 ## APROBACIÓN
-
-| Cargo  | Firma  | Fecha  |
-|--------|--------|--------|
-|        |        |        |
+| Cargo               | Firma | Fecha  |
+|---------------------|-------|--------|
+| Patrocinador        |       |        |
+| Director del Proyecto |       |        |
 
 ---
