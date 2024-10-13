@@ -11,7 +11,7 @@ titlepage: true,
 titlepage-text-color: "1C1C1C"
 titlepage-rule-color: "1C1C1C"
 titlepage-rule-height: 0
-titlepage-background: "../../plantilla-markdown/backgroundV.pdf" # modificar si el doc es horizontal
+titlepage-background: "../../../plantilla-markdown/backgroundV.pdf" # modificar si el doc es horizontal
 toc: true
 toc-own-page: true
 footer-left: "Pueblista - PGPI"
@@ -35,7 +35,7 @@ footer-right: "\\thepage"
 | ----- | ------------- | ----------------- |
 |10/10/2024	| Daniel Fernández Caballero, José Miguel Iborra Conejo |	Elaboración de la primera versión del Plan de Comunicaciones  |
 | 12/10/2024	|  Daniel Fernández Caballero, José Miguel Iborra Conejo	| Revisión y corrección  del documento  |
-| 13/10/2024	|  Daniel Fernández Caballero, José Miguel Iborra Conejo	| Adición metodología SCRUM y varias correciones |
+| 13/10/2024	|  Daniel Fernández Caballero, José Miguel Iborra Conejo, Ramón Gavira Sánchez	| Adición metodología *Scrum* y varias correciones |
 
 ## Introducción
 
@@ -129,7 +129,7 @@ Dado que el entorno del proyecto puede cambiar a lo largo de su desarrollo, el p
 
 --- 
 
- Esta gestión de la comunicación será constante a lo largo de todo el ciclo de vida del proyecto. Sin embargo, durante la fase de ejecución se incorporarán varios medios de comunicación, tanto internos como externos, debido al uso de la metodología SCRUM. Estos medios serán clave para asegurar el seguimiento y desarrollo adecuado del producto, proporcionando un mayor control sobre las tareas realizadas por el equipo de trabajo y facilitando una mejor organización y colaboración, tanto entre el equipo como con el cliente.
+ Esta gestión de la comunicación será constante a lo largo de todo el ciclo de vida del proyecto. Sin embargo, durante la fase de ejecución se incorporarán varios medios de comunicación, tanto internos como externos, debido al uso de la metodología ágil *Scrum*. Estos medios serán clave para asegurar el seguimiento y desarrollo adecuado del producto, proporcionando un mayor control sobre las tareas realizadas por el equipo de trabajo y facilitando una mejor organización y colaboración, tanto entre el equipo como con el cliente.
 
 ## Sprint Planning
 
@@ -145,26 +145,32 @@ Durante los Sprints, se llevarán a cabo reuniones diarias de corta duración en
 
 El objetivo de estas reuniones es mantener a todo el equipo alineado, identificar problemas tempranamente y asegurar que el proyecto se mantenga en curso. Las complicaciones identificadas se tratarán fuera de la reunión para no prolongarla innecesariamente.
 
-Como resultado, se generará un acta de la **Daily Stand-up Meeting** para documentar el progreso, las tareas completadas, los próximos pasos y los posibles bloqueos identificados.
-
 Estas reuniones fomentan la transparencia, la responsabilidad individual y la colaboración dentro del equipo, elementos clave en la metodología Scrum para garantizar un avance continuo y ágil.
 
   
-## Rendimiento por cada Sprint de trabajo
+## Rendimiento por cada Sprint de trabajo (Sprint Review)
 
 - **Interesado:** Cliente.
 - **Frecuencia:** Informe semanal durante la fase de Ejecución del proyecto.
 - **Medio:** Microsoft Teams, mediante reuniones de seguimiento y entrega de informes.
 
+Esta reunión semanal tiene como objetivo presentar al cliente los resultados obtenidos durante el Sprint de trabajo, revisar el avance del proyecto y validar las tareas completadas. Se proporcionará un informe de desempeño que incluirá los siguientes puntos:
+
 ### Contenido del Informe de Desempeño semanal:
 
-1. **Retrospectiva del Sprint (Scrum):**
-   - El equipo revisará las tareas completadas, los desafíos enfrentados, y propondrá mejoras para el próximo Sprint. Se reflejarán aprendizajes y cambios en el proceso.
-2. **Progreso del proyecto (Burndown Chart):**
+1. **Progreso del proyecto (Burndown Chart):**
    - Se entregará un gráfico burndown que mostrará el avance de las tareas en comparación con lo planificado. Esto incluirá métricas como el porcentaje de tareas completadas, tareas pendientes y posibles bloqueos o riesgos.
-3. **Cumplimiento de plazos:**
+2. **Cumplimiento de plazos:**
    - Se realizará un seguimiento del cumplimiento de los hitos y fechas clave del proyecto, señalando cualquier desviación en el cronograma y proponiendo medidas de ajuste si es necesario.
-4. **Rendimiento de recursos:**
+3. **Rendimiento de recursos:**
    - Se incluirá un análisis del uso de recursos técnicos y humanos, destacando si ha sido necesario realizar ajustes en la asignación de recursos.
-5. **Estado del presupuesto (opcional, si aplica):**
+4. **Estado del presupuesto (opcional, si aplica):**
    - Si es relevante, se proporcionará un informe financiero básico que indique si el proyecto sigue dentro del presupuesto.
+
+## Sprint Retrospective
+
+- **Interesado:** Equipo de trabajo.
+- **Frecuencia:** Al final de cada Sprint.
+- **Medio:** Chat corporativo (Discord).
+
+Al final de cada Sprint, el equipo de trabajo se reunirá para llevar a cabo una **Sprint Retrospective**. Esta reunión tiene como objetivo analizar el Sprint recién finalizado, identificar qué aspectos han funcionado bien y cuáles pueden mejorarse, y proponer acciones concretas para optimizar el rendimiento en el siguiente Sprint.
