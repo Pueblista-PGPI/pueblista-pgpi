@@ -13,8 +13,6 @@ titlepage-rule-color: "1C1C1C"
 titlepage-rule-height: 0
 titlepage-background: "../../plantilla-markdown/background1H.pdf" # modificar si el doc es horizontal
 page-background: "../../plantilla-markdown/background1.pdf" # opcional, para fondo pagina
-toc: true
-toc-own-page: true
 footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
