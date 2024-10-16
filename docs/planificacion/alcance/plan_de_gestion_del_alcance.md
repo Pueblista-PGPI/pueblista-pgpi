@@ -33,11 +33,15 @@ footer-right: "\\thepage"
 
 
 
-## Desarrollo del enunciado del alcance
+## DESARROLLO DEL ENUNCIADO DEL ALCANCE
 
-TODO
+El alcance del proyecto, lo que incluye y lo que no incluye, se define en función de los requisitos establecidos con el cliente y en lo especificado tanto en el acta de constitución del proyecto como en el Registro de Supuestos.  
 
-## Estructura de la EDT
+Se deberá gestionar el alcance durante todo el ciclo de vida del proyecto, garantizando que se incluya todo el trabajo necesario de acuerdo con los requisitos acordados, y manteniendo un registro de cualquier cambio en el alcance que se produzca. 
+
+Además, será fundamental validar el alcance con los interesados a lo largo del ciclo de vida del proyecto, asegurando que cualquier cambio o ajuste se comunica y aprueba de manera adecuada, manteniendo siempre alineadas las expectativas del cliente y el equipo de trabajo.
+
+## ESTRUCTURA DE LA EDT
 
 La estructura de la EDT enfocada en fases, utilizando la secuencia Proyecto → Fases → Entregables → Paquetes de trabajo, se organizaría de la siguiente manera:
 
@@ -59,7 +63,7 @@ La estructura de la EDT enfocada en fases, utilizando la secuencia Proyecto → 
 
 Esta estructura de la EDT, basada en fases, es altamente efectiva porque proporciona claridad en la organización del proyecto, facilita la planificación y control, y permite una mejor gestión de riesgos y recursos. Al descomponer el proyecto en fases, entregables y paquetes de trabajo, mejora la comunicación y asegura un seguimiento detallado del progreso, lo que aumenta las probabilidades de cumplir los objetivos dentro de los plazos y costos establecidos.
 
-## Diccionario de la EDT
+## DICCIONARIO DE LA EDT
 
 En esta sección se proporciona una descripción detallada de cada uno de los elementos y paquetes de trabajo dentro de la EDT. Incluye los siguientes apartados:
 
@@ -81,22 +85,22 @@ En esta sección se proporciona una descripción detallada de cada uno de los el
 
 Este diccionario proporciona claridad, control y trazabilidad en la gestión del proyecto, asegurando que todos los elementos de la EDT estén bien definidos y comprendidos por el equipo.
 
-## Mantenimiento de la Línea Base de la EDT
+## MANTENIMIENTO DE LA LÍNEA BASE DE LA EDT
 
-Dado que el ciclo de vida del proyecto es predictivo, la línea base del alcance está claramente definida desde las fases de Inicio y Planificación, lo que implica que las tareas y entregables principales ya han sido identificados y detallados. Sin embargo, en la fase de Ejecución adaptativa bajo SCRUM, es necesario mantener una flexibilidad controlada, dado que el trabajo puede ajustarse según el feedback continuo.
+Dado que el ciclo de vida del proyecto es predictivo, la línea base del alcance está claramente definida desde las fases de Inicio y Planificación, lo que implica que las tareas y entregables principales ya han sido identificados y detallados. Sin embargo, en la fase de Ejecución adaptativa bajo Scrum, es necesario mantener una flexibilidad controlada, dado que el trabajo puede ajustarse según el feedback continuo.
 
-Durante esta fase, la línea base del alcance deberá ser monitoreada diariamente en las reuniones de SCRUM (Daily Stand-ups), para garantizar que las tareas y los entregables previstos no se desvíen significativamente. Para mantener esta alineación:
+Durante esta fase, la línea base del alcance deberá ser monitoreada diariamente en las reuniones de Scrum (Daily Stand-ups), para garantizar que las tareas y los entregables previstos no se desvíen significativamente. Para mantener esta alineación:
 
 - **Verificación constante del alcance:** Se revisarán continuamente los requisitos y tareas para asegurarse de que aún sean válidos y relevantes para los objetivos del proyecto.
 
-- **Evaluación de la importancia de los requisitos:** A través del uso de gráficos Burndown, entre otras herramientas propias de la metodología SCRUM, se podrá identificar si algún requisito está tomando más tiempo del previsto. Si es así, el equipo deberá analizar si dicho requisito sigue siendo funcional y rentable para el cliente, y tomar decisiones oportunas para evitar retrasos innecesarios.
+- **Evaluación de la importancia de los requisitos:** A través del uso de gráficos Burndown, entre otras herramientas propias de la metodología Scrum, se podrá identificar si algún requisito está tomando más tiempo del previsto. Si es así, el equipo deberá analizar si dicho requisito sigue siendo funcional y rentable para el cliente, y tomar decisiones oportunas para evitar retrasos innecesarios.
 
 - **Revisiones del Product Backlog:** Durante las sesiones de Sprint Planning, el equipo de trabajo se asegurará de que las nuevas tareas incluidas en el backlog se mantengan dentro del alcance aprobado o se ajuste formalmente mediante el proceso de cambio.
 
 
-## Cambios al Alcance
+## CAMBIOS AL ALCANCE
 
-La gestión de cambios en el alcance en un proyecto con ciclo de vida predictivo tiene como objetivo mantener el control sobre el impacto de cualquier modificación sobre los resultados esperados. No obstante, en la fase de Ejecución adaptativa (SCRUM), es común que los requisitos evolucionen a lo largo del desarrollo del proyecto.
+La gestión de cambios en el alcance en un proyecto con ciclo de vida predictivo tiene como objetivo mantener el control sobre el impacto de cualquier modificación sobre los resultados esperados. No obstante, en la fase de Ejecución adaptativa (Scrum), es común que los requisitos evolucionen a lo largo del desarrollo del proyecto.
 
 Para garantizar que los cambios necesarios se gestionen sin comprometer el alcance original del proyecto, se implementarán los siguientes mecanismos:
 
