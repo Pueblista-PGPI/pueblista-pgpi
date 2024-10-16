@@ -198,15 +198,15 @@ footer-right: "\\thepage"
 | :- | :- |
 |**Versión**|1\.0|
 |**Autores**|Antonio Macías Ferrera|
-|**Descripción**|Un usuario sólo podrá modificar los datos de una reserva a su nombre, pudiendo cambiar la hora de la reserva, el espacio que solicita o bien cancelar la reserva. |
+|**Descripción**|Un usuario solo podrá modificar los datos de una reserva a su nombre, pudiendo cambiar la hora de la reserva, el espacio que solicita o bien cancelar la reserva. |
 |**Prioridad**|**Must** |
 |**Urgencia**|2|
 
-|**CRQ-010**|**Visualización de las reserva**|
+|**CRQ-010**|**Visualización de las reservas**|
 | :- | :- |
 |**Versión**|1\.0|
 |**Autores**|Antonio Macías Ferrera|
-|**Descripción**|Un usuario sólo podrá ver las reserva a su nombre, mientras que un administrador podrá visualizar todas las reservas de la localidad. |
+|**Descripción**|Un usuario solo podrá ver las reserva a su nombre, mientras que un administrador podrá visualizar todas las reservas de la localidad. |
 |**Prioridad**|**Must** |
 |**Urgencia**|2|
 
@@ -217,7 +217,7 @@ footer-right: "\\thepage"
 |**Descripción**|Un usuario podrá solicitar la eliminación del registro de todas sus reservas realizadas. |
 |**Prioridad**|**Should** |
 |**Urgencia**|2|
-|**Comentario**|Otros datos como el DNI no se eliminarán ya que realmente pertenecen al ayuntamiento. |
+|**Comentario**|Otros datos como el DNI no se eliminarán, ya que realmente pertenecen al ayuntamiento. |
 
 |**CRQ-012**|**Indisponobilidad de un espacio público**|
 | :- | :- |
@@ -247,7 +247,7 @@ footer-right: "\\thepage"
 | :- | :- |
 |**Versión**|1\.0|
 |**Autores**|Antonio Macías Ferrera|
-|**Descripción**|Se deberá pedir el consentimiento del usuario para el tratamiento de sus datos la primera vez que inicie sesión en la aplicación.  |
+|**Descripción**|Se deberá pedir el consentimiento del usuario para el tratamiento de sus datos la primera vez que inicie sesión en la aplicación.|
 |**Prioridad**|**Must** |
 |**Urgencia**|3|
 
@@ -327,7 +327,7 @@ Aunque no nos comprometemos a realizar un despliegue y mantenimiento de la aplic
 | - | - |
 |**Versión**|1\.0 |
 |**Autores**|Antonio Macías Ferrera|
-|**Descripción**|El sistema debe cargar en un tiempo no superior a 1 seg, trayendo únicamente los datos necesarios en cada vistas.|
+|**Descripción**|El sistema debe cargar en un tiempo no superior a 1 seg, trayendo únicamente los datos necesarios en cada vista.|
 |**Prioridad**|**Could**|
 
 

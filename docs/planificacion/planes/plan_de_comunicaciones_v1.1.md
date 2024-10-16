@@ -34,7 +34,7 @@ footer-right: "\\thepage"
 |Fecha	|Realizada por	|Breve descripción de los cambios
 | ----- | ------------- | ----------------- |
 |10/10/2024	| Daniel Fernández Caballero, José Miguel Iborra Conejo |	Elaboración de la primera versión del Plan de Comunicaciones  |
-| 12/10/2024	|  Daniel Fernández Caballero, José Miguel Iborra Conejo	| Revisión y corrección  del documento  |
+| 12/10/2024	|  Daniel Fernández Caballero, José Miguel Iborra Conejo	| Revisión y corrección del documento  |
 | 13/10/2024	|  Daniel Fernández Caballero, José Miguel Iborra Conejo, Ramón Gavira Sánchez	| Adición metodología *Scrum* y varias correciones |
 
 ## Introducción
@@ -131,7 +131,7 @@ Dado que el entorno del proyecto puede cambiar a lo largo de su desarrollo, el p
 
 ## Gestión de la Comunicación en la Metodología *Scrum* (Fase de Ejecución)
 
- Esta gestión de la comunicación será constante a lo largo de todo el ciclo de vida del proyecto. Sin embargo, durante la fase de ejecución se incorporarán varios medios de comunicación, tanto internos como externos, debido al uso de la metodología ágil *Scrum*. Estos medios serán clave para asegurar el seguimiento y desarrollo adecuado del producto, proporcionando un mayor control sobre las tareas realizadas por el equipo de trabajo y facilitando una mejor organización y colaboración, tanto entre el equipo como con el cliente.
+ Esta gestión de la comunicación será constante a lo largo de todo el ciclo de vida del proyecto. Sin embargo, durante la fase de ejecución se incorporarán varios medios de comunicación, tanto internos como externos, debido al uso de la metodología ágil *Scrum*. Estos medios serán claves para asegurar el seguimiento y desarrollo adecuado del producto, proporcionando un mayor control sobre las tareas realizadas por el equipo de trabajo y facilitando una mejor organización y colaboración, tanto entre el equipo como con el cliente.
 
 ### Sprint Planning
 
