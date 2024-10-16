@@ -120,7 +120,7 @@ tr:nth-child(odd) {
 |**Hitos** | - Cronograma y actividades definidas (24/10/2024)|
 |**Criterio de aceptación**|El cronograma debe estar aprobado y ajustado a las restricciones de tiempo establecidas en el proyecto.|
 
-|**PLA-005**|**2.1.5.Gestión de los costes**|
+|**PLA-005**|**2.1.5. Gestión de los costes**|
 | ------- | ------- |
 |**Fase**|2. Planificación|
 |**Responsable**|Director de Proyecto, Equipo de dirección de Proyecto|
@@ -129,20 +129,20 @@ tr:nth-child(odd) {
 |**Hitos** | - Plan de gestión de los costes terminado (27/10/2024) <br> - Desarrollo del presupuesto en Project (31/10/2024)|
 |**Criterio de aceptación**|Los planes y el presupuesto deben ser aprobados por el equipo de dirección y cumplir en adelante con los criterios definidos, garantizando un control financiero eficiente y la alineación con los objetivos del proyecto.|
 
-|**PLA-006**|**2.1.6.Gestión de la calidad**|
+|**PLA-006**|**2.1.6. Gestión de la calidad**|
 | ------- | ------- |
 |**Fase**|2. Planificación|
 |**Responsable**|Equipo de dirección del Proyecto|
 |**Descripción**|Se establecen los estándares de calidad y los procedimientos que se seguirán para asegurar que los entregables cumplan con las expectativas del cliente.|
 |**Entregables**|E1. Plan de Dirección de Proyecto <br> - Plan de gestión de la calidad|
-|**Hitos** | - Finalización del plan de gestión de calidad ( 24/10/2024)|
+|**Hitos** | - Finalización del plan de gestión de calidad (24/10/2024)|
 |**Criterio de aceptación**| -- |
 
 
 
 
 
-|**PLA-007**|**2.1.7.Gestión de los recursos**|
+|**PLA-007**|**2.1.7. Gestión de los recursos**|
 | ------- | ------- |
 |**Fase**|2. Planificación|
 |**Responsable**|Equipo de dirección del Proyecto|
@@ -151,7 +151,7 @@ tr:nth-child(odd) {
 |**Hitos** | - Finalizar plan de gestión de los recursos (31/10/2024) <br> - Matriz de asignación de responsabilidades (31/10/2024)|
 |**Criterio de aceptación**| -- |
 
-|**PLA-008**|**2.1.8.Gestión de adquisiciones**|
+|**PLA-008**|**2.1.8. Gestión de adquisiciones**|
 | ------- | ------- |
 |**Fase**|2. Planificación|
 |**Responsable**|Equipo de dirección del Proyecto|
@@ -220,7 +220,7 @@ tr:nth-child(odd) {
 | ------- | ------- |
 |**Fase**|3. Ejecución|
 |**Responsables**|Equipo de desarrollo|
-|**Descripción**|En este último Sprint de deberán tener en cuenta los requisitos de menor prioridad, así como refactorizar y depurar el código que sea necesario y satisfacer requisitos que se refieran a objetivos a nivel de proyecto y producto. |
+|**Descripción**|En este último Sprint se deberán tener en cuenta los requisitos de menor prioridad, así como refactorizar y depurar el código que sea necesario y satisfacer requisitos que se refieran a objetivos a nivel de proyecto y producto. |
 |**Entregables**|E3 Versión operativa de la aplicación <br> -Versión operativa de la aplicación a fecha del Sprint 3|
 |**Hitos** | - Fin de Sprint 3 (29/11/2024)|
 |**Criterio de aceptación**|Se deberán completar los requisitos de conducta del sistema:  <br> - COR-001: Disponibilidad de los espacios públicos.  <br> - COR-002: Aceptación del reglamento de protección de datos.  <br> - Se deberán atender el resto de los requisitos como los de portabilidad y seguridad. |
@@ -232,7 +232,7 @@ tr:nth-child(odd) {
 |**Descripción**|Se deberá elaborar un informe acerca del nivel de accesibilidad que alcanza el sistema. Sobre todo, teniendo la cuenta el diseño debe ser intuitivo y estar pensado acorde a la edad de los ciudadanos de Villanueva de las Cruces.|
 |**Entregables**|E4 Informes de accesibilidad|
 |**Hitos** | - Fin de Sprint 3 (29/11/2024)|
-|**Criterio de aceptación**| - Se debe detallar el grado de cumplimento con el nivel AA de accesibilidad según el estándar WCAG 2.1. <br> -Debe incluir una lista de los criterios específicos cumplidos bajo los principios de **perceptible, operable, comprensible y robusto**. <br> - Verificación de accesibilidad en **diferentes dispositivos** y navegadores, incluyendo tecnologías de asistencia (lectores de pantalla, dispositivos braille, etc.).|
+|**Criterio de aceptación**| - Se debe detallar el grado de cumplimiento con el nivel AA de accesibilidad según el estándar WCAG 2.1. <br> -Debe incluir una lista de los criterios específicos cumplidos bajo los principios de **perceptible, operable, comprensible y robusto**. <br> - Verificación de accesibilidad en **diferentes dispositivos** y navegadores, incluyendo tecnologías de asistencia (lectores de pantalla, dispositivos braille, etc.).|
 
 
 

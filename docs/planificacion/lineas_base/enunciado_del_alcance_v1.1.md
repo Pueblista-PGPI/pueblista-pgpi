@@ -36,7 +36,7 @@ footer-right: "\\thepage"
 
 El proyecto consiste en el diseño, desarrollo e implantación de una aplicación web accesible (AA) para gestionar y reservar espacios públicos municipales en Villanueva de las Cruces. La aplicación digitalizará el proceso de reserva, permitiendo a los usuarios consultar la disponibilidad de los espacios, realizar y cancelar reservas de manera sencilla. 
 
-La información necesaria, definida y detallada para la elaboración del enunciado del alcance se encuentra ya recopilada en los siguientes documentos del proyecto. En el Acta de Constitución, quedan specificados, por un lado las exclusiones del proyecto, clarificando lo que queda fuera del alcance, y por otro lado, los entregables del proyecto, proporcionando una visión clara de lo que se debe entregar al finalizar el trabajo. Igualmente, los supuestos y restricciones relevantes se encuentran documentados tanto en el Acta de Constitución como en el Registro de Supuestos, asegurando que se han identificado las condiciones bajo las cuales se desarrollará el proyecto. 
+La información necesaria, definida y detallada para la elaboración del enunciado del alcance se encuentra ya recopilada en los siguientes documentos del proyecto. En el Acta de Constitución, quedan specificados, por un lado, las exclusiones del proyecto, clarificando lo que queda fuera del alcance, y por otro lado, los entregables del proyecto, proporcionando una visión clara de lo que se debe entregar al finalizar el trabajo. Igualmente, los supuestos y restricciones relevantes se encuentran documentados tanto en el Acta de Constitución como en el Registro de Supuestos, asegurando que se han identificado las condiciones bajo las cuales se desarrollará el proyecto. 
 
 El alcance también queda definido por los requisitos recogidos en el Registro de Requisitos, asegurando que las necesidades identificadas durante la fase de planificación están incluidas en el proyecto. Cualquier adición que se salga del alcance previamente definido será considerada como un cambio de alcance y, por tanto, deberá ser evaluada y aprobada a través del proceso formal de gestión de cambios, llegando a poder ser excluida del proyecto. 
 
@@ -62,7 +62,7 @@ Además, los criterios de aceptación que se utilizarán para validar el éxito 
 
 - Los recursos económicos necesarios serán proporcionados por el ayuntamiento de Villanueva de las Cruces.
 
-- La información proporcionada por el cliente será la principal fuente de requisitos, siendo el proyecto planificados y gestionado entorno a esto.
+- La información proporcionada por el cliente será la principal fuente de requisitos, siendo el proyecto planificado y gestionado en torno a esto.
 
 
 ## EXCLUSIONES DEL PROYECTO
@@ -71,9 +71,9 @@ Además, los criterios de aceptación que se utilizarán para validar el éxito 
 
 - Instalación y configuración de entornos y máquinas, así como de servicios de alojamiento y hosting
 
-- Servicio de mantenimiento post-implantación del sistema en entorno productivo
+- Servicio de mantenimiento postimplantación del sistema en entorno productivo
 
-- Servicio de mantenimiento post-implantación del sistema en entorno productivo 
+- Servicio de mantenimiento postimplantación del sistema en entorno productivo 
 
 - Servicio de soporte posterior a la puesta en producción 
 
