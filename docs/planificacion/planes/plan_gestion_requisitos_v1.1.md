@@ -73,7 +73,7 @@ Son las capacidades específicas que el sistema debe proporcionar para cumplir c
 - **Requisitos de conducta:** establecen el comportamiento que el sistema debe exhibir en ciertas situaciones o eventos, como reacciones a errores o acciones del usuario.
 
 ### **2.2. No funcionales**
-Estos requisitos se enfocan en cómo el sistema debe funciona en diversos aspectos como la calidad, rendimiento, restricciones técnicas, etc.
+Estos requisitos se enfocan en cómo el sistema debe funcionar en diversos aspectos como la calidad, rendimiento, restricciones técnicas, etc.
 - **Requisitos de fiabilidad**: Definen el nivel de confiabilidad que debe tener el sistema, especificando su capacidad para operar sin fallos durante un tiempo determinado.
 - **Requisitos de usabilidad**: Se refieren a la facilidad de uso y la experiencia del usuario al interactuar con el sistema, evaluando aspectos como la interfaz y la accesibilidad.
 - **Requisitos de mantenibilidad**: Especifican cuán fácil es actualizar, corregir errores y mantener el sistema a lo largo del tiempo.
@@ -110,8 +110,8 @@ La documentación de los requisitos el último paso que se realiza tras la valid
 
 <br>
 
-- **Documento de requisitos:** Es el documento que recoge y describe de forma detallada todos los requisitos del proyecto. En el los requisitos quedan distinguidos en base a la clasificación de los mismos y cada uno de ellos recoge código, título, versión, autor(es), descripción, prioridad y urgencia. Adicionalmente podrá contener los campos comentarios y datos específicos si procediera. 
-- **Matriz de trazabilidad:** Es la tabla que vincula cada requisito con el requisito de alto nivel del proyecto que le dio origen, realizar su seguimiento y control a lo largo de la ejecución del proyecto hasta el cierre.Se realizará una matriz para cada categoría de requisitos y otra para relacionar los requisitos que se correspondan con los objetivos del proyecto.
+- **Documento de requisitos:** Es el documento que recoge y describe de forma detallada todos los requisitos del proyecto. En él los requisitos quedan distinguidos según la clasificación de los mismos y cada uno de ellos recoge código, título, versión, autor(es), descripción, prioridad y urgencia. Adicionalmente, podrá contener los campos comentarios y datos específicos si procediera. 
+- **Matriz de trazabilidad:** Es la tabla que vincula cada requisito con el requisito de alto nivel del proyecto que le dio origen, realizar su seguimiento y control a lo largo de la ejecución del proyecto hasta el cierre. Se realizará una matriz para cada categoría de requisitos y otra para relacionar los requisitos que se correspondan con los objetivos del proyecto.
 
 <br>
 
@@ -121,7 +121,7 @@ La documentación de los requisitos aporta una base sólida para la gestión del
 
 # PRIORIZACIÓN DE REQUISITOS
 
-A la hora de recoger los requisitos es fundamental la priorización de los mismos con el objetivo de establecer una jerarquía de importancia y urgencia clara, que resultará clave una vez que se lleve a cabo la implementación de cada uno de ellos. En este proyecto, los requisitos serán priorizados siguiendo el método *MoSCoW*, un método que se basa en la criticidad de los requisitos, es decir, la necesidad que tiene el proyecto de contar con unos u otros. De esta forma, el método *MoSCoW* establece 4 niveles de prioridad, siendo estos desde el mas crítico al menos crítico:
+A la hora de recoger los requisitos es fundamental la priorización de los mismos con el objetivo de establecer una jerarquía de importancia y urgencia clara, que resultará clave una vez que se lleve a cabo la implementación de cada uno de ellos. En este proyecto, los requisitos serán priorizados siguiendo el método *MoSCoW*, un método que se basa en la criticidad de los requisitos, es decir, la necesidad que tiene el proyecto de contar con unos u otros. De esta forma, el método *MoSCoW* establece 4 niveles de prioridad, siendo estos desde el más crítico al menos crítico:
 
 <br>
 
@@ -132,7 +132,7 @@ A la hora de recoger los requisitos es fundamental la priorización de los mismo
 
 <br>
 
-Por otro lado, a la hora de priorizar los requsitos dentro de estos 4 niveles, se establece el parámetro de la **urgencia**. Este indicador puede tomar valores del 1 al 3 indincando una mayor urgencia si toma un mayor valor. Con estos sistemas de priorización proporcionamos a los *stakeholders* una forma clara de visualizar requisitos que son o no críticos para el proyecto, y un lenguaje común para discutir las prioridades y expectativas del proyecto. Todo esto con el objetivo de simplificar el proceso de toma de decisiones con respecto a los requisitos. Al incluir la información esencial de cada requisito, se asegura que todos los involucrados comprendan claramente las necesidades y objetivos del proyecto.
+Por otro lado, a la hora de priorizar los requisitos dentro de estos 4 niveles, se establece el parámetro de la **urgencia**. Este indicador puede tomar valores del 1 al 3 indicando una mayor urgencia si toma un mayor valor. Con estos sistemas de priorización proporcionamos a los *stakeholders* una forma clara de visualizar requisitos que son o no críticos para el proyecto, y un lenguaje común para discutir las prioridades y expectativas del proyecto. Todo esto con el objetivo de simplificar el proceso de toma de decisiones con respecto a los requisitos. Al incluir la información esencial de cada requisito, se asegura que todos los involucrados comprendan claramente las necesidades y objetivos del proyecto.
 
 <br>
 
@@ -162,7 +162,7 @@ La validación de requisitos es un proceso de asegurar que los requisitos del pr
 
 # TRAZABILIDAD DE REQUISITOS
 
-La trazabilidad consideramos que es la métrica de validación de requisitos más importante ya que nos permite evaluar a simple vista la relación de cada requisito con un objetivo del proyecto o del producto. En concreto, se realizarán dos tipos de matrices de trazabilidad:
+La trazabilidad consideramos que es la métrica de validación de requisitos más importante, ya que nos permite evaluar a simple vista la relación de cada requisito con un objetivo del proyecto o del producto. En concreto, se realizarán dos tipos de matrices de trazabilidad:
 - Una matriz por cada grupo de requisitos de producto que relacione cada requisito con uno de los requisitos de alto nivel definidos en el Acta de Constitución.
 - Otro grupo que relacione cada requisito ambiental, de proyecto u organizacional con un objetivo de proyecto. 
 
