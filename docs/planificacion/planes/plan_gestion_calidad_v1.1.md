@@ -214,7 +214,7 @@ En cada lista se deberá anotar los defectos más significativos encontrados, pr
 
 <br>
 
-## 10\. UDITORÍAS A REALIZAR
+## 10\. AUDITORÍAS A REALIZAR
 Las auditorías, validarán que los procesos y procedimientos aplicados están alineados con la metodología de gestión de proyectos utilizada en el proyecto, como la recogida en el PMBOK Guide.
 
 Las fechas de las auditorías podrán variar, y el proyecto podrá ser auditado sin previo aviso en cualquier momento. Por ello, el **director de proyecto** deberá revisar la gestión del proyecto durante todo el ciclo de vida del proyecto y se encargará de: 
