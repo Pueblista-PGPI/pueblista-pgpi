@@ -1,5 +1,5 @@
 ---
-title: "Plan de gestión de la calidad"  # modificar
+title: "Lista de actividades"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
 date: "19/10/2024"  # modificar
 subject: "PGPI"
@@ -11,7 +11,7 @@ titlepage: true,
 titlepage-text-color: "1C1C1C"
 titlepage-rule-color: "1C1C1C"
 titlepage-rule-height: 0
-titlepage-background: "../../../plantilla-markdown/background2V.pdf" # modificar si el doc es horizontal
+titlepage-background: "plantilla-markdown/background2V.pdf" # modificar si el doc es horizontal
 toc: true
 toc-own-page: true
 footer-left: "Pueblista - PGPI"

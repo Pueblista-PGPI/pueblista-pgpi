@@ -53,7 +53,7 @@ El personal del ayuntamiento responsable de la administración de los espacios t
 ## EXCLUIDO DEL PROYECTO
 - Formación a usuarios
 - La instalación y configuración de entornos y máquinas (Infraestructura), así como servicios de alojamiento y hosting. 
-- Servicio de mantenimiento post-implantación del sistema en entorno productivo.
+- Servicio de mantenimiento postimplantación del sistema en entorno productivo.
 - Servicio de soporte posterior a la puesta en producción
 - No se consideran gastos de desplazamientos ni dietas fuera de Sevilla, de producirse se facturarán al cliente previa aprobación.
 - Requisitos fuera del alcance del proyecto.
@@ -117,7 +117,7 @@ Satisfacción del cliente: se valorará el grado de satisfacción del cliente al
 
 ## PRESUPUESTO RESUMIDO 
 
-El departamento comercial ha realizado una oferta de 14.000€ + 21% de IVA. 
+El departamento comercial ha realizado una oferta de 14.000 € + 21% de IVA. 
 
 ## INTERESADOS CLAVE
 

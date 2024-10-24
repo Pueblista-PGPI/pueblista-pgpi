@@ -30,6 +30,7 @@ footer-right: "\\thepage"
 |Fecha	|Realizada por	|Breve descripción de los cambios |
 | ----- | ------------- | ----------------- |
 |14/10/2024	| Daniel Fernández Caballero, Rafael Pulido Cifuentes |	Elaboración de la primera versión del Plan de Gestión del Alcance |
+|19/10/2024	| Daniel Fernández Caballero, Rafael Pulido Cifuentes |	Modificación de los tres últimos apartados |
 
 
 
@@ -111,3 +112,40 @@ Para garantizar que los cambios necesarios se gestionen sin comprometer el alcan
 - **Aprobaciones formales en cada Sprint Review:** Al finalizar cada Sprint, se revisará con el cliente el avance de las funcionalidades y requisitos completados. Si hay modificaciones que afecten el alcance, estas deberán ser formalmente aprobadas antes de proceder con su implementación.
 
 - **Documentación de cambios:** Todos los cambios en el alcance se registrarán y documentarán detalladamente, asegurando que tanto el equipo como el cliente comprendan las implicaciones en términos de tiempo, costo y entregables.
+
+
+## ACEPTACIÓN DE LOS ENTREGABLES
+
+Durante la ejecución del proyecto, cada entregable deberá ser revisado y validado a través de inspecciones y reuniones de revisión (Sprint Reviews). Estos entregables verificables incluirán tanto avances funcionales del producto como otros entregables documentales. 
+
+En cada Sprint, el equipo revisará los entregables en el Sprint Review con la participación del cliente o stakeholders. Esto garantizará que cada entregable cumple con los requisitos y expectativas acordadas. Se verificarán aspectos como: 
+
+- Cumplimiento de requisitos funcionales. 
+
+- Calidad del código o producto desarrollado. 
+
+- Documentación relevante que acompañe al entregable. 
+
+Los entregables aceptados se formalizarán a través del reconocimiento por parte del cliente que el trabajo ha cumplido con las especificaciones. Los entregables que no cumplan con los criterios de aceptación generarán solicitudes de cambio y serán revisados en el próximo Sprint. 
+
+Gracias a herramientas de Scrum como los Burndown Charts, se evaluará el progreso en tiempo real. Esto permitirá identificar si el desarrollo está alineado con la línea base del alcance, o si se requiere implementar ajustes antes de la aceptación final de los entregables. 
+
+Si un entregable no es aceptado, se documentará la razón y se generará una solicitud de cambio en el alcance o correcciones. Esto será gestionado en el backlog y priorizado en función de su impacto en el proyecto. Este proceso será clave para garantizar la conformidad con el alcance inicial, minimizando desviaciones y asegurando que el producto final cumpla con los requisitos acordados en la planificación del proyecto.
+
+## INTEGRACIÓN DE LOS REQUISITOS Y EL ALCANCE
+
+La integración de los requisitos y el alcance es fundamental en la gestión de proyectos con un ciclo de vida predictivo, como el que se está desarrollando. En la fase de planificación, se definen los requisitos del proyecto, los cuales son la base para el desarrollo del alcance. Esta definición de requisitos busca asegurar que las expectativas del cliente y los objetivos del proyecto estén claramente alineadas desde el inicio. Una vez que los requisitos están establecidos, se procede a desglosarlos en entregables específicos y tareas, que se consolidan en la línea base del alcance. 
+
+Durante la fase de ejecución, donde se utiliza la metodología Scrum, el equipo se enfoca en desarrollar el producto según los requisitos previamente definidos. Aunque el Scrum se emplea principalmente para la ejecución, es crucial que exista una relación continua entre el alcance y los requisitos establecidos en la fase de planificación. Esto se logra a través de revisiones periódicas al final de cada sprint, donde se validan los entregables frente a los requisitos, asegurando que no haya desviaciones. 
+
+El control de los cambios en el alcance también se relaciona con la integración de los requisitos, ya que cualquier modificación en los entregables o en el alcance del proyecto deberá alinearse nuevamente con los requisitos originales, o ser ajustada mediante un proceso formal de gestión de cambios. Esto asegura que, incluso en un entorno ágil de ejecución como Scrum, el proyecto se mantenga dentro de los parámetros establecidos inicialmente.
+
+## CONTROL DEL ALCANCE 
+
+El control del alcance tiene como objetivo supervisar continuamente el estado del proyecto y gestionar cualquier cambio que se proponga respecto a lo establecido en la línea base del alcance, asegurando así que el proyecto permanezca alineado con sus objetivos y se minimicen las desviaciones. El monitoreo del alcance es responsabilidad principalmente del cliente y el equipo de desarrollo, aunque otros interesados, como los administradores que mantendrán el producto después de su entrega, también pueden participar cuando sea necesario para garantizar una adecuada gestión de los cambios. 
+
+Este proceso de control se realiza de manera continua durante todo el ciclo de vida del proyecto, siendo especialmente visible en entornos de Scrum, donde al final de cada Sprint se llevan a cabo revisiones y retrospectivas para evaluar el progreso y determinar si el trabajo completado está en línea con el alcance inicial. 
+
+Para asegurar un control eficaz del alcance, se utilizan varias técnicas de análisis, entre las que se destaca el análisis de variación, que compara el desempeño real con lo planificado en la línea base del alcance. Esto permite identificar si se requiere alguna acción correctiva o preventiva. Además, la gestión de cambios es crucial, ya que cualquier solicitud de modificación del alcance debe pasar por el proceso de Control Integrado de Cambios, garantizando que cada ajuste sea revisado y aprobado antes de implementarse. 
+
+En cuanto a los criterios de aceptación, es fundamental que el alcance sea gestionado de manera rigurosa, evaluando continuamente los entregables del proyecto en comparación con los requisitos aprobados y los objetivos definidos. Este enfoque asegura que cualquier desviación sea detectada y abordada a tiempo, lo que permite mantener el proyecto dentro de los límites de tiempo y presupuesto establecidos.
