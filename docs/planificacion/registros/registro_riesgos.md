@@ -87,6 +87,17 @@ Son riesgos que afectan los plazos de ejecución y las fechas de entrega del pro
 | Impacto en la calidad | 3   |
 | Seguimiento y respuesta | Mitigar – Establecer hitos claros y recordar con antelación al cliente la necesidad de revisión y aprobación. |
 
+| RCR-003 |Desviaciones en el cronograma debido a la replanificación frecuente de sprints |
+| --- | --- |
+| Descripción |  En la metodología Scrum, si las prioridades de los sprints cambian frecuentemente por peticiones del cliente o cambios inesperados en el backlog, esto puede causar desviaciones en el cronograma global del proyecto, afectando los plazos de entrega acordados para las funcionalidades clave. |
+| Probabilidad | 0.6 |
+| Impacto en el coste | 5 |
+| Impacto en el alcance | 7 |
+| Impacto en el tiempo | 7 |
+| Impacto en la calidad | 5 |
+| Seguimiento y respuesta | Mitigar – Mantener revisiones frecuentes con el Product Owner para priorizar y estabilizar el backlog. Revisar los sprints y asegurar que las tareas críticas no sufran cambios bruscos sin una evaluación adecuada. Considerar la flexibilidad de tiempo para iteraciones adicionales en el plan global.|
+
+
 # 3\. Riesgos en la Gestión de los Costes del Proyecto
 
 Estos riesgos impactan el presupuesto del proyecto, generando sobrecostos o la necesidad de financiamiento adicional no previsto. Un mal control de los costos puede llevar a la inviabilidad económica del proyecto.
