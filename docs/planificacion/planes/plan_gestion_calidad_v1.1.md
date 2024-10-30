@@ -30,6 +30,7 @@ footer-right: "\\thepage"
 |Fecha	|Realizada por	|Breve descripción de los cambios
 | ----- | ------------- | ----------------- |
 | 12/10/2024	|  Daniel Fernández Caballero, Rafael Pulido Cifuentes	| Elaboración del documento  |
+| 23/10/2024	|  Daniel Fernández Caballero, Rafael Pulido Cifuentes	| Modificación auditorías  |
 
 \newpage
 
@@ -158,7 +159,7 @@ Puesto que el equipo utiliza el ciclo de Deming para la mejora continua de los p
 - **Reuniones de planificación.** En esta sesión, el equipo de proyecto analizará las observaciones realizadas en las reuniones semanales se seguimiento y planificará las acciones necesarias para mantener o corregir la calidad de los entregables. Se definirán las tareas que se realizarán la semana siguiente en relación con la calidad, asegurando que las todas estén bien estructuradas y se ejecuten con eficiencia.
 - **Reuniones de actuación.** Esta reunión permite revisar las acciones y tareas establecidas en las reuniones de planificación y verificar si han sido efectivas, se evalúa la calidad de los entregables y se asegura que cumplen con los estándares de calidad, completando así el ciclo de mejora continua.
 
-<br>
+- **Reunion de aseguramiento de la calidad**: El día 20 de noviembre se llevará a cabo una reunión de aseguramiento de la calidad entre el equipo del proyecto, el responsable de gestión de la calidad y el cliente. En esta reunión, el director del proyecto presentará los distintos entregables tanto del Inicio del Proyecto como el plan de Dirección del Proyecto, incluyendo los diferentes planes de gestión, la edt y las matrices de trazabilidad, con el fin de verificar que la calidad de los entregables cumpla con los estándares acordados. Esta sesión permitirá identificar posibles mejoras y asegurar que los entregables estén alineados con las expectativas de calidad establecidas.
 
 <br>
 
@@ -214,20 +215,28 @@ En cada lista se deberá anotar los defectos más significativos encontrados, pr
 
 <br>
 
-## 10\. AUDITORÍAS A REALIZAR
-Las auditorías, validarán que los procesos y procedimientos aplicados están alineados con la metodología de gestión de proyectos utilizada en el proyecto, como la recogida en el PMBOK Guide.
+## 10. AUDITORÍAS A REALIZAR
 
-Las fechas de las auditorías podrán variar, y el proyecto podrá ser auditado sin previo aviso en cualquier momento. Por ello, el **director de proyecto** deberá revisar la gestión del proyecto durante todo el ciclo de vida del proyecto y se encargará de: 
+Las auditorías validarán que los procesos y procedimientos aplicados están alineados con la metodología de gestión de proyectos utilizada, como la recogida en el PMBOK Guide.
 
-- Inspeccionar aspectos de forma del proyecto, tanto en su gestión como en su ejecución.
+Las fechas de las auditorías podrán variar, y el proyecto podrá ser auditado sin previo aviso en cualquier momento. Por ello, el **director de proyecto** deberá revisar la gestión del proyecto durante todo el ciclo de vida del proyecto y se encargará de:
 
-- Identificar las causas que provocan la activación de alarmas de proyecto/servicio. 
-
+- Inspeccionar aspectos formales del proyecto, tanto en su gestión como en su ejecución.
+- Identificar las causas que provocan la activación de alarmas de proyecto/servicio.
 - Comprobar las evidencias que garantizan el cumplimiento de los requisitos mínimos establecidos en las distintas normas/metodologías descritas anteriormente.
 
-Al final de la auditoría, el auditor remitirá al Director del Proyecto un informe con la nota resultado, recomendaciones, acciones correctivas y preventivas a aplicar y riesgos detectados, y realizará seguimiento de acciones. El Director de Proyecto deberá contestar antes del tiempo definido, en caso de producirse algún incumplimiento de las fechas acordadas sin causa justificada, se aplicará el procedimiento de penalización correspondiente. 
+Al final de la auditoría, el auditor remitirá al Director del Proyecto un informe con la nota obtenida, recomendaciones, acciones correctivas y preventivas a aplicar, y riesgos detectados. Además, realizará seguimiento de las acciones. El Director de Proyecto deberá responder dentro del plazo definido. En caso de incumplimiento de las fechas acordadas sin causa justificada, se aplicará el procedimiento de penalización correspondiente.
 
-En el momento en que el Director de Proyecto informe al auditor de la ejecución de las acciones realizadas, se procederá a la revisión de las evidencias. Si la revisión es satisfactoria, se guardarán las evidencias documentales en carpeta/herramienta correspondiente y se cerrará la acción en la herramienta.
+Una vez que el Director de Proyecto informe al auditor de la ejecución de las acciones correctivas, se procederá a la revisión de las evidencias. Si la revisión es satisfactoria, las evidencias documentales se archivarán en la carpeta o herramienta correspondiente y se cerrará la acción en la herramienta.
+
+Más específicamente, en este proyecto se realizarán tanto auditorías internas como externas:
+
+- **Auditorías externas**: Se llevarán a cabo en conjunto con el patrocinador para verificar que el proyecto se desarrolla conforme a los acuerdos establecidos y cumple con los estándares de calidad esperados. Estas auditorías permiten garantizar que los entregables y procesos del proyecto satisfacen las expectativas y requisitos definidos previamente.
+
+
+- **Auditorías internas**: Se realizarán semanalmente, generalmente los lunes, entre los miembros del equipo junto con un auditor para evaluar la calidad del trabajo completado durante la semana. Estas revisiones tienen como objetivo detectar posibles desviaciones, asegurar el cumplimiento de los estándares establecidos y aplicar mejoras continuas en los procesos y entregables.
+
+
 
 <br>
 
