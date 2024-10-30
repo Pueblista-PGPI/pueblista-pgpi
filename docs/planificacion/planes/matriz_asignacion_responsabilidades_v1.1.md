@@ -42,45 +42,38 @@ footer-right: "\\thepage"
 
 
 # MATRIZ DE ASIGNACIÓN DE RESPONSABILIDADES
-En el presente documento se detalla la **Matriz de Asignación de Responsabilidades**. Este modelo utiliza un **diagrama o matriz RACI** para establecer de forma clara los roles y responsabilidades de cada miembro del equipo en las diferentes actividades del proyecto, esto nos permitirá identificar de manera precisa quién es responsable de ejecutar cada tarea, quién tiene la autoridad para aprobar los resultados, quién debe ser consultado para aportar información o validar decisiones, y quién debe ser informado del avance y los resultados. Se utilizará la siguiente nomenclatura: 
+En el presente documento se detalla la **Matriz de Asignación de Responsabilidades**. Este modelo utiliza un **diagrama o matriz RACI** para establecer de forma clara los roles y responsabilidades de cada miembro del equipo en las diferentes actividades del proyecto, esto nos permitirá identificar de manera precisa quién es responsable de ejecutar cada tarea, quién tiene la autoridad para aprobar los resultados, quién debe ser consultado para aportar información o validar decisiones, y quién debe ser informado del avance y los resultados. 
 
-***R =*** “Responsable”: responsable de realizar el trabajo. Sólo uno por actividad.
-
-***A*** = “Aprobador”: responsable del trabajo. Sólo uno por actividad.
-
-***C*** = “Consultado”: Revisa el resultado del trabajo.
-
-***I*** = “Informado”: Debe ser informado durante la ejecución del trabajo.
+<br>
 
 
-<table><tr><th><b>EDT #</b></th><th><b>Paquete de Trabajo</b></th><th colspan="2"><b>Director (PM)</b></th><th><b>Analista - técnico</b></th><th><b>Analista - programador</b></th><th valign="top"><b>Cliente</b></th></tr>
-<tr><td colspan="2" rowspan="2">1\.1 INICIO DEL PROYECTO</td><td>1\.1.1 ACTA DE CONSTITUCIÓN</td><td><b>C</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>A</b></td></tr>
-<tr><td>1\.1.2 ESTUDIOPREVIO</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td colspan="2"></td><td></td><td></td><td colspan="2"></td><td></td><td valign="top"></td></tr>
-<tr><td colspan="2" rowspan="10">2\.1 PLAN DE DIRECCIÓN DE PROYECTO</td><td>2\.1.1 REQUISTOS</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>A</b></td></tr>
-<tr><td>2\.1.2 PLAN COMUNICACIÓN</td><td><b>A R</b></td><td colspan="2"></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.3 GESTIÓN DE ALCANCE</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.4 GESTION DEL CRONOGRAMA</td><td><b>A R</b></td><td colspan="2"><b>I</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.5 GESTIÓN DE LOS COSTES</td><td><b>R</b></td><td colspan="2"><b>I</b></td><td><b>I</b></td><td valign="top"><b>A</b></td></tr>
-<tr><td>2\.1.6 GESTIÓN DE LA CALIDAD</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.7 GESTIÓN DE LOS RECURSOS</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.8 GESTIÓN DE ADQUISICIONES</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.9 GESTION DE RIESGOS</td><td><b>A</b> </td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td>2\.1.10 GESTIÓN DEL CAMBIO</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>C</b></td></tr>
-<tr><td colspan="2"></td><td></td><td></td><td colspan="2"></td><td></td><td valign="top"></td></tr>
-<tr><td colspan="2" rowspan="2">3\.1 SPRINT 1</td><td>3\.1.1 MOCK UPS</td><td><b>C</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"><b>A</b></td></tr>
-<tr><td>3\.1.2 CRUDS DE CONTENIDOS</td><td><b>A</b></td><td colspan="2"><b>C</b></td><td><b>R</b></td><td valign="top"></td></tr>
-<tr><td colspan="2">3\.2 SPRINT 2</td><td>3\.2.1 RESERVAS</td><td><b>A C</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"></td></tr>
-<tr><td colspan="2" rowspan="2">3\.3 SPRINT 3</td><td>3\.3.1 REQUISITOSDE CONDUCTA</td><td><b>A</b></td><td colspan="2"><b>C</b></td><td><b>R</b></td><td valign="top"></td></tr>
-<tr><td>3\.3.2 INFORMES DE ACCESIBILIDAD</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"></td></tr>
-<tr><td colspan="2"></td><td></td><td></td><td colspan="2"></td><td></td><td valign="top"></td></tr>
-<tr><td colspan="2" rowspan="2">4\.1 ENTREGA</td><td>4\.1.1 MANUALES</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"></td></tr>
-<tr><td>4\.1.2 ENTREGABLES</td><td><b>A C</b></td><td colspan="2"><b>C</b></td><td><b>R</b></td><td valign="top"></td></tr>
-<tr><td colspan="2" rowspan="2">4\.2 DOCUMENTOS DE CIERRE</td><td>4\.2.1 ENCUESTA DE SATISFACCIÓN</td><td><b>A</b></td><td colspan="2"><b>R</b></td><td><b>I</b></td><td valign="top"></td></tr>
-<tr><td>4\.2.2 ACTA DE CIERRE</td><td><b>R</b></td><td colspan="2"><b>I</b></td><td><b>I</b></td><td valign="top"><b>A</b></td></tr>
-<tr><td colspan="2"></td><td></td><td></td><td colspan="2"></td><td></td><td valign="top"></td></tr>
-<tr><td colspan="2"></td><td></td><td></td><td colspan="2"></td><td></td><td valign="top"></td></tr>
-</table>
 
-
+|**Paquete de Trabajo**|Director (PM)|Analista - técnico|Responsable calidad|Responsable comunicacion|Responsable riesgos|Analista programador|Programador|Tester|Formador|Diseñador UI/UX|Experto en accesibilidad|
+| ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+|**1.1.1 ACTA DE CONSTITUCIÓN**|**x**|||||||||||
+|**1.1.2 ESTUDIOPREVIO**|**x**|**x**||**x**||||||||
+|||||||||||||
+|**2.1.1 REQUISTOS**|**x**|**x**||**x**||||||||
+|**2.1.2 PLAN COMUNICACIÓN**|**x**|||**x**||||||||
+|**2.1.3 GESTIÓN DE ALCANCE**|**x**|**x**||||||||||
+|**2.1.4 GESTION DEL CRONOGRAMA**|**x**|||||||||||
+|**2.1.5 GESTIÓN DE LOS COSTES**|**x**|||||||||||
+|**2.1.6 GESTIÓN DE LA CALIDAD**|**x**||**x**|||||||||
+|**2.1.7 GESTIÓN DE LOS RECURSOS**|**x**|**x**||||||||||
+|**2.1.8 GESTIÓN DE ADQUISICIONES**|**x**|**x**||||||||||
+|**2.1.9 GESTION DE RIESGOS**|||||**x**|||||||
+|**2.1.10 GESTIÓN DEL CAMBIO**|**x**|**x**||||||||||
+|||||||||||||
+|**3.1.1 MOCK UPS**|**x**|**x**||||**x**|||**x**|**x**||
+|**3.1.2 CRUDS DE CONTENIDOS**|**x**|**x**||||**x**|||**x**|||
+|**3.2.1 RESERVAS**||||||**x**|**x**|**x**||**x**|**x**|
+|**3.3.1 REQUISITOSDE CONDUCTA**||||||**x**|**x**|**x**||**x**|**x**|
+|**3.3.2 INFORMES DE ACCESIBILIDAD**||||||**x**|**x**|**x**||**x**|**x**|
+|||||||||||||
+|**4.1.1 MANUALES**|**x**|**x**||||||||||
+|**4.1.2 ENTREGABLES**|**x**|**x**||||**x**||||||
+|**4.2.1 ENCUESTA DE SATISFACCIÓN**||||**x**||||||||
+|**4.2.2 ACTA DE CIERRE**|**x**|**x**||||||||||
+|||||||||||||
+|||||||||||||
 
