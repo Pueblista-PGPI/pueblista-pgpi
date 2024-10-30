@@ -166,6 +166,33 @@ Para gestionar los costes del proyecto, se emplearon dos herramientas principale
 
 - MS Excel se utilizó como una herramienta auxiliar para el análisis detallado de costes y la documentación de la plantilla de costes por rol. También se empleó para realizar cálculos adicionales y registrar ajustes menores en el coste por hora y costes indirectos.
 
+# INFORMES DE COSTES Y FORMATO
+
+Debido a la duración del proyecto y a la implementación de una metodología ágil en la fase de ejecución, se considera mas eficiente realizar un **informe de costes final** previo al cierre del proyecto en lugar de generar informes periódicos. El informe global de costes permitirá revisar de manera detallada el coste real de cada fase y analizar cualquier posible desviación acumulada.
+
+**Enfoque de Contol de Costes en el Proyecto**
+
+El proyecto combina un ciclo de vida predictivo para las fases de inicio, planificación y cierre con un enfoque ágil en la fase de ejecución. En las fases de **inicio, planificación y cierre**, el control de costes sigue un enfoque en cascada que permite prever y fijar el presupuesto de una manera más estable. 
+
+Sin embargo, en la fase de **ejecución**, donde se adopta la metodología ágil Scrum, es más probable que se presenten ajustes en los costes debido a la naturaleza iterativa de los Sprints. Durante cada Sprint, el equipo revisa el progreso y los recursos necesarios, y aunque no se generaran infromes de costes específicos para cada sprint, las **revisiones de desempeño en cada Sprint Review** permitirán identificar posibles desviaciones y ajustar los recursos y costes en consecuencia.
+
+**Contenido del Informe final de Costes**
+
+1. **Resumen de Costes por Fase:**
+    - Costes acumulados en cada fase del ciclo de vida (inicio, planificación, ejecución y cierre), resaltando las posibles desviaciones durante la fase de ejecución debido al enfoque ágil.
+
+2. **Análisis Global de Desviaciones:**
+    - Comparación entre los costes estimados y los costes reales en cada fase, con un análisis detallado del impacto de los ajustes en la fase de ejecución.
+
+3. **Impacto de los Ajustes en la Ejecución Ágil:**
+    - Evaluación de cómo los cambios y ajustes iterativos realizados en los sprints afectaron el coste final del proyecto y su alineación con el presupuesto inicial.
+
+4. **Conclusiones y Recomendaciones:**
+    - Valoración del control financiero del proyecto en general, con recomendaciones específicas para optimizar la gestión de costes en futuros proyectos que combinen enfoques ágiles y predictivos.
+
+Para poder llevar a cabo el informe final de costes, nos apoyaremos en MS Project y sobre todo en los *Sprint Review* que obtendrán toda la información real de desempeño del equipo, viendo las tareas realizadas y el tiempo empleado. Comparando esto con la estimación inicial, podremos obtener un informe detallado de costes reales y desviaciones.
+
+
 # SUPUESTOS Y RESTRICCIONES
 
 ## Supuestos
