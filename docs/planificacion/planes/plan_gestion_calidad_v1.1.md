@@ -159,7 +159,7 @@ Puesto que el equipo utiliza el ciclo de Deming para la mejora continua de los p
 - **Reuniones de planificación.** En esta sesión, el equipo de proyecto analizará las observaciones realizadas en las reuniones semanales se seguimiento y planificará las acciones necesarias para mantener o corregir la calidad de los entregables. Se definirán las tareas que se realizarán la semana siguiente en relación con la calidad, asegurando que las todas estén bien estructuradas y se ejecuten con eficiencia.
 - **Reuniones de actuación.** Esta reunión permite revisar las acciones y tareas establecidas en las reuniones de planificación y verificar si han sido efectivas, se evalúa la calidad de los entregables y se asegura que cumplen con los estándares de calidad, completando así el ciclo de mejora continua.
 
-<br>
+- **Reunion de aseguramiento de la calidad**: El día 20 de noviembre se llevará a cabo una reunión de aseguramiento de la calidad entre el equipo del proyecto, el responsable de gestión de la calidad y el cliente. En esta reunión, el director del proyecto presentará los distintos entregables tanto del Inicio del Proyecto como el plan de Dirección del Proyecto, incluyendo los diferentes planes de gestión, la edt y las matrices de trazabilidad, con el fin de verificar que la calidad de los entregables cumpla con los estándares acordados. Esta sesión permitirá identificar posibles mejoras y asegurar que los entregables estén alineados con las expectativas de calidad establecidas.
 
 <br>
 
