@@ -18,7 +18,7 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
 
-# PLAN DE GESTIÓN DE REQUISITOS
+**PLAN DE GESTIÓN DE REQUISITOS**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
@@ -34,7 +34,7 @@ footer-right: "\\thepage"
 \newpage
 
 
-# RECOPILACIÓN DE REQUISITOS
+# 1. RECOPILACIÓN DE REQUISITOS
 
 La obtención de los requisitos **se llevará a cabo principalmente a través de reuniones** con el cliente (Product Owner). Los primeros requisitos serán definidos a partir de los objetivos de alto nivel presentados en el acta de constitución y acordados con el cliente durante la primera reunión. A partir de estos, se detallarán los requisitos adicionales, siempre respetando las limitaciones técnicas de la tecnología seleccionada para el proyecto y sin salirse del alcance del proyecto.
 
@@ -44,7 +44,7 @@ Es importante destacar que **cualquier requisito que se salga del alcance inicia
 
 <br>
 
-# ANÁLISIS DE REQUISITOS
+# 2. ANÁLISIS DE REQUISITOS
 
 El análisis de los requisitos se realizará mediante un enfoque sistemático que incluye varias etapas clave. En primer lugar, se procederá a **clasificar los requisitos según su naturaleza**. A continuación, **se priorizarán estos requisitos de acuerdo con** su criticidad, utilizando **el método *MoSCoW***. Una vez priorizados, se evaluarán conforme a las métricas establecidas para garantizar su validez y pertinencia, asegurando que cumplen con las expectativas y necesidades de los *stakeholders*. Finalmente, todos los **requisitos serán documentados** de manera clara y precisa en el documento de requisitos, el cual servirá como referencia a lo largo del ciclo de vida del proyecto. Para asegurar la correcta trazabilidad de cada requisito, se implementará una **matriz de trazabilidad** que será de utilidad el seguimiento de la evolución de los requisitos desde su concepción hasta su implementación. Esta matriz permitirá identificar relaciones entre requisitos y objetivos facilitando el posible cambio o adición de nuevos requisitos.
 
@@ -58,7 +58,7 @@ La **calidad** del producto se revisa para garantizar que el cambio no afecte lo
 
 <br>
 
-# CLASIFICACIÓN DE REQUISITOS
+# 3. CLASIFICACIÓN DE REQUISITOS
 
 ## **1. Requisitos del proyecto**
 Los requisitos del proyecto son las condiciones o capacidades necesarias para cumplir los objetivos del proyecto en términos de tiempos, costos y recursos. Se enfocan en la planificación y gestión del proyecto, estableciendo restricciones y expectativas para garantizar su éxito.
@@ -104,7 +104,7 @@ Establecen las pautas para garantizar la confidencialidad de los datos personale
 
 <br>
 
-# DOCUMENTACIÓN DE REQUISITOS
+# 4. DOCUMENTACIÓN DE REQUISITOS
 
 La documentación de los requisitos el último paso que se realiza tras la validación de un nuevo requisito o el cambio de uno existente. Los documentos que se usarán en este proyecto para documentar los requisitos son el Documento de requisitos y las Matrices de trazabilidad.
 
@@ -119,7 +119,7 @@ La documentación de los requisitos aporta una base sólida para la gestión del
 
 <br>
 
-# PRIORIZACIÓN DE REQUISITOS
+# 5. PRIORIZACIÓN DE REQUISITOS
 
 A la hora de recoger los requisitos es fundamental la priorización de los mismos con el objetivo de establecer una jerarquía de importancia y urgencia clara, que resultará clave una vez que se lleve a cabo la implementación de cada uno de ellos. En este proyecto, los requisitos serán priorizados siguiendo el método *MoSCoW*, un método que se basa en la criticidad de los requisitos, es decir, la necesidad que tiene el proyecto de contar con unos u otros. De esta forma, el método *MoSCoW* establece 4 niveles de prioridad, siendo estos desde el más crítico al menos crítico:
 
@@ -136,7 +136,7 @@ Por otro lado, a la hora de priorizar los requisitos dentro de estos 4 niveles, 
 
 <br>
 
-# MÉTRICAS DE REQUISITOS
+# 6. MÉTRICAS DE REQUISITOS
 
 Las métricas de requisitos son medidas **cuantitativas** que permiten evaluar la calidad, consistencia y cumplimiento de los requisitos a lo largo del ciclo de vida del proyecto. A la hora de validar o analizar un requisito se hará uso de las siguientes métricas:
 
@@ -148,7 +148,7 @@ Las métricas de requisitos son medidas **cuantitativas** que permiten evaluar l
 
 <br>
 
-# VALIDACIÓN DE REQUISITOS
+# 7. VALIDACIÓN DE REQUISITOS
 
 La validación de requisitos es un proceso de asegurar que los requisitos del proyecto y del producto se alineen con las necesidades y expectativas del cliente. Consideramos que el uso estas técnicas de validación de requisitos son importantes para asegurar que el sistema final cumple con las expectativas del cliente y es eficiente en su desarrollo.
 
@@ -160,7 +160,7 @@ La validación de requisitos es un proceso de asegurar que los requisitos del pr
 
 <br>
 
-# TRAZABILIDAD DE REQUISITOS
+# 8. TRAZABILIDAD DE REQUISITOS
 
 La trazabilidad consideramos que es la métrica de validación de requisitos más importante, ya que nos permite evaluar a simple vista la relación de cada requisito con un objetivo del proyecto o del producto. En concreto, se realizarán dos tipos de matrices de trazabilidad:
 - Una matriz por cada grupo de requisitos de producto que relacione cada requisito con uno de los requisitos de alto nivel definidos en el Acta de Constitución.
@@ -168,13 +168,13 @@ La trazabilidad consideramos que es la métrica de validación de requisitos má
 
 <br>
 
-# INFORME DE REQUISITOS
+# 9. INFORME DE REQUISITOS
 
 La creación y actualización de los informes de requisitos se llevará a cabo de forma continua y sistemática. El objetivo principal es asegurar que todas las partes interesadas estén plenamente informadas sobre el progreso y cumplimiento de los requisitos establecidos. Además, se detallará el estado actual de cada requisito, lo que permitirá a los interesados tener una visión clara y precisa del desarrollo del proyecto. Esta práctica garantiza una comunicación efectiva y transparente, facilitando la toma de decisiones informadas y la identificación temprana de posibles problemas o desviaciones en el cumplimiento de los requisitos. 
 
 <br>
 
-# GESTIÓN DE LA CONFIGURACIÓN
+# 10. GESTIÓN DE LA CONFIGURACIÓN
 
 Como parte de la gestión de los requisitos, se establecen los procedimientos y mecanismos necesarios para garantizar el control de versiones y la integridad de todos los productos de trabajo, tales como software, aplicaciones, planes, documentación, procedimientos internos y estándares. A lo largo del ciclo de desarrollo, se llevan a cabo actividades de gestión de la configuración, relacionadas tanto con solicitudes de cambio en los requisitos como con cambios internos. Estas actividades incluyen:
 

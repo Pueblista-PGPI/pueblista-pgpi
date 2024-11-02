@@ -16,18 +16,24 @@ toc: true
 toc-own-page: true
 footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
+documentclass: scrartcl
+classoption: "table"        
+header-includes:        # para los colores en las tablas
+    - \usepackage{colortbl}
+    - \usepackage{xcolor}
+    - \usepackage{placeins}
 ---
+\definecolor{blue1}{HTML}{5DADE2}
 
-# PLAN DE GESTIÓN DE LOS RIESGOS
+
+**PLAN DE GESTIÓN DE LOS RIESGOS**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
 - **FECHA DE CREACIÓN:** 22/10/2024
 - **VERSIÓN DEL DOCUMENTO:** 1.1
 
-<br>
-
-<br>
+\\
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO**
 
@@ -55,21 +61,21 @@ No se adoptarán normas o procedimientos adicionales fuera de los especificados 
 
 Los riesgos del proyecto se clasificarán según las áreas de gestión de proyectos descritas en la Guía PMBOK, lo que permitirá identificar y gestionar amenazas y oportunidades de forma estructurada y eficiente:
 
-**1\. Riesgos en la Gestión del Alcance del Proyecto:** Estos riesgos están relacionados con la posibilidad de cambios, malentendidos o falta de claridad en los requisitos y objetivos del proyecto. Los problemas en esta área pueden generar desviaciones significativas en el alcance, afectando el éxito final del proyecto.
+**1. Riesgos en la Gestión del Alcance del Proyecto:** Estos riesgos están relacionados con la posibilidad de cambios, malentendidos o falta de claridad en los requisitos y objetivos del proyecto. Los problemas en esta área pueden generar desviaciones significativas en el alcance, afectando el éxito final del proyecto.
 
-**2\. Riesgos en la Gestión del Cronograma del Proyecto:** Son riesgos que afectan los plazos de ejecución y las fechas de entrega del proyecto. Un mal control del cronograma puede causar retrasos que afecten todo el ciclo de vida del proyecto y comprometan los plazos comprometidos con los stakeholders.
+**1. Riesgos en la Gestión del Cronograma del Proyecto:** Son riesgos que afectan los plazos de ejecución y las fechas de entrega del proyecto. Un mal control del cronograma puede causar retrasos que afecten todo el ciclo de vida del proyecto y comprometan los plazos comprometidos con los stakeholders.
 
-**3\. Riesgos en la Gestión de los Costes del Proyecto:** Estos riesgos impactan el presupuesto del proyecto, generando sobrecostos o la necesidad de financiamiento adicional no previsto. Un mal control de los costos puede llevar a la inviabilidad económica del proyecto.
+**1. Riesgos en la Gestión de los Costes del Proyecto:** Estos riesgos impactan el presupuesto del proyecto, generando sobrecostos o la necesidad de financiamiento adicional no previsto. Un mal control de los costos puede llevar a la inviabilidad económica del proyecto.
 
-**4\. Riesgos en la Gestión de la Calidad del Proyecto:** Estos riesgos se relacionan con la capacidad del proyecto para cumplir con los estándares de calidad definidos en los entregables. Un fallo en la calidad puede llevar a la insatisfacción del cliente o la necesidad de reprocesos, aumentando los costos y tiempos del proyecto.
+**1. Riesgos en la Gestión de la Calidad del Proyecto:** Estos riesgos se relacionan con la capacidad del proyecto para cumplir con los estándares de calidad definidos en los entregables. Un fallo en la calidad puede llevar a la insatisfacción del cliente o la necesidad de reprocesos, aumentando los costos y tiempos del proyecto.
 
-**5\. Riesgos en la Gestión de Recursos Humanos:** Estos riesgos se relacionan con el equipo de trabajo, sus competencias, disponibilidad, y el clima laboral del proyecto. La falta de motivación o la falta de recursos humanos clave puede poner en riesgo el éxito del proyecto.
+**1. Riesgos en la Gestión de Recursos Humanos:** Estos riesgos se relacionan con el equipo de trabajo, sus competencias, disponibilidad, y el clima laboral del proyecto. La falta de motivación o la falta de recursos humanos clave puede poner en riesgo el éxito del proyecto.
 
-**6\. Riesgos en la Gestión de Comunicaciones:** Estos riesgos están relacionados con la eficacia de la comunicación entre el equipo del proyecto, los stakeholders y otros interesados. La falta de una adecuada gestión de la información puede llevar a malentendidos o decisiones erróneas.
+**1. Riesgos en la Gestión de Comunicaciones:** Estos riesgos están relacionados con la eficacia de la comunicación entre el equipo del proyecto, los stakeholders y otros interesados. La falta de una adecuada gestión de la información puede llevar a malentendidos o decisiones erróneas.
 
-**7\. Riesgos en la Gestión de las Adquisiciones:** Estos riesgos se derivan de la compra de bienes y servicios necesarios para completar el proyecto. Problemas en las adquisiciones pueden generar retrasos, sobrecostos o fallos en los materiales o servicios contratados.
+**1. Riesgos en la Gestión de las Adquisiciones:** Estos riesgos se derivan de la compra de bienes y servicios necesarios para completar el proyecto. Problemas en las adquisiciones pueden generar retrasos, sobrecostos o fallos en los materiales o servicios contratados.
 
-**8\. Riesgos en la Gestión de Stakeholders del Proyecto:** Estos riesgos se relacionan con la gestión de las expectativas y el involucramiento de las partes interesadas (stakeholders). Si los stakeholders no se gestionan adecuadamente, pueden influir negativamente en las decisiones del proyecto o incluso boicotear su progreso.
+**1. Riesgos en la Gestión de Stakeholders del Proyecto:** Estos riesgos se relacionan con la gestión de las expectativas y el involucramiento de las partes interesadas (stakeholders). Si los stakeholders no se gestionan adecuadamente, pueden influir negativamente en las decisiones del proyecto o incluso boicotear su progreso.
 
 # 3\. METODOLOGÍA PARA RECOGIDA DE RIESGOS
 
@@ -102,24 +108,53 @@ Además, los riesgos estarán clasificados en una de las siguientes categorías:
 
 Los riesgos identificados en primera instancia son los riesgos de alto nivel incluidos en el Acta de Constitución del proyecto. El resto de los riesgos partirán de los anteriormente mencionados y serán recogidos en el Registro de Riesgos. Una vez recogidos e inidentificados se procederá a un **análisis cuantitativo** de la siguiente manera:
 
-- - En primer lugar, se definirán **una escala de probabilidad de los riesgos** con cinco intervalos (muy alta, alta, media, baja, muy baja). Esta probabilidad se generalizará en los rangos 1, 3, 5, 7, 9 respectivamente a los intervalos antes mencionados.
-    - Se definirá una **escala de impacto de los riesgos** en factores a nivel de proyecto y producto como lo serán el **alcance, coste, tiempo y calidad**. Por cada factor se deberá estimar en una escala con cinco intervalos (similar a la de probabilidad) el efecto que puede tener un riesgo para cada uno de esos factores. Para la escala numérica de estas matrices se ha decicido promediar en cada factor, obteniendo así un valor distinto para cada factor en lugar de usar siempre la misma escala 1, 3, 5, 7, 9 para todos los factores. La idea es conseguir una matriz distinta para cada factor (alcance, coste, tiempo y calidad) ya que no tiene el mismo valor de riesgo un riesgo con impacto medio en el tiempo que en el alcance, ya que el tiempo se puede recuperar de alguna forma, mientras que el alcance es un factor mucho más crítico.
-    - Por último, se elaborará una **matriz de probabilidad-impacto** por cada uno de los factores para así poder visualizar a simple vista la importancia que debe tener cada riesgo en función del tiempo y coste que requieran y la forma en la que afecten al alcance del proyecto y a la calidad del producto. En esta matriz, cada celda tomará un **VALOR DE RIESGO**, producto del impacto y la probabilidad de ese riesgo.
+- En primer lugar, se definirán **una escala de probabilidad de los riesgos** con cinco intervalos (muy alta, alta, media, baja, muy baja). Esta probabilidad se generalizará en los rangos 1, 3, 5, 7, 9 respectivamente a los intervalos antes mencionados.
+- Se definirá una **escala de impacto de los riesgos** en factores a nivel de proyecto y producto como lo serán el **alcance, coste, tiempo y calidad**. Por cada factor se deberá estimar en una escala con cinco intervalos (similar a la de probabilidad) el efecto que puede tener un riesgo para cada uno de esos factores. Para la escala numérica de estas matrices se ha decicido promediar en cada factor, obteniendo así un valor distinto para cada factor en lugar de usar siempre la misma escala 1, 3, 5, 7, 9 para todos los factores. La idea es conseguir una matriz distinta para cada factor (alcance, coste, tiempo y calidad) ya que no tiene el mismo valor de riesgo un riesgo con impacto medio en el tiempo que en el alcance, ya que el tiempo se puede recuperar de alguna forma, mientras que el alcance es un factor mucho más crítico.
+- Por último, se elaborará una **matriz de probabilidad-impacto** por cada uno de los factores para así poder visualizar a simple vista la importancia que debe tener cada riesgo en función del tiempo y coste que requieran y la forma en la que afecten al alcance del proyecto y a la calidad del producto. En esta matriz, cada celda tomará un **VALOR DE RIESGO**, producto del impacto y la probabilidad de ese riesgo.
+
+\
 
 #### DEFINICIONES DE PROBABILIDAD
 
-| PROBABILIDAD | Muy bajo 1 | Bajo 3 | Moderado 5 | Alto 7 | Muy Alto 9 |
-| --- | --- | --- | --- | --- | --- |
-| Casi imposible que ocurra. | 0% < P <= 1% | Poco probable que ocurra. | 1% < P <= 10% | Ocurre de vez en cuando. | 10% < P <= 50% | Ocurre con frecuencia. | 50% < P <= 80% | Casi seguro que ocurre. | 80% < P <= 100% |
 
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|>{\columncolor{green!20}}p{2cm}|>{\columncolor{cyan!20}}p{2cm}|>{\columncolor{yellow!20}}p{2cm}|>{\columncolor{orange!20}}p{2cm}|>{\columncolor{red!20}}p{2cm}|}
+\hline
+\textbf{Muy bajo 1} & \textbf{Bajo 3} & \textbf{Moderado 5} & \textbf{Alto 7} & \textbf{Muy Alto 9} \\
+\hline
+\rowcolor{white}
+Casi imposible que ocurra & Poco probable que ocurra & Ocurre de vez en cuando & Ocurre con frecuencia & Casi seguro que ocurre \\
+\hline
+0\% < P $\leq$ 1\% & 1\% < P $\leq$ 10\% & 10\% < P $\leq$ 50\% & 50\% < P $\leq$ 80\% & 80\% < P $\leq$ 100\% \\
+\hline
+\end{tabular}
+\end{table}
+
+\
 
 #### DEFINICIONES DE IMPACTO
 
-| DIMENSIÓN | Muy bajo 1 | Bajo 3 | Moderado 5 | Alto 7 | Muy Alto 9 |
-| --- | --- | --- | --- | --- | --- |
-| **Alcance** | Afecta a menos del 5% de los paquetes de trabajo. | Afecta entre el 5% y el 10% de los paquetes de trabajo. | Afecta entre el 10% y el 20% de los paquetes de trabajo. | Afecta entre el 20% y el 30% de los paquetes de trabajo. | Afecta a más del 30% de los paquetes de trabajo. |
-| **Tiempo** | No afecta a actividades de la cadena crítica. | Afecta a actividades de la cadena crítica, pero no extiende la duración del proyecto. | Extiende la duración del proyecto menos del 2%. | Extiende la duración del proyecto menos del 5%. | Extiende la duración del proyecto más del 5%. |
-| **Costes** | Aumenta los costes en menos del 1%. | Aumenta los costes en menos del 3%. | Aumenta los costes en menos del 5%. | Aumenta los costes en menos del 7%. | Aumenta los costes más del 7%. |
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|p{2cm}|>{\columncolor{green!20}}p{2cm}|>{\columncolor{cyan!20}}p{2cm}|>{\columncolor{yellow!20}}p{2cm}|>{\columncolor{orange!20}}p{2cm}|>{\columncolor{red!20}}p{2cm}|}
+\hline
+\textbf{DIMENSIÓN} & \textbf{Muy bajo 1} & \textbf{Bajo 3} & \textbf{Moderado 5} & \textbf{Alto 7} & \textbf{Muy Alto 9} \\
+\hline
+\rowcolor{white}
+\textbf{Alcance} & Afecta a menos del 5\% de los paquetes de trabajo. & Afecta entre el 5\% y el 10\% de los paquetes de trabajo. & Afecta entre el 10\% y el 20\% de los paquetes de trabajo. & Afecta entre el 20\% y el 30\% de los paquetes de trabajo. & Afecta a más del 30\% de los paquetes de trabajo. \\
+\hline
+\textbf{Tiempo} & No afecta a actividades de la cadena crítica. & Afecta a actividades de la cadena crítica, pero no extiende la duración del proyecto. & Extiende la duración del proyecto menos del 2\%. & Extiende la duración del proyecto menos del 5\%. & Extiende la duración del proyecto más del 5\%. \\
+\hline
+\rowcolor{white}
+\textbf{Costes} & Aumenta los costes en menos del 1\%. & Aumenta los costes en menos del 3\%. & Aumenta los costes en menos del 5\%. & Aumenta los costes en menos del 7\%. & Aumenta los costes más del 7\%. \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+
 
 ### PRIORIZACIÓN DE RIESGOS
 
@@ -129,44 +164,115 @@ Según lo mencionado, la priorización de cada riesgo será determinada en funci
 
 De esta forma, obtendremos cuatro matrices de probabilidad en las que podremos ver a simple vista el valor de riesgo para el alcance, coste, tiempo y calidad de ese riesgo dado su probabilidad y su impacto.
 
+
+\\ 
+
 #### MATRIZ PROBABILIDAD x IMPACTO COSTES
 
-|               | Muy bajo 1 | Bajo 3  | Medio 5 | Alto 7  | Muy Alto 9 |
-| ------------- | ---------- | ------- | ------- | ------- | ---------- |
-| Muy alto 0.52 | 0.52       | 1.56    | 2.6     | 3.64    | 4.68       |
-| Alto 0.4      | 0.4        | 1.2     | 2       | 2.8     | 3.6        |
-| Medio 0.25    | 0.25       | 0.75    | 1.25    | 1.75    | 2.25       |
-| Bajo 0.15     | 0.15       | 0.45    | 0.75    | 1.05    | 1.35       |
-| Muy bajo 0.05 | 0.05       | 0.15    | 0.25    | 0.35    | 0.45       |
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|>{\columncolor{green!20}}c|>{\columncolor{cyan!20}}c|>{\columncolor{yellow!20}}c|>{\columncolor{orange!20}}c|>{\columncolor{red!20}}c|}
+\hline
+\textbf{PROBABILIDAD x COSTES} & \textbf{Muy bajo 1} & \textbf{Bajo 3} & \textbf{Medio 5} & \textbf{Alto 7} & \textbf{Muy Alto 9} \\
+\hline
+\rowcolor{white}
+\textbf{Muy alto 0.52} & 0.52 & 1.56 & 2.6 & 3.64 & 4.68 \\
+\hline
+\textbf{Alto 0.4} & 0.4 & 1.2 & 2 & 2.8 & 3.6 \\
+\hline
+\rowcolor{white}
+\textbf{Medio 0.25} & 0.25 & 0.75 & 1.25 & 1.75 & 2.25 \\
+\hline
+\textbf{Bajo 0.15} & 0.15 & 0.45 & 0.75 & 1.05 & 1.35 \\
+\hline
+\rowcolor{white}
+\textbf{Muy bajo 0.05} & 0.05 & 0.15 & 0.25 & 0.35 & 0.45 \\
+\hline
+\end{tabular}
+\end{table}
 
+\\
 
 #### MATRIZ PROBABILIDAD x IMPACTO CALIDAD
 
-| Muy alto 0.5 | Muy bajo 1 | Bajo 3 | Medio 5 | Alto 7 | Muy Alto 9 |
-| --- | --- | --- | --- | --- | --- |
-| **Alto 0.1** | 0.1 | 0.3 | 0.5 | 0.7 | 0.9 |
-| **Medio 0.05** | 0.05 | 0.15 | 0.25 | 0.35 | 0.45 |
-| **Bajo 0.01** | 0.01 | 0.03 | 0.05 | 0.07 | 0.09 |
-| **Muy bajo 0** | 0 | 0 | 0 | 0 | 0 |
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|>{\columncolor{green!20}}c|>{\columncolor{cyan!20}}c|>{\columncolor{yellow!20}}c|>{\columncolor{orange!20}}c|>{\columncolor{red!20}}c|}
+\hline
+\textbf{PROBABILIDAD x CALIDAD} & \textbf{Muy bajo 1} & \textbf{Bajo 3} & \textbf{Medio 5} & \textbf{Alto 7} & \textbf{Muy Alto 9} \\
+\hline
+\rowcolor{white}
+\textbf{Muy alto 0.5} & 0.5 & 1.5 & 2.5 & 3.5 & 4.5 \\
+\hline
+\textbf{Alto 0.1} & 0.1 & 0.3 & 0.5 & 0.7 & 0.9 \\
+\hline
+\rowcolor{white}
+\textbf{Medio 0.05} & 0.05 & 0.15 & 0.25 & 0.35 & 0.45 \\
+\hline
+\textbf{Bajo 0.01} & 0.01 & 0.03 & 0.05 & 0.07 & 0.09 \\
+\hline
+\rowcolor{white}
+\textbf{Muy bajo 0} & 0 & 0 & 0 & 0 & 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+\\
 
 #### MATRIZ PROBABILIDAD x IMPACTO ALCANCE
 
-| Muy alto .65  | Muy bajo 1 | Bajo 3 | Medio 5 | Alto 7 | Muy Alto 9 |
-| ---           | ---        | ---    | ---     | ---    | ---        |
-| **Alto .25**      | 0.25       | 0.75   | 1.25    | 1.75   | 2.25       |
-| **Medio .15**     | 0.15       | 0.45   | 0.75    | 1.05   | 1.35       |
-| **Bajo .075**     | 0.075      | 0.225  | 0.375   | 0.525  | 0.675      |
-| **Muy bajo .025** | 0.025      | 0.075  | 0.125   | 0.175  | 0.225      |
-| **Muy alto .65**  | 0.65       | 1.95   | 3.25    | 4.55   | 5.85       |
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|>{\columncolor{green!20}}c|>{\columncolor{cyan!20}}c|>{\columncolor{yellow!20}}c|>{\columncolor{orange!20}}c|>{\columncolor{red!20}}c|}
+\hline
+\textbf{PROBABILIDAD x ALCANCE} & \textbf{Muy bajo 1} & \textbf{Bajo 3} & \textbf{Medio 5} & \textbf{Alto 7} & \textbf{Muy Alto 9} \\
+\hline
+\textbf{Muy alto 0.65} & 0.65 & 1.95 & 3.25 & 4.55 & 5.85 \\
+\hline
+\rowcolor{white}
+\textbf{Alto 0.25} & 0.25 & 0.75 & 1.25 & 1.75 & 2.25 \\
+\hline
+\textbf{Medio 0.15} & 0.15 & 0.45 & 0.75 & 1.05 & 1.35 \\
+\hline
+\rowcolor{white}
+\textbf{Bajo 0.075} & 0.075 & 0.225 & 0.375 & 0.525 & 0.675 \\
+\hline
+\textbf{Muy bajo 0.025} & 0.025 & 0.075 & 0.125 & 0.175 & 0.225 \\
+\hline
+\rowcolor{white}
+\textbf{Muy alto 0.65} & 0.65 & 1.95 & 3.25 & 4.55 & 5.85 \\
+\hline
+\end{tabular}
+\end{table}
+
+\\ 
 
 #### MATRIZ PROBABILIDAD x IMPACTO TIEMPO
 
-| Muy alto 0.525 | Muy bajo 1 | Bajo 3 | Medio 5 | Alto 7 | Muy Alto 9 |
-| --- | --- | --- | --- | --- | --- |
-| **Alto 0.25** | 0.525 | 1.575 | 2.625 | 3.675 | 4.725 |
-| **Medio 0.1** | 0.25 | 0.75 | 1.25 | 1.75 | 2.25 |
-| **Bajo 0.05** | 0.1 | 0.3 | 0.5 | 0.7 | 0.9 |
-| **Muy bajo 0** | 0 | 0 | 0 | 0 | 0 |
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|>{\columncolor{green!20}}c|>{\columncolor{cyan!20}}c|>{\columncolor{yellow!20}}c|>{\columncolor{orange!20}}c|>{\columncolor{red!20}}c|}
+\hline
+\textbf{PROBABILIDAD x TIEMPO} & \textbf{Muy bajo 1} & \textbf{Bajo 3} & \textbf{Medio 5} & \textbf{Alto 7} & \textbf{Muy Alto 9} \\
+\hline
+\textbf{Muy alto 0.525} & 0.525 & 1.575 & 2.625 & 3.675 & 4.725 \\
+\hline
+\rowcolor{white}
+\textbf{Alto 0.25} & 0.25 & 0.75 & 1.25 & 1.75 & 2.25 \\
+\hline
+\textbf{Medio 0.1} & 0.1 & 0.3 & 0.5 & 0.7 & 0.9 \\
+\hline
+\rowcolor{white}
+\textbf{Bajo 0.05} & 0.05 & 0.15 & 0.25 & 0.35 & 0.45 \\
+\hline
+\textbf{Muy bajo 0} & 0 & 0 & 0 & 0 & 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+
 
 # 5\. RESERVAS DE CONTINGENCIA
 
@@ -204,13 +310,13 @@ A lo largo del proyecto, los riesgos identificados deben ser monitoreados de for
 
 El **responsable de Riesgos** tendrá la tarea de supervisar y controlar las actividades clave del proyecto para anticiparse a posibles desviaciones en comparación con la planificación original, y proponer soluciones considerando el impacto en el alcance, el tiempo y el coste. Las responsabilidades del responsable de Riesgos del Proyecto incluirán:
 
-- - Mantener actualizadas las matrices de riesgos si se producen nuevas estimaciones o nuevos riesgos o incidencias que hagan variar la probabilidad de algunos de los factores.
-    - Si se identifica un nuevo riesgo que sea clasificado como alto o severo, se informará de inmediato al Project Manager, y si es necesario, el equipo se reunirá de urgencia para evaluar y tomar decisiones al respecto.
+- Mantener actualizadas las matrices de riesgos si se producen nuevas estimaciones o nuevos riesgos o incidencias que hagan variar la probabilidad de algunos de los factores.
+- Si se identifica un nuevo riesgo que sea clasificado como alto o severo, se informará de inmediato al Project Manager, y si es necesario, el equipo se reunirá de urgencia para evaluar y tomar decisiones al respecto.
 
 Por otra parte, el **equipo de desarrollo**:
 
-- - Deberá gestionar los riesgos identificados, mitigaciones aplicadas o controles implementados, con el fin de mantener la gestión de riesgos siempre actualizada. Esto aplica independientemente del nivel de riesgo, aunque **se debe priorizar la mitigación de los riesgos más severos**.
-    - Informar al responsable de Riesgos y al jefe de proyecto sobre nuevos riesgos detectado.
+- Deberá gestionar los riesgos identificados, mitigaciones aplicadas o controles implementados, con el fin de mantener la gestión de riesgos siempre actualizada. Esto aplica independientemente del nivel de riesgo, aunque **se debe priorizar la mitigación de los riesgos más severos**.
+- Informar al responsable de Riesgos y al jefe de proyecto sobre nuevos riesgos detectado.
 
 Por último, cabe mencionar cuales serían los **interesados** en la identificación y resolución de cada uno de los riesgos:
 

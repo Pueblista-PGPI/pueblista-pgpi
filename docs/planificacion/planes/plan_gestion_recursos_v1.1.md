@@ -174,7 +174,7 @@ En concreto, usaremos una dinámica llamada “**Calendarios Niko Niko**” que 
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{ejemplo_niko_niko.png}
+\includegraphics[width=0.6\textwidth]{../../img/ejemplo_niko_niko.png}
 \caption{Ejemplo de uso de un calendario Niko-Niko}
 \end{figure}
 
@@ -242,6 +242,6 @@ Como se ha mencionado anteriormente en el punto tal, dentro de los recursos mate
 
 \begin{figure}
 \centering
-\includegraphics[width=1.0\textwidth]{estructura_desglose_recursos.png}
+\includegraphics[width=1.0\textwidth]{../../img/estructura_desglose_recursos.png}
 \caption{Imagen estructura de desglose de los recursos}
 \end{figure}

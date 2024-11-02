@@ -43,6 +43,6 @@ footer-right: "\\thepage"
 
 \begin{figure}
 \hspace{-4.25cm}
-\includegraphics[width=1.4\textwidth]{edt_v1.1.jpg}
+\includegraphics[width=1.4\textwidth]{../../img/edt_v1.1.jpg}
 \caption{Imagen EDT}
 \end{figure}
