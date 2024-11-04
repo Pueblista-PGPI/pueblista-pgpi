@@ -14,16 +14,13 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
 
-# PLAN DE GESTIÓN DE LA CALIDAD
+**PLAN DE GESTIÓN DE LA CALIDAD**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
 - **FECHA DE CREACIÓN:** 12/10/2024
 - **VERSIÓN DEL DOCUMENTO:** 1.1
-
-<br>
-
-<br>
+ \newline
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO**
 
@@ -36,7 +33,7 @@ footer-right: "\\thepage"
 
 
 
-**PLAN DE GESTIÓN DE LA CALIDAD**
+
 
 ## 1\. NORMAS Y PROCEDIMIENTOS A APLICAR
 El éxito de un proyecto depende en gran medida de que los entregables cumplan con las expectativas de calidad del cliente y los criterios de aceptación establecidos por el equipo de desarrollo. El propósito del plan de gestión de la calidad es garantizar que tanto los productos finales del proyecto como los procesos involucrados en su entrega satisfagan las necesidades del cliente y los objetivos organizacionales, dentro del plazo y presupuesto acordados.
@@ -58,9 +55,9 @@ Los objetivos a alcanzar con el Plan de Calidad son:
 1. Asegurar que los entregables sean aprobados dentro de los plazos establecidos y cumplan con los estándares de calidad esperados.
 1. Velar por que los informes de control se elaboren adecuadamente, se entreguen a tiempo y se distribuyan de forma eficiente.
 
-<br>
 
-<br>
+\newpage
+
 
 ## 3\. ACTIVIDADES DE CONTROL DE CALIDAD DE LOS ENTREGABLES
 
@@ -84,11 +81,7 @@ Los objetivos a alcanzar con el Plan de Calidad son:
 |3\.3.2|Informes de accesibilidad|Revisar la accesibilidad de los informes, incluyendo pruebas para usuarios con discapacidades.|Equipo de desarrollo|
 | - | - | - | - |
 |4\.1.1|Manuales|Revisar los manuales para asegurar que están completos, son claros y cumplen con las normas de redacción técnica.|Equipo de desarrollo|
-|4\.1.2|Entregable final|Verificar que todos los entregables cumplen con los criterios de aceptación antes de la entrega final.|Equipo de desarrollo|
-
-<br>
-
-<br>
+|4\.1.2|Entregable final|Verificar que todos los entregables cumplen con los criterios de aceptación antes de la entrega final.|Equipo de desarrollo| \newline
 
 ## 4\. LISTA DE CONTROL
 
@@ -98,9 +91,9 @@ Los objetivos a alcanzar con el Plan de Calidad son:
 |01|Planificación, Ejecución y Cierre|Lista de elementos a inspeccionar.|
 |02|Planificación, Ejecución y Cierre|Lista de pasos a realizar.|
 
-<br>
 
-<br>
+\newpage
+
 
 ## 5\. PLAN DE MEJORA CONTINUA DE LOS PROCESOS DE GESTIÓN
 El equipo de desarrollo mejora continuamente la eficacia de su sistema de gestión de la calidad mediante el uso del ciclo de Deming, una metodología que se basa en un ciclo compuesto de 4 fases que se repiten de forma iterativa, cada una de ellas con un propósito específico dentro del proceso de mejora.
@@ -119,9 +112,10 @@ El equipo de desarrollo mejora continuamente la eficacia de su sistema de gesti�
 Esta metodología proporciona un enfoque proactivo que soluciona problemas tal y como surgen, optimiza procesos de manera sostenida y asegura que el proyecto cumpla consistentemente con los estándares de calidad.
 
 
-<br>
 
-<br>
+
+\newpage
+
 
 ## 6\. HITOS A INCLUIR
 
@@ -144,9 +138,10 @@ Esta metodología proporciona un enfoque proactivo que soluciona problemas tal y
 |15|Requisitos de conducta operativos|Verificación de que todos los estándares y políticas operativas y de calidad están en funcionamiento dentro del equipo.|
 |16|Reunión de cierre|Revisión final del proyecto con el equipo y los interesados, asegurando que todos los objetivos se han cumplido según los criterios de calidad.|
 
-<br>
 
-<br>
+
+\newpage
+
 
 ## 7. REUNIONES A REALIZAR
 Gran parte del monitoreo de la calidad en el proyecto se llevará a cabo mediante una serie de reuniones periódicas diseñadas para asegurar un control continuo y detallado de los entregables. Estas reuniones se estructuran en función de la necesidad de obtener retroalimentación oportuna, identificar y corregir problemas rápidamente, y garantizar que las expectativas del cliente se mantengan alineadas con los estándares de calidad del proyecto.
@@ -161,7 +156,10 @@ Puesto que el equipo utiliza el ciclo de Deming para la mejora continua de los p
 
 - **Reunion de aseguramiento de la calidad**: El día 20 de noviembre se llevará a cabo una reunión de aseguramiento de la calidad entre el equipo del proyecto, el responsable de gestión de la calidad y el cliente. En esta reunión, el director del proyecto presentará los distintos entregables tanto del Inicio del Proyecto como el plan de Dirección del Proyecto, incluyendo los diferentes planes de gestión, la edt y las matrices de trazabilidad, con el fin de verificar que la calidad de los entregables cumpla con los estándares acordados. Esta sesión permitirá identificar posibles mejoras y asegurar que los entregables estén alineados con las expectativas de calidad establecidas.
 
-<br>
+
+
+\newpage
+
 
 ## 8\. INFORMES A ELABORAR
 
@@ -172,9 +170,10 @@ Puesto que el equipo utiliza el ciclo de Deming para la mejora continua de los p
 |03|Informe de prueba de carga|Informe que generará la herramienta seleccionada para la prueba de carga en la aplicación.|
 |04|Informe de pruebas unitarias|Informe que generará la herramienta seleccionada para la ejecución de pruebas unitarias que mostrará cuántas pruebas fueron exitosas, cuántas fallaron, cuántas se saltaron, etc.|
 
-<br>
 
-<br>
+
+\newpage
+
 
 ## 9\. LISTAS DE CONTROL
 A lo largo del proceso, el equipo de desarrollo hará uso de las listas de control para establecer qué entregables quedan sujetos a revisiones de calidad y definir los pasos a seguir para garantizar la calidad esperada en cada uno de ellos.
@@ -211,9 +210,10 @@ Se emplearán dos listas de control, una para los elementos a inspeccionar y otr
 
 En cada lista se deberá anotar los defectos más significativos encontrados, principalmente en la segunda lista donde se indicará el paso en el que se ha detectado el defecto y el elemento bajo inspección en el que ha producido. 
 
-<br>
 
-<br>
+
+\newpage
+
 
 ## 10. AUDITORÍAS A REALIZAR
 
@@ -238,9 +238,9 @@ Más específicamente, en este proyecto se realizarán tanto auditorías interna
 
 
 
-<br>
 
-<br>
+\newpage
+
 
 ## 11\. HERRAMIENTAS PARA LA GESTIÓN DE LA CALIDAD
 En este punto se relaciona el conjunto de herramientas que son sugeridas con el objetivo de garantizar la calidad de los entregables:

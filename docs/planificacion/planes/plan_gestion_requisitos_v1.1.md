@@ -68,18 +68,29 @@ Los requisitos del producto describen las características y funcionalidades que
 
 ### **2.1. Funcionales**
 Son las capacidades específicas que el sistema debe proporcionar para cumplir con las expectativas del usuario. Estos describen técnicamente qué debe hacer el sistema a un más bajo nivel.
+
 - **Requisitos de información**: especifican cómo el sistema debe gestionar, almacenar, y procesar la información (entrada, salida, y almacenamiento).
+
 - **Requisitos de reglas de negocio:** definen las políticas, condiciones o reglas de negocio que el sistema debe seguir para funcionar correctamente.
+
 - **Requisitos de conducta:** establecen el comportamiento que el sistema debe exhibir en ciertas situaciones o eventos, como reacciones a errores o acciones del usuario.
 
 ### **2.2. No funcionales**
 Estos requisitos se enfocan en cómo el sistema debe funcionar en diversos aspectos como la calidad, rendimiento, restricciones técnicas, etc.
+
 - **Requisitos de fiabilidad**: Definen el nivel de confiabilidad que debe tener el sistema, especificando su capacidad para operar sin fallos durante un tiempo determinado.
+
 - **Requisitos de usabilidad**: Se refieren a la facilidad de uso y la experiencia del usuario al interactuar con el sistema, evaluando aspectos como la interfaz y la accesibilidad.
+
 - **Requisitos de mantenibilidad**: Especifican cuán fácil es actualizar, corregir errores y mantener el sistema a lo largo del tiempo.
+
 - **Requisitos de eficiencia**: Involucran el uso de recursos del sistema, como el rendimiento en términos de tiempo de respuesta o el uso eficiente de espacio y memoria.
+
 - **Requisitos de portabilidad**: Indican la capacidad del sistema para operar en diferentes entornos o plataformas sin requerir cambios significativos.
+
 - **Requisitos de seguridad**: Establecen las medidas que se deben tomar para proteger el sistema y los datos del usuario contra accesos no autorizados, amenazas y ataques.
+
+
 
 ## **3. Requisitos de la organización**
 Son aquellos que definen las normas y condiciones que la organización debe cumplir para la entrega y operación del sistema.
@@ -102,7 +113,10 @@ Son los requisitos que deben cumplir para asegurar que el sistema esté alineado
 ### **4.2. Requisitos de privacidad**
 Establecen las pautas para garantizar la confidencialidad de los datos personales de los usuarios, asegurando su protección y evitando el mal uso de la información.
 
-<br>
+
+\newpage
+
+
 
 # 4. DOCUMENTACIÓN DE REQUISITOS
 
