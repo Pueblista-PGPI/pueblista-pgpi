@@ -53,14 +53,33 @@ El plan de dirección del proyecto es un documento vivo que irá evolucionando a
 
 ## CICLO DE VIDA DEL PROYECTO
 
-En el presente Plan de Dirección de proyecto se describe el ciclo de vida del proyecto, que se basa en un enfoque híbrido en el que coexistirán un modelo tradicional, predictivo y un modelo iterativo y adaptativo. Esto significa que el proyecto se organiza en fases secuenciales que se desarrollan de manera ordenada: **inicio, planificación, ejecución y cierre.** Cada una de estas fases tiene un conjunto de actividades específicas que nos permiten avanzar hacia la finalización del proyecto, asegurando que cada paso se complete antes de continuar al siguiente. Esta estructura nos proporciona una base sólida para la organización y el seguimiento del proyecto, especialmente en términos de claridad en las responsabilidades y los objetivos de cada etapa.
+El ciclo de vida del proyecto será un ciclo de vida clásico, en cascada y predictivo. Estará dividido en 4 fases principales: **Inicio, Planificación, Ejecución y Cierre**. Aparentemente será un ciclo de vida en cascada. Cada una de las fases tendrá una serie de tareas que debemos completar antes de pasar a la siguiente fase. Sin embargo, en la fase de **ejecución** se opta por un ciclo de vida ágil, adaptativo e incremental, concretamente se usará la metodología **Scrum**.
 
-Sin embargo, para la **fase de ejecución**, se ha decidido completar el enfoque tradicional con la implementación de la metodología ágil **Scrum**. Esto nos permite incorporar un enfoque iterativo y adaptativo en la fase de ejecución, lo que nos permitirá adaptarnos a los cambios y a las necesidades del cliente de manera más eficiente.
-Se establecerán 3 sprints de 1 semana de duración. A lo largo de cada sprint, se llevarán a cabo todas las reuniones necesarias para la planificación, revisión y retrospectiva del sprint. Todas especificada en el plan de gestión de las comunicaciones.
-También existirá un Sprint 0 que se dedicará a la preparación y configuración del proyecto, definiendo el Product Backlog (PB), el Sprint Backlog (SB) y el Definition of Done (DoD).
+El proyecto en esta fase estará organizado en 3 *Sprints* de 1 semana de duración, siendo las fechas de inicio y fin de cada sprint las siguientes:
 
-Cada Sprint incluirá actividades clave como el diseño de prototipos, desarrollo de funcionalidad y haremos hincapié en llevar a cabo el testing continuo bajo el enfoque de *Agile Testing*, asegurando así que cada funcionalidad sea probada sin necesidad de esperar a la finalización del sprint y evitando así generar una gran cantidad de documentación de pruebas al final del proyecto.
+- **Sprint 1:** 7/11/2024 - 13/11/2024
+- **Sprint 2:** 14/11/2024 - 20/11/2024
+- **Sprint 3:** 21/11/2024 - 27/11/2024
 
+Cada Sprint tendrá definidio un *Sprint Goal* muy claro y definido, que corresponderá a uno de los *hitos* de cada Sprint definidos en el cronograma del proyecto, en concreto serán los siguientes:
+
+| **Código** | **Hito**                                | **Sprint** |
+|-------------|-----------------------------------------|------------|
+| PUEB01-3.12 | CRUDs de contenidos finalizados          | Sprint 1   |
+| PUEB01-3.14 | Gestión de las Reservas finalizada       | Sprint 2   |
+| PUEB01-3.17 | Requisitos de conducta operativos        | Sprint 3   |
+
+Todas las tareas de cada Sprint estarán organizadas en el *Product Backlog* y se irán asignando a los *Sprints* según la prioridad, la capacidad del equipo y sobre todo el *Sprint Goal* de cada Sprint. Cada Sprint tendrá su propio *Sprint Planning*, *Sprint Backlog*, *Sprint Review* y *Sprint Retrospective*, y la definición de *Done* de los Sprints será la siguiente:
+
+- La tarea ha sido revisada por un miembro del equipo
+- La tarea ha sido probada y funciona correctamente
+- Se ha actualizado el estado del tablero de tareas
+
+Para lograrlo haremos especial hincapié en llevar a cabo el testing continuo bajo el enfoque de *Agile Testing*, asegurando así que cada funcionalidad sea probada sin necesidad de esperar a la finalización del sprint y evitando así generar una gran cantidad de documentación de pruebas al final del proyecto.
+
+**Tablero Kanban**
+
+Para la gestión de las tareas de cada Sprint se usará un tablero Kanban, que se actualizará diariamente y que será accesible para todos los miembros del equipo. En este tablero se podrán ver las tareas asignadas a cada miembro del equipo, el estado de cada tarea y el tiempo estimado para completarla.
 
 En la siguiente tabla se detallan las fases del proyecto, las actividades clave, los entregables clave y los criterios de salida de cada fase.
 
