@@ -117,7 +117,14 @@ Satisfacción del cliente: se valorará el grado de satisfacción del cliente al
 
 ## PRESUPUESTO RESUMIDO 
 
-El departamento comercial ha realizado una oferta de 14.000 € + 21% de IVA. 
+El departamento comercial ha realizado una oferta de 19.800 € + 21% de IVA. 
+
+- **Costes Directos:** 18.000 €
+
+  Los costes directos incluyen todo el coste del personal, considerando infraestructura, adquisiciones si aplicase, y que queda especificado en el *plan de gestión de costes*.
+
+- **Costes Indirectos (10%):** 1.800 €
+
 
 ## INTERESADOS CLAVE
 

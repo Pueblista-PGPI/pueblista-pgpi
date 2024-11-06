@@ -139,6 +139,9 @@ Una vez aplicada esta fórmula general se obtuvieron los costes por hora para ca
 | Formador                                  | 25,00              |
 | Experto en Accesibilidad                  | 23,00              |
 
+
+Para calcular el PVP de cada rol, se aplicó un **margen del 20%** sobre el coste por hora, obteniendo el precio de venta al cliente. Este margen se establece para cubrir los gastos generales y obtener un beneficio razonable en la prestación de servicios.
+
 ## 5.2. Estimación de costes de las activiades (Técnica Bottom-Up)
 
 Una vez establecido el coste por hora de cada rol, se utilizó la técnica **Bottom-up** para estimar el coste de cada actividad, cada fase y finalmente, el coste global del proyecto. Esta técnica consiste en descomponer el proyecto en actividades específicas y asignar los recursos humanos neecsarios para cada una. Teniendo todas las actividades desglosadas en el *Listado de actividades* y el *Cronograma*, se asignaron los recursos necesarios para cada actividad y se calculó el coste total de cada una.
