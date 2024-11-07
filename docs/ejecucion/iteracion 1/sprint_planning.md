@@ -96,7 +96,7 @@ Utilizamos ZenHub para la organización del flujo de trabajo y Clockify para el 
 
 ## Estimación del Esfuerzo
 
-Para estimar el esfuerzo utilizaremos **Story Points**, siendo 1 Story Point el esfuerzo mínimo, en el grupo hemos establecido que debe ser una tarea que conlleve no más de media hora (más o menos), que puedas hacerla de una sentada y sin mucho esfuerzo. Por ahora se han estimado la mayoría de las tareas del Sprint Backlog, no obstante esta planificación puede cambiar en función de las necesidades del equipo, añadiendo más tareas si fuese necesario dividir el trabajo en tareas más pequeñas.
+Para estimar el esfuerzo utilizaremos **Story Points**, siendo 1 Story Point el esfuerzo mínimo, en el grupo hemos establecido que debe ser una tarea que conlleve no más de una hora, que puedas hacerla de una sentada y sin mucho esfuerzo. Por ahora se han estimado la mayoría de las tareas del Sprint Backlog, no obstante esta planificación puede cambiar en función de las necesidades del equipo, añadiendo más tareas si fuese necesario dividir el trabajo en tareas más pequeñas.
 
 A continuación se muestra una tabla en la que estimamos el esfuerzo de las tareas creadas para cada épica del sprint backlog. (Estas tareas han quedado reflejadas en el tablero de ZenHub).
 
