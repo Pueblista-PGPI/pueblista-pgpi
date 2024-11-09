@@ -42,7 +42,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gestion_espacios',
+    'gestion_usuarios',
 ]
+
+# Añadir el backend personalizado a la lista de backends de autenticación en settings.py:
+
+AUTHENTICATION_BACKENDS = [
+    'gestion_usuarios.backends.DNIFechaNacimientoBackend',  # Nuestro backend personalizado
+    'django.contrib.auth.backends.ModelBackend',  # El backend predeterminado
+]
+
+# Añadir AUTH_USER_MODEL al settings.py para utilizar el CustomUser
+AUTH_USER_MODEL = 'gestion_usuarios.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
