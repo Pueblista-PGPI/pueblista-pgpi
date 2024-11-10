@@ -1,5 +1,34 @@
-.DS_Store*
-.venv
-venv
-.env
+# Python
+*.pyc
+__pycache__
+
+# Entornos Virtuales
+venv/
+.env/
+.venv/
+
+# Archivos de Configuración
+*.env
+
+# Archivos de Log
+*.log
+
+# Archivos Estáticos y Medios Generados
+/staticfiles/
+/media/
+
+# Migraciones Generadas
+*.sqlite3
+db.sqlite3
+
+# Archivos de IDE (Visual Studio Code, PyCharm, etc.)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Otros
+.DS_Store
+# Archivos estáticos recolectados
+pueblista/staticfiles/
 
