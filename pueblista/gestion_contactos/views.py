@@ -23,7 +23,7 @@ def contact_mail(request):
         user_telefono = request.user.telefono
 
         # Construir el cuerpo del mensaje
-        full_message = f"De: {user_nombre +" " + user_apellidos} (DNI: {user_dni}, Teléfono: {user_telefono})\n\nMensaje:\n{message}"
+        full_message = f"De: {user_nombre} {user_apellidos} (DNI: {user_dni}, Teléfono: {user_telefono})\n\nMensaje:\n{message}"
 
         email_host = os.getenv('EMAIL_HOST')
         email_port = int(os.getenv('EMAIL_PORT', 587))
