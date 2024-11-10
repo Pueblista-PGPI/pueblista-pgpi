@@ -32,6 +32,10 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = []
 
 
+# REDIRECT TO LOGIN PAGE IF NOT LOGGED IN
+LOGIN_URL = 'login'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'gestion_espacios',
     'gestion_usuarios',
     'gestion_contactos',
+    'home'
 ]
 
 # Añadir el backend personalizado a la lista de backends de autenticación en settings.py:
