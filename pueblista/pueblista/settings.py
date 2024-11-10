@@ -32,6 +32,10 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = []
 
 
+# REDIRECT TO LOGIN PAGE IF NOT LOGGED IN
+LOGIN_URL = 'login'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestion_espacios',
     'gestion_usuarios',
+    'gestion_contactos',
     'home'
 ]
 
