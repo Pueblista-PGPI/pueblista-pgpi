@@ -16,12 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from home import views
+from django.conf.urls.static import static
+from pueblista import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Aquí van todas las URLs de gestion_espacios (/reservas/...)
     path('reservas/', include('gestion_espacios.urls')),
+    # Aquí van todas las URLs de gestion_usuarios (/auth/...)
     path('auth/', include('gestion_usuarios.urls')),
     path('contact/', include('gestion_contactos.urls')),
-    path('', views.home, name='home'),
-]
+    path('', include('home.urls')),
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

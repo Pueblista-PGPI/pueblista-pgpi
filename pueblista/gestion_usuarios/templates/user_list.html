@@ -1,0 +1,36 @@
+{% extends "base.html"%} // hereda de base.html que tiene todo lo común
+
+
+{% block title %}
+  <title> Pueblista </title>
+{% endblock title %}
+
+
+{% block content %}
+
+
+    <h1>Lista de Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.dni }}</td>
+                    <td>{{ user.nombre }}</td>
+                    <td>{{ user.apellidos }}</td>
+                    <td>{{ user.telefono }}</td>
+                    <td>{{ user.direccion_postal }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

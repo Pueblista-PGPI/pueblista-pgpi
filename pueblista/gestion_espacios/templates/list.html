@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Espacios</title>
+    <a href="{% url 'create' %}" class="btn btn-primary">Crear Nuevo Espacio</a>
+</head>
+<body>
+    <h1>Lista de Espacios</h1>
+    <ul>
+        {% for space in spaces %}
+        <li>
+            <h2>{{ space.nombre }}</h2>
+            <p><strong>Horario:</strong> {{ space.horario }}</p>
+            <p><strong>Descripción:</strong> {{ space.descripcion }}</p>
+            {% if space.fotos %}
+            <img src="{{ space.fotos.url }}" alt="Foto de {{ space.nombre }}" style="width: 300px; height: auto;">
+            {% endif %}
+            <p><strong>Teléfono:</strong> {{ space.telefono }}</p>
+            <p><strong>Estado:</strong> {{ space.estado }}</p>
+            {% if user.is_superuser or user.is_staff %}
+            <a href="{% url 'edit' space.id %}">Editar</a>
+            <form action="{% url 'delete' space.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

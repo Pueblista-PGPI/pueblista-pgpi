@@ -1,0 +1,32 @@
+<!-- FILE: create.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Espacio</title>
+</head>
+<body>
+    <h1>Crear Nuevo Espacio</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="horario">Horario:</label>
+        <input type="text" id="horario" name="horario" required><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea><br>
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono"><br>
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+            {% for key, value in estado_choices %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="fotos">Fotos:</label>
+        <input type="file" id="fotos" name="fotos"><br>
+        <button type="submit">Crear</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Espacio</title>
+</head>
+<body>
+    <h1>Editar Espacio</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ espacio.nombre }}"><br>
+        <label for="horario">Horario:</label>
+        <input type="text" id="horario" name="horario" value="{{ espacio.horario }}"><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion">{{ espacio.descripcion }}</textarea><br>
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" value="{{ espacio.telefono }}"><br>
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado">
+            {% for key, value in espacio.ESTADO %}
+            <option value="{{ key }}" {% if espacio.estado == key %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="fotos">Fotos:</label>
+        <input type="file" id="fotos" name="fotos"><br>
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
