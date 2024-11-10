@@ -1,0 +1,24 @@
+body {
+    /* Gradiente sutil de azul a blanco y luego a amarillo */
+    background: linear-gradient(180deg, rgba(13, 110, 253, 0.2), rgba(255, 255, 255, 1), rgba(244, 212, 100, 0.2));
+    color: #000; /* Texto negro para buen contraste */
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Asegura que cubra toda la altura de la página */
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed; /* Fija el fondo al scroll */
+}
+
+header, footer {
+    background-color: #FFD700; /* Amarillo dorado */
+    color: #000; /* Texto oscuro para contraste */
+}
+
+a {
+    color: #FF0000; /* Rojo del escudo */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FFD700; /* Cambia a amarillo al pasar el cursor */
+}
