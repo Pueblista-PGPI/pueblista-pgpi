@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestion_espacios',
     'gestion_usuarios',
+    'gestion_contactos',
 ]
 
 # Añadir el backend personalizado a la lista de backends de autenticación en settings.py:
