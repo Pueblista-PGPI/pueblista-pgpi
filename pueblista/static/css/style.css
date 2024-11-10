@@ -22,3 +22,7 @@ a {
 a:hover {
     color: #FFD700; /* Cambia a amarillo al pasar el cursor */
 }
+
+nav {
+    background-color: linear-gradient(180deg, rgba(13, 110, 253, 0.2), rgba(255, 255, 255, 1), rgba(13, 110, 253, 0.2)); /* Amarillo dorado */
+}
