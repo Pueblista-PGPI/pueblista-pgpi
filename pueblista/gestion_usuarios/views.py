@@ -5,7 +5,7 @@ from .forms import LoginForm
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/reservas')
+        return redirect('/')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -18,7 +18,7 @@ def login(request):
             if user is not None:
                 # Si el usuario es autenticado, hacer login y redirigir a /reservas
                 auth_login(request, user)
-                return redirect('/reservas')
+                return redirect('/')
             else:
                 # Si no se encuentra el usuario, mostrar un mensaje de error
                 messages.error(request, "Credenciales inválidas. Inténtalo de nuevo.")
