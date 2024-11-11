@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('nombre', models.CharField(max_length=100)),
                 ('horario', models.CharField(max_length=100)),
                 ('descripcion', models.TextField()),
-                ('fotos', models.ImageField(blank=True, null=True, upload_to='recetas', verbose_name='photo')),
+                ('fotos', models.ImageField(blank=True, null=True, upload_to='media', verbose_name='photo')),
                 ('telefono', models.CharField(max_length=15)),
                 ('estado', models.CharField(choices=[('reservado', 'Reservado'), ('libre', 'Libre'), ('no_disponible', 'No Disponible')], default='libre', max_length=15)),
             ],

@@ -1,22 +1,45 @@
 {% extends "base.html" %}
 
-
-
 {% block title %}
-    <title>Crear Nuevo Espacio</title>
+  <title>Crear Espacio</title>
 {% endblock title %}
 
-
-
 {% block content %}
-    <div class="container">
-        <div class="text-center p-4 p-lg-5">
-            <h1 class="fw-bold mb-4">Crear nuevo espacio<br></h1>
-        </div>
+<div class="container">
+    <div class="text-center p-4 p-lg-5">
+        <h1 class="fw-bold mb-4">Crear Espacio</h1>
     </div>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <div class="mb-3 w-75">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" required maxlength="100">
+        </div>
+        <div class="mb-3 w-75">
+            <label for="horario" class="form-label">Horario:</label>
+            <input type="text" class="form-control form-control-lg" id="horario" name="horario" required maxlength="100">
+        </div>
+        <div class="mb-3 w-75">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <textarea class="form-control form-control-lg" id="descripcion" name="descripcion" required></textarea>
+        </div>
+        <div class="mb-3 w-75">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="text" class="form-control form-control-lg" id="telefono" name="telefono" required pattern="^\d{9}$" title="El número de teléfono debe ingresarse en el formato: '999999999'.">
+        </div>
+        <div class="mb-3 w-75">
+            <label for="estado" class="form-label">Estado:</label>
+            <select class="form-select form-select-lg" id="estado" name="estado" required>
+                {% for key, value in estado_choices %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 w-75">
+            <label for="fotos" class="form-label">Fotos:</label>
+            <input type="file" class="form-control form-control-lg" id="fotos" name="fotos">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Crear</button>
     </form>
+</div>
 {% endblock content %}

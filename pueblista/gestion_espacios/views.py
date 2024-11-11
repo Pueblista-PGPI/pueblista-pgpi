@@ -37,19 +37,12 @@ def create(request):
     if request.method == 'POST':
         form = EspacioPublicoForm(request.POST, request.FILES)
         if form.is_valid():
-            EspacioPublico.objects.create(
-                nombre=form.cleaned_data['nombre'],
-                horario=form.cleaned_data['horario'],
-                descripcion=form.cleaned_data['descripcion'],
-                fotos=form.cleaned_data['fotos'],
-                telefono=form.cleaned_data['telefono'],
-                estado=form.cleaned_data['estado']
-            )
+            form.save()
             return redirect('list')
     else:
         form = EspacioPublicoForm()
-    return render(request, 'create.html', {'form': form,
-                                           'estado_choices': estado_choices})
+    return render(request, 'create.html',
+                  {'form': form, 'estado_choices': estado_choices})
 
 
 @login_required

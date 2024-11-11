@@ -8,7 +8,7 @@ import os
 
 # Create your views here.
 @login_required
-def index(request):
+def home(request):
     texto_ayuntamiento = """El Ayuntamiento de Villanueva de las Cruces es el
     alma de un municipio lleno de encanto, historia y tradiciones. Con eventos
     como la “Candela” en honor a San Sebastián y una deliciosa gastronomía que

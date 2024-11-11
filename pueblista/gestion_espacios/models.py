@@ -1,6 +1,6 @@
 from django.db import models
 from django.shortcuts import redirect, render
-from .forms import EspacioPublicoForm
+from django.core.validators import RegexValidator
 
 
 class EspacioPublico(models.Model):
@@ -14,12 +14,16 @@ class EspacioPublico(models.Model):
         (NO_DISPONIBLE, 'No Disponible'),
     ]
 
-    nombre = models.CharField(max_length=100)
-    horario = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    nombre = models.CharField(max_length=100, null=False, blank=False)
+    horario = models.CharField(max_length=100, null=False, blank=False)
+    descripcion = models.TextField(null=False, blank=False)
     fotos = models.ImageField(upload_to='spaces',
                               verbose_name='photo', null=True, blank=True)
-    telefono = models.CharField(max_length=15)
+    telefono = models.CharField(max_length=9, validators=[
+        RegexValidator(regex=r'^\d{9}$',
+                       message='''El número de teléfono debe
+                       ingresarse en el formato: '999999999'.''')],
+                                null=False, blank=False)
     estado = models.CharField(max_length=15, choices=ESTADO, default=LIBRE)
 
     def __str__(self):
@@ -27,17 +31,6 @@ class EspacioPublico(models.Model):
 
     REQUIRED_FIELDS = ['nombre', 'horario', 'descripcion',
                        'telefono', 'estado']
-
-    def crear_espacio(request):
-        if request.method == 'POST':
-            form = EspacioPublicoForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect('list')
-        else:
-            form = EspacioPublicoForm()
-
-        return render(request, 'create.html', {'form': form})
 
     def editar_espacio(self, nombre=None, horario=None, descripcion=None,
                        fotos=None, estado=None, telefono_atencion=None):
