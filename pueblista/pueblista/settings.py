@@ -20,6 +20,11 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# directorio donde se crean los archivos muñltimedia
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -48,13 +53,13 @@ INSTALLED_APPS = [
     'gestion_espacios',
     'gestion_usuarios',
     'gestion_contactos',
-    'home'
+    'home',
+    'debug_toolbar',
 ]
 
-# Añadir el backend personalizado a la lista de backends de autenticación en settings.py:
 
 AUTHENTICATION_BACKENDS = [
-    'gestion_usuarios.backends.DNIFechaNacimientoBackend',  # Nuestro backend personalizado
+    'gestion_usuarios.backends.DNIFechaNacimientoBackend',  # Backend personalizado
     'django.contrib.auth.backends.ModelBackend',  # El backend predeterminado
 ]
 
@@ -70,7 +75,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+MIDDLEWARE_CLASSES = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = '127.0.0.1'
 
 ROOT_URLCONF = 'pueblista.urls'
 
@@ -113,16 +125,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -142,14 +158,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # Add whitenoise to the STATICFILES_STORAGE setting
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # Add the static directory to the STATICFILES_DIRS setting
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Add the staticfiles directory to the STATIC_ROOT setting
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
