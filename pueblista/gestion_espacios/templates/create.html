@@ -1,13 +1,19 @@
-<!-- FILE: create.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+
+
+{% block title %}
     <title>Crear Nuevo Espacio</title>
-</head>
-<body>
-    <h1>Crear Nuevo Espacio</h1>
+{% endblock title %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="text-center p-4 p-lg-5">
+            <h1 class="fw-bold mb-4">Crear nuevo espacio<br></h1>
+        </div>
+    </div>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="nombre">Nombre:</label>
@@ -17,7 +23,7 @@
         <label for="descripcion">Descripción:</label>
         <textarea id="descripcion" name="descripcion" required></textarea><br>
         <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono"><br>
+        <input type="text" id="telefono" name="telefono" required><br>
         <label for="estado">Estado:</label>
         <select id="estado" name="estado" required>
             {% for key, value in estado_choices %}
@@ -25,8 +31,7 @@
             {% endfor %}
         </select><br>
         <label for="fotos">Fotos:</label>
-        <input type="file" id="fotos" name="fotos"><br>
-        <button type="submit">Crear</button>
+        <input type="file" id="fotos" name="fotos" multiple><br>
+        <button type="submit">Guardar</button>
     </form>
-</body>
-</html>
+{% endblock content %}

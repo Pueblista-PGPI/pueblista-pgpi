@@ -47,14 +47,19 @@
           <ul class="navbar-nav ms-auto">
             {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Mis Reservas</a>
+                  <a class="nav-link" href="{% url 'index' %}">Mis Reservas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                  <a class="nav-link" href="{% url 'list' %}">Mis Espacios</a>
               </li>
+              {% if request.user.is_superuser or request.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                </li>
+              {% endif %}
             {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                  <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
               </li>
             {% endif %}
           </ul>

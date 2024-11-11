@@ -1,31 +1,17 @@
-"""
-URL configuration for pueblista project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-from django.conf.urls.static import static
-from pueblista import settings
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Aquí van todas las URLs de gestion_espacios (/reservas/...)
     path('reservas/', include('gestion_espacios.urls')),
-    # Aquí van todas las URLs de gestion_usuarios (/auth/...)
     path('auth/', include('gestion_usuarios.urls')),
     path('contact/', include('gestion_contactos.urls')),
     path('', include('home.urls')),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

@@ -1,4 +1,6 @@
 from django.db import models
+from django.shortcuts import redirect, render
+from .forms import EspacioPublicoForm
 
 
 class EspacioPublico(models.Model):
@@ -27,28 +29,16 @@ class EspacioPublico(models.Model):
                        'telefono', 'estado']
 
     @classmethod
-    def crear_espacio(self, nombre, horario, descripcion, fotos, estado=LIBRE,
-                      telefono=None):
+    def crear_espacio(request):
+        if request.method == 'POST':
+            form = EspacioPublicoForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('list')
+        else:
+            form = EspacioPublicoForm()
 
-        if not nombre:
-            raise ValueError('El nombre es obligatorio')
-        if not horario:
-            raise ValueError('Un horario es obligatorio')
-        if not descripcion:
-            raise ValueError('Una descripción es obligatoria')
-        if not telefono:
-            raise ValueError('El teléfono es obligatorio')
-
-        espacio = self(
-            nombre=nombre,
-            horario=horario,
-            descripcion=descripcion,
-            fotos=fotos,
-            estado=estado,
-            telefono=telefono
-        )
-        espacio.save()
-        return espacio
+        return render(request, 'create.html', {'form': form})
 
     def editar_espacio(self, nombre=None, horario=None, descripcion=None,
                        fotos=None, estado=None, telefono_atencion=None):

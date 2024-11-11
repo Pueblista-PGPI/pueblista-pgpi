@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+
+
+{% block title %}
     <title>Editar Espacio</title>
-</head>
-<body>
-    <h1>Editar Espacio</h1>
+{% endblock title %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="text-center p-4 p-lg-5">
+            <h1 class="fw-bold mb-4">Editar Espacio<br></h1>
+        </div>
+    </div>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="nombre">Nombre:</label>
@@ -27,5 +34,4 @@
         <input type="file" id="fotos" name="fotos"><br>
         <button type="submit">Guardar</button>
     </form>
-</body>
-</html>
+{% endblock content %}

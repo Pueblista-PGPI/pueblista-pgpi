@@ -1,13 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
+
+{% block title %}
     <title>Lista de Espacios</title>
-    <a href="{% url 'create' %}" class="btn btn-primary">Crear Nuevo Espacio</a>
-</head>
-<body>
-    <h1>Lista de Espacios</h1>
+{% endblock title %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="text-center p-4 p-lg-5">
+            <br>
+            <h1 class="fw-bold mb-4">Lista de Espacios<br></h1>
+            <a href="{% url 'create' %}" class="btn btn-primary" style="margin-left: 10px;">Crear Nuevo Espacio</a>
+        </div>
+    </div>
+
+    {% if spaces.count == 0 %}
+        <div class="text-center p-4 p-lg-5">
+            <p>No hay espacios registrados.</p>
+        </div>
+    {% endif %}
     <ul>
         {% for space in spaces %}
         <li>
@@ -29,5 +40,4 @@
         </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock content %}

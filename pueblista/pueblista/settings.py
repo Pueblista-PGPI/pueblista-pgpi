@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'gestion_espacios',
     'gestion_usuarios',
     'gestion_contactos',
-    'home'
+    'home',
+    'debug_toolbar',
 ]
 
 
@@ -74,7 +75,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+MIDDLEWARE_CLASSES = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = '127.0.0.1'
 
 ROOT_URLCONF = 'pueblista.urls'
 
