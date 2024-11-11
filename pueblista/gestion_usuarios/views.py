@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
 
 def login(request):
     if request.user.is_authenticated:
@@ -32,3 +33,10 @@ def login(request):
 def logout_view(request):
     logout(request)
     return redirect('login')  # Redirige al login después de cerrar sesión
+
+@login_required  # Asegura que solo los usuarios autenticados puedan acceder a esta vista
+def perfil(request):
+    # Accedemos al usuario actual a través del objeto request.user
+    usuario = request.user
+    # Pasamos el objeto usuario al template
+    return render(request, 'perfil.html', {'usuario': usuario})
