@@ -18,53 +18,55 @@
     />
 
      <!-- Bootstrap Icons -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/home/favicon.png' %}" type="image/png">
 
     {% block title %}
     {% endblock title %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">Pueblista</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'index' %}">Inicio</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ms-auto">
-            {% if request.user.is_authenticated %}
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'index' %}">Mis Reservas</a>
-              </li>
-              <li class="nav-item">2
-                  <a class="nav-link" href="{% url 'list' %}">Mis Espacios</a>
-              </li>
-              {% if request.user.is_superuser or request.is_staff %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
-                </li>
-              {% endif %}
-            {% else %}
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-              </li>
-            {% endif %}
-          </ul>
+    <nav class="navbar navbar-expand-md py-3">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <!-- add the logo image here -->
+            <span>
+              <img src="{% static 'images/home/logo.png' %}" alt="Pueblista" style="height: 80px; margin-top: -10px">
+            </span>
+            <span href="{% url 'home' %}" style="font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 1.7rem; margin-left: -10px;">
+                Pueblista
+            </span>
+          </a>
+          <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="navbar-nav ms-auto">
+                  {% if request.user.is_authenticated %}
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home'%}" style="font-weight: bold;">Página principal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="font-weight: bold;">Mis reservas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="font-weight: bold;">Mi perfil</a></li>
+                    {% if request.user.is_superuser or request.is_staff %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'list' %}">Mis Espacios</a>
+                      </li>
+                    {% endif %}
+                  {% endif %}
+                </ul>
+                {% if request.user.is_authenticated %}
+                  <a class="btn btn-primary ms-md-2" role="button" href="{% url 'home' %}">Reservar</a>
+                {% else %}
+                  <a class="btn btn-primary ms-md-2" role="button" href="{% url 'login' %}">Iniciar sesión</a>
+                {% endif %}
+            </div>
         </div>
-      </div>
     </nav>
 
     {% block content %}
