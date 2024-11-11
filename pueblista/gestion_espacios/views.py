@@ -48,8 +48,8 @@ def create(request):
             return redirect('list')
     else:
         form = EspacioPublicoForm()
-    return render(request, 'create.html',
-                  {'form': form, 'estado_choices': estado_choices})
+    return render(request, 'create.html', {'form': form,
+                                           'estado_choices': estado_choices})
 
 
 @login_required

@@ -28,7 +28,6 @@ class EspacioPublico(models.Model):
     REQUIRED_FIELDS = ['nombre', 'horario', 'descripcion',
                        'telefono', 'estado']
 
-    @classmethod
     def crear_espacio(request):
         if request.method == 'POST':
             form = EspacioPublicoForm(request.POST, request.FILES)
