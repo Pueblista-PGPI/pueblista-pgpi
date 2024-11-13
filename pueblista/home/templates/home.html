@@ -53,9 +53,23 @@
                         <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
                         <div class="card-body p-4">
                             <h4 class="card-title">Nuestro ayuntamiento</h4>
-                            <p class="card-text">{{ ayuntamiento|linebreaks }}</p>
+                            <!-- Texto del ayuntamiento -->
+                            <p class="card-text" id="ayuntamientoText">{{ ayuntamiento|linebreaks }}</p>
+                            
+                            <!-- Formulario para editar -->
+                            <form method="POST" style="display: none;" id="editForm">
+                                {% csrf_token %}
+                                <textarea class="form-control" name="nuevo_ayuntamiento" id="ayuntamientoInput" rows="4">{{ ayuntamiento }}</textarea>
+                                <button class="btn btn-primary mt-2" type="submit">Guardar</button>
+                            </form>
+                    
+                            <!-- Botón de edición -->
+                            {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
+                                <a class="btn btn-primary" id="editButton" style="background-color: black; border-color: black;">Editar</a>
+                            {% endif %}
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -146,5 +160,30 @@
             }, 3000); // 3 segundos
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const editButton = document.getElementById('editButton');
+        const saveButton = document.querySelector('#editForm button');
+        const editForm = document.getElementById('editForm');
+        const ayuntamientoText = document.getElementById('ayuntamientoText');
+    
+        // Mostrar textarea y ocultar el <p>
+        editButton.addEventListener('click', function () {
+            editForm.style.display = 'block';
+            ayuntamientoText.style.display = 'none';
+            editButton.style.display = 'none';
+        });
+    
+        // Cuando se guarde (form submit)
+        saveButton.addEventListener('click', function () {
+            // Opcional: Muestra un mensaje visual hasta que se procese el cambio
+            ayuntamientoText.innerHTML = document.getElementById('ayuntamientoInput').value.replace(/\n/g, '<br>');
+            editForm.style.display = 'none';
+            ayuntamientoText.style.display = 'block';
+            editButton.style.display = 'inline-block';
+        });
+    });
+    
+
 </script>
 {% endblock content %}

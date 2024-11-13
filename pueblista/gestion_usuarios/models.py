@@ -74,7 +74,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         (SUPERUSUARIO, 'Superusuario'),
     ]
 
-    dni = models.CharField(max_length=9, unique=True)
+    dni = models.CharField(max_length=9)
     fecha_nacimiento = models.DateField()
     nombre = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
