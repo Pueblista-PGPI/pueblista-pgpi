@@ -26,3 +26,19 @@ a:hover {
 nav {
     background-color: linear-gradient(180deg, rgba(13, 110, 253, 0.2), rgba(255, 255, 255, 1), rgba(13, 110, 253, 0.2)); /* Amarillo dorado */
 }
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+.grid-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+}

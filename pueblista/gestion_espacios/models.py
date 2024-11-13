@@ -1,5 +1,4 @@
 from django.db import models
-from django.shortcuts import redirect, render
 from django.core.validators import RegexValidator
 
 
@@ -9,8 +8,7 @@ class EspacioPublico(models.Model):
     NO_DISPONIBLE = "no_disponible"
 
     ESTADO = [
-        (RESERVADO, 'Reservado'),
-        (LIBRE, 'Libre'),
+        (LIBRE, 'Disponible'),
         (NO_DISPONIBLE, 'No Disponible'),
     ]
 

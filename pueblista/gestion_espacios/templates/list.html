@@ -7,29 +7,13 @@
 
 {% block content %}
 
-    <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            justify-items: center;
-        }
-        .grid-item {
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 300px;
-        }
-    </style>
-
-
     <div class="container">
         <div class="text-center p-4 p-lg-5">
             <br>
             <h1 class="fw-bold mb-4">Lista de Espacios<br></h1>
-            <a href="{% url 'create' %}" class="btn btn-primary" style="margin-left: 10px;">Crear Nuevo Espacio</a>
+            {% if user.is_superuser or user.is_staff %}
+                <a href="{% url 'create' %}" class="btn btn-primary" style="margin-left: 10px;">Crear Nuevo Espacio</a>
+            {% endif %}
         </div>
     </div>
 
