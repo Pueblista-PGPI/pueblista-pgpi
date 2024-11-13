@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Perfil de Usuario</h2>
+
+    <!-- Advertencia en azul que indica que los datos no se pueden editar -->
+    <div class="alert alert-info" role="alert">
+        Los datos personales no se pueden editar.
+    </div>
+
+    <!-- Fila para mostrar la información del usuario -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Nombre y Apellidos combinados en un único campo -->
+                    <div class="mb-3">
+                        <label for="nombre_apellidos" class="font-weight-bold">Nombre y Apellidos</label>
+                        <input type="text" class="form-control" id="nombre_apellidos" value="{{ user.nombre }} {{ user.apellidos }}" readonly>
+                    </div>
+
+                    <!-- DNI -->
+                    <div class="mb-3">
+                        <label for="dni" class="font-weight-bold">DNI</label>
+                        <input type="text" class="form-control" id="dni" value="{{ user.dni }}" readonly>
+                    </div>
+
+                    <!-- Fecha de Nacimiento -->
+                    <div class="mb-3">
+                        <label for="fecha_nacimiento" class="font-weight-bold">Fecha de Nacimiento</label>
+                        <input type="text" class="form-control" id="fecha_nacimiento" value="{{ user.fecha_nacimiento }}" readonly>
+                    </div>
+
+                    <!-- Dirección Postal -->
+                    <div class="mb-3">
+                        <label for="direccion_postal" class="font-weight-bold">Dirección Postal</label>
+                        <input type="text" class="form-control" id="direccion_postal" value="{{ user.direccion_postal }}" readonly>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="mb-3">
+                        <label for="telefono" class="font-weight-bold">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" value="{{ user.telefono }}" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

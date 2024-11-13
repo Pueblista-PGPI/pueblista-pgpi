@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import CustomUser
 from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
 from .decorators import tipo_usuario_requerido
-
 
 def login(request):
     if request.user.is_authenticated:
@@ -37,11 +37,16 @@ def login(request):
 
     return render(request, 'login.html', {'form': form})
 
-
 def logout_view(request):
     logout(request)
     return redirect('login')  # Redirige al login después de cerrar sesión
 
+@login_required  # Asegura que solo los usuarios autenticados puedan acceder a esta vista
+def perfil(request):
+    # Accedemos al usuario actual a través del objeto request.user
+    usuario = request.user
+    # Pasamos el objeto usuario al template
+    return render(request, 'perfil.html', {'usuario': usuario})
 
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
