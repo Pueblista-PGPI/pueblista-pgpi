@@ -39,7 +39,10 @@
             <label for="fotos" class="form-label">Fotos:</label>
             <input type="file" class="form-control form-control-lg" id="fotos" name="fotos">
         </div>
-        <button type="submit" class="btn btn-primary btn-lg">Crear</button>
+        <div class="d-flex justify-content-between w-50">
+            <button type="submit" class="btn btn-primary btn-lg">Crear</button>
+            <a href="{% url 'list' %}" class="btn btn-secondary btn-lg">Cancelar</a>
+        </div>
     </form>
     <br>
 </div>

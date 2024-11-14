@@ -6,30 +6,55 @@
 
 {% block content %}
 <div class="container py-4 py-xl-5">
-    <div class="text-center p-4 p-lg-5">
-        <h1 class="fw-bold mb-4">Lista de Usuarios</h1>
+    
+    
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Usuarios de Pueblista</strong></h2>
+        <p class="w-lg-50" style="text-align: center;">Lista de usuario dados de alta en la plataforma Pueblista. Estos datos han sido proporcionados por el censo del Ayuntamiento de Villanueva de las cruces. Actualizado a noviembre de 2024. </p>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.nombre }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.rol }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="text-muted">{{ users.count }} usuarios </p>
+        <!-- <div>
+            <button class="btn btn-outline-primary me-2">Filter</button>
+            <input type="text" class="form-control d-inline-block" placeholder="Search" style="width: 200px;">
+        </div> -->
+    </div>
+    
+    <div class="row">
+        {% for user in users %}
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center row">
+                        <div class="col">
+                            <h5 class="card-title mb-1">{{ user.nombre }}</h5>
+                            <p class="text-muted mb-0">{{ user.apellidos }}</p>
+                        </div>
+                        <div class="col text-end">
+                            {% if user.tipo_usuario == "personal_administrativo" %}
+                                <p class="mb-1 badge bg-primary" style="font-size: 0.6rem;">ADMINISTRATIVO</p>
+                            {% elif user.tipo_usuario == "usuario_final" %}
+                                <p class="mb-1 badge bg-dark" style="font-size: 0.6rem;">USUARIO</p>
+                            {% elif user.tipo_usuario == "superusuario" %}
+                                <p class="mb-1 badge bg-success" style="font-size: 0.6rem;">SUPERUSUARIO</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="mb-1"><strong>NIE / NIF:</strong> {{ user.dni }}</p>
+                            <p class="mb-1"><strong>Fecha nacimiento:</strong> {{ user.fecha_nacimiento }}</p>
+                            <p class="mb-1"><strong>Teléfono:</strong> <span>{{ user.telefono }}</span></p>
+                            <p class="mb-1"><strong>Dirección:</strong> {{ user.direccion_postal }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock content %}

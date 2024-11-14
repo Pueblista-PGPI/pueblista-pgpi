@@ -7,43 +7,85 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="text-center p-4 p-lg-5">
-            <br>
-            <h1 class="fw-bold mb-4">Lista de Espacios<br></h1>
-            {% if user.is_superuser or user.is_staff %}
-                <a href="{% url 'create' %}" class="btn btn-primary" style="margin-left: 10px;">Crear Nuevo Espacio</a>
-            {% endif %}
-        </div>
-    </div>
+    <section class="py-4 py-xl-5">
 
-    {% if spaces.count == 0 %}
-        <div class="text-center p-4 p-lg-5">
-            <p>No hay espacios registrados.</p>
+
+        <div class="container">
+            <h2 style="text-align: center;"><strong>Espacios disponibles</strong></h2>
+            <p class="w-lg-50" style="text-align: center;">Aquí encontrarás toda la información necesaria para reservar de forma fácil y rápida cualquier espacio</p>
         </div>
-    {% endif %}
-    <ul>
-        <div class="grid-container">
+
+        <!-- <div class="container" style="margin-bottom: 40px;">
+            <div class="input-group"><input class="form-control" type="text" placeholder="Busca tu espacio favorito" /><button class="btn btn-primary" type="button" style="font-size: 19px;">Buscar</button></div>
+        </div> -->
+
+        {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+            <div class="container" style="margin-bottom: 40px; text-align: center;">
+                <a href="{% url 'create' %}" class="btn btn-lg me-2 zoom-on-hover" role="button" style="background: linear-gradient(to right, #000000, #434343); color: white;">Crear Nuevo Espacio</a>
+            </div>
+            <style>
+                .zoom-on-hover {
+                    transition: transform 0.3s ease;
+                }
+                .zoom-on-hover:hover {
+                    transform: scale(1.05);
+                }
+            </style>
+        {% endif %}
+
+
+        <div></div>
+
+
+        <section class="py-4 py-xl-5">
             {% for space in spaces %}
-            <div class="grid-item">
-                <h2>{{ space.nombre }}</h2>
-                <p><strong>Horario:</strong> {{ space.horario }}</p>
-                <p><strong>Descripción:</strong> {{ space.descripcion }}</p>
-                {% if space.fotos %}
-                <img src="{{ space.fotos.url }}" alt="Foto de {{ space.nombre }}" style="width: 100%; height: auto;">
-                {% endif %}
-                <p><strong>Teléfono:</strong> {{ space.telefono }}</p>
-                <p><strong>Estado:</strong> {{ space.estado }}</p>
-                {% if user.is_superuser or user.is_staff %}
-                <a href="{% url 'edit' space.id %}" class="btn btn-primary" style="margin-right: 10px;">Editar</a>
-                <form action="{% url 'delete' space.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-                {% endif %}
+            <div class="container">
+                <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
+                    <div class="row g-0">
+
+                        <div class="col-md-6">
+                            <div class="text-white p-4 p-md-5">
+                                <h2 class="fw-bold text-white mb-3">{{ space.nombre }}</h2>
+                                <p class="mb-4">{{ space.descripcion }}</p>
+                                <p><strong>Teléfono:</strong> {{ space.telefono }}</p>
+                                <div class="my-3">
+                                    <a class="btn btn-success btn-lg me-2 mb-2" role="button">Reservar</a>
+                                    {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+                                    <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="{% url 'edit' space.id %}">Editar</a>
+                                    <form action="{% url 'delete' space.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-lg mb-2" role="button" onclick="return confirmDelete('{{ space.nombre }}');">Eliminar</button>
+                                    </form>
+                                    <script>
+                                        function confirmDelete(spaceName) {
+                                            var userInput = prompt("Para confirmar la eliminación, por favor escribe el nombre del espacio: " + spaceName);
+                                            return userInput === spaceName;
+                                        }
+                                    </script>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 order-first order-md-last" style="min-height: 250px;">
+                            <img class="w-100 h-100 fit-cover zoom-on-hover" src="{{ space.fotos.url }}" alt="Foto de {{ space.nombre }}">
+                        </div>
+
+                    </div>
+                </div>
             </div>
             {% endfor %}
-        </div>
-    </ul>
+        </section>
+    </section>
+
+    <style>
+        .zoom-on-hover {
+            transition: transform 0.3s ease;
+        }
+        .zoom-on-hover:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
 {% endblock content %}
 

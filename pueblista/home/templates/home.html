@@ -28,7 +28,8 @@
             <div class="text-center p-4 p-lg-5">
                 
                 <p class="fw-bold text-primary mb-2">Orgullo de Villanueva de las Cruces</p>
-                <h1 class="fw-bold mb-4">Pueblista.<br>Para sentirte como en casa</h1><a class="btn btn-primary fs-5 me-2 py-2 px-4" role="button" href="espacios.html" style="background-color: black; border-color: black;">Reservar ahora</a>
+                <h1 class="fw-bold mb-4">Pueblista.<br>Para sentirte como en casa</h1>
+                <a  class="btn btn-lg me-2 zoom-on-hover" role="button" style="background: linear-gradient(to right, #000000, #434343); color: white;" href="espacios.html">Reservar ahora</a>
             </div>
         </div>
         <hr style="width: 40%; border-top: 2px solid #000; margin: 20px auto;">
@@ -135,6 +136,8 @@
             </section>
         </div>
 </section>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Selecciona todas las alertas que deben desaparecer automáticamente
@@ -147,4 +150,14 @@
         });
     });
 </script>
+
+<style>
+.zoom-on-hover {
+    transition: transform 0.3s ease;
+}
+.zoom-on-hover:hover {
+    transform: scale(1.05);
+}
+</style>
+
 {% endblock content %}

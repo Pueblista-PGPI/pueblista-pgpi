@@ -1,14 +1,15 @@
 from django.db import models
 from django.core.validators import RegexValidator
+import os
+from django.conf import settings
 
 
 class EspacioPublico(models.Model):
-    RESERVADO = "reservado"
-    LIBRE = "libre"
+    DISPONIBLE = "disponible"
     NO_DISPONIBLE = "no_disponible"
 
     ESTADO = [
-        (LIBRE, 'Disponible'),
+        (DISPONIBLE, 'Disponible'),
         (NO_DISPONIBLE, 'No Disponible'),
     ]
 
@@ -22,7 +23,7 @@ class EspacioPublico(models.Model):
                        message='''El número de teléfono debe
                        ingresarse en el formato: '999999999'.''')],
                                 null=False, blank=False)
-    estado = models.CharField(max_length=15, choices=ESTADO, default=LIBRE)
+    estado = models.CharField(max_length=15, choices=ESTADO, default=DISPONIBLE)
 
     def __str__(self):
         return self.nombre
