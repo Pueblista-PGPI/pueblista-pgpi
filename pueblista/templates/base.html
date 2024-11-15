@@ -59,7 +59,8 @@
                   {% endif %}
                 </ul>
                 {% if request.user.is_authenticated %}
-                  <a class="btn btn-primary ms-md-2" role="button" href="{% url 'home' %}">Reservar</a>
+                  <a class="btn btn-primary ms-md-2" role="button" href="{% url 'list' %}">Reservar</a>
+                  <a class="btn btn-primary ms-md-2" role="button" href="{% url 'logout' %}">Cerrar sesión</a>
                 {% else %}
                   <a class="btn btn-primary ms-md-2" role="button" href="{% url 'login' %}">Iniciar sesión</a>
                 {% endif %}
