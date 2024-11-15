@@ -55,4 +55,5 @@ def perfil(request):
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def user_list(request):
     users = CustomUser.objects.all()
+    users = users.exclude(tipo_usuario='superusuario')
     return render(request, 'user_list.html', {'users': users})
