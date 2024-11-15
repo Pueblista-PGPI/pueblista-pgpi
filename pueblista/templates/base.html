@@ -33,8 +33,7 @@
   <body>
     <nav class="navbar navbar-expand-md py-3">
         <div class="container">
-          <a class="navbar-brand d-flex align-items-center" href="#">
-            <!-- add the logo image here -->
+          <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
             <span>
               <img src="{% static 'images/home/logo.png' %}" alt="Pueblista" style="height: 80px; margin-top: -10px">
             </span>
@@ -50,12 +49,12 @@
                 <ul class="navbar-nav ms-auto">
                   {% if request.user.is_authenticated %}
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home'%}" style="font-weight: bold;">Página principal</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="font-weight: bold;">Mis reservas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}" style="font-weight: bold;">Mis datos personales</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'list' %}" style="font-weight: bold;">Espacios</a></li>
-                    {% if request.user.is_superuser or request.is_staff %}
-                      <li class="nav-item"><a class="nav-link" href="{% url 'user_list' %}" style="font-weight: bold;">Usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}" style="font-weight: bold;">Página principal</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/mis_reservas' %}active{% endif %}" href="{% url 'home' %}" style="font-weight: bold;">Mis reservas</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/auth/perfil/' %}active{% endif %}" href="{% url 'perfil' %}" style="font-weight: bold;">Mis datos personales</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/espacios/list/' %}active{% endif %}" href="{% url 'list' %}" style="font-weight: bold;">Espacios</a></li>
+                    {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+                      <li class="nav-item"><a class="nav-link {% if request.path == '/auth/user_list/' %}active{% endif %}" href="{% url 'user_list' %}" style="font-weight: bold;">Usuarios</a></li>
                     {% endif %}
                   {% endif %}
                 </ul>

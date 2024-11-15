@@ -1,6 +1,8 @@
+import os
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from .decorators import tipo_usuario_requerido
+from gestion_usuarios.decorators import tipo_usuario_requerido
+from pueblista import settings
 from .models import EspacioPublico
 from .forms import EspacioPublicoForm
 
@@ -51,5 +53,8 @@ def delete(request, id):
     space = get_object_or_404(EspacioPublico, id=id)
     if request.method == 'POST':
         space.delete()
+        foto_path = os.path.join(settings.MEDIA_ROOT, "spaces/"+str(space.fotos))
+        if os.path.isfile(foto_path):
+            os.remove(foto_path)
         return redirect('list')
     return render(request, 'delete.html', {'espacio': space})
