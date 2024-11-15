@@ -39,7 +39,7 @@
 
         <section class="py-4 py-xl-5">
             {% for space in spaces %}
-            <div class="container">
+            <div class="container mb-4"> <!-- Added mb-4 class for margin-bottom -->
                 <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
                     <div class="row g-0">
 
@@ -68,7 +68,9 @@
                         </div>
 
                         <div class="col-md-6 order-first order-md-last" style="min-height: 250px;">
+                            {% if space.fotos %}
                             <img class="w-100 h-100 fit-cover zoom-on-hover" src="{{ space.fotos.url }}" alt="Foto de {{ space.nombre }}">
+                            {% endif %}
                         </div>
 
                     </div>
