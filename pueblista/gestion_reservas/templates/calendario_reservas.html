@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Calendario de Reservas</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center p-4 p-lg-5">
+        <h1 class="fw-bold mb-4">Calendario de Reservas</h1>
+    </div>
+        <div class="text-center my-4">
+            <form method="get">
+            <label for="fecha">Seleccione un día:</label>
+            <input type="date" id="fecha" name="fecha" value="{{ fecha_seleccionada }}" class="form-control w-auto d-inline" onchange="this.form.submit()">
+            </form>
+        </div>
+
+    {% if fecha_seleccionada %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-reservas">
+                <thead>
+                    <tr>
+                        <th>Horario</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+               <tbody>
+    {% for horario in horarios_reservas %}
+        <tr>
+            <td>{{ horario.hora_inicio }} - {{ horario.hora_fin }}</td>
+            {% if horario.reserva %}
+                <td class="reservada">Reservado</td>
+                <td>
+                    {% if horario.mia %}
+                        <button class="btn btn-secondary btn-sm" disabled>Mi reserva</button>
+                    {% else %}
+                        <button class="btn btn-danger btn-sm" disabled>Ya reservado</button>
+                    {% endif %}
+                </td>
+            {% else %}
+                <td class="disponible">Disponible</td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#reservaModal"
+                            data-fecha="{{ fecha_seleccionada }}"
+                            data-hora-inicio="{{ horario.hora_inicio }}"
+                            data-hora-fin="{{ horario.hora_fin }}">
+                        Reservar
+                    </button>
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</tbody>
+
+            </table>
+        </div>
+
+{% endif %}
+
+        <!-- Modal -->
+        <div class="modal fade" id="reservaModal" tabindex="-1" aria-labelledby="reservaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reservaModalLabel">Realizar Reserva</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-reserva" method="post" action="{% url 'crear_reserva' espacio.id %}">
+                            {% csrf_token %}
+                            <p>¿Estás seguro de realizar la reserva en el siguiente horario?<br>
+                            <strong>Espacio:</strong> {{ espacio.nombre }}<br>
+                            <strong>Fecha:</strong> <span id="modal-fecha"></span>
+                            </p>
+                            <div class="mb-3">
+                                <strong> Usuario:</strong> {{ nombre_completo }}<br>
+                            </div>
+                            <input id="hidden-fecha" name="fecha" type="hidden">
+                            <input id="hidden-hora_inicio" name="hora_inicio" type="hidden">
+                            <input id="hidden-hora_fin" name="hora_fin" type="hidden">
+                            <button type="submit" class="btn btn-success">Confirmar Reserva</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Captura el evento "show.bs.modal" para rellenar el contenido del modal dinámicamente
+        const reservaModal = document.getElementById('reservaModal');
+        reservaModal.addEventListener('show.bs.modal', function (event) {
+          const button = event.relatedTarget; // Botón que activó el modal
+          const fecha = button.getAttribute('data-fecha');
+          const horaInicio = button.getAttribute('data-hora-inicio');
+          const horaFin = button.getAttribute('data-hora-fin');
+          
+          // Verifica que los valores no sean vacíos o indefinidos
+          if (fecha && horaInicio && horaFin) {
+    
+              // Convierte la fecha al formato yyyy-MM-dd (por ejemplo: 2024-11-16)
+              const fechaObj = new Date(fecha); // Convierte la fecha en un objeto Date
+              const year = fechaObj.getFullYear();
+              const month = (fechaObj.getMonth() + 1).toString().padStart(2, '0'); // Asegura que el mes tenga dos dígitos
+              const day = fechaObj.getDate().toString().padStart(2, '0'); // Asegura que el día tenga dos dígitos
+              const fechaFormateada = `${year}-${month}-${day}`;
+        
+              document.getElementById('modal-fecha').textContent = fechaFormateada; // Muestra la fecha en el modal
+              document.getElementById('hidden-fecha').value = fechaFormateada; // Asigna la fecha al campo oculto
+              document.getElementById('hidden-hora_inicio').value = horaInicio;
+              document.getElementById('hidden-hora_fin').value = horaFin;
+          } else {
+              console.error('Algunos datos del horario están vacíos o incorrectos.');
+          }
+        });
+    </script>
+</body>
+</html>
+
+{% endblock content %}
