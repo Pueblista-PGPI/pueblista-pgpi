@@ -32,3 +32,6 @@ db.sqlite3
 # Archivos estáticos recolectados
 pueblista/staticfiles/
 
+# Coverage
+.coverage
+htmlcov/
