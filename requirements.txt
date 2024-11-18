@@ -37,7 +37,6 @@ pyphen==0.15.0
 pytest==8.3.3
 python-decouple==3.8
 python-dotenv==1.0.1
-pywin32==308
 pyzmq==26.2.0
 requests==2.32.3
 setuptools==75.5.0

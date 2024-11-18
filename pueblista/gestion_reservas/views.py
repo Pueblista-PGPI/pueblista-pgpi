@@ -11,6 +11,12 @@ from django.contrib import messages
 def calendario_reservas(request, id):
     # Obtener todas las reservas para la fecha seleccionada o para hoy por defecto
     fecha_seleccionada = request.GET.get('fecha') if request.GET.get('fecha') else request.session.get('fecha')
+    if fecha_seleccionada is None:
+        fecha_seleccionada = datetime.now().strftime('%Y-%m-%d')
+
+    if fecha_seleccionada < datetime.now().strftime('%Y-%m-%d'):
+        messages.error(request, "No se pueden hacer reservas en fechas pasadas.")
+        return redirect('calendario_reservas', id=id)
     espacio = get_object_or_404(EspacioPublico, id=id)  # Obtener el espacio con ese ID
     reservas = Reserva.objects.filter(fecha=fecha_seleccionada, espacio=espacio).order_by('hora_inicio')
 
@@ -65,8 +71,13 @@ def crear_reserva(request, id):
                 fecha=fecha,
                 hora_inicio=hora_inicio,
                 hora_fin=hora_fin
+            ).exists() and not Reserva.objects.filter(
+                fecha=fecha,
+                hora_inicio=hora_inicio,
+                hora_fin=hora_fin,
+                usuario=request.user
             ).exists():
-            # Crear la reserva
+                # Crear la reserva
                 Reserva.objects.create(
                     espacio=espacio,
                     usuario=request.user,
