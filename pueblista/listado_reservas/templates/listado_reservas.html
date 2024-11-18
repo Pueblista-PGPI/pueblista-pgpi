@@ -96,11 +96,15 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="hora_inicio">Hora de Inicio</label>
-                        <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
+                        <select class="form-control" id="hora_inicio" name="hora_inicio" required onchange="updateHoraFinOptions()">
+                            <!-- Opciones generadas dinámicamente -->
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="hora_fin">Hora de Fin</label>
-                        <input type="time" class="form-control" id="hora_fin" name="hora_fin" required>
+                        <select class="form-control" id="hora_fin" name="hora_fin" required onchange="validateHoraFin()">
+                            <!-- Opciones generadas dinámicamente -->
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary" style="margin-top: 20px">Guardar Cambios</button>
                 </form>
@@ -108,11 +112,98 @@
         </div>
     </div>
 </div>
-
 <script>
     function setCancelFormAction(reservaId) {
         const form = document.getElementById('cancelForm');
         form.action = `eliminar_reserva/${reservaId}/`;
     }
+
+    function setModifyFormAction(reservaId, horaInicioActual, horaFinActual) {
+        const form = document.getElementById('modifyForm');
+        form.action = `modificar_reserva/${reservaId}/`;
+
+        const horaInicioSelect = document.getElementById('hora_inicio');
+        const horaFinSelect = document.getElementById('hora_fin');
+
+        const horarios = [
+            '09:00', '10:00', '11:00', '12:00', '13:00',
+            '16:00', '17:00', '18:00', '19:00', '20:00'
+        ];
+
+        // Limpiar opciones actuales
+        horaInicioSelect.innerHTML = '';
+        horaFinSelect.innerHTML = '';
+
+        // Generar opciones de hora de inicio
+        horarios.forEach(hora => {
+            const option = document.createElement('option');
+            option.value = hora;
+            option.textContent = hora;
+            if (hora === horaInicioActual) {
+                option.selected = true;
+            }
+            horaInicioSelect.appendChild(option);
+        });
+
+        // Generar opciones de hora de fin
+        horarios.forEach(hora => {
+            const option = document.createElement('option');
+            option.value = hora;
+            option.textContent = hora;
+            if (hora === horaFinActual) {
+                option.selected = true;
+            }
+            horaFinSelect.appendChild(option);
+        });
+
+        // Validar la hora de fin
+        validateHoraFin();
+    }
+
+    function updateHoraFinOptions() {
+        const horaInicioSelect = document.getElementById('hora_inicio');
+        const horaFinSelect = document.getElementById('hora_fin');
+        const horaInicio = horaInicioSelect.value;
+
+        const horarios = [
+            '09:00', '10:00', '11:00', '12:00', '13:00',
+            '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'
+        ];
+
+        // Limpiar opciones actuales de hora de fin
+        horaFinSelect.innerHTML = '';
+
+        // Generar opciones de hora de fin basadas en la hora de inicio seleccionada
+        let addOptions = false;
+        horarios.forEach(hora => {
+            if (addOptions) {
+                const option = document.createElement('option');
+                option.value = hora;
+                option.textContent = hora;
+                horaFinSelect.appendChild(option);
+            }
+            if (hora === horaInicio) {
+                addOptions = true;
+            }
+        });
+
+        // Validar la hora de fin
+        validateHoraFin();
+    }
+
+    function validateHoraFin() {
+        const horaInicioSelect = document.getElementById('hora_inicio');
+        const horaFinSelect = document.getElementById('hora_fin');
+        const alertContainer = document.getElementById('alert-container');
+
+        const horaInicio = horaInicioSelect.value;
+        const horaFin = horaFinSelect.value;
+
+        if (horaFin <= horaInicio) {
+            alertContainer.style.display = 'block';
+        } else {
+            alertContainer.style.display = 'none';
+        }
+    }
 </script>
-{% endblock content %}
+{% endblock %}
