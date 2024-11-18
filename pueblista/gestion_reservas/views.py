@@ -71,8 +71,13 @@ def crear_reserva(request, id):
                 fecha=fecha,
                 hora_inicio=hora_inicio,
                 hora_fin=hora_fin
+            ).exists() and not Reserva.objects.filter(
+                fecha=fecha,
+                hora_inicio=hora_inicio,
+                hora_fin=hora_fin,
+                usuario=request.user
             ).exists():
-            # Crear la reserva
+                # Crear la reserva
                 Reserva.objects.create(
                     espacio=espacio,
                     usuario=request.user,
