@@ -9,6 +9,7 @@ urlpatterns = [
     path('espacios/', include('gestion_espacios.urls')),
     path('espacios/<int:id>/reservas/', include('gestion_reservas.urls')),
     path('auth/', include('gestion_usuarios.urls')),
+    path('mis_reservas/', include('listado_reservas.urls')),
     path('', include('home.urls')),
 ]
 

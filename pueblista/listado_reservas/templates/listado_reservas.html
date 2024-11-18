@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Mis Reservas</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container py-4 py-xl-5">
+    <div class="row mb-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2>Tus reservas</h2>
+            <p class="w-lg-50">Aquí podrás acceder a todas las reservas de espacios que hayas realizado</p>
+        </div>
+    </div>
+    <form method="GET" action="{% url 'listado_reservas' %}">
+        <div class="input-group" style="margin-bottom: 40px;">
+            <input class="form-control" type="text" name="q" placeholder="Introduce el nombre de un espacio" value="{{ query }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        {% for reserva in reservas %}
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                <div class="card-body p-4">
+                    <p class="text-primary card-text mb-0">Reserva</p>
+                    <h4 class="card-title">{{ reserva.espacio }}</h4>
+                    <p class="card-text">
+                        <strong>DÍA:</strong> {{ reserva.fecha }}<br>
+                        <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
+                        <strong>ESTADO:</strong> {{ reserva.estado }}<br>
+                    </p>
+                    <div class="d-flex">
+                        <div>
+                            <button class="btn btn-primary" type="button" style="margin-right: 10px;">Modificar reserva</button>
+                            <button class="btn btn-primary" type="button" style="background: #dddddd;color: var(--bs-black);border-color: var(--bs-dark-border-subtle);" data-toggle="modal" data-target="#model-1">Cancelar reserva</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
