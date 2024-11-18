@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -43,7 +44,7 @@ class Reserva(models.Model):
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'espacio', 'estado', 'usuario']
     
     def crear_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
-        if not Reserva.objects.filter(espacio=espacio, fecha=fecha, hora_inicio=hora_inicio).exists() and hora_inicio < hora_fin:    
+        if not Reserva.objects.filter(espacio=espacio, fecha=fecha, hora_inicio=hora_inicio).exists() and hora_inicio < hora_fin and fecha >= timezone.now().date():    
             self.fecha = fecha
             self.hora_inicio = hora_inicio
             self.hora_fin = hora_fin
