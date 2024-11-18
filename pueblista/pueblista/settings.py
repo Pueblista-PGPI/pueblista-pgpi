@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestion_espacios',
     'gestion_usuarios',
+    'gestion_reservas',
     'home',
     'debug_toolbar',
 ]
