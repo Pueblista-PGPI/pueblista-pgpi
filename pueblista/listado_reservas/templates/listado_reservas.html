@@ -146,18 +146,11 @@
         });
 
         // Generar opciones de hora de fin
-        horarios.forEach(hora => {
-            const option = document.createElement('option');
-            option.value = hora;
-            option.textContent = hora;
-            if (hora === horaFinActual) {
-                option.selected = true;
-            }
-            horaFinSelect.appendChild(option);
-        });
+        updateHoraFinOptions();
 
-        // Validar la hora de fin
-        validateHoraFin();
+        // Establecer los valores actuales como seleccionados
+        document.getElementById('hora_inicio').value = horaInicioActual;
+        document.getElementById('hora_fin').value = horaFinActual;
     }
 
     function updateHoraFinOptions() {
@@ -175,15 +168,12 @@
 
         // Generar opciones de hora de fin basadas en la hora de inicio seleccionada
         let addOptions = false;
-        horarios.forEach(hora => {
-            if (addOptions) {
+        horarios.forEach((hora, index) => {
+            if (hora === horaInicio && index < horarios.length - 1) {
                 const option = document.createElement('option');
-                option.value = hora;
-                option.textContent = hora;
+                option.value = horarios[index + 1];
+                option.textContent = horarios[index + 1];
                 horaFinSelect.appendChild(option);
-            }
-            if (hora === horaInicio) {
-                addOptions = true;
             }
         });
 
@@ -199,7 +189,11 @@
         const horaInicio = horaInicioSelect.value;
         const horaFin = horaFinSelect.value;
 
-        if (horaFin <= horaInicio) {
+        const horaInicioDate = new Date(`1970-01-01T${horaInicio}:00`);
+        const horaFinDate = new Date(`1970-01-01T${horaFin}:00`);
+        const oneHourLater = new Date(horaInicioDate.getTime() + 60 * 60 * 1000);
+
+        if (horaFinDate.getTime() !== oneHourLater.getTime()) {
             alertContainer.style.display = 'block';
         } else {
             alertContainer.style.display = 'none';
