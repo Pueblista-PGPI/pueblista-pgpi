@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'gestion_reservas',
     'home',
     'debug_toolbar',
+    'listado_reservas',
 ]
 
 
