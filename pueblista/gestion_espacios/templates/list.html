@@ -51,17 +51,18 @@
                                 <div class="my-3">
                                     <a class="btn btn-success btn-lg me-2 mb-2" role="button" href="/espacios/{{ space.id }}/reservas">Reservar</a>
                                     {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
-                                    <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="{% url 'edit' space.id %}">Editar</a>
-                                    <form action="{% url 'delete' space.id %}" method="post" style="display: inline;">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-danger btn-lg mb-2" role="button" onclick="return confirmDelete('{{ space.nombre }}');">Eliminar</button>
-                                    </form>
-                                    <script>
-                                        function confirmDelete(spaceName) {
-                                            var userInput = prompt("Para confirmar la eliminación, por favor escribe el nombre del espacio: " + spaceName);
-                                            return userInput === spaceName;
-                                        }
-                                    </script>
+                                        <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="{% url 'edit' space.id %}">Editar</a>
+                                        <form action="{% url 'delete' space.id %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-lg mb-2" role="button" onclick="return confirmDelete('{{ space.nombre }}');">Eliminar</button>
+                                        </form>
+                                        <script>
+                                            function confirmDelete(spaceName) {
+                                                var userInput = prompt("Para confirmar la eliminación, por favor escribe el nombre del espacio: " + spaceName);
+                                                return userInput === spaceName;
+                                            }
+                                        </script>
+                                        <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="/espacios/reservas/{{ space.id }}/">Reservas</a>
                                     {% endif %}
                                 </div>
                             </div>

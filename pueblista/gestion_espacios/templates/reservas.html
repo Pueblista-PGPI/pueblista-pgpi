@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Lista de reservas</title>
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <h2 style="text-align: center;"><strong>Dashboard de {{espacio.nombre}}</strong></h2>
+    <p class="w-lg-50" style="text-align: center;">Aquí se muestra un panel de control con las reservas realizadas de este espacio.</p>
+</div>
+
+<div class="container">
+    {% if reservas|length != 0 %}
+        <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+            <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva, busca en el intervalo de fechas deseado.</p>
+        </div>
+        <form method="GET" action="{% url 'reservas_fecha' espacio.id %}">
+            <div class="input-group" style="margin-bottom: 40px;">
+                <input class="form-control" type="date" name="start_date" placeholder="Fecha de inicio" value="{{ request.GET.start_date|default_if_none:'' }}">
+                <input class="form-control" type="date" name="end_date" placeholder="Fecha de fin" value="{{ request.GET.end_date|default_if_none:'' }}">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    {% else %}
+        <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+            <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+                {% if request.GET.start_date or request.GET.end_date %}
+                    <p class="w-lg-50" style="text-align: center;"><strong>No se encontraron reservas en este intervalo de fechas.</strong></p>
+                {% else %}
+                    <p class="w-lg-50" style="text-align: center;"><strong>No se encontraron reservas en este espacio.</strong></p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container mt-5">       
+         
+        {% for reserva in reservas %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Día</th>
+                        <th>Hora de Inicio</th>
+                        <th>Hora de Fin</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{ reserva.usuario.nombre }}  {{ reserva.usuario.apellidos }}</th>
+                        <th>{{ reserva.fecha }}</th>
+                        <th>{{ reserva.hora_inicio }}</th>
+                        <th>{{ reserva.hora_fin }}</th>
+                        <td>
+                            <form method="post" action="/mis_reservas/modificar_estado/{{reserva.id}}/">
+                                {% csrf_token %}
+                                <select name="estado" onchange="this.form.submit()" class="form-select" style="width: auto; display: inline;">
+                                    <option value="Realizada" {% if reserva.estado == 'Realizada' %}selected{% endif %} style="color: green;">Realizada</option>
+                                    <option value="Cancelada" {% if reserva.estado == 'Cancelada' %}selected{% endif %} style="color: red;">Cancelada</option>
+                                    <option value="En curso" {% if reserva.estado == 'En curso' %}selected{% endif %} style="color: orange;">En curso</option>
+                                    <option value="Finalizada" {% if reserva.estado == 'Finalizada' %}selected{% endif %} style="color: blue;">Finalizada</option>
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
