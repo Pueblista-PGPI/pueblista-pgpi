@@ -11,7 +11,7 @@ titlepage: true,
 titlepage-text-color: "1C1C1C"
 titlepage-rule-color: "1C1C1C"
 titlepage-rule-height: 0
-titlepage-background: "../../../plantilla-markdown/background2V.pdf" # modificar si el doc es horizontal
+titlepage-background: "../../../plantilla-markdown/background3V.pdf" # modificar si el doc es horizontal
 footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 documentclass: scrartcl
