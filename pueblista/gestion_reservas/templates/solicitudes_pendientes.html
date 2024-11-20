@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Solicitudes Pendientes</title>{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="fw-bold">Solicitudes Pendientes para {{ espacio.nombre }}</h1>
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Fin</th>
+                <th>Motivo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+                <tr>
+                    <td>{{ solicitud.usuario.nombre }} {{ solicitud.usuario.apellidos }}</td>
+                    <td>{{ solicitud.fecha }}</td>
+                    <td>{{ solicitud.hora_inicio }}</td>
+                    <td>{{ solicitud.hora_fin }}</td>
+                    <td>{{ solicitud.motivo }}</td>
+                    <td>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal" data-solicitud-id="{{ solicitud.id }}">Cancelar</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Cancelar Solicitud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="cancelForm">
+                    <input type="hidden" id="solicitudId" name="solicitud_id">
+                    <div class="mb-3">
+                        <label for="motivo" class="form-label">Motivo de la Cancelación</label>
+                        <textarea class="form-control" id="motivo" name="motivo" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Capturar evento cuando se abre el modal
+    var cancelModal = document.getElementById('cancelModal');
+    cancelModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var solicitudId = button.getAttribute('data-solicitud-id');
+        var modalInput = document.getElementById('solicitudId');
+        modalInput.value = solicitudId;
+    });
+
+    // Manejar el formulario de cancelación con AJAX
+    document.getElementById('cancelForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var form = this;
+        var formData = new FormData(form);
+
+        fetch("", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Cerrar modal y recargar la página para actualizar la tabla
+                var modal = bootstrap.Modal.getInstance(cancelModal);
+                modal.hide();
+                location.reload();
+            } else {
+                alert('Error al cancelar la solicitud');
+            }
+        });
+    });
+</script>
+{% endblock %}

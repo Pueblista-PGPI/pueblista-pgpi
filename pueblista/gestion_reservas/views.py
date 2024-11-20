@@ -1,7 +1,10 @@
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import SolicitudReservaEspecialForm
+from gestion_usuarios.decorators import tipo_usuario_requerido
+
+from .forms import CancelarSolicitudForm, SolicitudReservaEspecialForm
 from .models import Reserva
 from gestion_espacios.models import EspacioPublico
 from datetime import datetime
@@ -13,7 +16,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from gestion_espacios.models import EspacioPublico
-from .forms import SolicitudReservaEspecialForm
 from .models import SolicitudReservaEspecial
 from datetime import datetime
 
@@ -51,6 +53,59 @@ def solicitud_reserva_especial(request, id):
         'form': form,
         'id': id
     })
+
+@login_required
+def mis_solicitudes(request,id):
+    espacio = get_object_or_404(EspacioPublico, id=id)
+    solicitudes = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio)
+    return render(request, 'mis_solicitudes.html', {
+        'solicitudes': solicitudes,
+        'espacio': espacio
+    })
+    
+@login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
+def solicitudes_pendientes(request, id):
+    espacio = get_object_or_404(EspacioPublico, id=id)
+    solicitudes = SolicitudReservaEspecial.objects.filter(espacio=espacio, estado='PENDIENTE')
+    
+    if request.method == 'POST':
+        solicitud_id = request.POST.get('solicitud_id')
+        motivo = request.POST.get('motivo')
+        solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
+        if motivo:
+            solicitud.estado = 'cancelada'
+            solicitud.motivo_cancelacion = motivo
+            solicitud.save()
+            messages.success(request, 'La solicitud ha sido cancelada con éxito.')
+            return JsonResponse({'success': True})
+    
+    return render(request, 'solicitudes_pendientes.html', {
+        'solicitudes': solicitudes,
+        'espacio': espacio
+    })
+
+@login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
+def cancelar_solicitud(request, solicitud_id,id):
+    solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
+
+    if request.method == 'POST':
+        form = CancelarSolicitudForm(request.POST, instance=solicitud)
+        if form.is_valid():
+            solicitud.estado = 'CANCELADA'
+            form.save()
+            messages.success(request, 'La solicitud ha sido cancelada con éxito.')
+            return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
+    else:
+        form = CancelarSolicitudForm(instance=solicitud)
+
+    return render(request, 'cancelar_solicitud.html', {
+        'form': form,
+        'solicitud': solicitud,
+    }) 
+
+
 
 @login_required
 def calendario_reservas(request, id):

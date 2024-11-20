@@ -19,7 +19,7 @@
 {% endif %}
 <div class="container mt-5">
     <div class="text-center p-4 p-lg-5">
-        <h1 class="fw-bold">Calendario de Reservas</h1>
+        <h1 class="fw-bold mb-4">Calendario de Reservas</h1>
     </div>
 
     <div class="text-center my-4">
@@ -84,6 +84,7 @@
                 <h2>Este es un espacio especial</h2>
                 <p>Para reservar este espacio, debes enviar una solicitud de reserva.</p>
                 <a href="{% url 'solicitud_reserva_especial' espacio.id %}" class="btn btn-primary">Solicitar Reserva Especial</a>
+                <a href="{% url 'mis_solicitudes' espacio.id %}" class="btn btn-secondary">Ver mis solicitudes</a>
             </div>
         {% endif %}
     {% endif %}

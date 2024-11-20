@@ -19,4 +19,13 @@ class SolicitudReservaEspecialForm(forms.ModelForm):
             'hora_fin': 'Hora de Fin',
             'motivo': 'Motivo de la Solicitud',
         }
+        
+class CancelarSolicitudForm(forms.ModelForm):
+    class Meta:
+        model = SolicitudReservaEspecial
+        fields = ['motivo_cancelacion']
+
+    def __init__(self, *args, **kwargs):
+        super(CancelarSolicitudForm, self).__init__(*args, **kwargs)
+        self.fields['motivo_cancelacion'].widget = forms.Textarea(attrs={'rows': 3, 'placeholder': 'Indica el motivo de la cancelación...'})
 
