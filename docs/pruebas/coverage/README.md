@@ -4,7 +4,7 @@
    
 2. Crear tests para el módulo en `tests.py`
    
-3. Ejecutar `coverage run --source=modulo tests.py` donde `modulo` es el nombre del módulo a testear
+3. Ejecutar `coverage run --source=tu_modulo manage.py test tu_modulo` donde `tu_modulo` es el nombre del módulo a testear
    
 4. Ejecutar `coverage report -m` para ver el reporte de cobertura en la terminal
    

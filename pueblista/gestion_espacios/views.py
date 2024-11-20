@@ -54,19 +54,8 @@ def delete(request, id):
     space = get_object_or_404(EspacioPublico, id=id)
     if request.method == 'POST':
         space.delete()
-        foto_path = os.path.join(settings.MEDIA_ROOT, "spaces/"+str(space.fotos))
-        if os.path.isfile(foto_path):
-            os.remove(foto_path)
         return redirect('list')
     return render(request, 'delete.html', {'espacio': space})
-
-
-@login_required
-@tipo_usuario_requerido('superusuario', 'personal_administrativo')
-def reservas(request, id):
-    espacio = get_object_or_404(EspacioPublico, pk=id)
-    reservas = Reserva.objects.filter(espacio=espacio)
-    return render(request, 'reservas.html', {'reservas': reservas, 'espacio': espacio})
 
 
 @login_required
