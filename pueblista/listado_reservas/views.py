@@ -104,5 +104,5 @@ def modificar_estado(request, reserva_id):
         reserva.estado = estado
         reserva.save()
         messages.success(request, "El estado de la reserva se ha modificado exitosamente.")
-        return redirect(f'/espacios/reservas/{espacio_id}/')
+        return redirect(f'/espacios/reservas_fecha/{espacio_id}/')
     return render(request, 'modificar_estado.html', {'reserva': reserva})
