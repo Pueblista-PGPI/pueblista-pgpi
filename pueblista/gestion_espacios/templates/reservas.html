@@ -4,31 +4,64 @@
     <title>Lista de reservas</title>
 {% endblock title %}
 
-
 {% block content %}
 
 <div class="container">
-    <h2 style="text-align: center;"><strong>Dashboard de {{espacio.nombre}}</strong></h2>
+    <h2 style="text-align: center;"><strong>Dashboard de {{ espacio.nombre }}</strong></h2>
     <p class="w-lg-50" style="text-align: center;">Aquí se muestra un panel de control con las reservas realizadas de este espacio.</p>
+    <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva, busca en el intervalo de fechas deseado.</p>
 </div>
 
 <div class="container">
-    {% if reservas|length != 0 %}
-        <div class="container" style="margin-top: 10px; margin-bottom: 20px">
-            <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva, busca en el intervalo de fechas deseado.</p>
+    <form method="GET" action="/espacios/reservas_fecha/{{ espacio.id }}/">
+        <div class="input-group mb-4">
+            <input 
+                class="form-control" 
+                type="date" 
+                name="start_date" 
+                placeholder="Fecha de inicio" 
+                value="{{ request.GET.start_date|default_if_none:'' }}"
+                required
+                id="start_date"
+                onchange="validateDates()">
+            <input 
+                class="form-control" 
+                type="date" 
+                name="end_date" 
+                placeholder="Fecha de fin" 
+                value="{{ request.GET.end_date|default_if_none:'' }}"
+                required
+                id="end_date"
+                onchange="validateDates()">
+            <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
-        <form method="GET" action="{% url 'reservas_fecha' espacio.id %}">
-            <div class="input-group" style="margin-bottom: 40px;">
-                <input class="form-control" type="date" name="start_date" placeholder="Fecha de inicio" value="{{ request.GET.start_date|default_if_none:'' }}">
-                <input class="form-control" type="date" name="end_date" placeholder="Fecha de fin" value="{{ request.GET.end_date|default_if_none:'' }}">
-                <button class="btn btn-primary" type="submit">Buscar</button>
-            </div>
-        </form>
-    {% else %}
-        <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
-            <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+    </form>
+
+    <script>
+        function validateDates() {
+            var startDate = document.getElementById('start_date').value;
+            var endDate = document.getElementById('end_date').value;
+
+            if (startDate && endDate && (startDate > endDate)) {
+                alert('La fecha de inicio no puede ser más reciente que la fecha de fin.');
+                document.getElementById('start_date').value = '';
+                document.getElementById('end_date').value = '';
+            }
+        }
+    </script>
+</div>
+
+<div class="container">
+    {% if reservas|length == 0 %}
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="container">
                 {% if request.GET.start_date or request.GET.end_date %}
                     <p class="w-lg-50" style="text-align: center;"><strong>No se encontraron reservas en este intervalo de fechas.</strong></p>
+                    <div class="d-flex justify-content-center mt-3">
+                        <a href="/espacios/reservas_fecha/{{ espacio.id }}/" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Atrás
+                        </a>
+                    </div>
                 {% else %}
                     <p class="w-lg-50" style="text-align: center;"><strong>No se encontraron reservas en este espacio.</strong></p>
                 {% endif %}
@@ -36,8 +69,7 @@
         </div>
     {% endif %}
 
-    <div class="container mt-5">       
-         
+    <div class="container mt-5">
         {% for reserva in reservas %}
             <table class="table table-bordered">
                 <thead>
@@ -51,18 +83,18 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>{{ reserva.usuario.nombre }}  {{ reserva.usuario.apellidos }}</th>
-                        <th>{{ reserva.fecha }}</th>
-                        <th>{{ reserva.hora_inicio }}</th>
-                        <th>{{ reserva.hora_fin }}</th>
+                        <td>{{ reserva.usuario.nombre }} {{ reserva.usuario.apellidos }}</td>
+                        <td>{{ reserva.fecha }}</td>
+                        <td>{{ reserva.hora_inicio }}</td>
+                        <td>{{ reserva.hora_fin }}</td>
                         <td>
-                            <form method="post" action="/mis_reservas/modificar_estado/{{reserva.id}}/">
+                            <form method="post" action="/mis_reservas/modificar_estado/{{ reserva.id }}/">
                                 {% csrf_token %}
                                 <select name="estado" onchange="this.form.submit()" class="form-select" style="width: auto; display: inline;">
-                                    <option value="Realizada" {% if reserva.estado == 'Realizada' %}selected{% endif %} style="color: green;">Realizada</option>
-                                    <option value="Cancelada" {% if reserva.estado == 'Cancelada' %}selected{% endif %} style="color: red;">Cancelada</option>
-                                    <option value="En curso" {% if reserva.estado == 'En curso' %}selected{% endif %} style="color: orange;">En curso</option>
-                                    <option value="Finalizada" {% if reserva.estado == 'Finalizada' %}selected{% endif %} style="color: blue;">Finalizada</option>
+                                    <option value="Realizada" {% if reserva.estado == 'Realizada' %}selected{% endif %}>Realizada</option>
+                                    <option value="Cancelada" {% if reserva.estado == 'Cancelada' %}selected{% endif %}>Cancelada</option>
+                                    <option value="En curso" {% if reserva.estado == 'En curso' %}selected{% endif %}>En curso</option>
+                                    <option value="Finalizada" {% if reserva.estado == 'Finalizada' %}selected{% endif %}>Finalizada</option>
                                 </select>
                             </form>
                         </td>
@@ -72,5 +104,6 @@
         {% endfor %}
     </div>
 </div>
+
 
 {% endblock content %}
