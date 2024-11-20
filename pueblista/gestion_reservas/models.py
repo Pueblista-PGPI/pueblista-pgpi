@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
+from gestion_espacios.models import EspacioPublico
 
 # Create your models here.
 
@@ -43,18 +45,22 @@ class Reserva(models.Model):
         
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'espacio', 'estado', 'usuario']
     
-    def crear_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
-        if not Reserva.objects.filter(espacio=espacio, fecha=fecha, hora_inicio=hora_inicio).exists() and hora_inicio < hora_fin and fecha >= timezone.now().date():    
-            self.fecha = fecha
-            self.hora_inicio = hora_inicio
-            self.hora_fin = hora_fin
-            self.estado = estado
-            self.espacio = espacio
-            self.usuario = usuario
-            self.save()
-            return self
-        else:
-            return None
+    def clean(self):
+        # Validar que la hora de inicio sea menor que la hora de fin
+        if self.hora_inicio and self.hora_fin and self.hora_inicio >= self.hora_fin:
+            raise ValidationError('La hora de inicio debe ser menor que la hora de fin.')
+        
+        # Validar que la fecha no sea en el pasado
+        if self.fecha and self.fecha < timezone.now().date():
+            raise ValidationError('La fecha de la reserva no puede ser en el pasado.')
+        
+        # Validar que el espacio esté disponible
+        if self.espacio.estado and self.espacio.estado == EspacioPublico.NO_DISPONIBLE:
+            raise ValidationError('El espacio no está disponible para reservas.')
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Llamar a full_clean para ejecutar las validaciones personalizadas
+        super().save(*args, **kwargs)
     
     def modificar_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
         self.fecha = fecha
