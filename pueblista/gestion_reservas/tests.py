@@ -19,6 +19,15 @@ class ReservaModelTests(TestCase):
             descripcion='Descripción del espacio de prueba',
             telefono='123456789'
         )
+         # Crear una reserva de prueba
+        self.reserva =  Reserva.objects.create(
+            usuario=self.user,
+            espacio=self.espacio,
+            fecha=datetime.now().date(),
+            hora_inicio=time(17, 0),
+            hora_fin=time(18, 0),
+            estado=Reserva.REALIZADA
+        )
 
     def test_crear_reserva(self):
         # Crear una reserva
@@ -170,3 +179,44 @@ class ReservaModelTests(TestCase):
                 estado=Reserva.REALIZADA
             )
             reserva.full_clean()
+            
+    def test_listar_reservas(self):
+        # Listar todas las reservas
+        reservas = Reserva.objects.all()
+        self.assertEqual(reservas.count(), 1)
+        self.assertEqual(reservas[0], self.reserva)
+    
+    def test_borrar_reserva(self):
+        # Verificar que se puede borrar una reserva usando el método personalizado
+        self.reserva.borrar_reserva()
+        reservas = Reserva.objects.all()
+        self.assertEqual(reservas.count(), 0)
+    
+    def test_modificar_reserva(self):
+        # Modificar una reserva existente
+        nueva_fecha = datetime.now().date()
+        nueva_hora_inicio = time(15, 0)
+        nueva_hora_fin = time(16, 0)
+        nuevo_estado = Reserva.EN_CURSO
+        nuevo_espacio = EspacioPublico.objects.create(
+            nombre='Nuevo Espacio',
+            horario='09:00-18:00',
+            descripcion='Descripción del nuevo espacio',
+            telefono='987654321'
+        )
+
+        self.reserva.modificar_reserva(
+            fecha=nueva_fecha,
+            hora_inicio=nueva_hora_inicio,
+            hora_fin=nueva_hora_fin,
+            estado=nuevo_estado,
+            espacio=nuevo_espacio,
+            usuario=self.user
+        )
+
+        self.assertEqual(self.reserva.fecha, nueva_fecha)
+        self.assertEqual(self.reserva.hora_inicio, nueva_hora_inicio)
+        self.assertEqual(self.reserva.hora_fin, nueva_hora_fin)
+        self.assertEqual(self.reserva.estado, nuevo_estado)
+        self.assertEqual(self.reserva.espacio, nuevo_espacio)
+        self.assertEqual(self.reserva.usuario, self.user)
