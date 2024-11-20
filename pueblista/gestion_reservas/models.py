@@ -5,12 +5,12 @@ from django.utils import timezone
 
 
 class Reserva(models.Model):
-    
+
     REALIZADA = 'Realizada'
     CANCELADA = 'Cancelada'
     EN_CURSO = 'En curso'
     FINALIZADA = 'Finalizada'
-    
+
     TIPOS_RESERVA = [
         (REALIZADA, 'Realizada'),
         (CANCELADA, 'Cancelada'),
@@ -37,12 +37,12 @@ class Reserva(models.Model):
             " - Desde: " + str(self.hora_inicio) + " Hasta: " + str(self.hora_fin) + 
             " - Estado: " + self.estado + " - Nombre: " + self.usuario.nombre + 
             " " + self.usuario.apellidos)
-    
+
     class Meta:
         unique_together = ('espacio', 'fecha', 'hora_inicio')
-        
+
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'espacio', 'estado', 'usuario']
-    
+
     def crear_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
         if not Reserva.objects.filter(espacio=espacio, fecha=fecha, hora_inicio=hora_inicio).exists() and hora_inicio < hora_fin and fecha >= timezone.now().date():    
             self.fecha = fecha
@@ -55,7 +55,7 @@ class Reserva(models.Model):
             return self
         else:
             return None
-    
+
     def modificar_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
         self.fecha = fecha
         self.hora_inicio = hora_inicio

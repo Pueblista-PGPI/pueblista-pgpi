@@ -32,7 +32,8 @@ def calendario_reservas(request, id):
         ('18:00', '19:00'),
         ('19:00', '20:00'),
         ('20:00', '21:00')
-]
+    ]
+
     # Crear un diccionario que asocie cada horario con su reserva (si existe)
     horarios_reservas = []
     for inicio, fin in horarios:
@@ -54,6 +55,7 @@ def calendario_reservas(request, id):
         'reserva_id': -1,
     })
 
+
 @login_required
 def crear_reserva(request, id):
     espacio = '#'
@@ -64,7 +66,7 @@ def crear_reserva(request, id):
             hora_inicio = request.POST.get('hora_inicio')
             hora_fin = request.POST.get('hora_fin')
             request.session['fecha'] = fecha
-            
+
             # Validar si ya existe una reserva en este intervalo
             if not Reserva.objects.filter(
                 espacio=espacio,
@@ -93,7 +95,6 @@ def crear_reserva(request, id):
         messages.error(request, f"Ocurrió un error al crear la reserva: {str(e)}")
         return redirect('calendario_reservas', id=espacio)
 
-            
 
 @login_required
 def cancelar_reserva(request, id):
@@ -109,7 +110,7 @@ def cancelar_reserva(request, id):
     except Exception as e:
         # Si ocurre un error, muestra un mensaje de error
         messages.error(request, f"Ocurrió un error al cancelar la reserva: {str(e)}")
-    
+
     return redirect('calendario_reservas', id=espacio_id)
 
     # Redirige al calendario de reservas

@@ -6,4 +6,3 @@ urlpatterns = [
     path('crear/', views.crear_reserva, name='crear_reserva'),
     path('cancelar/<int:id>/', views.cancelar_reserva, name='cancelar_reserva'),
 ]
-

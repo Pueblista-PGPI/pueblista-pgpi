@@ -5,6 +5,7 @@ from gestion_usuarios.decorators import tipo_usuario_requerido
 from pueblista import settings
 from .models import EspacioPublico
 from .forms import EspacioPublicoForm
+from gestion_reservas.models import Reserva
 
 
 @login_required
@@ -58,3 +59,33 @@ def delete(request, id):
             os.remove(foto_path)
         return redirect('list')
     return render(request, 'delete.html', {'espacio': space})
+
+
+@login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
+def reservas(request, id):
+    espacio = get_object_or_404(EspacioPublico, pk=id)
+    reservas = Reserva.objects.filter(espacio=espacio)
+    return render(request, 'reservas.html', {'reservas': reservas, 'espacio': espacio})
+
+
+@login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
+def reservas_fecha(request, espacio_id):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    reservas = Reserva.objects.filter(espacio_id=espacio_id)
+    if start_date and end_date:
+        reservas = reservas.filter(
+            fecha__range=[start_date, end_date]
+        )
+    elif start_date:
+        reservas = reservas.filter(fecha__gte=start_date)
+    elif end_date:
+        reservas = reservas.filter(fecha__lte=end_date)
+
+    return render(request, 'reservas.html', {
+        'reservas': reservas,
+        'espacio': EspacioPublico.objects.get(id=espacio_id),
+    })

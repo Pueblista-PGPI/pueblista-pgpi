@@ -1,7 +1,5 @@
 from django.db import models
 from django.core.validators import RegexValidator
-import os
-from django.conf import settings
 
 
 class EspacioPublico(models.Model):
