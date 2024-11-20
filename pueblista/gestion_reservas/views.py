@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import Reserva
 from gestion_espacios.models import EspacioPublico
 from datetime import datetime
-from django.contrib.sessions.models import Session
 from django.contrib import messages
 
 

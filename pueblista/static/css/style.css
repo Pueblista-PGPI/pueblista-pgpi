@@ -47,3 +47,18 @@ nav {
     text-decoration: underline;
     font-weight: bold;
 }
+
+.zoom-on-hover {
+    transition: transform 0.3s ease;
+}
+.zoom-on-hover:hover {
+    transform: scale(1.05);
+}
+
+.circular-button {
+    background: linear-gradient(to right, #000000, #ffffff);
+    color: white;
+    border-radius: 50%;
+    padding: 10px 20px;
+    transition: transform 0.3s ease;
+}
