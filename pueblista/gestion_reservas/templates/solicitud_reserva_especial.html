@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Solicitud Reserva Especial</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center p-4 p-lg-3">
+        <h1 class="fw-bold mb-3">Solicitud de Reserva Especial</h1>
+    </div>
+
+    <div class="text-center mb-4">
+        <h3>Espacio: {{ espacio.nombre }}</h3>
+    </div>
+
+    <form method="post" class="w-50 mx-auto">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+    </form>
+</div>
+{% endblock content %}

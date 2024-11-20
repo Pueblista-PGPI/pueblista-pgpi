@@ -22,6 +22,7 @@ def edit(request, id):
         espacio.estado = request.POST.get('estado')
         if 'fotos' in request.FILES:
             espacio.fotos = request.FILES['fotos']
+        espacio.espacio_especial = request.POST.get('espacio_especial') == 'on'
         espacio.save()
         return redirect('list')
     return render(request, 'edit.html', {'espacio': espacio})
@@ -30,6 +31,9 @@ def edit(request, id):
 @login_required
 def list(request):
     spaces = EspacioPublico.objects.all()
+    # eliminar 'fecha' de la sesion si existe
+    if 'fecha' in request.session:
+        request.session.pop('fecha')
     return render(request, 'list.html', {'spaces': spaces})
 
 

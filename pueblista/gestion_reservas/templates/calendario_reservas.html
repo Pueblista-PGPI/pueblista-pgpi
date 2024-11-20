@@ -1,27 +1,26 @@
 {% extends "base.html" %}
 
-
 {% block title %}
   <title>Calendario de Reservas</title>
 {% endblock title %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="text-center p-4 p-lg-5">
-        <h1 class="fw-bold mb-4">Calendario de Reservas</h1>
-    </div>
-
-    {% if messages %}
-    <div class="alert-container">
+{% if messages %}
+    <div class="alert-container" style="margin: 20px;">
         {% for message in messages %}
             <div 
-                class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %}" 
-                role="alert">
+                class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" 
+                role="alert" style="margin-bottom: 10px;">
                 {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
     </div>
-    {% endif %}
+{% endif %}
+<div class="container mt-5">
+    <div class="text-center p-4 p-lg-5">
+        <h1 class="fw-bold">Calendario de Reservas</h1>
+    </div>
 
     <div class="text-center my-4">
         <form method="get">
@@ -31,6 +30,7 @@
     </div>
 
     {% if fecha_seleccionada %}
+        {% if not espacio.espacio_especial %}
         <div class="table-responsive">
             <table class="table table-bordered table-reservas">
                 <thead>
@@ -79,6 +79,13 @@
                 </tbody>
             </table>
         </div>
+        {% else %}
+            <div class="container text-center">
+                <h2>Este es un espacio especial</h2>
+                <p>Para reservar este espacio, debes enviar una solicitud de reserva.</p>
+                <a href="{% url 'solicitud_reserva_especial' espacio.id %}" class="btn btn-primary">Solicitar Reserva Especial</a>
+            </div>
+        {% endif %}
     {% endif %}
 
     <!-- Modal reserva-->

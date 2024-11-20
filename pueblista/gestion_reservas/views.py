@@ -1,11 +1,56 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import SolicitudReservaEspecialForm
 from .models import Reserva
 from gestion_espacios.models import EspacioPublico
 from datetime import datetime
 from django.contrib.sessions.models import Session
 from django.contrib import messages
+from home.views import send_email
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from gestion_espacios.models import EspacioPublico
+from .forms import SolicitudReservaEspecialForm
+from .models import SolicitudReservaEspecial
+from datetime import datetime
+
+@login_required
+def solicitud_reserva_especial(request, id):
+    espacio = get_object_or_404(EspacioPublico, id=id)
+
+    # Obtener la fecha seleccionada desde la sesión
+    fecha_seleccionada = request.session.get('fecha')
+    peticiones_por_usuario_en_espacio_en_fecha = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha_seleccionada).count()
+    if peticiones_por_usuario_en_espacio_en_fecha >= 1:
+                messages.error(request, 'Ya has solicitado una reserva especial para este espacio en esta fecha.')
+                return redirect('calendario_reservas', id=id)
+    if request.method == 'POST':
+        form = SolicitudReservaEspecialForm(request.POST)
+        if form.is_valid():
+            solicitud = form.save(commit=False)
+            solicitud.espacio = espacio
+            solicitud.usuario = request.user
+            solicitud.fecha = fecha_seleccionada  # Asignar la fecha seleccionada
+            solicitud.save()
+            messages.success(request, 'Tu solicitud de reserva especial ha sido enviada con éxito.')
+            request.session.pop('fecha', None)
+            return redirect('calendario_reservas', id=id)
+    else:
+        # Crea el formulario pasando los valores iniciales
+        form = SolicitudReservaEspecialForm(initial={
+            'espacio': espacio,
+            'fecha': fecha_seleccionada,
+            'usuario': request.user
+        })
+
+    return render(request, 'solicitud_reserva_especial.html', {
+        'espacio': espacio,
+        'form': form,
+        'id': id
+    })
 
 @login_required
 def calendario_reservas(request, id):
@@ -13,8 +58,12 @@ def calendario_reservas(request, id):
     fecha_seleccionada = request.GET.get('fecha') if request.GET.get('fecha') else request.session.get('fecha')
     if fecha_seleccionada is None:
         fecha_seleccionada = datetime.now().strftime('%Y-%m-%d')
+        
+    #añadelo a la sesion
+    request.session['fecha'] = fecha_seleccionada
 
     if fecha_seleccionada < datetime.now().strftime('%Y-%m-%d'):
+        request.session.pop('fecha', None)
         messages.error(request, "No se pueden hacer reservas en fechas pasadas.")
         return redirect('calendario_reservas', id=id)
     espacio = get_object_or_404(EspacioPublico, id=id)  # Obtener el espacio con ese ID
@@ -88,6 +137,7 @@ def crear_reserva(request, id):
                     hora_fin=hora_fin
                 )
                 messages.success(request, "La reserva se ha creado exitosamente.")
+                request.session.pop('fecha', None)
             else:
                 messages.error(request, "Ya existe una reserva en este intervalo.")
         return redirect('calendario_reservas', id=espacio.id) 

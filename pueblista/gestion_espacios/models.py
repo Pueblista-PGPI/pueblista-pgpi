@@ -22,15 +22,17 @@ class EspacioPublico(models.Model):
                        ingresarse en el formato: '999999999'.''')],
                                 null=False, blank=False)
     estado = models.CharField(max_length=15, choices=ESTADO, default=DISPONIBLE)
+    
+    espacio_especial = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre
 
     REQUIRED_FIELDS = ['nombre', 'horario', 'descripcion',
-                       'telefono', 'estado']
+                       'telefono', 'estado', 'espacio_especial']
 
     def editar_espacio(self, nombre=None, horario=None, descripcion=None,
-                       fotos=None, estado=None, telefono_atencion=None):
+                       fotos=None, estado=None, telefono_atencion=None, espacio_especial=None):
         if nombre:
             self.nombre = nombre
         if horario:
@@ -43,6 +45,8 @@ class EspacioPublico(models.Model):
             self.estado = estado
         if telefono_atencion:
             self.telefono_atencion = telefono_atencion
+        if espacio_especial:
+            self.espacio_especial = espacio_especial
         self.save()
         return self
 

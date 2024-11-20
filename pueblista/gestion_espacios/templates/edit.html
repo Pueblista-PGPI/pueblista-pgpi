@@ -46,6 +46,10 @@
             <img src="{{ espacio.fotos.url }}" alt="Foto de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
             {% endif %}
         </div>
+        <div class="mb-3 w-75 form-check form-switch">
+            <label for="espacio_especial" class="form-check-label">Espacio Especial</label>
+            <input type="checkbox" class="form-check-input" id="espacio_especial" name="espacio_especial" {% if espacio.espacio_especial %}checked{% endif %}>
+        </div>
         <div class="d-flex justify-content-between w-50">
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="{% url 'list' %}" class="btn btn-secondary">Cancelar</a>

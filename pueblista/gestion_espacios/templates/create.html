@@ -39,6 +39,10 @@
             <label for="fotos" class="form-label">Fotos:</label>
             <input type="file" class="form-control form-control-lg" id="fotos" name="fotos">
         </div>
+        <div class="mb-3 w-75 form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="espacio_especial" name="espacio_especial">
+            <label for="espacio_especial" class="form-check-label">Espacio Especial</label>
+        </div>
         <div class="d-flex justify-content-between w-50">
             <button type="submit" class="btn btn-primary btn-lg">Crear</button>
             <a href="{% url 'list' %}" class="btn btn-secondary btn-lg">Cancelar</a>

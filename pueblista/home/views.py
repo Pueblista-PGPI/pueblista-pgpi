@@ -9,6 +9,41 @@ from gestion_usuarios.decorators import tipo_usuario_requerido
 from home.models import Configuracion
 
 
+def send_email(request, subject, full_message, success_message):
+    email_host = os.getenv('EMAIL_HOST')
+    email_port = int(os.getenv('EMAIL_PORT', 587))
+    email_host_user = os.getenv('EMAIL_HOST_USER')
+    # Se usa la contraseña de aplicación de la cuenta de correo
+    email_host_password = os.getenv('EMAIL_HOST_PASSWORD')
+    email_use_tls = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+    contact_email = os.getenv('CONTACT_EMAIL')
+
+    
+    try:
+        email_backend = EmailBackend(
+            host=email_host,
+            port=email_port,
+            username=email_host_user,
+            password=email_host_password,
+            use_tls=email_use_tls
+        )
+
+        # Enviar el correo
+        send_mail(
+            subject=subject,
+            message=full_message,
+            from_email=email_host_user,
+            recipient_list=[contact_email],
+            fail_silently=False,
+            connection=email_backend,
+        )
+    
+        messages.success(request, success_message)
+        
+    except Exception:
+                # Mostrar un mensaje de error
+            messages.error(request, 'Ocurrió un error al enviar el mensaje')
+
 # Create your views here.
 @login_required
 def home(request):
@@ -43,40 +78,11 @@ def home(request):
             # Construir el cuerpo del mensaje
             full_message = f"""De: {user_nombre + " " + user_apellidos}
             (DNI: {user_dni}, Teléfono: {user_telefono})\n\nMensaje:\n{message}"""
+            
+            
+            send_email(request, 'Mensaje de contacto desde Pueblista', full_message, 'Muchas gracias por tu ayuda.')
 
-            email_host = os.getenv('EMAIL_HOST')
-            email_port = int(os.getenv('EMAIL_PORT', 587))
-            email_host_user = os.getenv('EMAIL_HOST_USER')
-            # Se usa la contraseña de aplicación de la cuenta de correo
-            email_host_password = os.getenv('EMAIL_HOST_PASSWORD')
-            email_use_tls = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
-            contact_email = os.getenv('CONTACT_EMAIL')
-
-            try:
-                email_backend = EmailBackend(
-                    host=email_host,
-                    port=email_port,
-                    username=email_host_user,
-                    password=email_host_password,
-                    use_tls=email_use_tls
-                )
-
-                # Enviar el correo
-                send_mail(
-                    subject="Mensaje de contacto desde pueblista.com",
-                    message=full_message,
-                    from_email=email_host_user,
-                    recipient_list=[contact_email],
-                    fail_silently=False,
-                    connection=email_backend,
-                )
-
-                # Mostrar un mensaje de éxito
-                messages.success(request, 'Muchas gracias por tu ayuda.')
-
-            except Exception:
-                # Mostrar un mensaje de error
-                messages.error(request, 'Ocurrió un error al enviar el mensaje')
+            
 
     return render(request, 'home.html', {
         "ayuntamiento": texto_ayuntamiento,

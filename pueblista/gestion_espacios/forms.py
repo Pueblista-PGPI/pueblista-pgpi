@@ -7,7 +7,7 @@ class EspacioPublicoForm(forms.ModelForm):
     class Meta:
         model = EspacioPublico
         fields = ['nombre', 'horario', 'descripcion',
-                  'fotos', 'telefono', 'estado']
+                  'fotos', 'telefono', 'estado', 'espacio_especial']
 
 
 class EstadoReservaForm(forms.ModelForm):
