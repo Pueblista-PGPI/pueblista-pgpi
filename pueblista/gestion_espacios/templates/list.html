@@ -23,14 +23,6 @@
             <div class="container" style="margin-bottom: 40px; text-align: center;">
                 <a href="{% url 'create' %}" class="btn btn-lg me-2 zoom-on-hover" role="button" style="background: linear-gradient(to right, #000000, #434343); color: white;">Crear Nuevo Espacio</a>
             </div>
-            <style>
-                .zoom-on-hover {
-                    transition: transform 0.3s ease;
-                }
-                .zoom-on-hover:hover {
-                    transform: scale(1.05);
-                }
-            </style>
         {% endif %}
 
 
@@ -39,7 +31,7 @@
 
         <section class="py-4 py-xl-5">
             {% for space in spaces %}
-            <div class="container mb-4"> <!-- Added mb-4 class for margin-bottom -->
+            <div class="container mb-4">
                 <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
                     <div class="row g-0">
 
@@ -62,16 +54,18 @@
                                                 return userInput === spaceName;
                                             }
                                         </script>
-                                        <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="/espacios/reservas_fecha/{{ space.id }}/">Reservas</a>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6 order-first order-md-last" style="min-height: 250px;">
+                        <div class="col-md-6 order-first order-md-last" style="min-height: 250px; position: relative;">
                             {% if space.fotos %}
                             <img class="w-100 h-100 fit-cover zoom-on-hover" src="{{ space.fotos.url }}" alt="Foto de {{ space.nombre }}">
                             {% endif %}
+                            <a class="btn btn-lg me-2 zoom-on-hover" role="button" href="{% url 'reservas_fecha' space.id %}" style="background: linear-gradient(to right, #000000, #434343); color: white; position: absolute; bottom: 10px; right: 10px;">
+                                <i class="fa fa-calendar"></i> Reservas
+                            </a>
                         </div>
 
                     </div>

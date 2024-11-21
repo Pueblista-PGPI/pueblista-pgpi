@@ -3,6 +3,7 @@ from django.urls import reverse
 from gestion_usuarios.models import CustomUser
 from home.models import Configuracion
 
+
 class HomeViewTests(TestCase):
     def setUp(self):
         self.client = Client()

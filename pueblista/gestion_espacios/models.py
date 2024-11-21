@@ -30,7 +30,7 @@ class EspacioPublico(models.Model):
                        'telefono', 'estado']
 
     def editar_espacio(self, nombre=None, horario=None, descripcion=None,
-                       fotos=None, estado=None, telefono_atencion=None):
+                       fotos=None, estado=None, telefono=None):
         if nombre:
             self.nombre = nombre
         if horario:
@@ -41,8 +41,8 @@ class EspacioPublico(models.Model):
             self.fotos = fotos
         if estado:
             self.estado = estado
-        if telefono_atencion:
-            self.telefono_atencion = telefono_atencion
+        if telefono:
+            self.telefono = telefono
         self.save()
         return self
 
