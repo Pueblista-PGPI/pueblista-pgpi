@@ -12,6 +12,14 @@
     <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva, busca en el intervalo de fechas deseado.</p>
 </div>
 
+{% if espacio.espacio_especial %}
+    <div class="container text-center my-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearReservaModal">
+            Crear Reserva Especial
+        </button>
+    </div>
+{% endif %}
+
 <div class="container">
     <form method="GET" action="/espacios/reservas_fecha/{{ espacio.id }}/">
         <div class="input-group mb-4">

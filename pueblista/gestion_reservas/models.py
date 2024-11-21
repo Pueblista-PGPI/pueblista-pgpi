@@ -21,6 +21,7 @@ class Reserva(models.Model):
     fecha = models.DateField(null=False, blank=False)
     hora_inicio = models.TimeField(null=False, blank=False)
     hora_fin = models.TimeField(null=False, blank=False)
+    nombre = models.CharField(max_length=100, null=True, blank=True)
     estado = models.CharField(
         max_length=30,
         choices=TIPOS_RESERVA,
@@ -67,3 +68,33 @@ class Reserva(models.Model):
 
     def borrar_reserva(self):
         self.delete()
+        
+        
+class SolicitudReservaEspecial(models.Model):
+    ESTADO_CHOICES = [
+        ('PENDIENTE', 'Pendiente'),
+        ('CANCELADA', 'Cancelada'),
+        ('ACEPTADA', 'Aceptada'),
+    ]
+    fecha = models.DateField(null=False, blank=False)
+    hora_inicio = models.TimeField(null=False, blank=False)
+    hora_fin = models.TimeField(null=False, blank=False)
+    motivo = models.TextField(null=False, blank=False)
+    estado = models.CharField(max_length=10, choices=ESTADO_CHOICES, default='PENDIENTE')
+    motivo_cancelacion = models.TextField(blank=True, null=True)
+    
+    espacio = models.ForeignKey( 'gestion_espacios.EspacioPublico', on_delete=models.CASCADE, null=False, blank=False)
+    usuario = models.ForeignKey('gestion_usuarios.CustomUser', on_delete=models.CASCADE, null=False, blank=False)
+    
+    def __str__(self):
+        return ("Espacio: " + self.espacio.nombre + " - Fecha: " + str(self.fecha) + 
+            " - Desde: " + str(self.hora_inicio) + " Hasta: " + str(self.hora_fin) + 
+            " - Motivo: " + self.motivo + " - Nombre: " + self.usuario.nombre + 
+            " " + self.usuario.apellidos)
+        
+    class Meta:
+        unique_together = ('espacio', 'fecha', 'hora_inicio')
+        
+    REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'motivo', 'espacio', 'usuario']
+    
+    

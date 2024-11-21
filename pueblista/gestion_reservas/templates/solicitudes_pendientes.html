@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Solicitudes Pendientes</title>{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="fw-bold">Solicitudes Pendientes para {{ espacio.nombre }}</h1>
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Fin</th>
+                <th>Motivo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+                <tr>
+                    <td>{{ solicitud.usuario.nombre }} {{ solicitud.usuario.apellidos }}</td>
+                    <td>{{ solicitud.fecha }}</td>
+                    <td>{{ solicitud.hora_inicio }}</td>
+                    <td>{{ solicitud.hora_fin }}</td>
+                    <td>{{ solicitud.motivo }}</td>
+                    <td>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#acceptModal" data-solicitud-id="{{ solicitud.id }}" data-usuario-nombre="{{ solicitud.usuario.nombre }}">Aceptar</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal" data-solicitud-id="{{ solicitud.id }}">Cancelar</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para Aceptar Solicitud -->
+<div class="modal fade" id="acceptModal" tabindex="-1" aria-labelledby="acceptModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="acceptModalLabel">Aceptar Solicitud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="acceptForm" method="post" action="{% url 'aceptar_solicitud' espacio.id%}">
+                    {% csrf_token %}
+                    <input type="hidden" id="acceptSolicitudId" name="solicitud_id">
+                    <div class="mb-3">
+                        <label for="nombreReserva" class="form-label">Nombre de la Reserva</label>
+                        <input type="text" class="form-control" id="nombreReserva" name="nombre_reserva" placeholder="Ej: Bautizo de Jorge" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Confirmar Aceptación</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Cancelar Solicitud -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Cancelar Solicitud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="cancelForm">
+                    <input type="hidden" id="solicitudId" name="solicitud_id">
+                    <div class="mb-3">
+                        <label for="motivo" class="form-label">Motivo de la Cancelación</label>
+                        <textarea class="form-control" id="motivo" name="motivo" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Capturar evento cuando se abre el modal de cancelar
+    var cancelModal = document.getElementById('cancelModal');
+    cancelModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var solicitudId = button.getAttribute('data-solicitud-id');
+        var modalInput = document.getElementById('solicitudId');
+        modalInput.value = solicitudId;
+    });
+
+    // Capturar evento cuando se abre el modal de aceptar
+    var acceptModal = document.getElementById('acceptModal');
+    acceptModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var solicitudId = button.getAttribute('data-solicitud-id');
+        var modalInput = document.getElementById('acceptSolicitudId');
+        modalInput.value = solicitudId;
+    });
+
+    // Manejar el formulario de cancelación con AJAX
+    document.getElementById('cancelForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var form = this;
+        var formData = new FormData(form);
+
+        fetch("", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Cerrar modal y recargar la página para actualizar la tabla
+                var modal = bootstrap.Modal.getInstance(cancelModal);
+                modal.hide();
+                location.reload();
+            } else {
+                alert('Error al cancelar la solicitud');
+            }
+        });
+    });
+</script>
+{% endblock %}

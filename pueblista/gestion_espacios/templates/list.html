@@ -44,6 +44,9 @@
                                     <a class="btn btn-success btn-lg me-2 mb-2" role="button" href="/espacios/{{ space.id }}/reservas">Reservar</a>
                                     {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
                                         <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="{% url 'edit' space.id %}">Editar</a>
+                                        {%if space.espacio_especial %}
+                                        <a class="btn btn-warning btn-lg me-2 mb-2" role="button" href="{%url 'solicitudes_pendientes' space.id %}">Solicitudes Pendientes</a>
+                                        {% endif %}
                                         <form action="{% url 'delete' space.id %}" method="post" style="display: inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-danger btn-lg mb-2" role="button" onclick="return confirmDelete('{{ space.nombre }}');">Eliminar</button>
