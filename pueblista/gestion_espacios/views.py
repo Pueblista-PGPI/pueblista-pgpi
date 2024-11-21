@@ -13,19 +13,13 @@ from gestion_reservas.models import Reserva
 def edit(request, id):
     espacio = get_object_or_404(EspacioPublico, id=id)
     if request.method == 'POST':
-        # Lógica para manejar la edición del espacio
-        # Por ejemplo, actualizar los campos del espacio
-        espacio.nombre = request.POST.get('nombre')
-        espacio.horario = request.POST.get('horario')
-        espacio.descripcion = request.POST.get('descripcion')
-        espacio.telefono = request.POST.get('telefono')
-        espacio.estado = request.POST.get('estado')
-        if 'fotos' in request.FILES:
-            espacio.fotos = request.FILES['fotos']
-        espacio.espacio_especial = request.POST.get('espacio_especial') == 'on'
-        espacio.save()
-        return redirect('list')
-    return render(request, 'edit.html', {'espacio': espacio})
+        form = EspacioPublicoForm(request.POST, request.FILES, instance=espacio)
+        if form.is_valid():
+            form.save()
+            return redirect('list')
+    else:
+        form = EspacioPublicoForm(instance=espacio)
+    return render(request, 'edit.html', {'form': form, 'espacio': espacio})
 
 
 @login_required

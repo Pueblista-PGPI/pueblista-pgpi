@@ -21,6 +21,7 @@ class Reserva(models.Model):
     fecha = models.DateField(null=False, blank=False)
     hora_inicio = models.TimeField(null=False, blank=False)
     hora_fin = models.TimeField(null=False, blank=False)
+    nombre = models.CharField(max_length=100, null=True, blank=True)
     estado = models.CharField(
         max_length=30,
         choices=TIPOS_RESERVA,

@@ -4,13 +4,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from gestion_usuarios.decorators import tipo_usuario_requerido
 
-from .forms import CancelarSolicitudForm, SolicitudReservaEspecialForm
+from .forms import SolicitudReservaEspecialForm
 from .models import Reserva
 from gestion_espacios.models import EspacioPublico
-from datetime import datetime
-from django.contrib.sessions.models import Session
+from datetime import datetime, timedelta
 from django.contrib import messages
-from home.views import send_email
+from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -25,7 +24,7 @@ def solicitud_reserva_especial(request, id):
 
     # Obtener la fecha seleccionada desde la sesión
     fecha_seleccionada = request.session.get('fecha')
-    peticiones_por_usuario_en_espacio_en_fecha = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha_seleccionada).count()
+    peticiones_por_usuario_en_espacio_en_fecha = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha_seleccionada, estado='PENDIENTE').count()
     if peticiones_por_usuario_en_espacio_en_fecha >= 1:
                 messages.error(request, 'Ya has solicitado una reserva especial para este espacio en esta fecha.')
                 return redirect('calendario_reservas', id=id)
@@ -84,28 +83,79 @@ def solicitudes_pendientes(request, id):
         'solicitudes': solicitudes,
         'espacio': espacio
     })
-
+    
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
-def cancelar_solicitud(request, solicitud_id,id):
-    solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
-
+def aceptar_solicitud(request, id):
     if request.method == 'POST':
-        form = CancelarSolicitudForm(request.POST, instance=solicitud)
-        if form.is_valid():
-            solicitud.estado = 'CANCELADA'
-            form.save()
-            messages.success(request, 'La solicitud ha sido cancelada con éxito.')
-            return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
-    else:
-        form = CancelarSolicitudForm(instance=solicitud)
+        solicitud_id = request.POST.get('solicitud_id')
+        solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
+        nombre_reserva = request.POST.get('nombre_reserva')
+        
+        Reserva.objects.create(
+            fecha=solicitud.fecha,
+            hora_inicio=solicitud.hora_inicio,
+            hora_fin=solicitud.hora_fin,
+            estado=Reserva.REALIZADA,
+            espacio=solicitud.espacio,
+            usuario=solicitud.usuario,
+            nombre=nombre_reserva
+        )
+        
+        solicitud.estado = 'ACEPTADA'
+        solicitud.save()
+        
+        if solicitud.espacio.limpieza:
+            # crear dos reservas con nombre LIMPIEZA que ocupen todo el día y que esté en estado REALIZADA mismamente, lo único que me importa es que haya dos,
+            # una para el día previo a la reserva y otra para el día posterior a la reserva
+            
+            # Reserva para el día previo
+            Reserva.objects.create(
+                fecha=solicitud.fecha - timedelta(days=1),
+                hora_inicio=datetime.min.time(),
+                hora_fin=datetime.max.time(),
+                estado=Reserva.REALIZADA,
+                espacio=solicitud.espacio,
+                usuario=solicitud.usuario,
+                nombre='LIMPIEZA'
+            )
+            
+            # Reserva para el día posterior
+            Reserva.objects.create(
+                fecha=solicitud.fecha + timedelta(days=1),
+                hora_inicio=datetime.min.time(),
+                hora_fin=datetime.max.time(),
+                estado=Reserva.REALIZADA,
+                espacio=solicitud.espacio,
+                usuario=solicitud.usuario,
+                nombre='LIMPIEZA'
+            )
+            
+            
+        # ahora lo que hay que hacer es, si el espacio en el que se ha reservao se llama "Salón de Reuniones", entonces
+        # cojo todas las reservas que haya entre esas horas y en esa fecha y las cancelo, NO LAS BORRO, las cancelo estado.CANCELADA
+        # pero cojo solo las reservas de la Biblioteca
+        # todas las reservas contenidas en ese intervalo de tiempo... no sé si se está haciendo
+        
+        if solicitud.espacio.nombre == 'Salón de Reuniones':
+            # Obtener todas las reservas para la fecha y intervalo de horas de solicitud
+            reservas_a_cancelar = Reserva.objects.filter(
+                Q(espacio__nombre='Biblioteca'),
+                Q(fecha=solicitud.fecha),
+                Q(hora_inicio__lt=solicitud.hora_fin),
+                Q(hora_fin__gt=solicitud.hora_inicio)
+    )
+            
+            # Cancelar todas las reservas
+            for reserva in reservas_a_cancelar:
+                print(reserva)
+                reserva.delete()
+                
+        messages.success(request, 'La solicitud ha sido aceptada con éxito.')
+        return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
 
-    return render(request, 'cancelar_solicitud.html', {
-        'form': form,
-        'solicitud': solicitud,
-    }) 
-
-
+    return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
+    
 
 @login_required
 def calendario_reservas(request, id):
@@ -157,6 +207,7 @@ def calendario_reservas(request, id):
         'espacio': espacio,
         'nombre_completo': request.user.nombre + ' ' + request.user.apellidos,
         'reserva_id': -1,
+        'reservas': reservas
     })
 
 
@@ -192,7 +243,7 @@ def crear_reserva(request, id):
                     hora_fin=hora_fin
                 )
                 messages.success(request, "La reserva se ha creado exitosamente.")
-                request.session.pop('fecha', None)
+                # request.session.pop('fecha', None)
             else:
                 messages.error(request, "Ya existe una reserva en este intervalo.")
         return redirect('calendario_reservas', id=espacio.id) 

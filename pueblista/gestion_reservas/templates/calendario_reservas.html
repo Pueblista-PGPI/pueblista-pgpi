@@ -85,6 +85,22 @@
                 <p>Para reservar este espacio, debes enviar una solicitud de reserva.</p>
                 <a href="{% url 'solicitud_reserva_especial' espacio.id %}" class="btn btn-primary">Solicitar Reserva Especial</a>
                 <a href="{% url 'mis_solicitudes' espacio.id %}" class="btn btn-secondary">Ver mis solicitudes</a>
+
+                <h3>Reservas para este espacio especial:</h3>
+                <ul class="list-group">
+                    {% for reserva in reservas %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Fecha:</strong> {{ reserva.fecha }}<br>
+                                <strong>Horario:</strong> {{ reserva.hora_inicio }} - {{ reserva.hora_fin }}<br>
+                                <strong>Usuario:</strong> {{ reserva.usuario}}<br>
+                                <strong>Nombre:</strong> {{ reserva.nombre }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                </ul>
+
             </div>
         {% endif %}
     {% endif %}

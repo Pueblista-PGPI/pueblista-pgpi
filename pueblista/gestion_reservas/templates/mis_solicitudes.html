@@ -23,7 +23,13 @@
                     <td>{{ solicitud.hora_inicio }}</td>
                     <td>{{ solicitud.hora_fin }}</td>
                     <td>{{ solicitud.estado }}</td>
-                    <td>{{ solicitud.motivo_cancelacion }}</td>
+                    <td>
+                        {% if solicitud.motivo_cancelacion %}
+                            {{ solicitud.motivo_cancelacion }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
