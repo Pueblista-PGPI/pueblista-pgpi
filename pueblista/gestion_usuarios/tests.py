@@ -31,7 +31,7 @@ class AuthenticationBackendTests(TestCase):
         backend = DNIFechaNacimientoBackend()
         user = backend.authenticate(request=None,dni='99999999A', fecha_nacimiento='1990-01-01')
         self.assertIsNone(user)
-        
+
     def test_get_user_valid(self):
         user = DNIFechaNacimientoBackend().get_user(self.user.id)
         self.assertIsNotNone(user)
@@ -69,7 +69,7 @@ class CustomUserModelTests(TestCase):
         )
         self.assertTrue(superuser.is_superuser)
         self.assertTrue(superuser.is_staff)
-        
+
     def test_create_user_missing_dni(self):
         with self.assertRaisesMessage(ValueError, 'El DNI es obligatorio'):
             User.objects.create_user(
@@ -182,7 +182,6 @@ class UserViewsTests(TestCase):
         response = self.client.post(reverse('login'), {'dni': 'invalid', 'fecha_nacimiento': '2000-01-01'})
         self.assertRedirects(response, reverse('login'))
 
-
     def test_logout_view(self):
         self.client.login(dni='12345678A', password='testpassword')
         response = self.client.get(reverse('logout'))
@@ -199,7 +198,7 @@ class UserViewsTests(TestCase):
         self.client.login(dni='12345678A', password='testpassword')
         response = self.client.get(reverse('user_list'))
         self.assertEqual(response.status_code, 403)  # Forbidden, since regular user should not access
-        
+
     def test_perfil_view_authenticated_user(self):
         # Iniciar sesión con el usuario de prueba
         self.client.login(dni='12345678A', password='testpassword')
@@ -253,4 +252,3 @@ class DecoratorTests(TestCase):
         self.client.login(dni='11223344C', password='regularpassword')
         response = self.client.get(reverse('user_list'))
         self.assertEqual(response.status_code, 403)  # Should forbid regular user
-
