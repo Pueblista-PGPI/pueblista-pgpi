@@ -5,20 +5,20 @@
 {% endblock title %}
 
 {% block content %}
-<section class="position-relative py-4 py-xl-5">
+<section class="py-4 py-xl-5">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>Inicio de Sesión en Pueblista</h2>
-                <p class="w-lg-50">Únicamente es necesario introducir su DNI y fecha de nacimiento</p>
-                {% if messages %}
+        <div class="container">
+            <h2 style="text-align: center;"><strong>Inicio de Sesión en Pueblista</strong></h2>
+            <p class="w-lg-50" style="text-align: center;">
+                Únicamente es necesario introducir su DNI y fecha de nacimiento
+            </p>
+            {% if messages %}
                     <div class="alert alert-danger" role="alert">
                         {% for message in messages %}
                             {{ message }}
                         {% endfor %}
                     </div>
                 {% endif %}
-            </div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 col-xl-4">
@@ -47,7 +47,11 @@
                                 <button class="btn btn-primary d-block w-100" type="submit">Iniciar Sesión</button>
                             </div>
                         </form>
+                        
                     </div>
+                </div>
+                <div class="alert alert-info mt-3 text-center" role="alert">
+                    <strong>Si no consigue iniciar sesión, llame al número de teléfono 959 57 80 01</strong>.
                 </div>
             </div>
         </div>
