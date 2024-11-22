@@ -19,3 +19,13 @@ class SolicitudReservaEspecialForm(forms.ModelForm):
             'hora_fin': 'Hora de Fin',
             'motivo': 'Motivo de la Solicitud',
         }
+        
+    def clean(self):
+        cleaned_data = super().clean()
+        hora_inicio = cleaned_data.get('hora_inicio')
+        hora_fin = cleaned_data.get('hora_fin')
+
+        if hora_inicio and hora_fin and hora_inicio >= hora_fin:
+            raise forms.ValidationError('La hora de inicio no puede ser posterior o igual a la hora de fin.')
+
+        return cleaned_data

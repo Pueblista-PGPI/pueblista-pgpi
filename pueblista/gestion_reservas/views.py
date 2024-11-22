@@ -18,6 +18,12 @@ from gestion_espacios.models import EspacioPublico
 from .models import SolicitudReservaEspecial
 from datetime import datetime
 
+
+def comprueba_horas(hora_inicio, hora_fin):
+    if hora_inicio >= hora_fin:
+        return True
+    return False
+
 @login_required
 def solicitud_reserva_especial(request, id):
     espacio = get_object_or_404(EspacioPublico, id=id)
@@ -98,7 +104,7 @@ def aceptar_solicitud(request, id):
             hora_fin=solicitud.hora_fin,
             estado=Reserva.REALIZADA,
             espacio=solicitud.espacio,
-            usuario=solicitud.usuario,
+            usuario=request.user,
             nombre=nombre_reserva
         )
         
@@ -116,7 +122,7 @@ def aceptar_solicitud(request, id):
                 hora_fin=datetime.max.time(),
                 estado=Reserva.REALIZADA,
                 espacio=solicitud.espacio,
-                usuario=solicitud.usuario,
+                usuario=request.user,
                 nombre='LIMPIEZA'
             )
             
@@ -127,7 +133,7 @@ def aceptar_solicitud(request, id):
                 hora_fin=datetime.max.time(),
                 estado=Reserva.REALIZADA,
                 espacio=solicitud.espacio,
-                usuario=solicitud.usuario,
+                usuario=request.user,
                 nombre='LIMPIEZA'
             )
             
@@ -220,7 +226,28 @@ def crear_reserva(request, id):
             fecha = request.POST.get('fecha')
             hora_inicio = request.POST.get('hora_inicio')
             hora_fin = request.POST.get('hora_fin')
+            if comprueba_horas(hora_inicio, hora_fin):
+                messages.error(request, "La hora de inicio debe ser menor a la hora de fin.")
+                return redirect('calendario_reservas', id=espacio.id)
             request.session['fecha'] = fecha
+            
+            if espacio.nombre == 'Biblioteca':
+                # validar si en el salón de reuniones hay una reserva en ese intervalo
+                reservas = Reserva.objects.filter(
+                    espacio__nombre='Salón de Reuniones',
+                    fecha=fecha,
+                    hora_inicio__lt=hora_fin,
+                    hora_fin__gt=hora_inicio
+                )
+                if reservas.exists():
+                    messages.error(request, "Ya existe una reserva en el Salón de Reuniones en este intervalo.")
+                    return redirect('calendario_reservas', id=espacio.id)
+                
+            numero_de_reservas_por_usuario_en_espacio_en_fecha = Reserva.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha).count()
+            
+            if numero_de_reservas_por_usuario_en_espacio_en_fecha >= 4:
+                messages.error(request, "Ya has realizado 4 reservas en este espacio para esta fecha.")
+                return redirect('calendario_reservas', id=espacio.id)
 
             # Validar si ya existe una reserva en este intervalo
             if not Reserva.objects.filter(
