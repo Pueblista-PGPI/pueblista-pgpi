@@ -146,7 +146,7 @@ def aceptar_solicitud(request, id):
         if solicitud.espacio.nombre == 'Salón de Reuniones':
             # Obtener todas las reservas para la fecha y intervalo de horas de solicitud
             reservas_a_cancelar = Reserva.objects.filter(
-                Q(espacio__nombre='Biblioteca'),
+                Q(espacio__nombre='Biblioteca') | Q(espacio__nombre='Sala Guadalinfo'),
                 Q(fecha=solicitud.fecha),
                 Q(hora_inicio__lt=solicitud.hora_fin),
                 Q(hora_fin__gt=solicitud.hora_inicio)
@@ -231,7 +231,7 @@ def crear_reserva(request, id):
                 return redirect('calendario_reservas', id=espacio.id)
             request.session['fecha'] = fecha
             
-            if espacio.nombre == 'Biblioteca':
+            if espacio.nombre == 'Biblioteca' or espacio.nombre == 'Sala Guadalinfo':
                 # validar si en el salón de reuniones hay una reserva en ese intervalo
                 reservas = Reserva.objects.filter(
                     espacio__nombre='Salón de Reuniones',
