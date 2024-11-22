@@ -16,7 +16,7 @@ class EspacioPublicoForm(forms.ModelForm):
             'fotos': forms.FileInput(attrs={'class': 'form-control form-control-lg'}),
             'espacio_especial': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'limpieza': forms.CheckboxInput(attrs={'class': 'form-check-input'}),  # Añadir este campo
-            
+
         }
 
 

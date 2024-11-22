@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from decouple import config
+from google.oauth2 import service_account
 
 load_dotenv()
 
@@ -22,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # directorio donde se crean los archivos muñltimedia
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
 
 
 # Quick-start development settings - unsuitable for production
@@ -57,7 +58,19 @@ INSTALLED_APPS = [
     'home',
     'debug_toolbar',
     'listado_reservas',
+    'storages',
 ]
+
+
+# Configuración para GCS
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'pueblista-dd2a93cdd083.json')
+)
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'pueblista-media'
+GS_DEFAULT_ACL = 'publicRead'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 
 AUTHENTICATION_BACKENDS = [

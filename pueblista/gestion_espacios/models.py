@@ -14,8 +14,12 @@ class EspacioPublico(models.Model):
     nombre = models.CharField(max_length=100, null=False, blank=False)
     horario = models.CharField(max_length=100, null=False, blank=False)
     descripcion = models.TextField(null=False, blank=False)
-    fotos = models.ImageField(upload_to='spaces',
-                              verbose_name='photo', null=True, blank=True)
+    fotos = models.ImageField(
+        upload_to='espacios_publicos/%Y/%m/%d',
+        verbose_name='photo',
+        null=True,
+        blank=True
+    )
     telefono = models.CharField(max_length=9, validators=[
         RegexValidator(regex=r'^\d{9}$',
                        message='''El número de teléfono debe

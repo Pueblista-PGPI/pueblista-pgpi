@@ -15,10 +15,6 @@
             <p class="w-lg-50" style="text-align: center;">Aquí encontrarás toda la información necesaria para reservar de forma fácil y rápida cualquier espacio</p>
         </div>
 
-        <!-- <div class="container" style="margin-bottom: 40px;">
-            <div class="input-group"><input class="form-control" type="text" placeholder="Busca tu espacio favorito" /><button class="btn btn-primary" type="button" style="font-size: 19px;">Buscar</button></div>
-        </div> -->
-
         {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
             <div class="container" style="margin-bottom: 40px; text-align: center;">
                 <a href="{% url 'create' %}" class="btn btn-lg me-2 zoom-on-hover" role="button" style="background: linear-gradient(to right, #000000, #434343); color: white;">Crear Nuevo Espacio</a>
