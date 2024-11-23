@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>Reservas - Pueblista</title>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     {% if reservas|length != 0 %}
@@ -34,26 +38,30 @@
     {% endif %}
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
         {% for reserva in reservas %}
-        <div class="col">
-            <div class="card">
-                <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                <div class="card-body p-4">
-                    <p class="text-primary card-text mb-0">Reserva</p>
-                    <h4 class="card-title">{{ reserva.espacio }}</h4>
-                    <p class="card-text">
-                        <strong>DÍA:</strong> {{ reserva.fecha }}<br>
-                        <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
-                        <strong>ESTADO:</strong> {{ reserva.estado }}<br>
-                    </p>
-                    <div class="d-flex">
-                        <div>
-                            <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-toggle="modal" data-target="#modifyReservationModal" onclick="setModifyFormAction({{ reserva.id }}, '{{ reserva.hora_inicio }}', '{{ reserva.hora_fin }}')">Modificar</button>
-                            <button class="btn btn-primary" type="button" style="background: red;color: white;border-color: red;" data-toggle="modal" data-target="#confirmCancelModal" onclick="setCancelFormAction({{ reserva.id }})">Cancelar</button>
+            {% if reserva.nombre != 'LIMPIEZA' and reserva.estado == 'Realizada' %}
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                        <div class="card-body p-4">
+                            <p class="text-primary card-text mb-0">Reserva</p>
+                            <h4 class="card-title">{{ reserva.nombre }}</h4>
+                            <p class="card-text">
+                                <strong>DÍA:</strong> {{ reserva.fecha }}<br>
+                                <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
+                                <strong>ESTADO:</strong> {{ reserva.estado }}<br>
+                            </p>
+                            <div class="d-flex">
+                                <div>
+                                    {% if not reserva.especial %}
+                                        <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-toggle="modal" data-target="#modifyReservationModal" onclick="setModifyFormAction({{ reserva.id }}, '{{ reserva.hora_inicio }}', '{{ reserva.hora_fin }}')">Modificar</button>
+                                    {% endif %}
+                                    <button class="btn btn-primary" type="button" style="background: red;color: white;border-color: red;" data-toggle="modal" data-target="#confirmCancelModal" onclick="setCancelFormAction({{ reserva.id }})">Cancelar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>

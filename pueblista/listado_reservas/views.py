@@ -11,9 +11,9 @@ def listado_reservas(request):
     usuario = request.user
     query = request.GET.get('q')
     if query:
-        reservas = Reserva.objects.filter(usuario=usuario, espacio__nombre__icontains=query).order_by('fecha')
+        reservas = Reserva.objects.filter(usuario=usuario, nombre__icontains=query, estado='Realizada').exclude(nombre='LIMPIEZA').order_by('fecha')
     else:
-        reservas = Reserva.objects.filter(usuario=usuario).order_by('fecha')
+        reservas = Reserva.objects.filter(usuario=usuario, estado='Realizada').exclude(nombre='LIMPIEZA').order_by('fecha')
 
     reservas = [
         {
@@ -22,7 +22,8 @@ def listado_reservas(request):
             'hora_inicio': reserva.hora_inicio,
             'hora_fin': reserva.hora_fin,
             'estado': reserva.estado,
-            'espacio': reserva.espacio.nombre
+            'espacio': reserva.espacio.nombre,
+            'especial': reserva.espacio.espacio_especial,
         }
         for reserva in reservas
     ]
