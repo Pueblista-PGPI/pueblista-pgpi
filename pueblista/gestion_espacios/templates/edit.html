@@ -1,57 +1,57 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Editar Espacio</title>
+    <title>Editar Espacio - Pueblista</title>
 {% endblock title %}
 
 {% block content %}
 <div class="container">
     <div class="text-center p-4 p-lg-5">
-        <h1 class="fw-bold mb-4">Editar Espacio</h1>
+        <h2 class="fw-bold">Editar Espacio</h2>
     </div>
-    <form method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center w-75">
-        {% csrf_token %}
-        <div class="mb-3 w-75">
-            <label for="nombre" class="form-label">Nombre:</label>
-            {{ form.nombre }}
-        </div>
-        <div class="mb-3 w-75">
-            <label for="horario" class="form-label">Horario:</label>
-            {{ form.horario }}
-        </div>
-        <div class="mb-3 w-75">
-            <label for="descripcion" class="form-label">Descripción:</label>
-            {{ form.descripcion }}
-        </div>
-        <div class="mb-3 w-75">
-            <label for="telefono" class="form-label">Teléfono:</label>
-            {{ form.telefono }}
-        </div>
-        <div class="mb-3 w-75">
-            <label for="estado" class="form-label">Estado:</label>
-            {{ form.estado }}
-        </div>
-        <div class="mb-3 w-75">
-            <label for="fotos" class="form-label">Fotos:</label>
-            {{ form.fotos }}
-            {% if espacio.fotos %}
-            <img src="{{ espacio.fotos.url }}" alt="Foto de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
-            {% endif %}
-        </div>
-        <div class="mb-3 w-75 form-check form-switch">
-            {{ form.espacio_especial }}
-            <label for="espacio_especial" class="form-check-label">Espacio Especial</label>
-        </div>
-        <div class="mb-3 w-75 form-check form-switch">
-            {{ form.limpieza }}
-            <label for="limpieza" class="form-check-label">Requiere Limpieza</label>
-        </div>
-        <div class="d-flex justify-content-between w-50 mt-4">
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <a href="{% url 'list' %}" class="btn btn-secondary">Cancelar</a>
-        </div>
-    </form>
-    <br>
+    <div class="d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data" class="w-75" style="max-width: 600px;">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label"><strong>Nombre:</strong></label>
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label for="horario" class="form-label"><strong>Horario:</strong></label>
+                {{ form.horario }}
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label"><strong>Descripción:</strong></label>
+                {{ form.descripcion }}
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label"><strong>Teléfono:</strong></label>
+                {{ form.telefono }}
+            </div>
+            <div class="mb-3">
+                <label for="estado" class="form-label"><strong>Estado:</strong></label>
+                {{ form.estado }}
+            </div>
+            <div class="mb-3">
+                <label for="fotos" class="form-label"><strong>Fotos:</strong></label>
+                {{ form.fotos }}
+                {% if espacio.fotos %}
+                    <img src="{{ espacio.fotos.url }}" alt="Foto de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+                {% endif %}
+            </div>
+            <div class="mb-3 form-check form-switch">
+                {{ form.espacio_especial }}
+                <label for="espacio_especial" class="form-check-label"><strong>Espacio Especial</strong></label>
+            </div>
+            <div class="mb-3 form-check form-switch">
+                {{ form.limpieza }}
+                <label for="limpieza" class="form-check-label"><strong>Requiere Limpieza</strong></label>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script>
