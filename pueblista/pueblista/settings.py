@@ -58,19 +58,19 @@ INSTALLED_APPS = [
     'home',
     'debug_toolbar',
     'listado_reservas',
-    'storages',
+    # 'storages',
 ]
 
 
 # Configuración para GCS
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'pueblista-dd2a93cdd083.json')
-)
+# GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+#     os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+# )
 
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'pueblista-media'
-GS_DEFAULT_ACL = 'publicRead'
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# GS_BUCKET_NAME = 'pueblista-media'
+# GS_DEFAULT_ACL = 'publicRead'
+# MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 
 AUTHENTICATION_BACKENDS = [
