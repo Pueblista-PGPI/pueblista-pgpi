@@ -14,7 +14,6 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from decouple import config
-from google.oauth2 import service_account
 
 load_dotenv()
 
