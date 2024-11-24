@@ -12,17 +12,25 @@ from gestion_reservas.models import Reserva
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def edit(request, id):
     espacio = get_object_or_404(EspacioPublico, id=id)
+    foto_original = espacio.fotos  # Guarda la foto original antes de procesar el formulario
+
     if request.method == 'POST':
         form = EspacioPublicoForm(request.POST, request.FILES, instance=espacio)
         if form.is_valid():
             espacio = form.save(commit=False)
-            if request.FILES.get('fotos'):  # Si se actualizó la foto
+
+            # Si se sube una nueva foto, actualízala; de lo contrario, conserva la anterior
+            if 'fotos' in request.FILES:
                 foto = request.FILES['fotos'].read()
                 espacio.fotos = base64.b64encode(foto).decode('utf-8')
+            else:
+                espacio.fotos = foto_original  # Mantén la foto original
+
             espacio.save()
             return redirect('list')
     else:
         form = EspacioPublicoForm(instance=espacio)
+
     return render(request, 'edit.html', {'form': form, 'espacio': espacio})
 
 

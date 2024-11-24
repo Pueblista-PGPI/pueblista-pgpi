@@ -34,10 +34,14 @@
             </div>
             <div class="mb-3">
                 <label for="fotos" class="form-label"><strong>Fotos:</strong></label>
-                {{ form.fotos }}
+                <br></br>
                 {% if espacio.fotos %}
-                    <img src="{{ espacio.fotos.url }}" alt="Foto de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+                    <img src="data:image/jpeg;base64,{{ espacio.fotos }}" alt="Imagen de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+                {% else %}
+                    <p>No hay imagen disponible</p>
                 {% endif %}
+                <br></br>
+                {{ form.fotos }}
             </div>
             <div class="mb-3 form-check form-switch">
                 {{ form.espacio_especial }}
