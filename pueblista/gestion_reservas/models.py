@@ -39,9 +39,6 @@ class Reserva(models.Model):
             " - Estado: " + self.estado + " - Nombre: " + self.usuario.nombre + 
             " " + self.usuario.apellidos)
 
-    class Meta:
-        unique_together = ('espacio', 'fecha', 'hora_inicio')
-
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'espacio', 'estado', 'usuario']
 
     def crear_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
@@ -91,9 +88,6 @@ class SolicitudReservaEspecial(models.Model):
             " - Desde: " + str(self.hora_inicio) + " Hasta: " + str(self.hora_fin) + 
             " - Motivo: " + self.motivo + " - Nombre: " + self.usuario.nombre + 
             " " + self.usuario.apellidos)
-        
-    class Meta:
-        unique_together = ('espacio', 'fecha', 'hora_inicio')
         
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'motivo', 'espacio', 'usuario']
     

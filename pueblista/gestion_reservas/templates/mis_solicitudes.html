@@ -1,38 +1,46 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Mis Solicitudes</title>{% endblock %}
+<title>Mis Solicitudes - Pueblista</title>{% endblock %}
 {% block content %}
-<div class="container mt-5">
-    <h1 class="fw-bold">Mis Solicitudes de Reserva Especial</h1>
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr>
-                <th>Espacio</th>
-                <th>Fecha</th>
-                <th>Hora de Inicio</th>
-                <th>Hora de Fin</th>
-                <th>Estado</th>
-                <th>Motivo Cancelación</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="container py-4 py-xl-5">
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Mis solicitudes de reserva especial</strong></h2>
+        <p style="text-align: center;">Aquí puedes ver todas tus solicitudes a espacios especiales.</p>
+    </div>
+    {% if solicitudes|length == 0 %}
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="container">
+                <h2 style="text-align: center;"><strong>No tienes solicitudes de reserva especial</h2>
+            </div>
+        </div>
+    {% else %}
+        <div class="row mt-4">
             {% for solicitud in solicitudes %}
-                <tr>
-                    <td>{{ solicitud.espacio.nombre }}</td>
-                    <td>{{ solicitud.fecha }}</td>
-                    <td>{{ solicitud.hora_inicio }}</td>
-                    <td>{{ solicitud.hora_fin }}</td>
-                    <td>{{ solicitud.estado }}</td>
-                    <td>
-                        {% if solicitud.motivo_cancelacion %}
-                            {{ solicitud.motivo_cancelacion }}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </td>
-                </tr>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center row">
+                                <div class="col">
+                                    <h5 class="card-title mb-1">{{ solicitud.espacio.nombre }}</h5>
+                                    <p class="text-muted mb-0">{{ solicitud.fecha }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-1"><strong>Hora de Inicio:</strong> {{ solicitud.hora_inicio }}</p>
+                                    <p class="mb-1"><strong>Hora de Fin:</strong> {{ solicitud.hora_fin }}</p>
+                                    <p class="mb-1"><strong>Estado:</strong> {{ solicitud.estado }}</p>
+                                    {% if solicitud.motivo_cancelacion %}
+                                        <p class="mb-1"><strong>Motivo Cancelación:</strong> {{ solicitud.motivo_cancelacion }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

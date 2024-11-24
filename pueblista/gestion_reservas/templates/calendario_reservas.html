@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-  <title>Calendario de Reservas</title>
+  <title>Calendario de Reservas - Pueblista</title>
 {% endblock title %}
 
 {% block content %}
@@ -12,19 +12,20 @@
                 class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" 
                 role="alert" style="margin-bottom: 10px;">
                 {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
     </div>
 {% endif %}
-<div class="container mt-5">
-    <div class="text-center p-4 p-lg-5">
-        <h1 class="fw-bold mb-4">Calendario de Reservas</h1>
+<div class="container py-4 py-xl-5">
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Calendario de Reservas</strong></h2>
     </div>
-
+    {% if espacio.espacio_especial%}
+        <p class="w-lg-50" style="text-align: center;">Este es un espacio especial, para reservarlo se debe enviar una solicitud al administrador del espacio </p>
+    {% endif %}
     <div class="text-center my-4">
         <form method="get">
-            <label for="fecha">Seleccione un día:</label>
+            <label for="fecha"><strong>Seleccione un día:<strong></label>
             <input type="date" id="fecha" name="fecha" value="{{ fecha_seleccionada }}" class="form-control w-auto d-inline" onchange="this.form.submit()">
         </form>
     </div>
@@ -81,26 +82,35 @@
         </div>
         {% else %}
             <div class="container text-center">
-                <h2>Este es un espacio especial</h2>
-                <p>Para reservar este espacio, debes enviar una solicitud de reserva.</p>
                 <a href="{% url 'solicitud_reserva_especial' espacio.id %}" class="btn btn-primary">Solicitar Reserva Especial</a>
                 <a href="{% url 'mis_solicitudes' espacio.id %}" class="btn btn-secondary">Ver mis solicitudes</a>
-
-                <h3>Reservas para este espacio especial:</h3>
-                <ul class="list-group">
-                    {% for reserva in reservas %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>Fecha:</strong> {{ reserva.fecha }}<br>
-                                <strong>Horario:</strong> {{ reserva.hora_inicio }} - {{ reserva.hora_fin }}<br>
-                                <strong>Usuario:</strong> {{ reserva.usuario}}<br>
-                                <strong>Nombre:</strong> {{ reserva.nombre }}
+                <hr class="my-4 mx-auto" style="max-width: 500px">
+                <h4 class="mt-4"><strong>Otras reservas programadas en este espacio</strong></h4>
+                <div class="row mt-4">
+                    {% if reservas|length == 1 %}
+                        <div class="col-md-4 offset-md-4 mb-3">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong>Nombre:</strong> {{ reservas.0.nombre }}</h5>
+                                    <p class="mb-1"><strong>Fecha:</strong> {{ reservas.0.fecha }}</p>
+                                    <p class="mb-1"><strong>Horario:</strong> {{ reservas.0.hora_inicio }} - {{ reservas.0.hora_fin }}</p>
+                                </div>
                             </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-                </ul>
-
+                        </div>
+                    {% else %}
+                        {% for reserva in reservas %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong>Nombre:</strong> {{ reserva.nombre }}</h5>
+                                    <p class="mb-1"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                                    <p class="mb-1"><strong>Horario:</strong> {{ reserva.hora_inicio }} - {{ reserva.hora_fin }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
         {% endif %}
     {% endif %}
@@ -198,6 +208,14 @@
         const form = document.getElementById('form-cancelar');
         form.action = `/espacios/{{ espacio.id }}/reservas/cancelar/${reservaId}/`;
     });
+
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            var bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        });
+    }, 2000);
 </script>
 
 {% endblock content %}

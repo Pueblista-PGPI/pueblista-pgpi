@@ -28,7 +28,11 @@ def edit(request, id):
 
 @login_required
 def list(request):
-    spaces = EspacioPublico.objects.all()
+    query = request.GET.get('q')
+    if query:
+        spaces = EspacioPublico.objects.filter(nombre__icontains=query)
+    else:
+        spaces = EspacioPublico.objects.all()
     # eliminar 'fecha' de la sesion si existe
     if 'fecha' in request.session:
         request.session.pop('fecha')
