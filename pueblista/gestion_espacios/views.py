@@ -1,3 +1,4 @@
+import base64
 from datetime import datetime
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
@@ -14,7 +15,11 @@ def edit(request, id):
     if request.method == 'POST':
         form = EspacioPublicoForm(request.POST, request.FILES, instance=espacio)
         if form.is_valid():
-            form.save()
+            espacio = form.save(commit=False)
+            if request.FILES.get('fotos'):  # Si se actualizó la foto
+                foto = request.FILES['fotos'].read()
+                espacio.fotos = base64.b64encode(foto).decode('utf-8')
+            espacio.save()
             return redirect('list')
     else:
         form = EspacioPublicoForm(instance=espacio)
@@ -41,7 +46,11 @@ def create(request):
     if request.method == 'POST':
         form = EspacioPublicoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            espacio = form.save(commit=False)
+            if request.FILES.get('fotos'):  # Si se subió una foto
+                foto = request.FILES['fotos'].read()
+                espacio.fotos = base64.b64encode(foto).decode('utf-8')
+            espacio.save()
             return redirect('list')
     else:
         form = EspacioPublicoForm()

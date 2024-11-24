@@ -13,7 +13,7 @@ class EspacioPublicoForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'rows': 5}),
             'telefono': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'pattern': r'^\d{9}$'}),
             'estado': forms.Select(attrs={'class': 'form-select form-select-lg'}),
-            'fotos': forms.FileInput(attrs={'class': 'form-control form-control-lg'}),
+            'fotos': forms.FileInput(attrs={'class': 'form-control'}),
             'espacio_especial': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'limpieza': forms.CheckboxInput(attrs={'class': 'form-check-input'}),  # Añadir este campo
 

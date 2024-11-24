@@ -75,7 +75,9 @@
 
                         <div class="col-md-6 order-first order-md-last" style="min-height: 250px; position: relative;">
                             {% if space.fotos %}
-                            <img class="w-100 h-100 fit-cover zoom-on-hover" src="{{ space.fotos.url }}" alt="Foto de {{ space.nombre }}">
+                                <img src="data:image/jpeg;base64,{{ space.fotos }}" alt="Imagen de {{ space.nombre }}" style="width:100%;">
+                            {% else %}
+                                <p>No hay imagen disponible</p>
                             {% endif %}
                         </div>
 

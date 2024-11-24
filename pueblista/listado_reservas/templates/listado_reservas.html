@@ -1,59 +1,70 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>Reservas - Pueblista</title>
+{% endblock %}
+
 {% block content %}
 <div class="container">
-    {% if reservas|length != 0 %}
+    {% if reservas|length != 0 and query == None %}
         <div class="container" style="margin-top: 10px; margin-bottom: 20px">
             <h2 style="text-align: center;"><strong>Tus reservas</strong></h2>
-            <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva prueba a buscar el nombre del espacio en la barra de búsqueda</p>
+            <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva prueba a buscar por fechas</p>
         </div>
         <form method="GET" action="{% url 'listado_reservas' %}">
             <div class="input-group" style="margin-bottom: 40px;">
-                <input class="form-control" type="text" name="q" placeholder="Introduce el nombre de un espacio" value="{{ query|default_if_none:'' }}">
+                <input class="form-control" type="date" name="fecha_inicio" placeholder="Fecha de inicio" value="{{ fecha_inicio|default_if_none:'' }}">
+                <input class="form-control" type="date" name="fecha_fin" placeholder="Fecha de fin" value="{{ fecha_fin|default_if_none:'' }}">
                 <button class="btn btn-primary" type="submit">Buscar</button>
             </div>
         </form>
-    {% elif query == "" %}
-        <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
-            <div class="container" style="margin-top: 10px; margin-bottom: 20px">
-                <h2 style="text-align: center;"><strong>No tienes ninguna reserva</strong></h2>
-                <p class="w-lg-50" style="text-align: center;">Realiza la primera reserva de tu espacio favorito</p>
+        {% if query != None %}
+            <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+                <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+                    <h2 style="text-align: center;"><strong>No se encontró ninguna reserva</strong></h2>
+                    <p class="w-lg-50" style="text-align: center;">Intenta buscar otras fechas</p>
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% else %}
         <div class="container" style="margin-top: 10px; margin-bottom: 20px">
-            <h2 style="text-align: center;"><strong>No se encontró ninguna reserva</strong></h2>
-            <p class="w-lg-50" style="text-align: center;">Intenta buscar otro espacio</p>
+            <h2 style="text-align: center;"><strong>No tienes ninguan reserva</strong></h2>
+            <p class="w-lg-50" style="text-align: center;">Prueba a realizar tu primera reserva en tu espacio favorito</p>
         </div>
         <form method="GET" action="{% url 'listado_reservas' %}">
             <div class="input-group" style="margin-bottom: 40px;">
-                <input class="form-control" type="text" name="q" placeholder="Introduce el nombre de un espacio" value="{{ query|default_if_none:'' }}">
+                <input class="form-control" type="date" name="fecha_inicio" placeholder="Fecha de inicio" value="{{ fecha_inicio|default_if_none:'' }}">
+                <input class="form-control" type="date" name="fecha_fin" placeholder="Fecha de fin" value="{{ fecha_fin|default_if_none:'' }}">
                 <button class="btn btn-primary" type="submit">Buscar</button>
             </div>
         </form>
     {% endif %}
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
         {% for reserva in reservas %}
-        <div class="col">
-            <div class="card">
-                <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
-                <div class="card-body p-4">
-                    <p class="text-primary card-text mb-0">Reserva</p>
-                    <h4 class="card-title">{{ reserva.espacio }}</h4>
-                    <p class="card-text">
-                        <strong>DÍA:</strong> {{ reserva.fecha }}<br>
-                        <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
-                        <strong>ESTADO:</strong> {{ reserva.estado }}<br>
-                    </p>
-                    <div class="d-flex">
-                        <div>
-                            <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-toggle="modal" data-target="#modifyReservationModal" onclick="setModifyFormAction({{ reserva.id }}, '{{ reserva.hora_inicio }}', '{{ reserva.hora_fin }}')">Modificar</button>
-                            <button class="btn btn-primary" type="button" style="background: red;color: white;border-color: red;" data-toggle="modal" data-target="#confirmCancelModal" onclick="setCancelFormAction({{ reserva.id }})">Cancelar</button>
+            {% if reserva.nombre != 'LIMPIEZA' and reserva.estado == 'Realizada' %}
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                        <div class="card-body p-4">
+                            <p class="text-primary card-text mb-0">Reserva</p>
+                            <h4 class="card-title">{{ reserva.espacio }}</h4>
+                            <p class="card-text">
+                                <strong>DÍA:</strong> {{ reserva.fecha }}<br>
+                                <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
+                                <strong>ESTADO:</strong> {{ reserva.estado }}<br>
+                            </p>
+                            <div class="d-flex">
+                                <div>
+                                    {% if not reserva.especial %}
+                                        <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-toggle="modal" data-target="#modifyReservationModal" onclick="setModifyFormAction({{ reserva.id }}, '{{ reserva.hora_inicio }}', '{{ reserva.hora_fin }}')">Modificar</button>
+                                    {% endif %}
+                                    <button class="btn btn-primary" type="button" style="background: red;color: white;border-color: red;" data-toggle="modal" data-target="#confirmCancelModal" onclick="setCancelFormAction({{ reserva.id }})">Cancelar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
