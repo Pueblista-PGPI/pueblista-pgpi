@@ -1,15 +1,41 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="container mt-4">
-    <h2 class="text-center">Perfil de Usuario</h2>
+{% block title %}
+    <title>Mi Perfil - Pueblista</title>
+{% endblock title %}
 
-    <div class="alert alert-info" role="alert">
-        Los datos personales no se pueden editar.
+{% block content %}
+<section class="py-4 py-xl-5">
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Tu Perfil de Pueblista</strong></h2>
+        <p class="w-lg-50" style="text-align: center;">
+            Haga click <a href="#" data-bs-toggle="collapse" data-bs-target="#privacyPolicy" class="fw-bold text-decoration-underline" style="font-weight: 900;">aquí</a> para conocer cómo tratamos sus datos personales.
+        </p>
+    </div>
+
+    <div class="collapse" id="privacyPolicy">
+        <div class="card card-body mx-auto" style="max-width: 635px;">
+            <h5 class="text-center"><strong>Cómo recopilamos sus datos</strong></h5>
+            <p class="text-center">Sus datos son proporcionados por el ayuntamiento de Villanueva de las Cruces. Esto nos permite asegurarnos de que solo los residentes del pueblo puedan usar la aplicación.</p>
+            
+            <h5 class="text-center"><strong>Cómo usamos sus datos</strong></h5>
+            <p class="text-center">Usamos sus datos solo para controlar el acceso a la aplicación y para contactarle si tiene algún problema. Nunca usaremos sus datos con fines comerciales.</p>
+            
+            <h5 class="text-center"><strong>Eliminación de datos</strong></h5>
+            <p class="text-center">Sus datos no pueden ser borrados porque los proporciona el ayuntamiento. Sin embargo, puede borrar todas sus reservas en cualquier momento desde la aplicación.</p>
+            <div class="text-center mt-3">
+                <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#privacyPolicy">Cerrar</button>
+            </div>
+        </div>
+
+        
     </div>
 
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <div class="alert alert-info mt-3 text-center fw-bold" role="alert">
+                Los datos personales no se pueden editar.
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
@@ -38,7 +64,51 @@
                     </div>
                 </div>
             </div>
+            <!-- Botón para eliminar reservas y cerrar sesión -->
+            <div class="mb-3 text-center mt-3">
+                <button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">Eliminar mis datos</button>
+            </div>
+
+
+            <!-- Modal de confirmación -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Confirmar Acción</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            Tus reservas serán eliminadas y se cerrará tu sesión. <br>¿Estás seguro de que deseas continuar? 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar y Cerrar Sesión</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('confirmDelete').addEventListener('click', function() {
+        fetch("{% url 'eliminar_reservas_y_cerrar_sesion' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = "{% url 'login' %}";
+            } else {
+                alert('Error al eliminar reservas y cerrar sesión.');
+            }
+        });
+    });
+</script>
 {% endblock %}
