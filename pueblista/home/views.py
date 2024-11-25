@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.core.mail.backends.smtp import EmailBackend
@@ -6,7 +6,9 @@ from django.contrib import messages
 import os
 
 from gestion_usuarios.decorators import tipo_usuario_requerido
-from home.models import Configuracion
+from gestion_notificaciones.models import Notificacion
+from home.models import AyuntamientoInfo
+
 
 
 def send_email(request, subject, full_message, success_message):
@@ -47,26 +49,17 @@ def send_email(request, subject, full_message, success_message):
 # Create your views here.
 @login_required
 def home(request):
-    config, created = Configuracion.objects.get_or_create(id=1)
-    texto_ayuntamiento = config.texto_ayuntamiento
+    ayuntamiento_info = AyuntamientoInfo.objects.all()
     
     texto_pueblista = """ Pueblista es un equipo de cinco estudiantes de
-    Ingeniería Informática de Sevilla. Apasionados por la vida en los pueblos,
-    trabajamos para mejorar la vida rural mediante herramientas tecnológicas
-    que fomenten el desarrollo y la conexión entre comunidades.\n Gracias
-    Pueblista,  podrás disfrutar de tu pueblo como nunca antes."""
+    Ingeniería Informática de Sevilla. Apasionados por la vida en los pueblos, trabajamos para mejorar la vida rural mediante herramientas tecnológicas que fomenten el desarrollo y la conexión entre comunidades.\n Gracias a Pueblista,  podrás disfrutar de tu pueblo como nunca antes."""
     
     user = request.user
+    
+    notificaciones_no_leidas_count = Notificacion.objects.filter(usuario=user, leida=False).count()
 
     if request.method == 'POST':
-        if 'nuevo_ayuntamiento' in request.POST:  # Comprobar si el formulario envió un cambio de texto
-            texto_ayuntamiento = request.POST.get('nuevo_ayuntamiento', '').strip()
-            config.texto_ayuntamiento = texto_ayuntamiento
-            config.save()
-            messages.success(request, 'Texto del ayuntamiento actualizado con éxito.')
-            return redirect('home')  # Redirigir para evitar reenvío del formulario
-
-        elif 'message' in request.POST:  # Comprobar si el formulario envió un mensaje de contacto
+        if 'message' in request.POST:  # Comprobar si el formulario envió un mensaje de contacto
             message = request.POST.get('message')
 
             # Obtener los datos del usuario autenticado
@@ -85,13 +78,32 @@ def home(request):
             
 
     return render(request, 'home.html', {
-        "ayuntamiento": texto_ayuntamiento,
+        'ayuntamiento_info': ayuntamiento_info,
         "pueblista": texto_pueblista,
         "contact_text": 'Contacta con nosotros!',
-        "user": user
+        "user": user,
+        "notificaciones": notificaciones_no_leidas_count
+        
     })
+@login_required
+def edit_ayuntamiento_info(request, id):
+    info = get_object_or_404(AyuntamientoInfo, id=id)
+    if request.method == 'POST':
+        titulo = request.POST.get('titulo')
+        descripcion = request.POST.get('descripcion')
+        info.titulo = titulo
+        info.descripcion = descripcion
+        info.save()
+        messages.success(request, 'Información actualizada con éxito.')
+        return redirect('home')
+    return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
 
 @login_required
-@tipo_usuario_requerido("superusuario")
-def editar_ayuntamiento(request):
-    return render(request, 'editar_ayuntamiento.html')
+def add_ayuntamiento_info(request):
+    if request.method == 'POST':
+        titulo = request.POST.get('titulo')
+        descripcion = request.POST.get('descripcion')
+        AyuntamientoInfo.objects.create(titulo=titulo, descripcion=descripcion)
+        messages.success(request, 'Nueva información añadida con éxito.')
+        return redirect('home')
+    return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
