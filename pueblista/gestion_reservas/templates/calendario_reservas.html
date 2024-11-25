@@ -49,6 +49,7 @@
                                 <td class="reservada">Reservado</td>
                                 <td>
                                     {% if horario.mia %}
+                                        {% if horario.reserva.estado == 'Realizada' %}
                                         <button type="button" class="btn btn-danger btn-sm" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#cancelarModal"
@@ -58,6 +59,11 @@
                                                 data-reserva-id="{{ horario.reserva.id }}">
                                             Cancelar
                                         </button>
+                                        {%elif horario.reserva.estado == 'En curso'%}
+                                            <button class="btn btn-secondary btn-sm" disabled>En curso</button>
+                                        {% else %}
+                                            <button class="btn btn-secondary btn-sm" disabled>Finalizada</button>
+                                        {% endif %}
                                     {% else %}
                                         <button class="btn btn-secondary btn-sm" disabled>Ya reservado</button>
                                     {% endif %}
