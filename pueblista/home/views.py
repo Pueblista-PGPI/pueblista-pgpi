@@ -8,7 +8,7 @@ import os
 from gestion_usuarios.decorators import tipo_usuario_requerido
 from home.models import Configuracion
 from gestion_notificaciones.models import Notificacion
-from home.models import AyuntamientoInfo
+from models import AyuntamientoInfo
 
 
 
