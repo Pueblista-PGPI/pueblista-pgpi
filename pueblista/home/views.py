@@ -6,7 +6,10 @@ from django.contrib import messages
 import os
 
 from gestion_usuarios.decorators import tipo_usuario_requerido
+from home.models import Configuracion
+from gestion_notificaciones.models import Notificacion
 from home.models import AyuntamientoInfo
+
 
 
 def send_email(request, subject, full_message, success_message):
@@ -53,6 +56,8 @@ def home(request):
     Ingeniería Informática de Sevilla. Apasionados por la vida en los pueblos, trabajamos para mejorar la vida rural mediante herramientas tecnológicas que fomenten el desarrollo y la conexión entre comunidades.\n Gracias a Pueblista,  podrás disfrutar de tu pueblo como nunca antes."""
     
     user = request.user
+    
+    notificaciones_no_leidas_count = Notificacion.objects.filter(usuario=user, leida=False).count()
 
     if request.method == 'POST':
         if 'message' in request.POST:  # Comprobar si el formulario envió un mensaje de contacto
@@ -77,7 +82,9 @@ def home(request):
         'ayuntamiento_info': ayuntamiento_info,
         "pueblista": texto_pueblista,
         "contact_text": 'Contacta con nosotros!',
-        "user": user
+        "user": user,
+        "notificaciones": notificaciones_no_leidas_count
+        
     })
 @login_required
 def edit_ayuntamiento_info(request, id):

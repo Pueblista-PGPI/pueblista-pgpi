@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from gestion_usuarios.decorators import tipo_usuario_requerido
+from gestion_notificaciones.models import Notificacion
 
 from .forms import SolicitudReservaEspecialForm
 from .models import Reserva
@@ -75,6 +76,13 @@ def solicitudes_pendientes(request, id):
         if motivo:
             solicitud.estado = 'Cancelada'
             solicitud.motivo_cancelacion = motivo
+            
+            notificacion_cancelacion = Notificacion.objects.create(
+                usuario=solicitud.usuario,
+                mensaje=f"Tu solicitud de reserva especial para el espacio {solicitud.espacio.nombre} el día {solicitud.fecha} ha sido cancelada debido a: {motivo}"
+            )
+            notificacion_cancelacion.save()
+            
             solicitud.save()
             messages.success(request, 'La solicitud ha sido cancelada con éxito.')
             return JsonResponse({'success': True})
@@ -148,9 +156,24 @@ def aceptar_solicitud(request, id):
             
             # Cancelar todas las reservas
             for reserva in reservas_a_cancelar:
+                usuario_reserva = reserva.usuario
+                
+                notificacion = Notificacion.objects.create(
+                    usuario=usuario_reserva,
+                    mensaje=f"Tu reserva en el espacio {reserva.espacio.nombre} para el día {reserva.fecha} ha sido cancelada debido a una reserva en el Salón de Reuniones."
+                )
+                notificacion.save()
                 print(reserva)
                 reserva.delete()
-                
+
+        
+        notificacion_aceptacion = Notificacion.objects.create(
+            usuario=solicitud.usuario,
+            mensaje=f"Tu solicitud de reserva especial para el espacio {solicitud.espacio.nombre} el día {solicitud.fecha} ha sido aceptada."
+            
+        )
+        notificacion_aceptacion.save()
+        
         messages.success(request, 'La solicitud ha sido aceptada con éxito.')
         return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
 
@@ -328,7 +351,7 @@ def crear_reserva(request, id):
                     )
                 messages.success(request, "La reserva se ha creado exitosamente.")
             else:
-                messages.error(request, "Ya existe una reserva en este intervalo.")
+                messages.error(request, "Ya tienes una reserva en este intervalo.")
         return redirect(redirigir_con_subespacio())
     except Exception as e:
         messages.error(request, f"Ocurrió un error al crear la reserva: {str(e)}")
