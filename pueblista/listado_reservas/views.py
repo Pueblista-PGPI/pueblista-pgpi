@@ -36,6 +36,7 @@ def listado_reservas(request):
             'espacio': reserva.espacio.nombre,
             'subespacio': reserva.subespacio if reserva.subespacio != "No procede" else None,
             'especial': reserva.espacio.espacio_especial,
+            'foto': reserva.espacio.fotos
         }
         for reserva in reservas
     ]
