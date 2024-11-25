@@ -33,6 +33,7 @@ def listado_reservas(request):
             'estado': reserva.estado,
             'espacio': reserva.espacio.nombre,
             'especial': reserva.espacio.espacio_especial,
+            'foto': reserva.espacio.fotos
         }
         for reserva in reservas
     ]

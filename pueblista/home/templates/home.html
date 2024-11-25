@@ -50,27 +50,81 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card">
-                        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
-                        <div class="card-body p-4">
-                            <h4 class="card-title">Nuestro ayuntamiento</h4>
-                            <!-- Texto del ayuntamiento -->
-                            <p class="card-text" id="ayuntamientoText">{{ ayuntamiento|linebreaks }}</p>
-                            
-                            <!-- Formulario para editar -->
-                            <form method="POST" style="display: none;" id="editForm">
-                                {% csrf_token %}
-                                <textarea class="form-control" name="nuevo_ayuntamiento" id="ayuntamientoInput" rows="4">{{ ayuntamiento }}</textarea>
-                                <button class="btn btn-primary mt-2" type="submit">Guardar</button>
-                            </form>
-                    
-                            <!-- Botón de edición -->
-                            {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
-                                <a class="btn btn-primary" id="editButton" style="background-color: black; border-color: black;">Editar</a>
-                            {% endif %}
+                    <div id="ayuntamientoCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for info in ayuntamiento_info %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="card">
+                                    <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
+                                    <div class="card-body p-4">
+                                        <h4 class="card-title" id="ayuntamientoTitle{{ forloop.counter }}">{{ info.titulo }}</h4>
+                                        <p class="card-text" id="ayuntamientoText{{ forloop.counter }}">{{ info.descripcion }}</p>
+                                        
+                                        <!-- Formulario para editar -->
+                                        <form method="POST" action="{% url 'edit_ayuntamiento_info' info.id %}" style="display: none;" id="editForm{{ forloop.counter }}">
+                                            {% csrf_token %}
+                                            <div class="mb-3">
+                                                <label for="ayuntamientoTitulo{{ forloop.counter }}" class="form-label">Título</label>
+                                                <input type="text" class="form-control" name="titulo" id="ayuntamientoTitulo{{ forloop.counter }}" value="{{ info.titulo }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="ayuntamientoInput{{ forloop.counter }}" class="form-label">Descripción</label>
+                                                <textarea class="form-control" name="descripcion" id="ayuntamientoInput{{ forloop.counter }}" rows="4">{{ info.descripcion }}</textarea>
+                                            </div>
+                                            <div class="text-center">
+                                                <button class="btn btn-primary mt-2 mb-2" type="submit">Guardar</button>
+                                            </div>
+                                        </form>
+                                        
+                                        <!-- Botón de edición -->
+                                        {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
+                                            <div class="text-center">
+                                                <a class="btn btn-primary" id="editButton{{ forloop.counter }}" style="background-color: black; border-color: black;" onclick="toggleEditForm({{ forloop.counter }})">Editar</a>
+                                                <button class="btn btn-primary" id="addButton{{ forloop.counter}}" data-bs-toggle="modal" data-bs-target="#addModal">Añadir Nuevo</button>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                            <a class="carousel-control-prev custom-carousel-control" href="#ayuntamientoCarousel" role="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next custom-carousel-control" href="#ayuntamientoCarousel" role="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                    </div>
+                </div>
+
+                <!-- Modal para añadir nueva información -->
+                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addModalLabel">Añadir Nueva Información</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{% url 'add_ayuntamiento_info' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="nuevoTitulo" class="form-label">Título</label>
+                                        <input type="text" class="form-control" name="titulo" id="nuevoTitulo" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nuevaDescripcion" class="form-label">Descripción</label>
+                                        <textarea class="form-control" name="descripcion" id="nuevaDescripcion" rows="4" required></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary mt-2 mb-2" type="submit">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -154,6 +208,44 @@
 
 
 <script>
+    function toggleEditForm(counter) {
+        var titleElement = document.getElementById('ayuntamientoTitle' + counter);
+        var textElement = document.getElementById('ayuntamientoText' + counter);
+        var formElement = document.getElementById('editForm' + counter);
+        var buttonElement = document.getElementById('editButton' + counter);
+        var carouselElement = document.getElementById('ayuntamientoCarousel');
+        var addButton = document.getElementById('addButton' + counter);
+
+        if (formElement.style.display === 'none') {
+            formElement.style.display = 'block';
+            titleElement.style.display = 'none';
+            textElement.style.display = 'none';
+            buttonElement.textContent = 'Cancelar';
+            addButton.style.display = 'none';
+            // Detener el carrusel
+            var carousel = bootstrap.Carousel.getInstance(carouselElement);
+            carousel.pause();
+        } else {
+            formElement.style.display = 'none';
+            titleElement.style.display = 'block';
+            textElement.style.display = 'block';
+            buttonElement.textContent = 'Editar';
+            addButton.style.display = '';
+            // Reanudar el carrusel
+            var carousel = bootstrap.Carousel.getInstance(carouselElement);
+            carousel.cycle();
+        }
+    }
+
+    function toggleAddForm() {
+        var addFormElement = document.getElementById('addForm');
+        if (addFormElement.style.display === 'none') {
+            addFormElement.style.display = 'block';
+        } else {
+            addFormElement.style.display = 'none';
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         // Selecciona todas las alertas que deben desaparecer automáticamente
         const alerts = document.querySelectorAll('.auto-dismiss-alert');
@@ -164,31 +256,6 @@
             }, 3000); // 3 segundos
         });
     });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const editButton = document.getElementById('editButton');
-        const saveButton = document.querySelector('#editForm button');
-        const editForm = document.getElementById('editForm');
-        const ayuntamientoText = document.getElementById('ayuntamientoText');
-    
-        // Mostrar textarea y ocultar el <p>
-        editButton.addEventListener('click', function () {
-            editForm.style.display = 'block';
-            ayuntamientoText.style.display = 'none';
-            editButton.style.display = 'none';
-        });
-    
-        // Cuando se guarde (form submit)
-        saveButton.addEventListener('click', function () {
-            // Opcional: Muestra un mensaje visual hasta que se procese el cambio
-            ayuntamientoText.innerHTML = document.getElementById('ayuntamientoInput').value.replace(/\n/g, '<br>');
-            editForm.style.display = 'none';
-            ayuntamientoText.style.display = 'block';
-            editButton.style.display = 'inline-block';
-        });
-    });
-    
-
 </script>
 
 <style>
@@ -197,6 +264,41 @@
 }
 .zoom-on-hover:hover {
     transform: scale(1.05);
+}
+.custom-carousel-control {
+    width: 5%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0); /* Ajusta la opacidad aquí */
+    color: transparent;
+    text-align: center;
+    opacity: 0.0;
+    transition: opacity 0.15s ease;
+}
+
+.custom-carousel-control:hover {
+    opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 100%, 100%;
+    background-image: none;
+    color: transparent;
+}
+
+.carousel-control-prev-icon::after {
+    content: '❮';
+    font-size: 2rem;
+}
+
+.carousel-control-next-icon::after {
+    content: '❯';
+    font-size: 2rem;
 }
 </style>
 

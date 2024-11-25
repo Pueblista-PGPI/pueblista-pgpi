@@ -85,32 +85,36 @@
                 <a href="{% url 'solicitud_reserva_especial' espacio.id %}" class="btn btn-primary">Solicitar Reserva Especial</a>
                 <a href="{% url 'mis_solicitudes' espacio.id %}" class="btn btn-secondary">Ver mis solicitudes</a>
                 <hr class="my-4 mx-auto" style="max-width: 500px">
-                <h4 class="mt-4"><strong>Otras reservas programadas en este espacio</strong></h4>
-                <div class="row mt-4">
-                    {% if reservas|length == 1 %}
-                        <div class="col-md-4 offset-md-4 mb-3">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>Nombre:</strong> {{ reservas.0.nombre }}</h5>
-                                    <p class="mb-1"><strong>Fecha:</strong> {{ reservas.0.fecha }}</p>
-                                    <p class="mb-1"><strong>Horario:</strong> {{ reservas.0.hora_inicio }} - {{ reservas.0.hora_fin }}</p>
+                {% if reservas|length == 0 %}
+                    <h4 class="mt-4"><strong>No hay ninguna reserva programada para el {{ fecha_seleccionada_formateada }}</strong></h4>
+                {% else %}
+                    <h4 class="mt-4"><strong>Otras reservas programadas para el {{ fecha_seleccionada_formateada}}</strong></h4>
+                    <div class="row mt-4">
+                        {% if reservas|length == 1 %}
+                            <div class="col-md-4 offset-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Nombre:</strong> {{ reservas.0.nombre }}</h5>
+                                        <p class="mb-1"><strong>Fecha:</strong> {{ reservas.0.fecha }}</p>
+                                        <p class="mb-1"><strong>Horario:</strong> {{ reservas.0.hora_inicio }} - {{ reservas.0.hora_fin }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% else %}
-                        {% for reserva in reservas %}
-                        <div class="col-md-4 mb-3">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>Nombre:</strong> {{ reserva.nombre }}</h5>
-                                    <p class="mb-1"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
-                                    <p class="mb-1"><strong>Horario:</strong> {{ reserva.hora_inicio }} - {{ reserva.hora_fin }}</p>
+                        {% else %}
+                            {% for reserva in reservas %}
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Nombre:</strong> {{ reserva.nombre }}</h5>
+                                        <p class="mb-1"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                                        <p class="mb-1"><strong>Horario:</strong> {{ reserva.hora_inicio }} - {{ reserva.hora_fin }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         {% endif %}
     {% endif %}

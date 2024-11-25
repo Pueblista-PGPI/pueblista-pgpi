@@ -44,7 +44,9 @@
             {% if reserva.nombre != 'LIMPIEZA' and reserva.estado == 'Realizada' %}
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                        {% if reserva.foto %}
+                            <img class="card-img-top w-100 d-block fit-cover" style="width:100%;" src="data:image/jpeg;base64,{{ reserva.foto }}">
+                        {% endif %}
                         <div class="card-body p-4">
                             <p class="text-primary card-text mb-0">Reserva</p>
                             <h4 class="card-title">{{ reserva.espacio }}</h4>
