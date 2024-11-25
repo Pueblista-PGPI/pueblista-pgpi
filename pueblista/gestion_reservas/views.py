@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.urls import reverse
 from gestion_usuarios.decorators import tipo_usuario_requerido
 
 from .forms import SolicitudReservaEspecialForm
@@ -10,13 +10,7 @@ from gestion_espacios.models import EspacioPublico
 from datetime import datetime, timedelta
 from django.contrib import messages
 from django.db.models import Q
-
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib import messages
-from gestion_espacios.models import EspacioPublico
 from .models import SolicitudReservaEspecial
-from datetime import datetime
 
 
 def comprueba_horas(hora_inicio, hora_fin):
@@ -161,7 +155,7 @@ def aceptar_solicitud(request, id):
         return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
 
     return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
-    
+
 
 @login_required
 def calendario_reservas(request, id):
@@ -178,8 +172,27 @@ def calendario_reservas(request, id):
         messages.error(request, "No se pueden hacer reservas en fechas pasadas.")
         return redirect('calendario_reservas', id=id)
     espacio = get_object_or_404(EspacioPublico, id=id)  # Obtener el espacio con ese ID
-    reservas = Reserva.objects.filter(fecha=fecha_seleccionada, espacio=espacio).order_by('hora_inicio')
+    subespacios = (
+        [subespacio.strip() for subespacio in espacio.subespacios.split(",")]
+        if espacio.subespacios and espacio.subespacios != ""
+        else []
+    )
+    subespacio_seleccionado = request.GET.get('subespacio')
+    if subespacio_seleccionado or subespacios != []:
+        reservas = Reserva.objects.filter(
+            fecha=fecha_seleccionada,
+            espacio=espacio,
+            subespacio=(subespacio_seleccionado
+                        if subespacio_seleccionado
+                        else subespacios[0])).order_by('hora_inicio')
+    else:
+        reservas = Reserva.objects.filter(
+            fecha=fecha_seleccionada,
+            espacio=espacio).order_by('hora_inicio')
 
+    if subespacio_seleccionado and subespacio_seleccionado not in subespacios:
+        messages.error(request, "El subespacio seleccionado no es válido.")
+        return redirect('calendario_reservas', id=id)
     # Estructura de horarios
     horarios = [
         ('09:00', '10:00'),
@@ -207,13 +220,17 @@ def calendario_reservas(request, id):
             'mia': reserva.usuario == request.user if reserva else False
         })
 
+    redireccion = subespacio_seleccionado if subespacio_seleccionado else subespacios[0] if subespacios != [] else None
+
     return render(request, 'calendario_reservas.html', {
         'fecha_seleccionada': fecha_seleccionada,
         'horarios_reservas': horarios_reservas,
         'espacio': espacio,
         'nombre_completo': request.user.nombre + ' ' + request.user.apellidos,
         'reserva_id': -1,
-        'reservas': reservas
+        'reservas': reservas,
+        'subespacios': subespacios if subespacios != [] else None,
+        'subespacio_seleccionado': redireccion
     })
 
 
@@ -226,13 +243,27 @@ def crear_reserva(request, id):
             fecha = request.POST.get('fecha')
             hora_inicio = request.POST.get('hora_inicio')
             hora_fin = request.POST.get('hora_fin')
+            subespacio = (
+                request.POST.get('subespacio_seleccionado') if
+                request.POST.get('subespacio_seleccionado') else None)
+
+            # Función para reutilización de código
+            def redirigir_con_subespacio():
+                base_url = reverse('calendario_reservas', args=[espacio.id])
+                if subespacio:
+                    return f"{base_url}?subespacio={subespacio}"
+                return base_url
+
             if comprueba_horas(hora_inicio, hora_fin):
-                messages.error(request, "La hora de inicio debe ser menor a la hora de fin.")
-                return redirect('calendario_reservas', id=espacio.id)
+                messages.error(
+                    request,
+                    "La hora de inicio debe ser menor a la hora de fin.")
+                return redirect(redirigir_con_subespacio())
+
             request.session['fecha'] = fecha
-            
-            if espacio.nombre == 'Biblioteca' or espacio.nombre == 'Sala Guadalinfo':
-                # validar si en el salón de reuniones hay una reserva en ese intervalo
+
+            if (espacio.nombre == 'Biblioteca'
+                    or espacio.nombre == 'Sala Guadalinfo'):
                 reservas = Reserva.objects.filter(
                     espacio__nombre='Salón de Reuniones',
                     fecha=fecha,
@@ -241,15 +272,15 @@ def crear_reserva(request, id):
                 )
                 if reservas.exists():
                     messages.error(request, "Ya existe una reserva en el Salón de Reuniones en este intervalo.")
-                    return redirect('calendario_reservas', id=espacio.id)
-                
-            numero_de_reservas_por_usuario_en_espacio_en_fecha = Reserva.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha).count()
-            
+                    return redirect(redirigir_con_subespacio())
+
+            numero_de_reservas_por_usuario_en_espacio_en_fecha = Reserva.objects.filter(
+                usuario=request.user, espacio=espacio, fecha=fecha).count()
+
             if numero_de_reservas_por_usuario_en_espacio_en_fecha >= 4:
                 messages.error(request, "Ya has realizado 4 reservas en este espacio para esta fecha.")
-                return redirect('calendario_reservas', id=espacio.id)
+                return redirect(redirigir_con_subespacio())
 
-            # Validar si ya existe una reserva en este intervalo
             if not Reserva.objects.filter(
                 espacio=espacio,
                 fecha=fecha,
@@ -261,22 +292,36 @@ def crear_reserva(request, id):
                 hora_fin=hora_fin,
                 usuario=request.user
             ).exists():
-                # Crear la reserva
-                Reserva.objects.create(
+                if subespacio and not Reserva.objects.filter(
                     espacio=espacio,
-                    usuario=request.user,
                     fecha=fecha,
                     hora_inicio=hora_inicio,
-                    hora_fin=hora_fin
-                )
+                    hora_fin=hora_fin,
+                    subespacio=subespacio
+                ).exists():
+                    Reserva.objects.create(
+                        espacio=espacio,
+                        usuario=request.user,
+                        fecha=fecha,
+                        hora_inicio=hora_inicio,
+                        hora_fin=hora_fin,
+                        subespacio=subespacio
+                    )
+                else:
+                    Reserva.objects.create(
+                        espacio=espacio,
+                        usuario=request.user,
+                        fecha=fecha,
+                        hora_inicio=hora_inicio,
+                        hora_fin=hora_fin
+                    )
                 messages.success(request, "La reserva se ha creado exitosamente.")
-                # request.session.pop('fecha', None)
             else:
                 messages.error(request, "Ya existe una reserva en este intervalo.")
-        return redirect('calendario_reservas', id=espacio.id) 
+        return redirect(redirigir_con_subespacio())
     except Exception as e:
         messages.error(request, f"Ocurrió un error al crear la reserva: {str(e)}")
-        return redirect('calendario_reservas', id=espacio)
+        return redirect(redirigir_con_subespacio())
 
 
 @login_required
@@ -284,7 +329,9 @@ def cancelar_reserva(request, id):
     # Intenta obtener la reserva asociada al usuario actual
     reserva = get_object_or_404(Reserva, id=id, usuario=request.user)
     espacio_id = reserva.espacio.id
-
+    base_url = reverse('calendario_reservas', args=[espacio_id])
+    subespacio = (
+        reserva.subespacio if reserva.subespacio != "No procede" else None)
     try:
         # Elimina la reserva
         reserva.delete()
@@ -293,7 +340,9 @@ def cancelar_reserva(request, id):
     except Exception as e:
         # Si ocurre un error, muestra un mensaje de error
         messages.error(request, f"Ocurrió un error al cancelar la reserva: {str(e)}")
-
-    return redirect('calendario_reservas', id=espacio_id)
+    if subespacio:
+        return redirect(f"{base_url}?subespacio={subespacio}")
+    else:
+        return redirect('calendario_reservas', id=espacio_id)
 
     # Redirige al calendario de reservas

@@ -22,12 +22,31 @@
         <h1 class="fw-bold mb-4">Calendario de Reservas</h1>
     </div>
 
+{% if subespacios %}
+<div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if subespacio_seleccionado %}
+            {{ subespacio_seleccionado }}
+        {% else %}
+            Selecciona un subespacio
+        {% endif %}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {% for subespacio in subespacios %}
+            <li><a class="dropdown-item" href="?subespacio={{ subespacio }}">{{ subespacio }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
     <div class="text-center my-4">
         <form method="get">
             <label for="fecha">Seleccione un día:</label>
             <input type="date" id="fecha" name="fecha" value="{{ fecha_seleccionada }}" class="form-control w-auto d-inline" onchange="this.form.submit()">
         </form>
     </div>
+
+
 
     {% if fecha_seleccionada %}
         {% if not espacio.espacio_especial %}
@@ -118,6 +137,10 @@
                         {% csrf_token %}
                         <p>¿Estás seguro de realizar la reserva en el siguiente horario?<br>
                             <strong>Espacio:</strong> {{ espacio.nombre }}<br>
+                            {% if subespacio_seleccionado %}
+                            <strong> Subespacio seleccionado:</strong> {{ subespacio_seleccionado }}<br>
+                            <input id="subespacio-seleccionado" name="subespacio_seleccionado" type="hidden" value="{{ subespacio_seleccionado }}">
+                            {% endif %}
                             <strong>Fecha:</strong> <span id="modal-fecha"></span>
                         </p>
                         <div class="mb-3">
@@ -126,6 +149,7 @@
                         <input id="hidden-fecha" name="fecha" type="hidden">
                         <input id="hidden-hora_inicio" name="hora_inicio" type="hidden">
                         <input id="hidden-hora_fin" name="hora_fin" type="hidden">
+                        
                         <button type="submit" class="btn btn-success">Confirmar Reserva</button>
                     </form>
                 </div>

@@ -44,10 +44,12 @@
                         <strong>DÍA:</strong> {{ reserva.fecha }}<br>
                         <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
                         <strong>ESTADO:</strong> {{ reserva.estado }}<br>
+                        {% if reserva.subespacio %}
+                            <strong>SUBESPACIO:</strong> {{ reserva.subespacio }}<br>
+                        {% endif %}
                     </p>
                     <div class="d-flex">
                         <div>
-                            <button class="btn btn-primary" type="button" style="margin-right: 10px;" data-toggle="modal" data-target="#modifyReservationModal" onclick="setModifyFormAction({{ reserva.id }}, '{{ reserva.hora_inicio }}', '{{ reserva.hora_fin }}')">Modificar</button>
                             <button class="btn btn-primary" type="button" style="background: red;color: white;border-color: red;" data-toggle="modal" data-target="#confirmCancelModal" onclick="setCancelFormAction({{ reserva.id }})">Cancelar</button>
                         </div>
                     </div>
@@ -81,123 +83,11 @@
     </div>
 </div>
 
-<!-- Modal de modificación -->
-<div class="modal fade" id="modifyReservationModal" tabindex="-1" role="dialog" aria-labelledby="modifyReservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modifyReservationModalLabel">Modificar Reserva</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="modifyForm" method="POST" action="">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="hora_inicio">Hora de Inicio</label>
-                        <select class="form-control" id="hora_inicio" name="hora_inicio" required onchange="updateHoraFinOptions()">
-                            <!-- Opciones generadas dinámicamente -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="hora_fin">Hora de Fin</label>
-                        <select class="form-control" id="hora_fin" name="hora_fin" required onchange="validateHoraFin()">
-                            <!-- Opciones generadas dinámicamente -->
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Guardar Cambios</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
     function setCancelFormAction(reservaId) {
         const form = document.getElementById('cancelForm');
         form.action = `eliminar_reserva/${reservaId}/`;
     }
 
-    function setModifyFormAction(reservaId, horaInicioActual, horaFinActual) {
-        const form = document.getElementById('modifyForm');
-        form.action = `modificar_reserva/${reservaId}/`;
-
-        const horaInicioSelect = document.getElementById('hora_inicio');
-        const horaFinSelect = document.getElementById('hora_fin');
-
-        const horarios = [
-            '09:00', '10:00', '11:00', '12:00', '13:00',
-            '16:00', '17:00', '18:00', '19:00', '20:00'
-        ];
-
-        // Limpiar opciones actuales
-        horaInicioSelect.innerHTML = '';
-        horaFinSelect.innerHTML = '';
-
-        // Generar opciones de hora de inicio
-        horarios.forEach(hora => {
-            const option = document.createElement('option');
-            option.value = hora;
-            option.textContent = hora;
-            if (hora === horaInicioActual) {
-                option.selected = true;
-            }
-            horaInicioSelect.appendChild(option);
-        });
-
-        // Generar opciones de hora de fin
-        updateHoraFinOptions();
-
-        // Establecer los valores actuales como seleccionados
-        document.getElementById('hora_inicio').value = horaInicioActual;
-        document.getElementById('hora_fin').value = horaFinActual;
-    }
-
-    function updateHoraFinOptions() {
-        const horaInicioSelect = document.getElementById('hora_inicio');
-        const horaFinSelect = document.getElementById('hora_fin');
-        const horaInicio = horaInicioSelect.value;
-
-        const horarios = [
-            '09:00', '10:00', '11:00', '12:00', '13:00',
-            '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'
-        ];
-
-        // Limpiar opciones actuales de hora de fin
-        horaFinSelect.innerHTML = '';
-
-        // Generar opciones de hora de fin basadas en la hora de inicio seleccionada
-        let addOptions = false;
-        horarios.forEach((hora, index) => {
-            if (hora === horaInicio && index < horarios.length - 1) {
-                const option = document.createElement('option');
-                option.value = horarios[index + 1];
-                option.textContent = horarios[index + 1];
-                horaFinSelect.appendChild(option);
-            }
-        });
-
-        // Validar la hora de fin
-        validateHoraFin();
-    }
-
-    function validateHoraFin() {
-        const horaInicioSelect = document.getElementById('hora_inicio');
-        const horaFinSelect = document.getElementById('hora_fin');
-        const alertContainer = document.getElementById('alert-container');
-
-        const horaInicio = horaInicioSelect.value;
-        const horaFin = horaFinSelect.value;
-
-        const horaInicioDate = new Date(`1970-01-01T${horaInicio}:00`);
-        const horaFinDate = new Date(`1970-01-01T${horaFin}:00`);
-        const oneHourLater = new Date(horaInicioDate.getTime() + 60 * 60 * 1000);
-
-        if (horaFinDate.getTime() !== oneHourLater.getTime()) {
-            alertContainer.style.display = 'block';
-        } else {
-            alertContainer.style.display = 'none';
-        }
-    }
 </script>
 {% endblock %}

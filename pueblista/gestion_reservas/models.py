@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
+from gestion_espacios.models import EspacioPublico
 
 # Create your models here.
 
@@ -29,47 +31,68 @@ class Reserva(models.Model):
     espacio = models.ForeignKey(
         'gestion_espacios.EspacioPublico',
         on_delete=models.CASCADE, null=False, blank=False)
+    subespacio = models.CharField(max_length=100, default="No procede")
 
-    usuario = models.ForeignKey('gestion_usuarios.CustomUser', on_delete=models.CASCADE, null=False, blank=False)
+    usuario = models.ForeignKey('gestion_usuarios.CustomUser',
+                                on_delete=models.CASCADE, null=False,
+                                blank=False)
     # email = models.EmailField(max_length=100, null=False, blank=False)
 
     def __str__(self):
-        return ("Espacio: " + self.espacio.nombre + " - Fecha: " + str(self.fecha) + 
-            " - Desde: " + str(self.hora_inicio) + " Hasta: " + str(self.hora_fin) + 
-            " - Estado: " + self.estado + " - Nombre: " + self.usuario.nombre + 
-            " " + self.usuario.apellidos)
+        return ("Espacio: " + self.espacio.nombre +
+                (" - Subespacio: " + self.subespacio
+                 if self.subespacio != "No procede" else "") +
+                " - Fecha: " + str(self.fecha) + " - Desde: " + 
+                str(self.hora_inicio) + " Hasta: " + str(self.hora_fin) + " - Estado: " + self.estado
+                + " - Nombre: " + self.usuario.nombre +
+                " " + self.usuario.apellidos)
 
     class Meta:
-        unique_together = ('espacio', 'fecha', 'hora_inicio')
+        unique_together = ('espacio', 'subespacio', 'fecha', 'hora_inicio')
 
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'espacio', 'estado', 'usuario']
 
-    def crear_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
-        if not Reserva.objects.filter(espacio=espacio, fecha=fecha, hora_inicio=hora_inicio).exists() and hora_inicio < hora_fin and fecha >= timezone.now().date():    
-            self.fecha = fecha
-            self.hora_inicio = hora_inicio
-            self.hora_fin = hora_fin
-            self.estado = estado
-            self.espacio = espacio
-            self.usuario = usuario
-            self.save()
-            return self
-        else:
-            return None
+    def clean(self):
+        # Validar que la hora de inicio sea menor que la hora de fin
+        if self.hora_inicio and self.hora_fin and self.hora_inicio >= self.hora_fin:
+            raise ValidationError('La hora de inicio debe ser menor que la hora de fin.')
 
-    def modificar_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, usuario):
+        # Validar que el espacio y el puesto (si aplica) esté disponible
+        if Reserva.objects.filter(espacio=self.espacio,
+                                  subespacio=self.subespacio,
+                                  fecha=self.fecha,
+                                  hora_inicio=self.hora_inicio).exists():
+            if self.subespacio == "No procede":
+                raise ValidationError('El espacio seleccionado no está disponible.')
+            else:
+                raise ValidationError('El espacio y puesto seleccionados no están disponibles.')
+        
+        # Validar que la fecha no sea en el pasado
+        if self.fecha and self.fecha < timezone.now().date():
+            raise ValidationError('La fecha de la reserva no puede ser en el pasado.')
+        
+        # Validar que el espacio esté disponible
+        if self.espacio.estado and self.espacio.estado == EspacioPublico.NO_DISPONIBLE:
+            raise ValidationError('El espacio no está disponible para reservas.')
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Llamar a full_clean para ejecutar las validaciones personalizadas
+        super().save(*args, **kwargs)
+    
+    def modificar_reserva(self, fecha, hora_inicio, hora_fin, estado, espacio, subespacio, usuario):
         self.fecha = fecha
         self.hora_inicio = hora_inicio
         self.hora_fin = hora_fin
         self.estado = estado
         self.espacio = espacio
+        self.subespacio = subespacio
         self.usuario = usuario
         self.save()
 
     def borrar_reserva(self):
         self.delete()
-        
-        
+
+
 class SolicitudReservaEspecial(models.Model):
     ESTADO_CHOICES = [
         ('PENDIENTE', 'Pendiente'),

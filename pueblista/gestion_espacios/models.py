@@ -13,6 +13,7 @@ class EspacioPublico(models.Model):
 
     nombre = models.CharField(max_length=100, null=False, blank=False)
     horario = models.CharField(max_length=100, null=False, blank=False)
+    subespacios = models.CharField(max_length=150, null=True, blank=True)
     descripcion = models.TextField(null=False, blank=False)
     fotos = models.ImageField(upload_to='spaces',
                               verbose_name='photo', null=True, blank=True)
@@ -31,13 +32,16 @@ class EspacioPublico(models.Model):
     REQUIRED_FIELDS = ['nombre', 'horario', 'descripcion',
                        'telefono', 'estado', 'espacio_especial', 'limpieza']
 
-    def editar_espacio(self, nombre=None, horario=None, descripcion=None,
+    def editar_espacio(self, nombre=None, horario=None,
+                       subespacios=subespacios, descripcion=None,
                        fotos=None, estado=None, telefono=None,
                        espacio_especial=None, limpieza=None):
         if nombre:
             self.nombre = nombre
         if horario:
             self.horario = horario
+        if subespacios:
+            self.subespacios = subespacios
         if descripcion:
             self.descripcion = descripcion
         if fotos:
