@@ -57,15 +57,6 @@ class Reserva(models.Model):
         if self.hora_inicio and self.hora_fin and self.hora_inicio >= self.hora_fin:
             raise ValidationError('La hora de inicio debe ser menor que la hora de fin.')
 
-        # Validar que el espacio y el puesto (si aplica) esté disponible
-        if Reserva.objects.filter(espacio=self.espacio,
-                                  subespacio=self.subespacio,
-                                  fecha=self.fecha,
-                                  hora_inicio=self.hora_inicio).exists():
-            if self.subespacio == "No procede":
-                raise ValidationError('El espacio seleccionado no está disponible.')
-            else:
-                raise ValidationError('El espacio y puesto seleccionados no están disponibles.')
         
         # Validar que la fecha no sea en el pasado
         if self.fecha and self.fecha < timezone.now().date():

@@ -4,6 +4,8 @@ from gestion_reservas.models import Reserva
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from datetime import datetime
+from gestion_sms.sms import send_sms
+from gestion_notificaciones.models import Notificacion
 
 
 @login_required
@@ -72,7 +74,10 @@ def modificar_estado(request, reserva_id):
         estado = request.POST.get('estado')
         reserva.estado = estado
         reserva.save()
+
         if estado == 'Cancelada':
+            notificacion = Notificacion(mensaje=f"Su reserva del espacio {reserva.espacio.nombre} para el día {reserva.fecha} y la hora {reserva.hora_inicio} ha sido cancelada.", usuario=reserva.usuario)
+            notificacion.save()
             reserva.delete()
         messages.success(request, "El estado de la reserva se ha modificado exitosamente.")
         return redirect(f'/espacios/reservas_fecha/{espacio_id}/')

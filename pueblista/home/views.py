@@ -7,6 +7,7 @@ import os
 
 from gestion_usuarios.decorators import tipo_usuario_requerido
 from home.models import Configuracion
+from gestion_notificaciones.models import Notificacion
 
 
 def send_email(request, subject, full_message, success_message):
@@ -57,6 +58,8 @@ def home(request):
     Pueblista,  podrás disfrutar de tu pueblo como nunca antes."""
     
     user = request.user
+    
+    notificaciones_no_leidas_count = Notificacion.objects.filter(usuario=user, leida=False).count()
 
     if request.method == 'POST':
         if 'nuevo_ayuntamiento' in request.POST:  # Comprobar si el formulario envió un cambio de texto
@@ -88,7 +91,9 @@ def home(request):
         "ayuntamiento": texto_ayuntamiento,
         "pueblista": texto_pueblista,
         "contact_text": 'Contacta con nosotros!',
-        "user": user
+        "user": user,
+        "notificaciones": notificaciones_no_leidas_count
+        
     })
 
 @login_required

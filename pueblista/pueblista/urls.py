@@ -11,6 +11,7 @@ urlpatterns = [
     path('auth/', include('gestion_usuarios.urls')),
     path('mis_reservas/', include('listado_reservas.urls')),
     path('', include('home.urls')),
+    path('notificaciones/', include('gestion_notificaciones.urls')),
 ]
 
 if settings.DEBUG:
