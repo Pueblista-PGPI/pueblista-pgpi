@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('perfil/', views.perfil, name='perfil'), 
     path('user_list/', views.user_list, name='user_list'),
+    path('eliminar_reservas_y_cerrar_sesion/', views.eliminar_reservas_y_cerrar_sesion, name='eliminar_reservas_y_cerrar_sesion'),
 ]

@@ -20,6 +20,7 @@ header-includes:        # para los colores en las tablas
     - \usepackage{colortbl}
     - \usepackage{xcolor}
     - \usepackage{placeins}
+    - \usepackage{float}  # añadir este paquete
 ---
 \definecolor{orange1}{HTML}{EDBB99}
 \definecolor{blue1}{HTML}{5DADE2}
@@ -57,9 +58,9 @@ header-includes:        # para los colores en las tablas
 
 En la siguiente imagen se muestra el Burndown Chart del Sprint:
 
-\begin{figure}
-\hspace{-4.25cm}
-\includegraphics[width=1.4\textwidth]{../../img/burndown_finalizado_1.jpg}
+\begin{figure}[H]
+\hspace{-1.25cm}
+\includegraphics[width=1.1\textwidth]{../../img/burndown_finalizado_1.jpg}
 \caption{Imagen Burndown del Primer Sprint}
 \end{figure}
 

@@ -31,6 +31,14 @@
             <label for="estado" class="form-label">Estado:</label>
             {{ form.estado }}
         </div>
+
+        <div class="mb-3 w-75">
+            <label for="subespacios" class="form-label">Subespacios:</label>
+            {{ form.subespacios }}
+            <small class="text-muted">¡Atención! Sólo podrás añadir subespacios al crear un espacio, luego no podrás editarlos.
+                Los subespacios se añaden de la siguiente manera: "Subespacio 1, Subespacio 2, Subespacio 3, ...".
+            </small>
+        </div>
         <div class="mb-3 w-75">
             <label for="fotos" class="form-label">Fotos:</label>
             {{ form.fotos }}

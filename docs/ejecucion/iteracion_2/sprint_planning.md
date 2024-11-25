@@ -1,7 +1,7 @@
 ---
 title: "Sprint Planning"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
-date: "06/11/2024"  # modificar
+date: "14/11/2024"  # modificar
 subject: "PGPI"
 author: [Daniel Fernández Caballero, Ramón Gavira Sánchez, José Miguel Iborra Conejo, Antonio Macías Ferrera, Rafael Pulido Cifuentes]
 lang: "es"
@@ -33,7 +33,7 @@ header-includes:        # para los colores en las tablas
 - **PROPIETARIO DEL PROYECTO:** Ayuntamiento de Villanueva de las cruces
 - **PATROCINADOR DEL PROYECTO:** María José Escalona (alcaldesa)
 - **DIRECTOR DEL PROYECTO:** Ramón Gavira Sánchez
-- **FECHA DE CREACIÓN:** 06/11/2024
+- **FECHA DE CREACIÓN:** 14/11/2024
 - **ELABORADO POR:** José Miguel Iborra Conejo
 - **VERSIÓN DEL DOCUMENTO:** 1.0
  \newline
@@ -42,7 +42,7 @@ header-includes:        # para los colores en las tablas
 
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
-|06/11/24     | José Miguel Iborra Conejo     | Elaboración de la primera versión del acta del Sprint Planning. |
+|14/11/24     | José Miguel Iborra Conejo     | Elaboración de la primera versión del acta del Sprint Planning. |
 
 \newpage
 
@@ -50,7 +50,7 @@ header-includes:        # para los colores en las tablas
 
 ## Objetivo de la Reunión
 
-El objetivo de esta reunión es planificar el trabajo del primer sprint, seleccionando las tareas del Product Backlog de acuerdo con el Sprint Goal, la prioridad y la capacidad del equipo. Cada sprint contará con su propio Sprint Planning, Sprint Backlog, Sprint Review y Sprint Retrospective. Las tareas de cada sprint se seleccionan siguiendo los criterios de prioridad y capacidad del equipo, y se gestionan en ZenHub.
+El objetivo de esta reunión es planificar el trabajo del segundo sprint, seleccionando las tareas del Product Backlog de acuerdo con el Sprint Goal, la prioridad y la capacidad del equipo. Cada sprint contará con su propio Sprint Planning, Sprint Backlog, Sprint Review y Sprint Retrospective. Las tareas de cada sprint se seleccionan siguiendo los criterios de prioridad y capacidad del equipo, y se gestionan en ZenHub.
 
 ## Roles del Equipo
 
@@ -63,10 +63,10 @@ El objetivo de esta reunión es planificar el trabajo del primer sprint, selecci
 
 ## Objetivo del Sprint (Sprint Goal)
 
-Este sprint tiene como objetivo completar el desarrollo de funcionalidades CRUD esenciales para el sistema de reserva de espacios, asegurando que los usuarios puedan interactuar con la aplicación en sus funciones básicas.
+Este Sprint tiene como objetivo principal completar el desarrollo de las funcionalidades clave relacionadas con la gestión de reservas dentro del sistema, asegurando que los usuarios puedan realizar y gestionar reservas de manera intuitiva y eficiente.
 
-- **Fecha del Hito**: 13 de noviembre de 2024 
-- **Descripción**: Completar las funcionalidades CRUD, lo cual incluye la creación, edición, visualización y eliminación de espacios y datos de usuarios.
+- **Fecha del Hito**: 20 de noviembre de 2024  
+- **Descripción**: Desarrollar las funcionalidades críticas relacionadas con la gestión de reservas, incluyendo la creación, modificación, visualización, disponibilidad e indisponibilidad de espacios.
 
 ## Definición de Hecho (Definition of Done)
 
@@ -100,31 +100,34 @@ Para estimar el esfuerzo utilizaremos **Story Points**, siendo 1 Story Point el 
 
 A continuación se muestra una tabla en la que estimamos el esfuerzo de las tareas creadas para cada épica del sprint backlog. (Estas tareas han quedado reflejadas en el tablero de ZenHub).
 
-| Tarea                                | Story Points |
-|--------------------------------------|--------------|
-| Borrado de espacios                  | 2            |
-| Creación de espacios                 | 4            |
-| Contacto directo a la empresa        | 5            |
-| Homepage                             | 2.5          |
-| Navbar                               | 1.5          |
-| Codacy                               | 1.5          |
-| Render                               | 1.5          |
-| Datos de los usuarios                | 2            |
-| Edición de información sobre ayuntamientos | 1      |
-| Información sobre espacios           | 3            |
-| Información sobre ayuntamiento       | 1.5          |
-| Login simple                         | 4            |
-| Listado de usuarios                  | 2            |
-| Visualizar perfil                    | 2            |
+| Tarea                                             | Story Points |
+|---------------------------------------------------|--------------|
+| Reservas por franjas horarias                     | 5            |
+| Múltiples reservas                                | 2.5          |
+| Cancelación de reservas                           | 2.5          |
+| Creación de reservas                              | 5            |
+| Revisar listado de usuarios                       | 1.5          |
+| Testing de usuarios                               | 1.5          |
+| Revisar funcionalidad correo de contacto          | 1.5          |
+| Revisión de listado de espacios                   | 1.5          |
+| Listado de reservas                               | 4            |
+| Ver reservas (usuario)                            | 3.5          |
+| Revisar direccionamiento de rutas                 | 0.5          |
+| Testing espacios                                  | 2            |
+| Testing reservas                                  | 4            |
+| Testing Homepage                                  | 1            |
+| Reserva especial de espacios                      | 2            |
+| Borrado de reservas por reservas de orden superior| 2            |
 
-**Total estimado del Sprint**: 33.5 Story Points
+
+**Total estimado del Sprint**: 40 Story Points
 
 ## Análisis del Gráfico Burndown
 
 A continuación, se presenta el Burndown Chart correspondiente al primer sprint. Este gráfico muestra el trabajo restante en función del tiempo. La línea azul refleja el avance ideal y ajustado, ya que en ZenHub no se consideran los fines de semana, aunque el equipo trabaja también esos días. Este gráfico permite visualizar el progreso del equipo y ayuda a ajustar el ritmo si es necesario.
 
 \begin{figure}
-\hspace{-4.25cm}
-\includegraphics[width=1.4\textwidth]{../../img/burndown_sprint_1.jpg}
-\caption{Imagen Burndown del Primer Sprint}
+\hspace{-1.25cm}
+\includegraphics[width=1.2\textwidth]{../../img/burndown_sprint_2.jpg}
+\caption{Imagen Burndown del Segundo Sprint}
 \end{figure}

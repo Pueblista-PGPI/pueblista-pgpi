@@ -7,6 +7,9 @@ from .models import CustomUser
 from .forms import LoginForm
 from .decorators import tipo_usuario_requerido
 
+from django.http import JsonResponse
+from gestion_reservas.models import Reserva
+
 
 def login(request):
     if request.user.is_authenticated:
@@ -57,3 +60,15 @@ def user_list(request):
     users = CustomUser.objects.all()
     users = users.exclude(tipo_usuario='superusuario')
     return render(request, 'user_list.html', {'users': users})
+
+
+@login_required
+def eliminar_reservas_y_cerrar_sesion(request):
+    if request.method == 'POST':
+        usuario = request.user
+        # Eliminar todas las reservas del usuario
+        Reserva.objects.filter(usuario=usuario).delete()
+        # Cerrar sesión
+        logout(request)
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
