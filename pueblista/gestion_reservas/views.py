@@ -73,7 +73,7 @@ def solicitudes_pendientes(request, id):
         motivo = request.POST.get('motivo')
         solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
         if motivo:
-            solicitud.estado = 'cancelada'
+            solicitud.estado = 'Cancelada'
             solicitud.motivo_cancelacion = motivo
             solicitud.save()
             messages.success(request, 'La solicitud ha sido cancelada con éxito.')
