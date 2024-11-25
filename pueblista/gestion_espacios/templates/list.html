@@ -48,18 +48,30 @@
                                         Este espacio no requiere limpieza.
                                     {% endif %}
                                 </p>
-                                <div class="my-3">
-                                    <a class="btn btn-success btn-lg me-2 mb-2" role="button" href="/espacios/{{ space.id }}/reservas/">Reservar</a>
+                               <div class="mb-1">
+                                    <a class="btn btn-success btn-lg me-2 mb-1" role="button" href="/espacios/{{ space.id }}/reservas/">
+                                        <i class="fa fa-plus"></i> Reservar
+                                    </a>
                                     {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
-                                        <a class="btn btn-primary btn-lg me-2 mb-2" role="button" href="{% url 'edit' space.id %}">Editar</a>
+                                        <a class="btn btn-primary btn-lg me-2 mb-1" role="button" href="{% url 'edit' space.id %}">
+                                            <i class="fa fa-edit"></i> Editar
+                                        </a>
                                         <form action="{% url 'delete' space.id %}" method="post" style="display: inline;">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger btn-lg mb-2" role="button" onclick="return confirmDelete('{{ space.nombre }}');">Eliminar</button>
+                                            <button type="submit" class="btn btn-danger btn-lg mb-1" role="button" onclick="return confirmDelete('{{ space.nombre }}');">
+                                                <i class="fa fa-trash"></i> Eliminar 
+                                            </button>
                                         </form>
-                                        {%if space.espacio_especial %}
-                                            <a class="btn btn-warning btn-lg me-2 mb-2" role="button" href="{%url 'solicitudes_pendientes' space.id %}">Revisar solicitudes</a>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-1">
+                                    {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+                                        {% if space.espacio_especial %}
+                                            <a class="btn btn-warning btn-lg me-2 mb-1" role="button" href="{% url 'solicitudes_pendientes' space.id %}">
+                                                <i class="fa fa-exclamation-circle"></i> Solicitudes
+                                            </a>
                                         {% endif %}
-                                        <a class="btn btn-primary btn-lg me-2 mb-2 zoom-on-hover" role="button" href="{% url 'reservas_fecha' space.id %}" style="background: linear-gradient(to right, #000000, #434343); color: white; border-color: white">
+                                        <a class="btn btn-primary btn-lg me-2 mb-1 zoom-on-hover" role="button" href="{% url 'reservas_fecha' space.id %}" style="background: linear-gradient(to right, #000000, #434343); color: white; border-color: white">
                                             <i class="fa fa-calendar"></i> Reservas
                                         </a>
                                         <script>
@@ -80,7 +92,6 @@
                                 <p>No hay imagen disponible</p>
                             {% endif %}
                         </div>
-
                     </div>
                 </div>
             </div>

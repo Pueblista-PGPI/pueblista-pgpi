@@ -163,6 +163,16 @@ def calendario_reservas(request, id):
     fecha_seleccionada = request.GET.get('fecha') if request.GET.get('fecha') else request.session.get('fecha')
     if fecha_seleccionada is None:
         fecha_seleccionada = datetime.now().strftime('%Y-%m-%d')
+
+    MESES = {
+        1: 'enero', 2: 'febrero', 3: 'marzo', 4: 'abril',
+        5: 'mayo', 6: 'junio', 7: 'julio', 8: 'agosto',
+        9: 'septiembre', 10: 'octubre', 11: 'noviembre', 12: 'diciembre'
+    }
+
+    # Formatear la fecha seleccionada
+    fecha_seleccionada_obj = datetime.strptime(fecha_seleccionada, '%Y-%m-%d').date()
+    fecha_seleccionada_formateada = f"{fecha_seleccionada_obj.day} de {MESES[fecha_seleccionada_obj.month]} del {fecha_seleccionada_obj.year}"
         
     #añadelo a la sesion
     request.session['fecha'] = fecha_seleccionada
@@ -224,6 +234,7 @@ def calendario_reservas(request, id):
 
     return render(request, 'calendario_reservas.html', {
         'fecha_seleccionada': fecha_seleccionada,
+        'fecha_seleccionada_formateada': fecha_seleccionada_formateada,
         'horarios_reservas': horarios_reservas,
         'espacio': espacio,
         'nombre_completo': request.user.nombre + ' ' + request.user.apellidos,
