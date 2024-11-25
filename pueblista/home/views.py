@@ -6,7 +6,7 @@ from django.contrib import messages
 import os
 
 from gestion_usuarios.decorators import tipo_usuario_requerido
-from home.models import Configuracion
+from models import Configuracion
 from gestion_notificaciones.models import Notificacion
 from models import AyuntamientoInfo
 
