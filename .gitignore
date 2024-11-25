@@ -29,6 +29,7 @@ db.sqlite3
 
 # Otros
 .DS_Store
+
 # Archivos estáticos recolectados
 pueblista/staticfiles/
 

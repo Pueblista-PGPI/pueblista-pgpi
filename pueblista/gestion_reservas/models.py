@@ -115,9 +115,6 @@ class SolicitudReservaEspecial(models.Model):
             " - Motivo: " + self.motivo + " - Nombre: " + self.usuario.nombre + 
             " " + self.usuario.apellidos)
         
-    class Meta:
-        unique_together = ('espacio', 'fecha', 'hora_inicio')
-        
     REQUIRED_FIELDS = ['fecha', 'hora_inicio', 'hora_fin', 'motivo', 'espacio', 'usuario']
     
     

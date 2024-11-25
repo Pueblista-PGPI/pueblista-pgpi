@@ -9,11 +9,20 @@ from datetime import datetime
 @login_required
 def listado_reservas(request):
     usuario = request.user
-    query = request.GET.get('q')
-    if query:
-        reservas = Reserva.objects.filter(usuario=usuario, espacio__nombre__icontains=query).order_by('fecha')
+    fecha_inicio = request.GET.get('fecha_inicio')
+    fecha_fin = request.GET.get('fecha_fin')
+
+    if fecha_inicio and fecha_fin:
+        reservas = Reserva.objects.filter(
+            usuario=usuario,
+            fecha__range=[fecha_inicio, fecha_fin],
+            estado='Realizada'
+        ).exclude(nombre='LIMPIEZA').order_by('fecha')
     else:
-        reservas = Reserva.objects.filter(usuario=usuario).order_by('fecha')
+        reservas = Reserva.objects.filter(
+            usuario=usuario,
+            estado='Realizada'
+        ).exclude(nombre='LIMPIEZA').order_by('fecha')
 
     reservas = [
         {
@@ -23,13 +32,17 @@ def listado_reservas(request):
             'hora_fin': reserva.hora_fin,
             'estado': reserva.estado,
             'espacio': reserva.espacio.nombre,
-            'subespacio': reserva.subespacio if reserva.subespacio != "No procede" else None
+            'subespacio': reserva.subespacio if reserva.subespacio != "No procede" else None,
+            'especial': reserva.espacio.espacio_especial,
         }
         for reserva in reservas
     ]
 
-    return render(request, 'listado_reservas.html', {"reservas": reservas, "query": query})
-
+    return render(request, 'listado_reservas.html', {
+        "reservas": reservas,
+        "fecha_inicio": fecha_inicio,
+        "fecha_fin": fecha_fin
+    })
 
 @login_required
 def eliminar_reserva(request, reserva_id):

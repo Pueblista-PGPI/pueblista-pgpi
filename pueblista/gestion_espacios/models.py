@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+import base64
 
 
 class EspacioPublico(models.Model):
@@ -15,8 +16,7 @@ class EspacioPublico(models.Model):
     horario = models.CharField(max_length=100, null=False, blank=False)
     subespacios = models.CharField(max_length=150, null=True, blank=True)
     descripcion = models.TextField(null=False, blank=False)
-    fotos = models.ImageField(upload_to='spaces',
-                              verbose_name='photo', null=True, blank=True)
+    fotos = models.TextField(null=True, blank=True)
     telefono = models.CharField(max_length=9, validators=[
         RegexValidator(regex=r'^\d{9}$',
                        message='''El número de teléfono debe
@@ -59,3 +59,9 @@ class EspacioPublico(models.Model):
 
     def borrar_espacio(self):
         self.delete()
+
+    # Método para decodificar la imagen en Base64 (opcional)
+    def get_decoded_image(self):
+        if self.fotos:
+            return base64.b64decode(self.fotos)
+        return None
