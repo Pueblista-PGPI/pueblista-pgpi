@@ -137,26 +137,37 @@ def aceptar_solicitud(request, id):
             # una para el día previo a la reserva y otra para el día posterior a la reserva
             
             # Reserva para el día previo
-            Reserva.objects.create(
+            if not Reserva.objects.filter(
                 fecha=solicitud.fecha - timedelta(days=1),
-                hora_inicio=datetime.min.time(),
-                hora_fin=datetime.max.time(),
-                estado=Reserva.REALIZADA,
                 espacio=solicitud.espacio,
-                usuario=request.user,
                 nombre='LIMPIEZA'
-            )
+            ).exists():
+                Reserva.objects.create(
+                    fecha=solicitud.fecha - timedelta(days=1),
+                    hora_inicio=datetime.min.time(),
+                    hora_fin=datetime.max.time(),
+                    estado=Reserva.REALIZADA,
+                    espacio=solicitud.espacio,
+                    usuario=request.user,
+                    nombre='LIMPIEZA'
+                )
+                
             
             # Reserva para el día posterior
-            Reserva.objects.create(
+            if not Reserva.objects.filter(
                 fecha=solicitud.fecha + timedelta(days=1),
-                hora_inicio=datetime.min.time(),
-                hora_fin=datetime.max.time(),
-                estado=Reserva.REALIZADA,
                 espacio=solicitud.espacio,
-                usuario=request.user,
                 nombre='LIMPIEZA'
-            )
+            ).exists():
+                Reserva.objects.create(
+                    fecha=solicitud.fecha + timedelta(days=1),
+                    hora_inicio=datetime.min.time(),
+                    hora_fin=datetime.max.time(),
+                    estado=Reserva.REALIZADA,
+                    espacio=solicitud.espacio,
+                    usuario=request.user,
+                    nombre='LIMPIEZA'
+                )
             
             
         # ahora lo que hay que hacer es, si el espacio en el que se ha reservao se llama "Salón de Reuniones", entonces
