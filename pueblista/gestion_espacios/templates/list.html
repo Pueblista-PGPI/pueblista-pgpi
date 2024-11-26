@@ -35,7 +35,7 @@
                         <div class="col-md-6">
                             <div class="text-white p-4 p-md-5">
                                 {% if space.espacio_especial %}
-                                    <p class="text-primary card-text mb-2">Espacio especial</p>
+                                    <p class="text-warning card-text mb-2">Espacio especial</p>
                                 {% endif %}
                                 <h2 class="fw-bold text-white mb-3">{{ space.nombre }}</h2>
                                 <p class="mb-4">{{ space.descripcion }}</p>
@@ -89,7 +89,7 @@
                             {% if space.fotos %}
                                 <img src="data:image/jpeg;base64,{{ space.fotos }}" alt="Imagen de {{ space.nombre }}" style="width:100%;">
                             {% else %}
-                                <p>No hay imagen disponible</p>
+                                <p style="color: white">No hay imagen disponible</p>
                             {% endif %}
                         </div>
                     </div>

@@ -22,7 +22,7 @@
 {% block content %}
    <section class="py-4 py-xl-5">
         <div class="container text-center" style="margin-bottom: -20px;">
-            <img class="card-img-top mx-auto d-block" style="height: auto; max-width: 5.75%; object-fit: cover;" src="{% static 'images/home/escudo.png' %}">
+            <img class="card-img-top mx-auto d-block" alt="Escudo del pueblo" style="height: auto; max-width: 5.75%; object-fit: cover;" src="{% static 'images/home/escudo.png' %}">
         </div>
         <div class="container">
             <div class="text-center p-4 p-lg-5">
@@ -42,7 +42,7 @@
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
                 <div class="col">
-                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" alt="Imagen del equipo de Pueblista" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                         <div class="card-body p-4">
                             <h4 class="card-title">Acerca de Pueblista</h4>
                             <p class="card-text">{{ pueblista|linebreaks }}</p>
@@ -55,7 +55,7 @@
                             {% for info in ayuntamiento_info %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <div class="card">
-                                    <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
+                                    <img class="card-img-top w-100 d-block fit-cover" alt="Ayuntamiento de Villanueva de las Cruces" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
                                     <div class="card-body p-4">
                                         <h4 class="card-title" id="ayuntamientoTitle{{ forloop.counter }}">{{ info.titulo }}</h4>
                                         <p class="card-text" id="ayuntamientoText{{ forloop.counter }}">{{ info.descripcion }}</p>
@@ -149,7 +149,7 @@
                                         </span>
                                     </div>
                                     <div class="px-2">
-                                        <h6 class="mb-0" style="text-align: left; font-weight: bold">Teléfono</h6>
+                                        <p class="mb-0" style="text-align: left; font-weight: bold; font-size: 1.1rem">Teléfono</p>
                                         <p class="mb-0">959 57 80 01</p>
                                     </div>
                                 </div>
@@ -160,7 +160,7 @@
                                         </span>
                                     </div>
                                     <div class="px-2">
-                                        <h6 class="mb-0" style="text-align: left; font-weight: bold">Correo</h6>
+                                        <p class="mb-0" style="text-align: left; font-weight: bold; font-size: 1.1rem">Correo</p>
                                         <p class="mb-0">pueblista.contactanos@gmail.com</p>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                         </span>
                                     </div>
                                     <div class="px-2">
-                                        <h6 class="mb-0" style="text-align: left; font-weight: bold">Ubicación</h6>
+                                        <p class="mb-0" style="text-align: left; font-weight: bold; font-size: 1.1rem">Ubicación</p>
                                         <p class="mb-0">Calle Constitución, 2</p>
                                     </div>
                                 </div>
