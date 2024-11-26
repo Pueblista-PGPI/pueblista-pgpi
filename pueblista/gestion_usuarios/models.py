@@ -5,10 +5,7 @@ from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
-
-    def __str__(self):
-        return f"{self.nombre} {self.apellidos} ({self.tipo_usuario})"
-
+    
     def create_user(self, dni, nombre, apellidos, telefono, direccion_postal,
                     fecha_nacimiento, password=None, **extra_fields):
         if not dni:
@@ -94,3 +91,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'dni'
     REQUIRED_FIELDS = ['fecha_nacimiento', 'nombre', 'apellidos', 'telefono',
                        'direccion_postal']
+    
+    def __str__(self):
+        return f"{self.nombre} {self.apellidos} ({self.tipo_usuario})"
+
