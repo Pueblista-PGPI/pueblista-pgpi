@@ -92,3 +92,12 @@ class NotificacionViewsTests(TestCase):
         self.assertEqual(response.status_code, 302)
         with self.assertRaises(Notificacion.DoesNotExist):
             Notificacion.objects.get(id=self.notificacion.id)
+            
+    def test_borrar_todas_leidas(self):
+        self.notificacion.leida = True
+        self.notificacion.save()
+        
+        response = self.client.get(reverse('borrar_todas_leidas'))
+        self.assertEqual(response.status_code, 302)
+        notificaciones = Notificacion.objects.filter(usuario=self.user)
+        self.assertEqual(notificaciones.count(), 0)
