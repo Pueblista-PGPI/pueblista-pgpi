@@ -92,7 +92,8 @@
                                             <p class="mb-1"><strong>Hora de Fin:</strong> {{ reserva.hora_fin }}</p>
                                             <form method="post" action="/mis_reservas/modificar_estado/{{ reserva.id }}/">
                                                 {% csrf_token %}
-                                                <select name="estado" onchange="this.form.submit()" class="form-select" style="width: auto; display: inline;">
+                                                <label for="id_estado_{{ reserva.id }}" class="form-label"><strong>Estado:</strong></label>
+                                                <select id="id_estado_{{ reserva.id }}" name="id_estado" onchange="this.form.submit()" class="form-select" style="width: auto; display: inline;">
                                                     <option value="Realizada" {% if reserva.estado == 'Realizada' %}selected{% endif %}>Realizada</option>
                                                     <option value="Cancelada" {% if reserva.estado == 'Cancelada' %}selected{% endif %}>Cancelada</option>
                                                     <option value="En curso" {% if reserva.estado == 'En curso' %}selected{% endif %}>En curso</option>

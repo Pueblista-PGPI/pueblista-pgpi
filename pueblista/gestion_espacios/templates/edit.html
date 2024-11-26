@@ -13,27 +13,27 @@
         <form method="post" enctype="multipart/form-data" class="w-75" style="max-width: 600px;">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="nombre" class="form-label"><strong>Nombre:</strong></label>
+                <label for="id_nombre" class="form-label"><strong>Nombre:</strong></label>
                 {{ form.nombre }}
             </div>
             <div class="mb-3">
-                <label for="horario" class="form-label"><strong>Horario:</strong></label>
+                <label for="id_horario" class="form-label"><strong>Horario:</strong></label>
                 {{ form.horario }}
             </div>
             <div class="mb-3">
-                <label for="descripcion" class="form-label"><strong>Descripción:</strong></label>
+                <label for="id_descripcion" class="form-label"><strong>Descripción:</strong></label>
                 {{ form.descripcion }}
             </div>
             <div class="mb-3">
-                <label for="telefono" class="form-label"><strong>Teléfono:</strong></label>
+                <label for="id_telefono" class="form-label"><strong>Teléfono:</strong></label>
                 {{ form.telefono }}
             </div>
             <div class="mb-3">
-                <label for="estado" class="form-label"><strong>Estado:</strong></label>
+                <label for="id_estado" class="form-label"><strong>Estado:</strong></label>
                 {{ form.estado }}
             </div>
             <div class="mb-3">
-                <label for="fotos" class="form-label"><strong>Fotos:</strong></label>
+                <label for="id_fotos" class="form-label"><strong>Fotos:</strong></label>
                 <br></br>
                 {% if espacio.fotos %}
                     <img src="data:image/jpeg;base64,{{ espacio.fotos }}" alt="Imagen de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
@@ -45,11 +45,11 @@
             </div>
             <div class="mb-3 form-check form-switch">
                 {{ form.espacio_especial }}
-                <label for="espacio_especial" class="form-check-label"><strong>Espacio Especial</strong></label>
+                <label for="id_espacio_especial" class="form-check-label"><strong>Espacio Especial</strong></label>
             </div>
             <div class="mb-3 form-check form-switch">
                 {{ form.limpieza }}
-                <label for="limpieza" class="form-check-label"><strong>Requiere Limpieza</strong></label>
+                <label for="id_limpieza" class="form-check-label"><strong>Requiere Limpieza</strong></label>
             </div>
             <small class="text-muted">¡Atención! Este espacio contiene subespacios, los cuales no se pueden editar.</small>
             <div class="mb-3 text-center">
