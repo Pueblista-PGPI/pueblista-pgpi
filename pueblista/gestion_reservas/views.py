@@ -145,10 +145,10 @@ def aceptar_solicitud(request, id):
         # pero cojo solo las reservas de la Biblioteca
         # todas las reservas contenidas en ese intervalo de tiempo... no sé si se está haciendo
         
-        if solicitud.espacio.nombre == 'Salón de Reuniones':
+        if solicitud.espacio.nombre == 'Salón Sociocultural de Reuniones':
             # Obtener todas las reservas para la fecha y intervalo de horas de solicitud
             reservas_a_cancelar = Reserva.objects.filter(
-                Q(espacio__nombre='Biblioteca') | Q(espacio__nombre='Sala Guadalinfo'),
+                Q(espacio__nombre='Biblioteca Pública Municipal Juan Gómez Calero') | Q(espacio__nombre='Sala Guadalinfo'),
                 Q(fecha=solicitud.fecha),
                 Q(hora_inicio__lt=solicitud.hora_fin),
                 Q(hora_fin__gt=solicitud.hora_inicio)
@@ -178,7 +178,6 @@ def aceptar_solicitud(request, id):
         return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
 
     return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
-
 
 @login_required
 def calendario_reservas(request, id):
@@ -270,23 +269,27 @@ def calendario_reservas(request, id):
 
 @login_required
 def crear_reserva(request, id):
-    espacio = '#'
+    espacio = get_object_or_404(EspacioPublico, id=id)
+    # Función para reutilización de código
+    subespacio = (
+    request.POST.get('subespacio_seleccionado') if
+    request.POST.get('subespacio_seleccionado') else None)
+    def redirigir_con_subespacio():
+        base_url = reverse('calendario_reservas', args=[espacio.id])
+        if subespacio:
+            return f"{base_url}?subespacio={subespacio}"
+        return base_url
     try:
-        espacio = get_object_or_404(EspacioPublico, id=id)
         if request.method == 'POST':
             fecha = request.POST.get('fecha')
+            if fecha < datetime.now().strftime('%Y-%m-%d'):
+                messages.error(request, "No se pueden hacer reservas en fechas pasadas.")
+                return redirect(redirigir_con_subespacio())
             hora_inicio = request.POST.get('hora_inicio')
             hora_fin = request.POST.get('hora_fin')
-            subespacio = (
-                request.POST.get('subespacio_seleccionado') if
-                request.POST.get('subespacio_seleccionado') else None)
 
-            # Función para reutilización de código
-            def redirigir_con_subespacio():
-                base_url = reverse('calendario_reservas', args=[espacio.id])
-                if subespacio:
-                    return f"{base_url}?subespacio={subespacio}"
-                return base_url
+
+            
 
             if comprueba_horas(hora_inicio, hora_fin):
                 messages.error(
@@ -296,10 +299,10 @@ def crear_reserva(request, id):
 
             request.session['fecha'] = fecha
 
-            if (espacio.nombre == 'Biblioteca'
+            if (espacio.nombre == 'Biblioteca Pública Municipal Juan Gómez Calero'
                     or espacio.nombre == 'Sala Guadalinfo'):
                 reservas = Reserva.objects.filter(
-                    espacio__nombre='Salón de Reuniones',
+                    espacio__nombre='Salón Sociocultural de Reuniones',
                     fecha=fecha,
                     hora_inicio__lt=hora_fin,
                     hora_fin__gt=hora_inicio
