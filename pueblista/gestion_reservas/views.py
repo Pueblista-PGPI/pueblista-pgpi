@@ -327,43 +327,33 @@ def crear_reserva(request, id):
                 messages.error(request, "Ya has realizado 4 reservas en este espacio para esta fecha.")
                 return redirect(redirigir_con_subespacio())
 
+            if Reserva.objects.filter(
+                usuario=request.user,
+                fecha=fecha,
+                hora_inicio__lt=hora_fin,
+                hora_fin__gt=hora_inicio
+            ).exists():
+                messages.error(request, "Ya tienes una reserva en este intervalo.")
+                return redirect(redirigir_con_subespacio())
+
             if not Reserva.objects.filter(
                 espacio=espacio,
                 fecha=fecha,
                 hora_inicio=hora_inicio,
-                hora_fin=hora_fin
-            ).exists() and not Reserva.objects.filter(
-                fecha=fecha,
-                hora_inicio=hora_inicio,
                 hora_fin=hora_fin,
-                usuario=request.user
+                subespacio=subespacio
             ).exists():
-                if subespacio and not Reserva.objects.filter(
+                Reserva.objects.create(
                     espacio=espacio,
+                    usuario=request.user,
                     fecha=fecha,
                     hora_inicio=hora_inicio,
                     hora_fin=hora_fin,
                     subespacio=subespacio
-                ).exists():
-                    Reserva.objects.create(
-                        espacio=espacio,
-                        usuario=request.user,
-                        fecha=fecha,
-                        hora_inicio=hora_inicio,
-                        hora_fin=hora_fin,
-                        subespacio=subespacio
-                    )
-                else:
-                    Reserva.objects.create(
-                        espacio=espacio,
-                        usuario=request.user,
-                        fecha=fecha,
-                        hora_inicio=hora_inicio,
-                        hora_fin=hora_fin
-                    )
+                )
                 messages.success(request, "La reserva se ha creado exitosamente.")
             else:
-                messages.error(request, "Ya tienes una reserva en este intervalo.")
+                messages.error(request, "Ya existe una reserva en este intervalo.")
         return redirect(redirigir_con_subespacio())
     except Exception as e:
         messages.error(request, f"Ocurrió un error al crear la reserva: {str(e)}")
