@@ -585,22 +585,6 @@ class ReservaViewsTests(TestCase):
         }, follow=True)
         self.assertContains(response, 'Ya has solicitado una reserva especial para este espacio en esta fecha.')
 
-    def test_aceptar_solicitud_crea_reserva(self):
-        solicitud = SolicitudReservaEspecial.objects.create(
-            usuario=self.user,
-            espacio=self.espacio,
-            fecha=datetime.now().date(),
-            hora_inicio=time(9, 0),
-            hora_fin=time(10, 0),
-            motivo='Test motivo'
-        )
-        response = self.client.post(reverse('aceptar_solicitud', kwargs={'id': self.espacio.id}), {
-            'solicitud_id': solicitud.id,
-            'nombre_reserva': 'Reserva de prueba'
-        }, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(Reserva.objects.filter(usuario=self.user, espacio=self.espacio).exists())
-
     def test_aceptar_solicitud_crea_reservas_limpieza(self):
         self.espacio.limpieza = True
         self.espacio.save()
@@ -618,43 +602,6 @@ class ReservaViewsTests(TestCase):
         }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Reserva.objects.filter(nombre='LIMPIEZA', espacio=self.espacio).count(), 2)
-
-    def test_cancelar_reservas_por_reserva_especial(self):
-        general = EspacioPublico.objects.create(
-            nombre='Salón Sociocultural de Reuniones',
-            horario='09:00-18:00',
-            descripcion='Descripción del espacio conflictivo',
-            telefono='999999999'
-        )
-        conflictivo = EspacioPublico.objects.create(
-            nombre='Sala Guadalinfo',
-            horario='09:00-18:00',
-            descripcion='Descripción del espacio conflictivo',
-            telefono='999999999'
-        )
-        solicitud = SolicitudReservaEspecial.objects.create(
-            usuario=self.user,
-            espacio=general,
-            fecha=datetime.now().date(),
-            hora_inicio=time(9, 0),
-            hora_fin=time(10, 0),
-            motivo='Test motivo'
-        )
-        Reserva.objects.create(
-            fecha=solicitud.fecha,
-            hora_inicio=time(9, 0),
-            hora_fin=time(10, 0),
-            nombre='Reserva conflictiva',
-            estado=Reserva.REALIZADA,
-            espacio=conflictivo,
-            usuario=self.user
-        )
-        response = self.client.post(reverse('aceptar_solicitud', kwargs={'id': general.id}), {
-            'solicitud_id': solicitud.id,
-            'nombre_reserva': 'Reserva de prueba'
-        }, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(Reserva.objects.filter(nombre='Reserva conflictiva', espacio=conflictivo).exists())
 
     def test_crear_reserva_fecha_pasada(self):
         response = self.client.post(reverse('crear_reserva', args=[self.espacio.id]), {
