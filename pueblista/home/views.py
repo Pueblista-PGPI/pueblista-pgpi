@@ -85,7 +85,8 @@ def home(request):
         "notificaciones": notificaciones_no_leidas_count
         
     })
-@login_required
+@login_required 
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def edit_ayuntamiento_info(request, id):
     info = get_object_or_404(AyuntamientoInfo, id=id)
     if request.method == 'POST':
@@ -99,6 +100,7 @@ def edit_ayuntamiento_info(request, id):
     return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
 
 @login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def add_ayuntamiento_info(request):
     if request.method == 'POST':
         titulo = request.POST.get('titulo')
@@ -107,3 +109,13 @@ def add_ayuntamiento_info(request):
         messages.success(request, 'Nueva información añadida con éxito.')
         return redirect('home')
     return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
+
+@login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
+def delete_ayuntamiento_info(request, id):
+    info = get_object_or_404(AyuntamientoInfo, id=id)
+    info.delete()
+    messages.success(request, 'Información eliminada con éxito.')
+    return redirect('home')
+
+

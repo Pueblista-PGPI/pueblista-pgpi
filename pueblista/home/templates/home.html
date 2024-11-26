@@ -76,17 +76,47 @@
                                             </div>
                                         </form>
                                         
-                                        <!-- Botón de edición -->
+                                        <!-- Botón de edición y eliminación -->
                                         {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
                                             <div class="text-center">
                                                 <a class="btn btn-primary" id="editButton{{ forloop.counter }}" style="background-color: black; border-color: black;" onclick="toggleEditForm({{ forloop.counter }})">Editar</a>
                                                 <button class="btn btn-primary" id="addButton{{ forloop.counter}}" data-bs-toggle="modal" data-bs-target="#addModal">Añadir Nuevo</button>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ forloop.counter }}" style="background-color: red; border-color: red;">Eliminar</button>
                                             </div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal de confirmación de eliminación -->
+                            <div class="modal fade" id="deleteModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel{{ forloop.counter }}">Confirmar Eliminación</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estás seguro de que deseas eliminar esta información?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <a class="btn btn-danger" href="{% url 'delete_ayuntamiento_info' info.id %}" style="background-color: red; border-color: red;">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% endfor %}
+                            {% if not ayuntamiento_info %}
+                                {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <p class="card-text">No hay información disponible.</p>
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Añadir Información</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
                         </div>
                             <a class="carousel-control-prev custom-carousel-control" href="#ayuntamientoCarousel" role="button" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

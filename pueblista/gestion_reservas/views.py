@@ -13,6 +13,12 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import SolicitudReservaEspecial
 
+MESES = {
+    1: 'enero', 2: 'febrero', 3: 'marzo', 4: 'abril',
+    5: 'mayo', 6: 'junio', 7: 'julio', 8: 'agosto',
+    9: 'septiembre', 10: 'octubre', 11: 'noviembre', 12: 'diciembre'
+}
+
 
 def comprueba_horas(hora_inicio, hora_fin):
     if hora_inicio >= hora_fin:
@@ -57,7 +63,7 @@ def solicitud_reserva_especial(request, id):
 @login_required
 def mis_solicitudes(request,id):
     espacio = get_object_or_404(EspacioPublico, id=id)
-    solicitudes = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio)
+    solicitudes = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio, estado='PENDIENTE')
     return render(request, 'mis_solicitudes.html', {
         'solicitudes': solicitudes,
         'espacio': espacio
@@ -77,9 +83,11 @@ def solicitudes_pendientes(request, id):
             solicitud.estado = 'Cancelada'
             solicitud.motivo_cancelacion = motivo
             
+            fecha_solicitud_formateada = f"{solicitud.fecha.day} de {MESES[solicitud.fecha.month]} del {solicitud.fecha.year}"
+            
             notificacion_cancelacion = Notificacion.objects.create(
                 usuario=solicitud.usuario,
-                mensaje=f"Tu solicitud de reserva especial para el espacio {solicitud.espacio.nombre} el día {solicitud.fecha} ha sido cancelada debido a: {motivo}"
+                mensaje=f"Tu solicitud de reserva especial para el espacio {solicitud.espacio.nombre} el día {fecha_solicitud_formateada} ha sido cancelada debido a: {motivo}"
             )
             notificacion_cancelacion.save()
             
@@ -158,18 +166,22 @@ def aceptar_solicitud(request, id):
             for reserva in reservas_a_cancelar:
                 usuario_reserva = reserva.usuario
                 
+                fecha_formateada = f"{reserva.fecha.day} de {MESES[reserva.fecha.month]} del {reserva.fecha.year}"
+                
                 notificacion = Notificacion.objects.create(
                     usuario=usuario_reserva,
-                    mensaje=f"Tu reserva en el espacio {reserva.espacio.nombre} para el día {reserva.fecha} ha sido cancelada debido a una reserva en el Salón de Reuniones."
+                    mensaje=f"Tu reserva en el espacio {reserva.espacio.nombre} para el día {fecha_formateada} ha sido cancelada debido a una reserva en el Salón de Reuniones."
                 )
                 notificacion.save()
                 print(reserva)
                 reserva.delete()
 
         
+        
+        fecha2_formateada = f"{solicitud.fecha.day} de {MESES[solicitud.fecha.month]} del {solicitud.fecha.year}"
         notificacion_aceptacion = Notificacion.objects.create(
             usuario=solicitud.usuario,
-            mensaje=f"Tu solicitud de reserva especial para el espacio {solicitud.espacio.nombre} el día {solicitud.fecha} ha sido aceptada."
+            mensaje=f"Tu solicitud de reserva especial para el espacio {solicitud.espacio.nombre} el día {fecha2_formateada} ha sido aceptada."
             
         )
         notificacion_aceptacion.save()
@@ -296,10 +308,10 @@ def crear_reserva(request, id):
 
             request.session['fecha'] = fecha
 
-            if (espacio.nombre == 'Biblioteca'
+            if (espacio.nombre == 'Biblioteca Pública Municipal Juan Gómez Calero'
                     or espacio.nombre == 'Sala Guadalinfo'):
                 reservas = Reserva.objects.filter(
-                    espacio__nombre='Salón de Reuniones',
+                    espacio__nombre='Salón Sociocultural de Reuniones',
                     fecha=fecha,
                     hora_inicio__lt=hora_fin,
                     hora_fin__gt=hora_inicio

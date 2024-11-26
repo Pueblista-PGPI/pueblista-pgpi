@@ -22,3 +22,10 @@ def borrar_notificacion(request, notificacion_id):
     notificacion = get_object_or_404(Notificacion, id=notificacion_id, usuario=request.user)
     notificacion.delete()
     return redirect('notificaciones')
+
+def borrar_todas_leidas(request):
+    # Obtenemos todas las notificaciones no leídas del usuario autenticado
+    notificaciones = Notificacion.objects.filter(usuario=request.user, leida=True)
+    # Borramos todas las notificaciones
+    notificaciones.delete()
+    return redirect('notificaciones')
