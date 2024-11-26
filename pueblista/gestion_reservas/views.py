@@ -31,6 +31,17 @@ def solicitud_reserva_especial(request, id):
 
     # Obtener la fecha seleccionada desde la sesión
     fecha_seleccionada = request.session.get('fecha')
+    if espacio.limpieza:
+        fecha_seleccionada_date = datetime.strptime(fecha_seleccionada, '%Y-%m-%d').date()
+        fecha_limite = datetime.now().date() + timedelta(days=2)
+        if fecha_seleccionada_date < fecha_limite:
+            messages.error(request, "Por motivos de limpieza, las reservas especiales deben solicitarse con al menos 2 días de antelación.")
+            return redirect('calendario_reservas', id=id)
+        # Check if there are existing reservations on the selected date
+        if Reserva.objects.filter(fecha=fecha_seleccionada_date, espacio=espacio).exists():
+            messages.error(request, "En espacios con limpieza, no se pueden hacer reservas especiales si ya hay reservas en la fecha seleccionada.")
+            return redirect('calendario_reservas', id=id)
+
     peticiones_por_usuario_en_espacio_en_fecha = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha_seleccionada, estado='PENDIENTE').count()
     if peticiones_por_usuario_en_espacio_en_fecha >= 1:
                 messages.error(request, 'Ya has solicitado una reserva especial para este espacio en esta fecha.')
