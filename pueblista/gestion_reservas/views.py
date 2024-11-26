@@ -53,6 +53,17 @@ def solicitud_reserva_especial(request, id):
             solicitud.espacio = espacio
             solicitud.usuario = request.user
             solicitud.fecha = fecha_seleccionada  # Asignar la fecha seleccionada
+
+            # Verificar si ya existe una reserva en el intervalo de tiempo
+            if Reserva.objects.filter(
+                espacio=solicitud.espacio,
+                fecha=solicitud.fecha,
+                hora_inicio__lt=solicitud.hora_fin,
+                hora_fin__gt=solicitud.hora_inicio
+            ).exists():
+                messages.error(request, "Ya existe una reserva en este intervalo.")
+                return redirect('solicitud_reserva_especial', id=id)
+
             solicitud.save()
             messages.success(request, 'Tu solicitud de reserva especial ha sido enviada con éxito.')
             request.session.pop('fecha', None)
@@ -118,7 +129,7 @@ def aceptar_solicitud(request, id):
         solicitud_id = request.POST.get('solicitud_id')
         solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
         nombre_reserva = request.POST.get('nombre_reserva')
-        
+                
         Reserva.objects.create(
             fecha=solicitud.fecha,
             hora_inicio=solicitud.hora_inicio,
