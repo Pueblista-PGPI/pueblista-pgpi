@@ -76,27 +76,22 @@ def delete(request, id):
     return render(request, 'delete.html', {'espacio': space})
 
 
+
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def reservas_fecha(request, id):
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
-
-    if start_date and end_date:
-        try:
-            start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
-            end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
-
-            reservas = Reserva.objects.filter(
-                espacio_id=id,
-                fecha__range=(start_date, end_date)
-            ).order_by('fecha')
-        except ValueError:
-            reservas = []
+    espacio = get_object_or_404(EspacioPublico, id=id)
+    fecha_seleccionada = request.GET.get('date') if request.GET.get('date') else request.session.get('fecha')
+    if fecha_seleccionada is None:
+        fecha_seleccionada = datetime.now().strftime('%Y-%m-%d')
+    
+    if fecha_seleccionada:
+        reservas = Reserva.objects.filter(espacio=espacio, fecha=fecha_seleccionada).order_by('hora_inicio')
     else:
-        reservas = Reserva.objects.filter(espacio_id=id).order_by('fecha')
-
+        reservas = Reserva.objects.filter(espacio=espacio).order_by('hora_inicio')
+    
     return render(request, 'reservas.html', {
+        'espacio': espacio,
         'reservas': reservas,
-        'espacio': EspacioPublico.objects.get(id=id)
+        'fecha': fecha_seleccionada
     })

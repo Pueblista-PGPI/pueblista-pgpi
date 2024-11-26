@@ -22,7 +22,7 @@
 {% block content %}
    <section class="py-4 py-xl-5">
         <div class="container text-center" style="margin-bottom: -20px;">
-            <img class="card-img-top mx-auto d-block" style="height: auto; max-width: 5.75%; object-fit: cover;" src="{% static 'images/home/escudo.png' %}">
+            <img class="card-img-top mx-auto d-block" alt="Escudo del pueblo" style="height: auto; max-width: 5.75%; object-fit: cover;" src="{% static 'images/home/escudo.png' %}">
         </div>
         <div class="container">
             <div class="text-center p-4 p-lg-5">
@@ -42,7 +42,7 @@
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
                 <div class="col">
-                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" alt="Imagen del equipo de Pueblista" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                         <div class="card-body p-4">
                             <h4 class="card-title">Acerca de Pueblista</h4>
                             <p class="card-text">{{ pueblista|linebreaks }}</p>
@@ -55,7 +55,7 @@
                             {% for info in ayuntamiento_info %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <div class="card">
-                                    <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
+                                    <img class="card-img-top w-100 d-block fit-cover" alt="Ayuntamiento de Villanueva de las Cruces" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
                                     <div class="card-body p-4">
                                         <h4 class="card-title" id="ayuntamientoTitle{{ forloop.counter }}">{{ info.titulo }}</h4>
                                         <p class="card-text" id="ayuntamientoText{{ forloop.counter }}">{{ info.descripcion }}</p>
@@ -76,17 +76,47 @@
                                             </div>
                                         </form>
                                         
-                                        <!-- Botón de edición -->
+                                        <!-- Botón de edición y eliminación -->
                                         {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
                                             <div class="text-center">
                                                 <a class="btn btn-primary" id="editButton{{ forloop.counter }}" style="background-color: black; border-color: black;" onclick="toggleEditForm({{ forloop.counter }})">Editar</a>
                                                 <button class="btn btn-primary" id="addButton{{ forloop.counter}}" data-bs-toggle="modal" data-bs-target="#addModal">Añadir Nuevo</button>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ forloop.counter }}" style="background-color: red; border-color: red;">Eliminar</button>
                                             </div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal de confirmación de eliminación -->
+                            <div class="modal fade" id="deleteModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel{{ forloop.counter }}">Confirmar Eliminación</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estás seguro de que deseas eliminar esta información?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <a class="btn btn-danger" href="{% url 'delete_ayuntamiento_info' info.id %}" style="background-color: red; border-color: red;">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% endfor %}
+                            {% if not ayuntamiento_info %}
+                                {% if user.tipo_usuario == 'superusuario' or user.tipo_usuario == 'personal_administrativo' %}
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <p class="card-text">No hay información disponible.</p>
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Añadir Información</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
                         </div>
                             <a class="carousel-control-prev custom-carousel-control" href="#ayuntamientoCarousel" role="button" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -149,7 +179,7 @@
                                         </span>
                                     </div>
                                     <div class="px-2">
-                                        <h6 class="mb-0" style="text-align: left; font-weight: bold">Teléfono</h6>
+                                        <p class="mb-0" style="text-align: left; font-weight: bold; font-size: 1.1rem">Teléfono</p>
                                         <p class="mb-0">959 57 80 01</p>
                                     </div>
                                 </div>
@@ -160,7 +190,7 @@
                                         </span>
                                     </div>
                                     <div class="px-2">
-                                        <h6 class="mb-0" style="text-align: left; font-weight: bold">Correo</h6>
+                                        <p class="mb-0" style="text-align: left; font-weight: bold; font-size: 1.1rem">Correo</p>
                                         <p class="mb-0">pueblista.contactanos@gmail.com</p>
                                     </div>
                                 </div>
@@ -171,7 +201,7 @@
                                         </span>
                                     </div>
                                     <div class="px-2">
-                                        <h6 class="mb-0" style="text-align: left; font-weight: bold">Ubicación</h6>
+                                        <p class="mb-0" style="text-align: left; font-weight: bold; font-size: 1.1rem">Ubicación</p>
                                         <p class="mb-0">Calle Constitución, 2</p>
                                     </div>
                                 </div>
