@@ -291,12 +291,12 @@ def crear_reserva(request, id):
             hora_fin = request.POST.get('hora_fin')
             subespacio = (
                 request.POST.get('subespacio_seleccionado') if
-                request.POST.get('subespacio_seleccionado') else None)
+                request.POST.get('subespacio_seleccionado') else "No procede")
 
             # Función para reutilización de código
             def redirigir_con_subespacio():
                 base_url = reverse('calendario_reservas', args=[espacio.id])
-                if subespacio:
+                if subespacio != "No procede":
                     return f"{base_url}?subespacio={subespacio}"
                 return base_url
 
