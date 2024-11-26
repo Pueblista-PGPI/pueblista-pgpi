@@ -4,7 +4,6 @@ from gestion_reservas.models import Reserva
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from datetime import datetime
-from gestion_sms.sms import send_sms
 from gestion_notificaciones.models import Notificacion
 
 
@@ -66,6 +65,21 @@ def eliminar_reserva(request, reserva_id):
 
     return redirect('listado_reservas')
 
+MESES = {
+    1: 'enero',
+    2: 'febrero',
+    3: 'marzo',
+    4: 'abril',
+    5: 'mayo',
+    6: 'junio',
+    7: 'julio',
+    8: 'agosto',
+    9: 'septiembre',
+    10: 'octubre',
+    11: 'noviembre',
+    12: 'diciembre'
+}
+
 
 @login_required
 def modificar_estado(request, reserva_id):
@@ -75,9 +89,11 @@ def modificar_estado(request, reserva_id):
         estado = request.POST.get('estado')
         reserva.estado = estado
         reserva.save()
+        
+        fecha_formateada = f"{reserva.fecha.day} de {MESES[reserva.fecha.month]} de {reserva.fecha.year}" 
 
         if estado == 'Cancelada':
-            notificacion = Notificacion(mensaje=f"Su reserva del espacio {reserva.espacio.nombre} para el día {reserva.fecha} y la hora {reserva.hora_inicio} ha sido cancelada.", usuario=reserva.usuario)
+            notificacion = Notificacion(mensaje=f"Su reserva del espacio {reserva.espacio.nombre} para el día {fecha_formateada} y la hora {reserva.hora_inicio} ha sido cancelada.", usuario=reserva.usuario)
             notificacion.save()
             reserva.delete()
         messages.success(request, "El estado de la reserva se ha modificado exitosamente.")
