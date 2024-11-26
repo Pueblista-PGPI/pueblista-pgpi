@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from datetime import datetime
 from gestion_notificaciones.models import Notificacion
+from gestion_usuarios.decorators import tipo_usuario_requerido
 
 
 @login_required
@@ -82,11 +83,12 @@ MESES = {
 
 
 @login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def modificar_estado(request, reserva_id):
     reserva = get_object_or_404(Reserva, id=reserva_id)
     espacio_id = reserva.espacio.id
     if request.method == 'POST':
-        estado = request.POST.get('estado')
+        estado = request.POST.get('id_estado')
         reserva.estado = estado
         reserva.save()
         
