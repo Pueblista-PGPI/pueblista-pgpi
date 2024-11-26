@@ -145,10 +145,10 @@ def aceptar_solicitud(request, id):
         # pero cojo solo las reservas de la Biblioteca
         # todas las reservas contenidas en ese intervalo de tiempo... no sé si se está haciendo
         
-        if solicitud.espacio.nombre == 'Salón de Reuniones':
+        if solicitud.espacio.nombre == 'Salón Sociocultural de Reuniones':
             # Obtener todas las reservas para la fecha y intervalo de horas de solicitud
             reservas_a_cancelar = Reserva.objects.filter(
-                Q(espacio__nombre='Biblioteca') | Q(espacio__nombre='Sala Guadalinfo'),
+                Q(espacio__nombre='Biblioteca Pública Municipal Juan Gómez Calero') | Q(espacio__nombre='Sala Guadalinfo'),
                 Q(fecha=solicitud.fecha),
                 Q(hora_inicio__lt=solicitud.hora_fin),
                 Q(hora_fin__gt=solicitud.hora_inicio)
