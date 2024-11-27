@@ -135,18 +135,20 @@ class EspacioPublicoViewsTests(TestCase):
         )
 
     def test_edit_view_post_with_fotos(self):
-        with open('media/spaces/photo.jpg', 'rb') as photo:
+        with open('static/images/home/ayuntamiento.jpg', 'rb') as photo:
             response = self.client.post(reverse('edit', args=[self.espacio.id]), {
                 'nombre': 'Parque Renovado',
                 'horario': '08:00 - 20:00',
                 'descripcion': 'Un parque renovado en el centro de la ciudad.',
                 'telefono': '123456789',
                 'estado': EspacioPublico.NO_DISPONIBLE,
-                'fotos': photo
+                'fotos': photo,
+                'espacio_especial': False,
+                'limpieza': False
             })
         self.assertEqual(response.status_code, 302)
         self.espacio.refresh_from_db()
-        self.assertEqual(self.espacio.nombre, 'Parque Renovado')
+        self.assertEqual(str(self.espacio), 'Parque Renovado')
         self.assertEqual(self.espacio.estado, EspacioPublico.NO_DISPONIBLE)
         self.assertIsNotNone(self.espacio.fotos)
 
@@ -155,44 +157,17 @@ class EspacioPublicoViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'delete.html')
 
-    def test_reservas_fecha_view_with_start_and_end_date(self):
-        Reserva.objects.create(
-            espacio=self.espacio, fecha='2023-10-10', hora_inicio='10:00', hora_fin='12:00', usuario=self.user
-        )
-        response = self.client.get(reverse(
-            'reservas_fecha', args=[self.espacio.id]), {
-            'start_date': '2023-10-01',
-            'end_date': '2023-10-31'
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '10 de octubre de 2023')
-
-    def test_reservas_fecha_view_with_start_date_only(self):
-        Reserva.objects.create(
-            espacio=self.espacio, fecha='2023-10-10', hora_inicio='10:00', hora_fin='12:00', usuario=self.user
-        )
-        response = self.client.get(reverse(
-            'reservas_fecha', args=[self.espacio.id]), {
-            'start_date': '2023-10-01'
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '10 de octubre de 2023')
-
-    def test_reservas_fecha_view_with_end_date_only(self):
-        Reserva.objects.create(
-            espacio=self.espacio, fecha='2023-10-10', hora_inicio='10:00', hora_fin='12:00', usuario=self.user
-        )
-        response = self.client.get(reverse(
-            'reservas_fecha', args=[self.espacio.id]), {
-            'end_date': '2023-10-31'
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '10 de octubre de 2023')
-
     def test_reservas_fecha_view_without_dates(self):
-        Reserva.objects.create(
-            espacio=self.espacio, fecha='2023-10-10', hora_inicio='10:00', hora_fin='12:00', usuario=self.user
+        reserva = Reserva.objects.create(
+            espacio=self.espacio, fecha='2050-10-10', hora_inicio='10:00', hora_fin='12:00', usuario=self.user
         )
-        response = self.client.get(reverse('reservas_fecha', args=[self.espacio.id]))
+        reserva.save()
+        
+        response = self.client.get(
+            reverse('reservas_fecha', args=[self.espacio.id]),
+            {'date': '2050-10-10'},  # Enviar la fecha como parámetro GET.
+            follow=True
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '10 de octubre de 2023')
+        self.assertContains(response, '10 de octubre de 2050')  # Verificar que la fecha aparece.
+

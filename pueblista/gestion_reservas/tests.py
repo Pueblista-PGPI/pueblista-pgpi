@@ -303,6 +303,24 @@ class ReservaViewsTests(TestCase):
         # Verificar que se puede cancelar una reserva
         response = self.client.post(f'/espacios/{self.espacio.id}/reservas/cancelar/{self.reserva.id}/')
         self.assertEqual(response.status_code, 302)
+    
+
+        with self.assertRaises(Reserva.DoesNotExist):
+            self.reserva.refresh_from_db()
+
+        self.assertFalse(
+            Reserva.objects.filter(
+                usuario=self.user, espacio=self.espacio, hora_inicio=self.reserva.hora_inicio
+            ).exists())
+    
+    
+    def test_cancelar_reserva_con_subespacio(self):
+        self.reserva.subespacio = "Sala A"
+        
+        self.reserva.save()
+        # Verificar que se puede cancelar una reserva
+        response = self.client.post(f'/espacios/{self.espacio.id}/reservas/cancelar/{self.reserva.id}/')
+        self.assertEqual(response.status_code, 302)
 
         with self.assertRaises(Reserva.DoesNotExist):
             self.reserva.refresh_from_db()
@@ -373,6 +391,7 @@ class ReservaViewsTests(TestCase):
         }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(SolicitudReservaEspecial.objects.filter(usuario=self.user, espacio=self.espacio).exists())
+        self.assertTrue(str(SolicitudReservaEspecial.objects.get(usuario=self.user, espacio=self.espacio)).__contains__('Test motivo'))
 
 
     def test_aceptar_solicitud_crea_reserva(self):
@@ -559,9 +578,7 @@ class ReservaViewsTests(TestCase):
         response = self.client.get(reverse('solicitud_reserva_especial', args=[self.espacio.id]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.espacio.nombre)
-    
-    ## Copilot
-    
+        
     def test_solicitud_reserva_especial_mensaje_error(self):
         session = self.client.session
         session['fecha'] = str(datetime.now().date())
@@ -611,3 +628,38 @@ class ReservaViewsTests(TestCase):
         }, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No se pueden hacer reservas en fechas pasadas.")
+
+    def test_solicitud_reserva_especial_espacio_limpieza(self):
+        session = self.client.session
+        session['fecha'] = str(datetime.now().date() + timezone.timedelta(days=1))
+        session.save()
+        
+        self.espacio.limpieza = True
+        self.espacio.save()
+        response = self.client.get(reverse('solicitud_reserva_especial', args=[self.espacio.id]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Por motivos de limpieza, las reservas especiales deben solicitarse con al menos 2 días de antelación.')
+    
+    def test_solicitud_reserva_especial_espacio_limpieza_fallida(self):
+        session = self.client.session
+        session['fecha'] = str(datetime.now().date() + timezone.timedelta(days=3))
+        session.save()
+        
+        self.espacio.limpieza = True
+        self.espacio.save()
+        
+        self.reserva.fecha = datetime.now().date() + timezone.timedelta(days=3)
+        self.reserva.save()
+        
+        response = self.client.get(reverse('solicitud_reserva_especial', args=[self.espacio.id]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'En espacios con limpieza, no se pueden hacer reservas especiales si ya hay reservas en la fecha seleccionada.')
+    
+    def test_calendario_reservas_fecha_pasada(self):
+        session = self.client.session
+        session['fecha'] = str(datetime.now().date() - timezone.timedelta(days=4))
+        session.save()
+        response = self.client.get(reverse('calendario_reservas', args=[self.espacio.id]), follow=True)
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'No se pueden hacer reservas en fechas pasadas.')
