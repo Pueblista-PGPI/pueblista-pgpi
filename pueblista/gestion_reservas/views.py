@@ -31,6 +31,17 @@ def solicitud_reserva_especial(request, id):
 
     # Obtener la fecha seleccionada desde la sesión
     fecha_seleccionada = request.session.get('fecha')
+    if espacio.limpieza:
+        fecha_seleccionada_date = datetime.strptime(fecha_seleccionada, '%Y-%m-%d').date()
+        fecha_limite = datetime.now().date() + timedelta(days=2)
+        if fecha_seleccionada_date < fecha_limite:
+            messages.error(request, "Por motivos de limpieza, las reservas especiales deben solicitarse con al menos 2 días de antelación.")
+            return redirect('calendario_reservas', id=id)
+        # Check if there are existing reservations on the selected date
+        if Reserva.objects.filter(fecha=fecha_seleccionada_date, espacio=espacio).exists():
+            messages.error(request, "En espacios con limpieza, no se pueden hacer reservas especiales si ya hay reservas en la fecha seleccionada.")
+            return redirect('calendario_reservas', id=id)
+
     peticiones_por_usuario_en_espacio_en_fecha = SolicitudReservaEspecial.objects.filter(usuario=request.user, espacio=espacio, fecha=fecha_seleccionada, estado='PENDIENTE').count()
     if peticiones_por_usuario_en_espacio_en_fecha >= 1:
                 messages.error(request, 'Ya has solicitado una reserva especial para este espacio en esta fecha.')
@@ -42,6 +53,17 @@ def solicitud_reserva_especial(request, id):
             solicitud.espacio = espacio
             solicitud.usuario = request.user
             solicitud.fecha = fecha_seleccionada  # Asignar la fecha seleccionada
+
+            # Verificar si ya existe una reserva en el intervalo de tiempo
+            if Reserva.objects.filter(
+                espacio=solicitud.espacio,
+                fecha=solicitud.fecha,
+                hora_inicio__lt=solicitud.hora_fin,
+                hora_fin__gt=solicitud.hora_inicio
+            ).exists():
+                messages.error(request, "Ya existe una reserva en este intervalo.")
+                return redirect('solicitud_reserva_especial', id=id)
+
             solicitud.save()
             messages.success(request, 'Tu solicitud de reserva especial ha sido enviada con éxito.')
             request.session.pop('fecha', None)
@@ -107,7 +129,7 @@ def aceptar_solicitud(request, id):
         solicitud_id = request.POST.get('solicitud_id')
         solicitud = get_object_or_404(SolicitudReservaEspecial, id=solicitud_id)
         nombre_reserva = request.POST.get('nombre_reserva')
-        
+                
         Reserva.objects.create(
             fecha=solicitud.fecha,
             hora_inicio=solicitud.hora_inicio,
@@ -126,26 +148,37 @@ def aceptar_solicitud(request, id):
             # una para el día previo a la reserva y otra para el día posterior a la reserva
             
             # Reserva para el día previo
-            Reserva.objects.create(
+            if not Reserva.objects.filter(
                 fecha=solicitud.fecha - timedelta(days=1),
-                hora_inicio=datetime.min.time(),
-                hora_fin=datetime.max.time(),
-                estado=Reserva.REALIZADA,
                 espacio=solicitud.espacio,
-                usuario=request.user,
                 nombre='LIMPIEZA'
-            )
+            ).exists():
+                Reserva.objects.create(
+                    fecha=solicitud.fecha - timedelta(days=1),
+                    hora_inicio=datetime.min.time(),
+                    hora_fin=datetime.max.time(),
+                    estado=Reserva.REALIZADA,
+                    espacio=solicitud.espacio,
+                    usuario=request.user,
+                    nombre='LIMPIEZA'
+                )
+                
             
             # Reserva para el día posterior
-            Reserva.objects.create(
+            if not Reserva.objects.filter(
                 fecha=solicitud.fecha + timedelta(days=1),
-                hora_inicio=datetime.min.time(),
-                hora_fin=datetime.max.time(),
-                estado=Reserva.REALIZADA,
                 espacio=solicitud.espacio,
-                usuario=request.user,
                 nombre='LIMPIEZA'
-            )
+            ).exists():
+                Reserva.objects.create(
+                    fecha=solicitud.fecha + timedelta(days=1),
+                    hora_inicio=datetime.min.time(),
+                    hora_fin=datetime.max.time(),
+                    estado=Reserva.REALIZADA,
+                    espacio=solicitud.espacio,
+                    usuario=request.user,
+                    nombre='LIMPIEZA'
+                )
             
             
         # ahora lo que hay que hacer es, si el espacio en el que se ha reservao se llama "Salón de Reuniones", entonces
@@ -299,9 +332,16 @@ def crear_reserva(request, id):
                 return redirect(redirigir_con_subespacio())
             hora_inicio = request.POST.get('hora_inicio')
             hora_fin = request.POST.get('hora_fin')
+            subespacio = (
+                request.POST.get('subespacio_seleccionado') if
+                request.POST.get('subespacio_seleccionado') else "No procede")
 
-
-            
+            # Función para reutilización de código
+            def redirigir_con_subespacio():
+                base_url = reverse('calendario_reservas', args=[espacio.id])
+                if subespacio != "No procede":
+                    return f"{base_url}?subespacio={subespacio}"
+                return base_url
 
             if comprueba_horas(hora_inicio, hora_fin):
                 messages.error(
@@ -330,43 +370,33 @@ def crear_reserva(request, id):
                 messages.error(request, "Ya has realizado 4 reservas en este espacio para esta fecha.")
                 return redirect(redirigir_con_subespacio())
 
+            if Reserva.objects.filter(
+                usuario=request.user,
+                fecha=fecha,
+                hora_inicio__lt=hora_fin,
+                hora_fin__gt=hora_inicio
+            ).exists():
+                messages.error(request, "Ya tienes una reserva en este intervalo.")
+                return redirect(redirigir_con_subespacio())
+
             if not Reserva.objects.filter(
                 espacio=espacio,
                 fecha=fecha,
                 hora_inicio=hora_inicio,
-                hora_fin=hora_fin
-            ).exists() and not Reserva.objects.filter(
-                fecha=fecha,
-                hora_inicio=hora_inicio,
                 hora_fin=hora_fin,
-                usuario=request.user
+                subespacio=subespacio
             ).exists():
-                if subespacio and not Reserva.objects.filter(
+                Reserva.objects.create(
                     espacio=espacio,
+                    usuario=request.user,
                     fecha=fecha,
                     hora_inicio=hora_inicio,
                     hora_fin=hora_fin,
                     subespacio=subespacio
-                ).exists():
-                    Reserva.objects.create(
-                        espacio=espacio,
-                        usuario=request.user,
-                        fecha=fecha,
-                        hora_inicio=hora_inicio,
-                        hora_fin=hora_fin,
-                        subespacio=subespacio
-                    )
-                else:
-                    Reserva.objects.create(
-                        espacio=espacio,
-                        usuario=request.user,
-                        fecha=fecha,
-                        hora_inicio=hora_inicio,
-                        hora_fin=hora_fin
-                    )
+                )
                 messages.success(request, "La reserva se ha creado exitosamente.")
             else:
-                messages.error(request, "Ya tienes una reserva en este intervalo.")
+                messages.error(request, "Ya existe una reserva en este intervalo.")
         return redirect(redirigir_con_subespacio())
     except Exception as e:
         messages.error(request, f"Ocurrió un error al crear la reserva: {str(e)}")
