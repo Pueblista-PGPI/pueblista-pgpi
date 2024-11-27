@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import tipo_usuario_requerido
 from django.core.mail import send_mail
 from django.core.mail.backends.smtp import EmailBackend
 from django.contrib import messages
 import os
-
-from gestion_usuarios.decorators import tipo_usuario_requerido
 from gestion_notificaciones.models import Notificacion
 from home.models import AyuntamientoInfo
-
 
 
 def send_email(request, subject, full_message, success_message):
@@ -20,7 +18,6 @@ def send_email(request, subject, full_message, success_message):
     email_use_tls = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
     contact_email = os.getenv('CONTACT_EMAIL')
 
-    
     try:
         email_backend = EmailBackend(
             host=email_host,
@@ -39,23 +36,24 @@ def send_email(request, subject, full_message, success_message):
             fail_silently=False,
             connection=email_backend,
         )
-    
+
         messages.success(request, success_message)
-        
+
     except Exception:
-                # Mostrar un mensaje de error
-            messages.error(request, 'Ocurrió un error al enviar el mensaje')
+        # Mostrar un mensaje de error
+        messages.error(request, 'Ocurrió un error al enviar el mensaje')
+
 
 # Create your views here.
 @login_required
 def home(request):
     ayuntamiento_info = AyuntamientoInfo.objects.all()
-    
+
     texto_pueblista = """ Pueblista es un equipo de cinco estudiantes de
     Ingeniería Informática de Sevilla. Apasionados por la vida en los pueblos, trabajamos para mejorar la vida rural mediante herramientas tecnológicas que fomenten el desarrollo y la conexión entre comunidades.\n Gracias a Pueblista,  podrás disfrutar de tu pueblo como nunca antes."""
-    
+
     user = request.user
-    
+
     notificaciones_no_leidas_count = Notificacion.objects.filter(usuario=user, leida=False).count()
 
     if request.method == 'POST':
@@ -71,11 +69,8 @@ def home(request):
             # Construir el cuerpo del mensaje
             full_message = f"""De: {user_nombre + " " + user_apellidos}
             (DNI: {user_dni}, Teléfono: {user_telefono})\n\nMensaje:\n{message}"""
-            
-            
-            send_email(request, 'Mensaje de contacto desde Pueblista', full_message, 'Muchas gracias por tu ayuda.')
 
-            
+            send_email(request, 'Mensaje de contacto desde Pueblista', full_message, 'Muchas gracias por tu ayuda.')
 
     return render(request, 'home.html', {
         'ayuntamiento_info': ayuntamiento_info,
@@ -83,9 +78,10 @@ def home(request):
         "contact_text": 'Contacta con nosotros!',
         "user": user,
         "notificaciones": notificaciones_no_leidas_count
-        
     })
-@login_required 
+
+
+@login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def edit_ayuntamiento_info(request, id):
     info = get_object_or_404(AyuntamientoInfo, id=id)
@@ -99,6 +95,7 @@ def edit_ayuntamiento_info(request, id):
         return redirect('home')
     return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
 
+
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def add_ayuntamiento_info(request):
@@ -110,6 +107,7 @@ def add_ayuntamiento_info(request):
         return redirect('home')
     return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
 
+
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def delete_ayuntamiento_info(request, id):
@@ -117,5 +115,3 @@ def delete_ayuntamiento_info(request, id):
     info.delete()
     messages.success(request, 'Información eliminada con éxito.')
     return redirect('home')
-
-
