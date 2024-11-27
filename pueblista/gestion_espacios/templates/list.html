@@ -78,13 +78,14 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 order-first order-md-last" style="min-height: 250px; position: relative;">
+                        <div class="col-md-6 order-first order-md-last d-flex align-items-center justify-content-center" style="min-height: 250px; position: relative; padding: 15px;">
                             {% if space.fotos %}
-                                <img src="data:image/jpeg;base64,{{ space.fotos }}" alt="Imagen de {{ space.nombre }}" style="width:100%;">
+                                <img src="data:image/jpeg;base64,{{ space.fotos }}" alt="Imagen de {{ space.nombre }}" style="width:100%; border-radius: 15px; object-fit: cover;">
                             {% else %}
                                 <p style="color: white">No hay imagen disponible</p>
                             {% endif %}
+                        </div>
+                        </div>
                         </div>
                     </div>
                 </div>
