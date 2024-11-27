@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from gestion_notificaciones.models import Notificacion
+from gestion_reservas.models import SolicitudReservaEspecial
+
 from .models import CustomUser
 from .forms import LoginForm
 from .decorators import tipo_usuario_requerido
@@ -68,6 +71,8 @@ def eliminar_reservas_y_cerrar_sesion(request):
         usuario = request.user
         # Eliminar todas las reservas del usuario
         Reserva.objects.filter(usuario=usuario).delete()
+        Notificacion.objects.filter(usuario=usuario).delete()
+        SolicitudReservaEspecial.objects.filter(usuario=usuario).delete()
         # Cerrar sesión
         logout(request)
         return JsonResponse({'success': True})

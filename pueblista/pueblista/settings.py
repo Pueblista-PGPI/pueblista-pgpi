@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'home',
     'debug_toolbar',
     'listado_reservas',
-    'gestion_sms',
     'gestion_notificaciones',
     # 'storages',
 ]
@@ -113,6 +112,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'gestion_notificaciones.context_processors.notificaciones',
             ],
         },
     },

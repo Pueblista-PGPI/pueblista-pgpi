@@ -1,11 +1,14 @@
+from datetime import datetime, time
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from gestion_usuarios.forms import LoginForm
 from gestion_usuarios.models import CustomUser
+from gestion_reservas.models import Reserva 
 from django.utils.crypto import get_random_string
 
 from gestion_usuarios.backends import DNIFechaNacimientoBackend
+from gestion_espacios.models import EspacioPublico
 
 User = get_user_model()
 
@@ -28,9 +31,9 @@ class AuthenticationBackendTests(TestCase):
         self.assertEqual(user.dni, '12345678A')
 
     def test_authenticate_invalid_user(self):
-        backend = DNIFechaNacimientoBackend()
-        user = backend.authenticate(request=None,dni='99999999A', fecha_nacimiento='1990-01-01')
-        self.assertIsNone(user)
+     backend = DNIFechaNacimientoBackend()
+     user = backend.authenticate(request=None, dni='12345678A', fecha_nacimiento='2000-01-01', tipo_usuario=CustomUser.PERSONAL_ADMINISTRATIVO)
+     self.assertIsNone(user)
 
     def test_get_user_valid(self):
         user = DNIFechaNacimientoBackend().get_user(self.user.id)
@@ -136,6 +139,17 @@ class CustomUserModelTests(TestCase):
                 fecha_nacimiento=None,
             )
 
+    def test_user_str_method(self):
+        user = User.objects.create_user(
+            dni='12345678A',
+            nombre='Test',
+            apellidos='User',
+            telefono='123456789',
+            direccion_postal='Calle Falsa 123',
+            fecha_nacimiento='2000-01-01',
+        )
+        self.assertEqual(str(user), 'Test User (usuario_final)')
+
 
 class LoginFormTests(TestCase):
     def test_login_form_valid(self):
@@ -172,6 +186,24 @@ class UserViewsTests(TestCase):
             direccion_postal='Calle Verdadera 456',
             fecha_nacimiento='1980-01-01',
             password='adminpassword'
+        )
+        
+        # Crear un espacio público de prueba
+        self.espacio = EspacioPublico.objects.create(
+            nombre='Espacio de Prueba',
+            horario='09:00-18:00',
+            descripcion='Descripción del espacio de prueba',
+            telefono='123456789'
+        )
+         # Crear una reserva de prueba
+        self.reserva =  Reserva.objects.create(
+            usuario=self.user,
+            espacio=self.espacio,
+            fecha=datetime.now().date(),
+            hora_inicio=time(17, 0),
+            hora_fin=time(18, 0),
+            estado=Reserva.REALIZADA
+            
         )
 
     def test_login_view_valid_user(self):
@@ -212,6 +244,11 @@ class UserViewsTests(TestCase):
         self.assertContains(response, 'Calle Falsa 123')
         self.assertContains(response, '123456789')
 
+    def test_login_view_already_authenticated_user(self):
+     self.client.login(dni='12345678A', password='testpassword')
+     response = self.client.get(reverse('login'))
+     self.assertRedirects(response, '/')
+
     def test_perfil_view_not_authenticated(self):
         # Solicitar la vista de perfil sin estar autenticado
         response = self.client.get(reverse('perfil'))
@@ -219,6 +256,19 @@ class UserViewsTests(TestCase):
         self.assertEqual(response.status_code, 302)
         # Verificar que el usuario sea redirigido al login
         self.assertRedirects(response, f"{reverse('login')}?next={reverse('perfil')}")
+        
+    def test_delete_reservations_and_logout_on_post(self):
+        self.client.login(dni='12345678A', password='testpassword')
+        response = self.client.post(reverse('eliminar_reservas_y_cerrar_sesion'))
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content, {'success': True})
+        self.assertFalse(Reserva.objects.filter(usuario=self.user).exists())
+        
+    def test_delete_reservations_and_logout_on_get(self):
+      self.client.login(dni='12345678A', password='testpassword')
+      response = self.client.get(reverse('eliminar_reservas_y_cerrar_sesion'))
+      self.assertEqual(response.status_code, 200)
+      self.assertJSONEqual(response.content, {'success': False})
 
 
 class DecoratorTests(TestCase):
@@ -252,3 +302,4 @@ class DecoratorTests(TestCase):
         self.client.login(dni='11223344C', password='regularpassword')
         response = self.client.get(reverse('user_list'))
         self.assertEqual(response.status_code, 403)  # Should forbid regular user
+        

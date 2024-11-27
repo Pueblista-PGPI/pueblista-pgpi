@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import tipo_usuario_requerido
 from django.core.mail import send_mail
 from django.core.mail.backends.smtp import EmailBackend
 from django.contrib import messages
@@ -69,10 +70,7 @@ def home(request):
             full_message = f"""De: {user_nombre + " " + user_apellidos}
             (DNI: {user_dni}, Teléfono: {user_telefono})\n\nMensaje:\n{message}"""
 
-
             send_email(request, 'Mensaje de contacto desde Pueblista', full_message, 'Muchas gracias por tu ayuda.')
-
-
 
     return render(request, 'home.html', {
         'ayuntamiento_info': ayuntamiento_info,
@@ -84,6 +82,7 @@ def home(request):
 
 
 @login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def edit_ayuntamiento_info(request, id):
     info = get_object_or_404(AyuntamientoInfo, id=id)
     if request.method == 'POST':
@@ -98,6 +97,7 @@ def edit_ayuntamiento_info(request, id):
 
 
 @login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
 def add_ayuntamiento_info(request):
     if request.method == 'POST':
         titulo = request.POST.get('titulo')
@@ -106,3 +106,12 @@ def add_ayuntamiento_info(request):
         messages.success(request, 'Nueva información añadida con éxito.')
         return redirect('home')
     return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
+
+
+@login_required
+@tipo_usuario_requerido('superusuario', 'personal_administrativo')
+def delete_ayuntamiento_info(request, id):
+    info = get_object_or_404(AyuntamientoInfo, id=id)
+    info.delete()
+    messages.success(request, 'Información eliminada con éxito.')
+    return redirect('home')

@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 from .models import Reserva
 from gestion_espacios.models import EspacioPublico
 from datetime import datetime, time
+from gestion_usuarios.models import CustomUser
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -11,7 +13,7 @@ class ReservaModelTests(TestCase):
 
     def setUp(self):
         # Crear un usuario de prueba
-        self.user = User.objects.create_user(dni='12345678A', nombre='Test', apellidos='User', telefono='123456789', direccion_postal='Calle Falsa 123', fecha_nacimiento='2000-01-01')
+        self.user = CustomUser.objects.create_user(dni='12345678A', nombre='Test', apellidos='User', telefono='123456789', direccion_postal='Calle Falsa 123', fecha_nacimiento='2000-01-01')
         # Crear un espacio público de prueba
         self.espacio = EspacioPublico.objects.create(
             nombre='Espacio de Prueba',
@@ -27,6 +29,7 @@ class ReservaModelTests(TestCase):
             hora_inicio=time(17, 0),
             hora_fin=time(18, 0),
             estado=Reserva.REALIZADA
+            
         )
 
     def test_crear_reserva(self):
@@ -180,6 +183,31 @@ class ReservaModelTests(TestCase):
             )
             reserva.full_clean()
             
+    def test_crear_reserva_espacio_y_horario_no_disponible(self):
+        # Intentar crear una reserva en un espacio y horario no disponible
+
+        reserva1 = Reserva(
+            usuario=self.user,
+            espacio=self.espacio,
+            subespacio="No procede",
+            fecha=datetime.now().date(),
+            hora_inicio=time(9, 0),
+            hora_fin=time(10, 0),
+            estado=Reserva.REALIZADA
+        )
+        reserva1.save()
+        with self.assertRaises(ValidationError):
+            reserva2 = Reserva(
+                usuario=self.user,
+                espacio=self.espacio,
+                subespacio="No procede",
+                fecha=datetime.now().date(),
+                hora_inicio=time(9, 0),
+                hora_fin=time(10, 0),
+                estado=Reserva.REALIZADA
+            )
+            reserva2.full_clean()
+            
     def test_listar_reservas(self):
         # Listar todas las reservas
         reservas = Reserva.objects.all()
@@ -211,6 +239,7 @@ class ReservaModelTests(TestCase):
             hora_fin=nueva_hora_fin,
             estado=nuevo_estado,
             espacio=nuevo_espacio,
+            subespacio="No procede",
             usuario=self.user
         )
 
@@ -220,3 +249,56 @@ class ReservaModelTests(TestCase):
         self.assertEqual(self.reserva.estado, nuevo_estado)
         self.assertEqual(self.reserva.espacio, nuevo_espacio)
         self.assertEqual(self.reserva.usuario, self.user)
+        
+class ReservaViewsTests(TestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create_user(
+            dni='12345678A',
+            nombre='Admin',
+            apellidos='User',
+            telefono='123456789',
+            direccion_postal='Calle Falsa 123',
+            fecha_nacimiento='1990-01-01',
+            password='admin',
+            tipo_usuario=CustomUser.SUPERUSUARIO
+        )
+        self.client.login(username='12345678A', password='admin')
+        self.espacio = EspacioPublico.objects.create(
+            nombre='Espacio de Prueba',
+            horario='09:00-18:00',
+            descripcion='Descripción del espacio de prueba',
+            telefono='123456789'
+        )
+        self.reserva = Reserva.objects.create(
+            usuario=self.user,
+            espacio=self.espacio,
+            fecha=datetime.now().date(),
+            hora_inicio=time(17, 0),
+            hora_fin=time(18, 0),
+            estado=Reserva.REALIZADA
+        )
+    
+    def test_acceso_a_calendario(self):
+        # Verificar que se puede listar las reservas
+        response = self.client.get(f'/espacios/{self.espacio.id}/reservas/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_crear_reserva(self):
+        # Verificar que se puede crear una reserva
+        hora_inicio = time(9, 0)
+        response = self.client.post(reverse('crear_reserva', args=[self.espacio.id]), {
+            'usuario': self.user.id,
+            'espacio': self.espacio.id,
+            'fecha': datetime.now().date(),
+            'hora_inicio': hora_inicio,
+            'hora_fin': time(10, 0),
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Reserva.objects.filter(usuario=self.user, espacio=self.espacio, hora_inicio=hora_inicio).exists())
+
+    # def test_cancelar_reserva(self):
+    #     # Verificar que se puede cancelar una reserva
+    #     response = self.client.post(f'/espacios/{self.espacio.id}/reservas/cancelar/{self.reserva.id}/')
+    #     self.assertEqual(response.status_code, 302)
+    #     self.reserva.refresh_from_db()
+    #     self.assertEqual(self.reserva.estado, Reserva.CANCELADA)
