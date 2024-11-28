@@ -42,7 +42,7 @@
             </div>
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
                 <div class="col">
-                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" alt="Imagen del equipo de Pueblista" style="height: 200px;" src="{% static 'images/home/pueblista-team.jpeg' %}">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px; object-fit: cover;" alt="Imagen del equipo de Pueblista" src="{% static 'images/home/pueblista-team.jpeg' %}">
                         <div class="card-body p-4">
                             <h4 class="card-title">Acerca de Pueblista</h4>
                             <p class="card-text">{{ pueblista|linebreaks }}</p>
@@ -55,21 +55,26 @@
                             {% for info in ayuntamiento_info %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <div class="card">
-                                    <img class="card-img-top w-100 d-block fit-cover" alt="Ayuntamiento de Villanueva de las Cruces" style="height: 200px;" src="{% static 'images/home/ayuntamiento.jpg' %}">
+                                    <img class="card-img-top w-100 d-block fit-cover" style="height: 200px; object-fit: cover;" alt="Ayuntamiento de Villanueva de las Cruces" src="data:image/jpeg;base64, {{ info.fotos }}">
                                     <div class="card-body p-4">
                                         <h4 class="card-title" id="ayuntamientoTitle{{ forloop.counter }}">{{ info.titulo }}</h4>
                                         <p class="card-text" id="ayuntamientoText{{ forloop.counter }}">{{ info.descripcion }}</p>
                                         
                                         <!-- Formulario para editar -->
-                                        <form method="POST" action="{% url 'edit_ayuntamiento_info' info.id %}" style="display: none;" id="editForm{{ forloop.counter }}">
+                                        <form method="POST" enctype="multipart/form-data" action="{% url 'edit_ayuntamiento_info' info.id %}" style="display: none;" id="editForm{{ forloop.counter }}">
                                             {% csrf_token %}
                                             <div class="mb-3">
-                                                <label for="ayuntamientoTitulo{{ forloop.counter }}" class="form-label">Título</label>
+                                                <label for="ayuntamientoTitulo{{ forloop.counter }}" class="form-label"><strong>Título</strong></label>
                                                 <input type="text" class="form-control" name="titulo" id="ayuntamientoTitulo{{ forloop.counter }}" value="{{ info.titulo }}">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="ayuntamientoInput{{ forloop.counter }}" class="form-label">Descripción</label>
+                                                <label for="ayuntamientoInput{{ forloop.counter }}" class="form-label"><strong>Descripción</strong></label>
                                                 <textarea class="form-control" name="descripcion" id="ayuntamientoInput{{ forloop.counter }}" rows="4">{{ info.descripcion }}</textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="ayuntamientoFotos{{ forloop.counter }}" class="form-label"><strong>Fotos</strong></label>
+                                                <input type="file" class="form-control" name="fotos" id="ayuntamientoFotos{{ forloop.counter }}">
+                                                <p class="text-muted" style="font-size: 12px;">Se recomienda que la relación de aspecto de las imágenes sea 21:9</p>
                                             </div>
                                             <div class="text-center">
                                                 <button class="btn btn-primary mt-2 mb-2" type="submit">Guardar</button>
@@ -138,15 +143,20 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="{% url 'add_ayuntamiento_info' %}">
+                                <form method="POST" enctype="multipart/form-data" action="{% url 'add_ayuntamiento_info' %}">
                                     {% csrf_token %}
                                     <div class="mb-3">
-                                        <label for="nuevoTitulo" class="form-label">Título</label>
+                                        <label for="nuevoTitulo" class="form-label"><strong>Título</strong></label>
                                         <input type="text" class="form-control" name="titulo" id="nuevoTitulo" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nuevaDescripcion" class="form-label">Descripción</label>
+                                        <label for="nuevaDescripcion" class="form-label"><strong>Descripción</strong></label>
                                         <textarea class="form-control" name="descripcion" id="nuevaDescripcion" rows="4" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nuevaFotos" class="form-label"><strong>Fotos</strong></label>
+                                        <input type="file" class="form-control" name="fotos" id="nuevaFotos">
+                                        <p class="text-muted" style="font-size: 12px;">Se recomienda que la relación de aspecto de las imágenes sea 21:9</p>
                                     </div>
                                     <div class="text-center">
                                         <button class="btn btn-primary mt-2 mb-2" type="submit">Guardar</button>

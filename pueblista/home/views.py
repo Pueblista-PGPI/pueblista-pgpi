@@ -1,3 +1,4 @@
+import base64
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from gestion_usuarios.decorators import tipo_usuario_requerido
@@ -7,6 +8,7 @@ from django.contrib import messages
 import os
 from gestion_notificaciones.models import Notificacion
 from home.models import AyuntamientoInfo
+from home.forms import AyuntamientoInfoForm
 
 
 def send_email(request, subject, full_message, success_message):
@@ -83,29 +85,43 @@ def home(request):
 
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
-def edit_ayuntamiento_info(request, id):
-    info = get_object_or_404(AyuntamientoInfo, id=id)
+def add_ayuntamiento_info(request):
     if request.method == 'POST':
-        titulo = request.POST.get('titulo')
-        descripcion = request.POST.get('descripcion')
-        info.titulo = titulo
-        info.descripcion = descripcion
-        info.save()
-        messages.success(request, 'Información actualizada con éxito.')
-        return redirect('home')
-    return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
-
+        form = AyuntamientoInfoForm(request.POST, request.FILES)
+        if form.is_valid():
+            info = form.save(commit=False)
+            if 'fotos' in request.FILES:
+                foto = request.FILES['fotos'].read()
+                info.fotos = base64.b64encode(foto).decode('utf-8')
+            info.save()
+            messages.success(request, 'Nueva información añadida con éxito.')
+            return redirect('home')
+    else:
+        form = AyuntamientoInfoForm()
+    return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all(), 'form': form})
 
 @login_required
 @tipo_usuario_requerido('superusuario', 'personal_administrativo')
-def add_ayuntamiento_info(request):
+def edit_ayuntamiento_info(request, id):
+    info = get_object_or_404(AyuntamientoInfo, id=id)
+    foto_original = info.fotos  # Guarda la foto original antes de procesar el formulario
+
     if request.method == 'POST':
-        titulo = request.POST.get('titulo')
-        descripcion = request.POST.get('descripcion')
-        AyuntamientoInfo.objects.create(titulo=titulo, descripcion=descripcion)
-        messages.success(request, 'Nueva información añadida con éxito.')
-        return redirect('home')
-    return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all()})
+        form = AyuntamientoInfoForm(request.POST, request.FILES, instance=info)
+        if form.is_valid():
+            info = form.save(commit=False)
+            if 'fotos' in request.FILES:
+                foto = request.FILES['fotos'].read()
+                info.fotos = base64.b64encode(foto).decode('utf-8')
+            else:
+                info.fotos = foto_original  # Mantén la foto original
+            info.save()
+            messages.success(request, 'Información actualizada con éxito.')
+            return redirect('home')
+    else:
+        form = AyuntamientoInfoForm(instance=info)
+
+    return render(request, 'home.html', {'ayuntamiento_info': AyuntamientoInfo.objects.all(), 'form': form})
 
 
 @login_required

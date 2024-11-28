@@ -74,13 +74,33 @@
                                                 <form method="post" action="/mis_reservas/modificar_estado/{{ reserva.id }}/">
                                                     {% csrf_token %}
                                                     <label for="id_estado_{{ reserva.id }}" class="form-label"><strong>Estado:</strong></label>
-                                                    <select id="id_estado_{{ reserva.id }}" name="id_estado" onchange="this.form.submit()" class="form-select" style="width: auto; display: inline;">
+                                                    <select id="id_estado_{{ reserva.id }}" name="id_estado" class="form-select" style="width: auto; display: inline;">
                                                         <option value="Realizada" {% if reserva.estado == 'Realizada' %}selected{% endif %}>Realizada</option>
                                                         <option value="Cancelada" {% if reserva.estado == 'Cancelada' %}selected{% endif %}>Cancelada</option>
                                                         <option value="En curso" {% if reserva.estado == 'En curso' %}selected{% endif %}>En curso</option>
                                                         <option value="Finalizada" {% if reserva.estado == 'Finalizada' %}selected{% endif %}>Finalizada</option>
                                                     </select>
                                                 </form>
+
+                                                <!-- Modal de Confirmación -->
+                                                <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="confirmCancelModalLabel">Confirmar Cancelación</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ¿Estás seguro de que deseas cancelar esta reserva?<br>
+                                                                Esta acción borrará la reserva
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                <button type="button" class="btn btn-danger" id="confirmCancelButton">Sí, cancelar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -93,5 +113,38 @@
         {% endif %}
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdowns = document.querySelectorAll('select[id^="id_estado_"]');
+    var confirmCancelModal = new bootstrap.Modal(document.getElementById('confirmCancelModal'));
+    var confirmCancelButton = document.getElementById('confirmCancelButton');
+    var previousValue = {};
+
+    dropdowns.forEach(function(dropdown) {
+        dropdown.addEventListener('focus', function() {
+            previousValue[dropdown.id] = dropdown.value;
+        });
+
+        dropdown.addEventListener('change', function(event) {
+            if (dropdown.value === 'Cancelada') {
+                event.preventDefault();
+                confirmCancelModal.show();
+                confirmCancelButton.onclick = function() {
+                    dropdown.closest('form').submit();
+                    confirmCancelModal.hide();
+                };
+                confirmCancelModal._element.addEventListener('hidden.bs.modal', function () {
+                    if (dropdown.value === 'Cancelada') {
+                        dropdown.value = previousValue[dropdown.id];
+                    }
+                }, { once: true });
+            } else {
+                dropdown.closest('form').submit();
+            }
+        });
+    });
+});
+</script>
 
 {% endblock content %}
