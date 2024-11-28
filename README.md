@@ -23,17 +23,17 @@
 
 ##  Table of Contents
 
-- [ Descripción general ](#-overview)
-- [ Características ](#-features)
-- [ Estructura del proyecto ](#-project-structure)
-  - [ Índice del proyecto ](#-project-index)
-- [ Empezando ](#-getting-started)
-  - [ Prerrequisitos ](#-prerequisites)
-  - [ Instalación ](#-installation)
-  - [ Uso ](#-usage)
-  - [ Pruebas ](#-testing)
-- [ Licencia ](#-license)
-- [ Autores ](#-acknowledgments)
+- [ Descripción general ](#-descripcion-general)
+- [ Características ](#-caracteristicas)
+- [ Estructura del proyecto ](#-estructura-del-proyecto)
+  - [ Índice del proyecto ](#-indice-del-proyecto)
+- [ Empezando ](#-empezando)
+  - [ Prerrequisitos ](#-prerrequisitos)
+  - [ Instalación ](#-instalacion)
+  - [ Uso ](#-uso)
+  - [ Pruebas ](#-pruebas)
+- [ Licencia ](#-licencia)
+- [ Autores ](#-autores)
 
 ---
 
@@ -54,7 +54,7 @@ anteriormente, como tablones físicos y reservas telefónicas.
 **A nivel organizacional**, para este proyecto hemos seguido las guías de planificaición enunciadas por el **PMBOK**. Nuestro proyecto fue desarrollado a lo largo de dos meses divididos en cuatro fases: inicio, planificación, ejecución y cierre. Los documentos de planificación referentes a este desarrollo se podrán encontrar en la carpeta ```/docs´´´ en la raíz de este proyecto. El desarrollo se ha llevado a cabo haciendo uso de la **metodología ágil Sprint**, siguiendo un ciclo de vida iterativo en cada Sprint.
 
 **A nivel técnico**, este proyecto se ha realizado usando como base el framework de **Django**, haciendo uso de la arquitecura **model-view-template**. Los lenguages usandos han sido **Python**, HTML, CSS y JavaScript principalmente. Para las pruebas, se ha usado la librería **Pytest** para testear los módulos del proyecto. Más adelante, se detallan más en profundidad todos estos aspectos para poder probar tú mismo este proyecto.
----
+
 
 ##  Estructura del proyecto
 
@@ -87,8 +87,6 @@ anteriormente, como tablones físicos y reservas telefónicas.
 
 ###  Índice del proyecto
 <details open>
-    <summary><b><code>PUEBLISTA/</code></b></summary>
-    <details>
         <summary><b>pueblista</b></summary>
         <blockquote>
             <table>
@@ -438,21 +436,9 @@ anteriormente, como tablones físicos y reservas telefónicas.
             </details>
                     </tr>
                     </table>
-                    <details>
-                        <summary><b>templates</b></summary>
-                        <blockquote>
-                            <table>
-                            <tr>
-                                <td><b><a href='https://github.com/Pueblista-PGPI/pueblista-pgpi.git/blob/master/pueblista/listado_reservas/templates/listado_reservas.html'>listado_reservas.html</a></b></td>
-                                <td><code>❯ Pantalla que incluye el listado de las reservas de un usuario y permite su cancelación. </code></td>
-                            </tr>
-                            </table>
-                        </blockquote>
-                    </details>
                 </blockquote>
             </details>
         </blockquote>
-    </details>
 </details>
 
 ---
