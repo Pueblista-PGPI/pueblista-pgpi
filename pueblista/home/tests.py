@@ -16,7 +16,8 @@ class HomeViewTests(TestCase):
             nombre='Test',
             apellidos='User',
             telefono='123456789',
-            direccion_postal='Calle Falsa 123'
+            direccion_postal='Calle Falsa 123',
+            tipo_usuario=CustomUser.SUPERUSUARIO
         )
         self.client.login(dni='12345678A', password='12345')
 
@@ -89,6 +90,20 @@ class HomeViewTests(TestCase):
     
     
 class AyuntamientoInfoTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = CustomUser.objects.create_user(
+            dni='12345678A',
+            password='12345',
+            fecha_nacimiento='2000-01-01',
+            nombre='Test',
+            apellidos='User',
+            telefono='123456789',
+            direccion_postal='Calle Falsa 123',
+            tipo_usuario=CustomUser.SUPERUSUARIO
+        )
+        self.client.login(dni='12345678A', password='12345')
+
     def test_create_ayuntamiento_info(self):
         info = AyuntamientoInfo.objects.create(
             titulo="Historia del pueblo",
@@ -96,3 +111,13 @@ class AyuntamientoInfoTests(TestCase):
         )
         self.assertEqual(str(info), "Historia del pueblo")
         self.assertEqual(info.descripcion, "Detalles históricos sobre el pueblo.")
+
+    def test_delete_ayuntamiento_info(self):
+        info = AyuntamientoInfo.objects.create(
+            titulo="Historia del pueblo",
+            descripcion="Detalles históricos sobre el pueblo."
+        )
+        info.save()
+        response = self.client.post(reverse('delete_ayuntamiento_info', args=[info.id]))
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(AyuntamientoInfo.objects.filter(id=info.id).exists())

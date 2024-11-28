@@ -224,7 +224,6 @@ def aceptar_solicitud(request, id):
 
     return redirect('solicitudes_pendientes', id=solicitud.espacio.id)
 
-
 @login_required
 def calendario_reservas(request, id):
     # Obtener todas las reservas para la fecha seleccionada o para hoy por defecto
@@ -315,11 +314,22 @@ def calendario_reservas(request, id):
 
 @login_required
 def crear_reserva(request, id):
-    espacio = '#'
+    espacio = get_object_or_404(EspacioPublico, id=id)
+    # Función para reutilización de código
+    subespacio = (
+    request.POST.get('subespacio_seleccionado') if
+    request.POST.get('subespacio_seleccionado') else None)
+    def redirigir_con_subespacio():
+        base_url = reverse('calendario_reservas', args=[espacio.id])
+        if subespacio:
+            return f"{base_url}?subespacio={subespacio}"
+        return base_url
     try:
-        espacio = get_object_or_404(EspacioPublico, id=id)
         if request.method == 'POST':
             fecha = request.POST.get('fecha')
+            if fecha < datetime.now().strftime('%Y-%m-%d'):
+                messages.error(request, "No se pueden hacer reservas en fechas pasadas.")
+                return redirect(redirigir_con_subespacio())
             hora_inicio = request.POST.get('hora_inicio')
             hora_fin = request.POST.get('hora_fin')
             subespacio = (
