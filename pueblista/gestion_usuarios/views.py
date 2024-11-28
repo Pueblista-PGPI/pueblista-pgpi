@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
 
 from gestion_notificaciones.models import Notificacion
 from gestion_reservas.models import SolicitudReservaEspecial
@@ -13,7 +15,7 @@ from .decorators import tipo_usuario_requerido
 from django.http import JsonResponse
 from gestion_reservas.models import Reserva
 
-
+@csrf_exempt
 def login(request):
     if request.user.is_authenticated:
         return redirect('/')
