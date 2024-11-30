@@ -1,7 +1,7 @@
 ---
-title: "Sprint Planning - 1"  # modificar
+title: "Sprint Planning - 3"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
-date: "06/11/2024"  # modificar
+date: "28/11/2024"  # modificar
 subject: "PGPI"
 author: [Daniel Fernández Caballero, Ramón Gavira Sánchez, José Miguel Iborra Conejo, Antonio Macías Ferrera, Rafael Pulido Cifuentes]
 lang: "es"
@@ -26,15 +26,15 @@ header-includes:        # para los colores en las tablas
 \definecolor{green1}{HTML}{52BE80}
 \definecolor{purple1}{HTML}{9B59B6}
 
-**Sprint Planning - 1**
+**Sprint Planning - 2**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces 
 - **CÓDIGO DEL PROYECTO:** 2.15
 - **PROPIETARIO DEL PROYECTO:** Ayuntamiento de Villanueva de las cruces
 - **PATROCINADOR DEL PROYECTO:** María José Escalona (alcaldesa)
 - **DIRECTOR DEL PROYECTO:** Ramón Gavira Sánchez
-- **FECHA DE CREACIÓN:** 06/11/2024
-- **ELABORADO POR:** José Miguel Iborra Conejo
+- **FECHA DE CREACIÓN:** 28/11/2024
+- **ELABORADO POR:** Ramón Gavira Sánchez 
 - **VERSIÓN DEL DOCUMENTO:** 1.0
  \newline
 
@@ -42,7 +42,7 @@ header-includes:        # para los colores en las tablas
 
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
-|06/11/24     | José Miguel Iborra Conejo     | Elaboración de la primera versión del acta del Sprint Planning. |
+|28/11/24     | Ramón Gavira Sánchez   | Elaboración de la primera versión del acta del Sprint Planning. |
 
 \newpage
 
@@ -50,7 +50,7 @@ header-includes:        # para los colores en las tablas
 
 ## Objetivo de la Reunión
 
-El objetivo de esta reunión es planificar el trabajo del primer sprint, seleccionando las tareas del Product Backlog de acuerdo con el Sprint Goal, la prioridad y la capacidad del equipo. Cada sprint contará con su propio Sprint Planning, Sprint Backlog, Sprint Review y Sprint Retrospective. Las tareas de cada sprint se seleccionan siguiendo los criterios de prioridad y capacidad del equipo, y se gestionan en ZenHub.
+El objetivo de esta reunión es planificar el trabajo del tercer sprint, seleccionando las tareas del Product Backlog de acuerdo con el Sprint Goal, la prioridad y la capacidad del equipo. Cada sprint contará con su propio Sprint Planning, Sprint Backlog, Sprint Review y Sprint Retrospective. Las tareas de cada sprint se seleccionan siguiendo los criterios de prioridad y capacidad del equipo, y se gestionan en ZenHub.
 
 ## Roles del Equipo
 
@@ -63,12 +63,26 @@ El objetivo de esta reunión es planificar el trabajo del primer sprint, selecci
 
 ## Objetivo del Sprint (Sprint Goal)
 
-Este sprint tiene como objetivo completar el desarrollo de funcionalidades CRUD esenciales para el sistema de reserva de espacios, asegurando que los usuarios puedan interactuar con la aplicación en sus funciones básicas.
+Este último Sprint tiene como objetivo principal entregar la última versión operativa del producto, incluyento todos los requistitos de conducta y de rendimiento. Así como realizar un informe de accesibilidad de acuerdo al estándar WCAG 2.1. AA.
 
-- **Fecha del Hito**: 13 de noviembre de 2024 
-- **Descripción**: Completar las funcionalidades CRUD, lo cual incluye la creación, edición, visualización y eliminación de espacios y datos de usuarios.
+Los hitos y entregables asociados a este Sprint son los siguientes:
+
+- **Identificador del Entregable**: PUEB01-3.22
+- **Nombre del Entregable**: Informes de Accesibilidad (AA)
+- **Fecha del Entregable**: 25 de noviembre de 2024  
+- **Descripción**: El objetivo de este hito es detallar el grado de cumplimiento con el nivel AA de accesibilidad según el estándar WCAG 2.1. Debe incluir una lista de los criterios específicos cumplidos bajo los principios de **perceptible, operable, comprensible y robusto**. Además, se realizará la verificación de accesibilidad en diferentes dispositivos y navegadores, incluyendo tecnologías de asistencia como lectores de pantalla.
+
+- **Identificador del Hito**: PUEB01-3.17
+- **Nombre del Hito**: Requisitos de conducta operativos
+- **Fecha del Hito**: 27 de noviembre de 2024
+- **Descripción**: El objetivo de este hito es llevar a cabo la implementación de los requisitos de conducta operativos que establecerán las pautas de comportamiento y uso adecuado del sistema, asegurando que los usuarios operen dentro de los lineamientos previstos. Esto incluye la configuración de restricciones y avisos dentro del sistema para notificar a los usuarios sobre las acciones que no están permitidas, garantizando así un uso correcto y seguro de la aplicación.
+
+Siguiendo con la línea de los Sprints anteriores, el *Sprint Goal* de este Sprint es el Hito **PUEB01-3.17**, todas las tareas del Sprint Backlog estarán orientadas a cumplir con este objetivo.
+
 
 ## Definición de Hecho (Definition of Done)
+
+La definición de hecho sigue siendo la misma que en los sprints anteriores, todas las tareas deben cumplir con los siguientes criterios:
 
 Todas las tareas de cada Sprint estarán organizadas en el *Product Backlog* y se irán asignando a los *Sprints* según la prioridad, la capacidad del equipo y sobre todo el *Sprint Goal* de cada Sprint. Cada Sprint tendrá su propio *Sprint Planning*, *Sprint Backlog*, *Sprint Review* y *Sprint Retrospective*. Para garantizar que cada tarea cumple con los estándares de calidad del proyecto, hemos establecido la siguiente Definition of Done (DoD):
 
@@ -100,30 +114,38 @@ Para estimar el esfuerzo utilizaremos **Story Points**, siendo 1 Story Point el 
 
 A continuación se muestra una tabla en la que estimamos el esfuerzo de las tareas creadas para cada épica del sprint backlog. (Estas tareas han quedado reflejadas en el tablero de ZenHub).
 
-| Tarea                                | Story Points |
-|--------------------------------------|--------------|
-| Borrado de espacios                  | 2            |
-| Creación de espacios                 | 4            |
-| Contacto directo a la empresa        | 5            |
-| Homepage                             | 2.5          |
-| Navbar                               | 1.5          |
-| Codacy                               | 1.5          |
-| Render                               | 1.5          |
-| Datos de los usuarios                | 2            |
-| Edición de información sobre ayuntamientos | 1      |
-| Información sobre espacios           | 3            |
-| Información sobre ayuntamiento       | 1.5          |
-| Login simple                         | 4            |
-| Listado de usuarios                  | 2            |
-| Visualizar perfil                    | 2            |
+| Tarea                                             | Story Points |
+|---------------------------------------------------|--------------|
+| Testing espacios                                  | 2            |
+| Testing reservas                                  | 3            |
+| Testing Homepage                                  | 1            |
+| Testing unitarios finales                         | 4            |
+| Informes de Testing                               | 4            |
+| Tests de carga y rendimiento                      | 2           |
+| Videotutoriales (Demo)                            | 4            |
+| Revisar funcionalidad fotos en el despliegue      | 2            |
+| Manuales de usuario (Personal Administrativo)            | 2.5            |
+| Manuales de usuario (Usuarios Finales)            | 2.5            |
+| Mejora de UI/UX                                   | 4            |
+| Modificar el diseño para la accesibilidad         | 4            |
+| Notificaciones en la aplicación                   | 3            |
+| Revisión del backend                              | 3            |
+| Informe de Accesibilidad (AA)                     | 2           |
+| Tests de UI                                      | 2            |
+| Creación de Subespacios                         | 4            |
 
-**Total estimado del Sprint**: 33.5 Story Points
+
+
+**Total estimado del Sprint**: 49 Story Points
+
+La estimación de este Sprint, en comparación al resto tiene una desviación de unos 10 Story Points, esto se debe a que es el Sprint Final, y que requiere una revisión e implicación mayor, y además se han añadido 6 Story Points de tareas que no se completaron en el Sprint anterior.
 
 ## Análisis del Gráfico Burndown
 
 A continuación, se presenta el Burndown Chart correspondiente al primer sprint. Este gráfico muestra el trabajo restante en función del tiempo. La línea azul refleja el avance ideal y ajustado, ya que en ZenHub no se consideran los fines de semana, aunque el equipo trabaja también esos días. Este gráfico permite visualizar el progreso del equipo y ayuda a ajustar el ritmo si es necesario.
 
 \begin{figure}
-\includegraphics[width=1.1\textwidth]{../../img/burndown_sprint_1.jpg}
-\caption{Imagen Burndown del Primer Sprint}
+\hspace{-1.25cm}
+\includegraphics[width=1.2\textwidth]{../../img/burndown-sprint3.jpg}
+\caption{Imagen Burndown del Segundo Sprint}
 \end{figure}

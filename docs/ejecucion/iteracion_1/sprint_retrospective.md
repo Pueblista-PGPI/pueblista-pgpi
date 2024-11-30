@@ -1,5 +1,5 @@
 ---
-title: 'Acta de Sprint Retrospective del Sprint 1'  # modificar
+title: 'Sprint Retrospective - 1'  # modificar
 subtitle: 'Proyecto Pueblista - PGPI'
 date: '14/11/2024'  # modificar
 subject: 'PGPI'
@@ -18,7 +18,7 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
 
-# Sprint Retrospective
+**Sprint Retrospective - 1**
 
 **Sprint:** 1
 **Fecha:** 14/11/2024 
