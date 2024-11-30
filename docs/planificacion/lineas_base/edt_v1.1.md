@@ -21,7 +21,7 @@ footer-right: "\\thepage"
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces 
 - **CÓDIGO DEL PROYECTO:** 2.15
-- **PROPIETARIO DEL PROYECTO:** Ayuntamiento de Villanueva de las cruces
+- **PROPIETARIO DEL PROYECTO:** Ayuntamiento de Villanueva de las Cruces
 - **PATROCINADOR DEL PROYECTO:** María José Escalona (alcaldesa)
 - **DIRECTOR DEL PROYECTO:** Ramón Gavira Sánchez
 - **FECHA DE CREACIÓN:** 15/10/2024
