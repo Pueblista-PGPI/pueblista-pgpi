@@ -40,6 +40,14 @@ Se evaluaron múltiples aspectos de accesibilidad en cada página utilizando **L
 - Diseño adaptativo y semántico.
 - Compatibilidad con herramientas de asistencia.
 
+Con el objetivo de profundizar en en análisis de la accesibilidad de las páginas, se utilizaron métricas que permiten identificar y medir el cumplimiento de los criterios de accesibilidad establecidos. Entre estas métricas, se destacan el First Contentful Paint (FCP) y el Largest Contentful Paint (LCP).
+
+- **First Contentful Paint (FCP):** Esta métrica mide el tiempo que tarda el navegador en renderizar el primer fragmento de contenido del DOM, que puede ser texto, una imagen (incluidos los fondos), SVG o elementos no blancos de un canvas. El FCP es significativo porque proporciona una indicación temprana de la rapidez con la que los usuarios pueden comenzar a consumir el contenido de la página. Un FCP rápido mejora la percepción de rendimiento y accesibilidad, ya que los usuarios pueden ver que algo está sucediendo en la página, lo que reduce la frustración y mejora la experiencia de usuario.
+
+- **Largest Contentful Paint (LCP):** Esta métrica mide el tiempo que tarda en renderizarse el contenido más grande visible en la ventana gráfica, como una imagen grande o un bloque de texto. El LCP es significativo porque refleja la rapidez con la que el contenido principal de la página se carga y está disponible para los usuarios. Un LCP rápido es crucial para la accesibilidad, ya que asegura que los usuarios no tengan que esperar mucho tiempo para interactuar con el contenido principal de la página.
+
+Estas métricas son importantes para analizar la accesibilidad de una página porque un rendimiento rápido y eficiente es fundamental para todos los usuarios, especialmente para aquellos con discapacidades que pueden depender de tecnologías asistivas. Un FCP y LCP rápidos contribuyen a una experiencia de usuario más fluida y accesible, reduciendo las barreras y mejorando la satisfacción general.
+
 ## Análisis de los resultados
 El gráfico que se presenta a continuación muestra los resultados de accesibilidad obtenidos en las auditorías realizadas con Lighthouse para las distintas páginas de la aplicación web del proyecto Pueblista. Cada página fue evaluada según su conformidad con el estándar WCAG 2.1 nivel AA, reflejando un enfoque robusto en el diseño inclusivo y accesible.
 
@@ -55,7 +63,7 @@ A continuación se detallarán los resultados de cada página.
 ---
 
 ### **Página de Inicio**
-- **URL**: `http://localhost:8000/`
+- **URL**: `https://pueblista-pgpi.onrender.com/`
 - **Resultados de accesibilidad**: **98%**
 - **Principales métricas**:
   - **First Contentful Paint**: 0.6 segundos.
@@ -67,7 +75,7 @@ A continuación se detallarán los resultados de cada página.
 ---
 
 ### **Página de Login**
-- **URL**: `http://localhost:8000/auth/login/`
+- **URL**: `https://pueblista-pgpi.onrender.com/auth/login/`
 - **Resultados de accesibilidad**: **100%**
 - **Principales métricas**:
   - **Primera pintura con contenido visible**: 0.8 segundos.
@@ -79,7 +87,7 @@ A continuación se detallarán los resultados de cada página.
 ---
 
 ### **Página Mi Perfil**
-- **URL**: `http://localhost:8000/auth/perfil/`
+- **URL**: `https://pueblista-pgpi.onrender.com/auth/perfil/`
 - **Resultados de accesibilidad**: **100%**
 - **Principales métricas**:
   - **Largest Contentful Paint**: 0.8 segundos.
@@ -151,7 +159,7 @@ A continuación se detallarán los resultados de cada página.
 ---
 
 ### **Página General de Usuarios**
-- **URL**: `http://localhost:8000/auth/user_list/`
+- **URL**: `https://pueblista-pgpi.onrender.com/auth/user_list/`
 - **Resultados de accesibilidad**: **98%**
 - **Principales métricas**:
   - **Largest Contentful Paint**: 0.9 segundos.
