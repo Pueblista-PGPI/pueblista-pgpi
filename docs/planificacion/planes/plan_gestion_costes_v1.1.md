@@ -18,7 +18,7 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
 
-**PLAN DE GESTIÓN DEL CRONOGRAMA**
+**PLAN DE GESTIÓN DE COSTES**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
@@ -39,7 +39,7 @@ footer-right: "\\thepage"
 
 # 1. NORMAS Y PROCEDIMIENTOS APLICABLES
 
-El plan de Gestión de Costes tiene como propósito definir las directrices y procesos necesariios para estimar, asignar, gestionar y controlar los costes del proyecto de manera eficaz. Este plan se basa en las normas del PMBOK y en las políticas internas de la empresa, asegurando que toods los recursos sean utilizados de manera eficiente y alineada con los objetivos del proyecto.
+El plan de Gestión de Costes tiene como propósito definir las directrices y procesos necesarios para estimar, asignar, gestionar y controlar los costes del proyecto de manera eficaz. Este plan se basa en las normas del PMBOK y en las políticas internas de la empresa, asegurando que toods los recursos sean utilizados de manera eficiente y alineada con los objetivos del proyecto.
 
 # 2. DOCUMENTOS APLICABLES
 
@@ -82,7 +82,7 @@ Para estimar los costes del proyecto, se siguieron dos técnicas, una para los c
 
 ## 5.1. Estimación del Coste por hora de los recursos humanos
 
-La primera técnica consistió en unificar todos los costes relativos a los recursos humanos, obteniendo un coste por hora específico para cada rol. Esta metodología considera todos los aspectos que influyen en el coste real de un recurso humano, incluyendo horas laborables , beneficiios, *costes de estructura* y productividad.
+La primera técnica consistió en unificar todos los costes relativos a los recursos humanos, obteniendo un coste por hora específico para cada rol. Esta metodología considera todos los aspectos que influyen en el coste real de un recurso humano, incluyendo horas laborables , beneficios, *costes de estructura* y productividad.
 
 La estimación del coste por hora para cada rol se basa en los siguientes parámetros:
 
@@ -140,15 +140,17 @@ Una vez aplicada esta fórmula general se obtuvieron los costes por hora para ca
 | Experto en Accesibilidad                  | 23,00              |
 
 
+
 Para calcular el PVP de cada rol, se aplicó un **margen del 20%** sobre el coste por hora, obteniendo el precio de venta al cliente. Este margen se establece para cubrir los gastos generales y obtener un beneficio razonable en la prestación de servicios.
 
-## 5.2. Estimación de costes de las activiades (Técnica Bottom-Up)
 
-Una vez establecido el coste por hora de cada rol, se utilizó la técnica **Bottom-up** para estimar el coste de cada actividad, cada fase y finalmente, el coste global del proyecto. Esta técnica consiste en descomponer el proyecto en actividades específicas y asignar los recursos humanos neecsarios para cada una. Teniendo todas las actividades desglosadas en el *Listado de actividades* y el *Cronograma*, se asignaron los recursos necesarios para cada actividad y se calculó el coste total de cada una.
+## 5.2. Estimación de costes de las actividades (Técnica Bottom-Up)
+
+Una vez establecido el coste por hora de cada rol, se utilizó la técnica **Bottom-up** para estimar el coste de cada actividad, cada fase y finalmente, el coste global del proyecto. Esta técnica consiste en descomponer el proyecto en actividades específicas y asignar los recursos humanos necesarios para cada una. Teniendo todas las actividades desglosadas en el *Listado de actividades* y el *Cronograma*, se asignaron los recursos necesarios para cada actividad y se calculó el coste total de cada una.
 
 **Proceso Bottom-Up:**
 
-1. **Asignación de Recursos por actividad**: Siguiendo el *Plan de Gestión de Recursos*, se asignó a cada recurso un **porcentaje de dedicación** adecuado para cada actividad, lo cual permite optimizar el tiempo y coste sin requerir dedicación exclusiva en tareas especíicas. Este porcentaje de dedicación fue establecido en función de la naturaleaz de cada actividad y la fase del proyecto.
+1. **Asignación de Recursos por actividad**: Siguiendo el *Plan de Gestión de Recursos*, se asignó a cada recurso un **porcentaje de dedicación** adecuado para cada actividad, lo cual permite optimizar el tiempo y coste sin requerir dedicación exclusiva en tareas específicas. Este porcentaje de dedicación fue establecido en función de la naturaleaz de cada actividad y la fase del proyecto.
 
 2. **Cálculo de coste de la actividad**: Para cada actividad, se calculó el coste de los recursos asignados multiplicando el coste por hora de cada recurso por las horas reales de dedicación. Esto permitió obtener el coste total de cada actividad.
 
@@ -172,13 +174,13 @@ Para gestionar los costes del proyecto, se emplearon dos herramientas principale
 
 # 7. INFORMES DE COSTES Y FORMATO
 
-Debido a la duración del proyecto y a la implementación de una metodología ágil en la fase de ejecución, se considera mas eficiente realizar un **informe de costes final** previo al cierre del proyecto en lugar de generar informes periódicos. El informe global de costes permitirá revisar de manera detallada el coste real de cada fase y analizar cualquier posible desviación acumulada.
+Debido a la duración del proyecto y a la implementación de una metodología ágil en la fase de ejecución, se considera más eficiente realizar un **informe de costes final** previo al cierre del proyecto en lugar de generar informes periódicos. El informe global de costes permitirá revisar de manera detallada el coste real de cada fase y analizar cualquier posible desviación acumulada.
 
-**Enfoque de Contol de Costes en el Proyecto**
+**Enfoque de Control de Costes en el Proyecto**
 
 El proyecto combina un ciclo de vida predictivo para las fases de inicio, planificación y cierre con un enfoque ágil en la fase de ejecución. En las fases de **inicio, planificación y cierre**, el control de costes sigue un enfoque en cascada que permite prever y fijar el presupuesto de una manera más estable. 
 
-Sin embargo, en la fase de **ejecución**, donde se adopta la metodología ágil Scrum, es más probable que se presenten ajustes en los costes debido a la naturaleza iterativa de los Sprints. Durante cada Sprint, el equipo revisa el progreso y los recursos necesarios, y aunque no se generaran infromes de costes específicos para cada sprint, las **revisiones de desempeño en cada Sprint Review** permitirán identificar posibles desviaciones y ajustar los recursos y costes en consecuencia.
+Sin embargo, en la fase de **ejecución**, donde se adopta la metodología ágil Scrum, es más probable que se presenten ajustes en los costes debido a la naturaleza iterativa de los Sprints. Durante cada Sprint, el equipo revisa el progreso y los recursos necesarios, y aunque no se generarán informes de costes específicos para cada sprint, las **revisiones de desempeño en cada Sprint Review** permitirán identificar posibles desviaciones y ajustar los recursos y costes en consecuencia.
 
 **Contenido del Informe final de Costes**
 
