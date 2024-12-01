@@ -1,8 +1,8 @@
+# pragma: no cover
 from locust import HttpUser, task, between
 from datetime import datetime
 import random  # Para seleccionar un espacio aleatorio si lo prefieres
 from io import BytesIO  # Para simular subida de archivo
-
 
 # Clase 1: GestionUsuarios
 class GestionUsuariosLoadTest(HttpUser):
@@ -295,8 +295,8 @@ class GestionEspaciosLoadTest(HttpUser):
 
         headers = {
         "X-CSRFToken": self.csrf_token,
-        "Referer": "https://pueblista-pgpi.onrender.com/espacios/create/"  # Asegúrate de poner la URL correcta
-    }
+        "Referer": "https://pueblista-pgpi.onrender.com/espacios/create/"
+        }
         with self.client.post(
             "/espacios/create/",
             data=data,
@@ -334,3 +334,58 @@ class GestionEspaciosLoadTest(HttpUser):
                 response.success()
             else:
                 response.failure(f"Error al obtener los espacios: {response.status_code}")
+                
+class GestionHomePageLoadTest(HttpUser):
+
+    def on_start(self):
+        """Autentica al usuario y guarda las cookies de sesión de forma automática."""
+        response = self.client.post(
+            "/auth/login/",  # Ruta para login
+            data={"dni": "11111111A", "fecha_nacimiento": "2000-01-01"},
+            allow_redirects=True
+        )
+        
+        # Verificar respuesta de login
+        if response.status_code == 200:
+            # Verificar si las cookies contienen el csrftoken
+            if "csrftoken" in response.cookies:
+                self.csrf_token = response.cookies["csrftoken"]
+                print("CSRF Token encontrado:", self.csrf_token)
+            else:
+                print("CSRF Token no encontrado en las cookies")
+                self.environment.runner.quit()  # Detener si no se puede obtener el CSRF
+        else:
+            print(f"Error al hacer login: {response.status_code}, {response.text}")
+            self.environment.runner.quit()  # Detener si no se puede hacer login
+    
+    @task(1)
+    def test_obtener_homepage(self):
+        """Obtiene la página de inicio."""
+        headers = {"X-CSRFToken": self.csrf_token}  # Incluir el token CSRF
+        with self.client.get("/", cookies=self.client.cookies, headers=headers, catch_response=True) as response:
+            if response.status_code == 200:
+                response.success()
+            else:
+                response.failure(f"Error al obtener la página de inicio: {response.status_code}")
+
+    @task(1)
+    def test_enviar_correo(self):
+        """Envía un correo de prueba."""
+        headers = {
+            "X-CSRFToken": self.csrf_token,
+            "Referer": "https://pueblista-pgpi.onrender.com/" 
+        }
+        with self.client.post(
+            "/",
+            data={
+                "message": "Este es un mensaje de prueba"
+            },
+            cookies=self.client.cookies,
+            headers=headers,
+            catch_response=True,
+            allow_redirects=True
+        ) as response:
+            if response.status_code == 200:
+                response.success()
+            else:
+                response.failure(f"Error al enviar el correo: {response.status_code}")
