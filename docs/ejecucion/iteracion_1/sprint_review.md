@@ -1,5 +1,5 @@
 ---
-title: "Sprint Review"  # modificar
+title: "Sprint Review - 1"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
 date: "14/11/2024"  # modificar
 subject: "PGPI"
@@ -27,7 +27,7 @@ header-includes:        # para los colores en las tablas
 \definecolor{green1}{HTML}{52BE80}
 \definecolor{purple1}{HTML}{9B59B6}
 
-**Sprint Planning**
+**Sprint Review - 1**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces 
 - **CÓDIGO DEL PROYECTO:** 2.15
@@ -43,11 +43,10 @@ header-includes:        # para los colores en las tablas
 
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
-|14/11/24     | Ramón Gavira Sánchez     | Elaboración de la primera versión del acta del Sprint Planning. |
+|14/11/24     | Ramón Gavira Sánchez     | Elaboración de la primera versión del acta del Sprint Review. |
 
 \newpage
 
-# Acta de Sprint Planning
 
 ## Resumen del Progreso
 

@@ -1,5 +1,5 @@
 ---
-title: "Sprint Planning"  # modificar
+title: "Sprint Planning - 2"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
 date: "14/11/2024"  # modificar
 subject: "PGPI"
@@ -26,7 +26,7 @@ header-includes:        # para los colores en las tablas
 \definecolor{green1}{HTML}{52BE80}
 \definecolor{purple1}{HTML}{9B59B6}
 
-**Sprint Planning**
+**Sprint Planning - 2**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces 
 - **CÓDIGO DEL PROYECTO:** 2.15
@@ -102,7 +102,7 @@ A continuación se muestra una tabla en la que estimamos el esfuerzo de las tare
 
 | Tarea                                             | Story Points |
 |---------------------------------------------------|--------------|
-| Reservas por franjas horarias                     | 5            |
+| Reservas por franjas horarias                     | 4.5          |
 | Múltiples reservas                                | 2.5          |
 | Cancelación de reservas                           | 2.5          |
 | Creación de reservas                              | 5            |
@@ -114,13 +114,13 @@ A continuación se muestra una tabla en la que estimamos el esfuerzo de las tare
 | Ver reservas (usuario)                            | 3.5          |
 | Revisar direccionamiento de rutas                 | 0.5          |
 | Testing espacios                                  | 2            |
-| Testing reservas                                  | 4            |
+| Testing reservas                                  | 3            |
 | Testing Homepage                                  | 1            |
 | Reserva especial de espacios                      | 2            |
 | Borrado de reservas por reservas de orden superior| 2            |
 
 
-**Total estimado del Sprint**: 40 Story Points
+**Total estimado del Sprint**: 39.5 Story Points
 
 ## Análisis del Gráfico Burndown
 
