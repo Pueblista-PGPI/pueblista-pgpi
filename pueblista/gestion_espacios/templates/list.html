@@ -6,6 +6,35 @@
 
 
 {% block content %}
+{% if messages %}
+    <div class="alert-container" style="margin: 20px;">
+        {% for message in messages %}
+            <div 
+                class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" 
+                role="alert" style="margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var fadeEffect = setInterval(function () {
+                    if (!alert.style.opacity) {
+                        alert.style.opacity = 1;
+                    }
+                    if (alert.style.opacity > 0) {
+                        alert.style.opacity -= 0.1;
+                    } else {
+                        clearInterval(fadeEffect);
+                        alert.remove();
+                    }
+                }, 50);
+            });
+        }, 1500);
+    </script>
+{% endif %}
 
     <section class="py-4 py-xl-5">
 
@@ -38,6 +67,11 @@
                                     <p class="text-warning card-text mb-2">Espacio especial</p>
                                 {% endif %}
                                 <h2 class="fw-bold text-white mb-3">{{ space.nombre }}</h2>
+                                {% if space.estado == 'no_disponible' %}
+                                    <p class="text-danger card-text mb-2"><strong>Estado:</strong> No Disponible</p>
+                                {% else %}
+                                    <p class="text-success card-text mb-2"><strong>Estado:</strong> Disponible</p>
+                                {% endif %}
                                 <p class="mb-4">{{ space.descripcion }}</p>
                                 <p><strong>Teléfono:</strong> {{ space.telefono }}</p>
                                 <p><strong>Horario:</strong> {{ space.horario }}</p>
