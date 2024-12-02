@@ -299,6 +299,10 @@ def calendario_reservas(request, id):
 
     redireccion = subespacio_seleccionado if subespacio_seleccionado else subespacios[0] if subespacios != [] else None
 
+    if espacio.estado == EspacioPublico.NO_DISPONIBLE:
+        messages.error(request, "Este espacio no está disponible para reservas.")
+        return redirect('list')
+    
     return render(request, 'calendario_reservas.html', {
         'fecha_seleccionada': fecha_seleccionada,
         'fecha_seleccionada_formateada': fecha_seleccionada_formateada,
