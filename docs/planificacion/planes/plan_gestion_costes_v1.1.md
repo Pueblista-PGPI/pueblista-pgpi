@@ -39,7 +39,7 @@ footer-right: "\\thepage"
 
 # 1. NORMAS Y PROCEDIMIENTOS APLICABLES
 
-El plan de Gestión de Costes tiene como propósito definir las directrices y procesos necesarios para estimar, asignar, gestionar y controlar los costes del proyecto de manera eficaz. Este plan se basa en las normas del PMBOK y en las políticas internas de la empresa, asegurando que toods los recursos sean utilizados de manera eficiente y alineada con los objetivos del proyecto.
+El plan de Gestión de Costes tiene como propósito definir las directrices y procesos necesarios para estimar, asignar, gestionar y controlar los costes del proyecto de manera eficaz. Este plan se basa en las normas del PMBOK y en las políticas internas de la empresa, asegurando que toods los recursos sean utilizados de manera eficiente y alineada con los objetivos del proyecto.\newline\newline
 
 # 2. DOCUMENTOS APLICABLES
 
@@ -52,6 +52,10 @@ Para la elaboración y control de este Plan de Gestión de Costes, se han identi
 
 Estos documentos permiten una estimación de costes coherente y completa, proporcionando una base sólida para el control financiero y asegurando que todos los aspectos económicos del proyecto se alineen con sus objetivos y requisitos.
 
+
+\newpage
+
+
 # 3. TIPOS DE COSTES
 
 Los costes asociados al proyecto los dividiremos en dos categorías principales: costes humanos y costes de estructura. Los costes humanos incluyen los salarios, beneficios y otros gastos relacionados con el personal necesario para la ejecución del proyecto. Por otro lado, los costes de estructura incluyen los gastos asociados a la adquisición de licencias de software, equipos y herramientas, así como los gastos generales de la organización que no se pueden atribuir a una actividad específica del proyecto. 
@@ -62,6 +66,8 @@ Los costes asociados al proyecto los dividiremos en dos categorías principales:
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | \textbf{Salarios y Beneficios}    | \textbf{Descripción}: Incluye los salarios, beneficios y otros gastos relacionados con el personal necesario para la ejecución del proyecto. \newline \newline \textbf{Desglose}: \newline - Salarios del equipo de desarrollo \newline - Beneficios adicionales (seguros, bonos, etc.) \newline - Gastos de contratación y formación |
 | \textbf{Consultoría y Subcontratación} | \textbf{Descripción}: Gastos asociados a la contratación de consultores externos o la subcontratación de servicios especializados. \newline \newline \textbf{Desglose}: \newline - Honorarios de consultores \newline - Costes de subcontratación de servicios específicos |
+
+\newpage 
 
 ## 3.2. Costes de Estructura
 
@@ -74,6 +80,9 @@ Los costes asociados al proyecto los dividiremos en dos categorías principales:
 # 4. UNIDADES MONETARIAS Y PRECISIÓN
 
 Los costes del proyecto se expresarán en euros (€) y se redondearán a dos decimales para facilitar la gestión y el control financiero.
+
+
+\newpage
 
 
 # 5. TÉCNICAS DE ESTIMACIÓN DE COSTES
@@ -199,6 +208,9 @@ Sin embargo, en la fase de **ejecución**, donde se adopta la metodología ágil
 Para poder llevar a cabo el informe final de costes, nos apoyaremos en MS Project y sobre todo en los *Sprint Review* que obtendrán toda la información real de desempeño del equipo, viendo las tareas realizadas y el tiempo empleado. Comparando esto con la estimación inicial, podremos obtener un informe detallado de costes reales y desviaciones.
 
 
+\newpage
+
+
 # 8. SUPUESTOS Y RESTRICCIONES
 
 ## 8.1. Supuestos
@@ -215,7 +227,7 @@ Para poder llevar a cabo el informe final de costes, nos apoyaremos en MS Projec
 
 - En principio, no se subcontratarán recursos externos ni se requerirá personal adicional; el proyecto dependerá exclusivamente de los recursos internos.
 
-- No se contemplan gastos de mantenimiento ni soporte posterior a la entrega del proyecto.
+- No se contemplan gastos de mantenimiento ni soporte posterior a la entrega del proyecto. \newline
 
 
 
@@ -223,6 +235,8 @@ Para poder llevar a cabo el informe final de costes, nos apoyaremos en MS Projec
 
 Se establecerá una reserva de contingencia del **5% del presupuesto total del proyecto** para cubrir imprevistos y posibles riesgos financieros que pudieran afectar la continuidad del proyecto. Esta reserva se evaluará y ajustará si fuera necesario, a medida que avanza el proyecto y se identifiquen cambios significativos en los riesgos.
 
+
+\newpage
 
 
 # 10. UMBRALES DE DESVIACIÓN PERMITIDOS

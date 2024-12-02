@@ -31,11 +31,8 @@ header-includes:        # para los colores en las tablas
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
 - **FECHA DE CREACIÓN:** 02/11/2024
-- **VERSIÓN DEL DOCUMENTO:** 1.1
+- **VERSIÓN DEL DOCUMENTO:** 1.1 \newline \newline
 
-<br>
-
-<br>
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO**
 
@@ -50,7 +47,7 @@ header-includes:        # para los colores en las tablas
 # 1\. NORMAS Y PROCEDIMIENTOS APLICABLES (FAE)  
 Este Plan de Gestión de la Configuración se guiará por las metodologías y prácticas establecidas en la **Guía del PMBOK** (Project Management Body of Knowledge), publicada por el Project Management Institute (PMI). 
 
-El plan deberá contener información sobre cómo el equipo de trabajo realizará el seguimiento y control del cambio durante el desarrollo del proyecto, además de cómo se llevará a cabo el control de versiones durante las fases de desarrollo y cierre. Queda excluida del Plan de Gestión de la Configuración la gestión de peticiones y evaluaciones de cambios, que constarán en el correspondiente Plan de Gestión del Cambio.
+El plan deberá contener información sobre cómo el equipo de trabajo realizará el seguimiento y control del cambio durante el desarrollo del proyecto, además de cómo se llevará a cabo el control de versiones durante las fases de desarrollo y cierre. Queda excluida del Plan de Gestión de la Configuración la gestión de peticiones y evaluaciones de cambios, que constarán en el correspondiente Plan de Gestión del Cambio. \newline \newline
 
 
 # 2\. DOCUMENTOS APLICABLES (APO) 

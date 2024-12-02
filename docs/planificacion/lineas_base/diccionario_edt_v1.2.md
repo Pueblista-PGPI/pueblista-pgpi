@@ -35,7 +35,7 @@ header-includes:        # para los colores en las tablas
 - **DIRECTOR DEL PROYECTO:** Ramón Gavira Sánchez
 - **FECHA DE CREACIÓN:** 15/10/2024
 - **ELABORADO POR:** Antonio Macías Ferrera, Ramón Gavira Sánchez
-- **VERSIÓN DEL DOCUMENTO:** 1.0
+- **VERSIÓN DEL DOCUMENTO:** 1.2
  \newline
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO** 
@@ -43,6 +43,8 @@ header-includes:        # para los colores en las tablas
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
 |15/10/24     | Antonio Macías Ferrera, Ramón Gavira Sánchez     | Elaboración de la primera versión del diccionario de la EDT. |
+|02/12/24     | Antonio Macías Ferrera     | Corrección de errores de formato. |
+
 
 \newpage
 

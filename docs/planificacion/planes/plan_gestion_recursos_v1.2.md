@@ -46,13 +46,13 @@ Para una correcta gestión de los recursos: primero se deberá establecer una co
 
 
 # 2\. CUMPLIMIENTO DE ESTÁNDARES Y REGLAMENTACIONES 
-### Recursos Humanos 
+## 2.1. Recursos Humanos 
 Los recursos humanos (RRHH), estarán conformados por el **personal que se encargará de llevar a cabo el proyecto** o intervenir en él en mayor o menor medida. De entre ellos, los participantes explícitos del proyecto tendrán asignados un rol y una serie de responsabilidades. Estos recursos humanos se dividen a su vez en dos equipos: **equipo de dirección y equipo de ejecución**. 
 
-### Recursos Materiales 
+## 2.2. Recursos Materiales 
 Dentro de un proyecto software, determinamos como recursos materiales a todos aquellos **recursos no humanos, que no tiene por qué ser físicos**. Con estos, entran dentro de esta definición las licencias software, programas, suscripciones, equipos y otros materiales que son necesarios de manera directa o indirecta para que el proyecto se lleve a cabo. 
 
-### Roles y responsabilidades
+## 2.3. Roles y responsabilidades
 Cada equipo de trabajo o miembro individual del proyecto deberá acometer uno o varios roles dentro de este. Cada rol llevará asociadas una serie de responsabilidades en relación con la ejecución del proyecto y la elaboración del producto. 
 
 Se debe realizar una trazabilidad de los roles respecto a las tareas de la EDT en las que deben trabajar. Para ello, se cuenta con una **matriz de asignación de responsabilidades** en la que, por cada tarea de la EDT de cada uno de los paquetes, se designará un rol **Responsable**, **Consultado**, **Aprobador** e **Informado** al respecto. 
@@ -63,7 +63,7 @@ Se debe realizar una trazabilidad de los roles respecto a las tareas de la EDT e
 
 # 3\. RECURSOS HUMANOS 
 
-### Equipo de Dirección
+## 3.1. Equipo de Dirección
 
 |**ROL**|**RESPONSABILIDADES**|**HABILIDADES**|
 | - | - | - |
@@ -77,7 +77,7 @@ Se debe realizar una trazabilidad de los roles respecto a las tareas de la EDT e
 \newpage
 
 
-## Equipo de Desarrollo
+## 3.2. Equipo de Desarrollo
 
 |**ROL**|**RESPONSABILIDADES**|**HABILIDADES**|
 | - | - | - |
@@ -123,16 +123,16 @@ Dado que se entiende que los integrantes no estarán al 100% activos en cada mom
 
 El proyecto contempla un período de formación interna, ya que la formación a los usuarios finales queda excluida del alcance. No obstante, al equipo de la organización se le ofrecerá una formación que aborde tanto competencias técnicas como habilidades blandas, de modo que se prepare adecuadamente para la ejecución eficiente y efectiva del proyecto.
 
-## Objetivos de la Formación
+## 5.1. Objetivos de la Formación
 - **Mejorar las Competencias Técnicas**: Asegurar que todos los miembros del equipo dominen las herramientas y tecnologías necesarias para el desarrollo del proyecto.
 - **Desarrollar Habilidades Blandas**: Fomentar la comunicación efectiva, trabajo en equipo y liderazgo.
 - **Preparación para Entregas Rápidas**: Asegurar que el equipo esté preparado para realizar entregas continuas y de alta calidad.
 
-## Identificación de Necesidades
+## 5.2. Identificación de Necesidades
 - **Análisis de Competencias**: Realizar una evaluación inicial de las habilidades del equipo para identificar áreas de mejora.
 - **Reunión de Kick-off**: Discutir las necesidades formativas específicas durante la reunión inicial.
 
-## Contenidos de la Formación
+## 5.3. Contenidos de la Formación
 - **Formación Técnica**:
   - **Lenguajes de Programación**: Capacitación en Python y Django.
   - **Herramientas de Gestión**: Formación en MS Project y metodologías ágiles.
@@ -142,13 +142,13 @@ El proyecto contempla un período de formación interna, ya que la formación a 
   - **Trabajo en Equipo**: Actividades para fortalecer la colaboración y cohesión del grupo.
   - **Liderazgo**: Talleres para el desarrollo de habilidades de liderazgo y gestión de conflictos.
 
-## Metodología
+## 5.4. Metodología
 - **Sesiones Presenciales y Virtuales**: Alternar entre cursos en línea y talleres presenciales para maximizar la accesibilidad.
 - **Proyectos Prácticos**: Integrar ejercicios prácticos relacionados con el trabajo real del equipo para aplicar los conocimientos adquiridos.
 - **Mentoría**: Asignar mentores para guiar a los miembros del equipo menos experimentados.
 
 
-## Calendario de Formación
+## 5.5. Calendario de Formación
 Para este proyecto, debido a su corta duración y magnitud, el plan de formación será de un mes siguiendo el siguiente esquema: 
 
 - **Semana 1**:
@@ -160,12 +160,12 @@ Para este proyecto, debido a su corta duración y magnitud, el plan de formació
 - **Semanas 3-4**:
   - Aplicación práctica de conocimientos y revisión semanal de progreso.
 
-## Evaluación de Resultados
+## 5.6. Evaluación de Resultados
 - **Feedback de los Participantes**: Encuestas post-formación para medir la satisfacción y aplicabilidad de lo aprendido.
 - **Medición de Impacto**: Comparar el rendimiento del equipo antes y después de la formación a través de indicadores clave de rendimiento (KPI).
 - **Ajustes Necesarios**: Revisión del plan de formación y ajustes según las necesidades identificadas en las evaluaciones.
 
-## Presupuesto
+## 5.7. Presupuesto
 - **Costos de Formación**: Incluir honorarios de formadores, materiales y recursos necesarios.
 - **Inversión en Herramientas**: Presupuestar licencias para plataformas de formación y herramientas de gestión.
 
