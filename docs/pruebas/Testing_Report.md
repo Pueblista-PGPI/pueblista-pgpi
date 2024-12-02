@@ -176,7 +176,7 @@ No se han producido errores críticos durante el testing.
 - Total de pruebas ejecutadas: 128.
 - Porcentaje de éxito: 100%.
 - Cobertura de código: 97%.
-- Pruebas de carga: Soporta 100 usuarios concurrentes con tiempo de respuesta de 500 ms.
+- Pruebas de carga: Soporta 20 usuarios concurrentes con tiempo de respuesta de 10 ms.
 
 **Estadísticas**:
 
