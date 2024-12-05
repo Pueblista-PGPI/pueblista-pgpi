@@ -1,17 +1,17 @@
 ---
 title: "Informe de Seguimiento y CIerre"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
-date: "5/12/2024"  # modificar
+date: "05/12/2024"  # modificar
 subject: "PGPI"
 author: [Daniel Fernández Caballero, Ramón Gavira Sánchez, José Miguel Iborra Conejo, Antonio Macías Ferrera, Rafael Pulido Cifuentes]
 lang: "es"
 toc: true
 toc-own-page: true
-titlepage: true,
+titlepage: true
 titlepage-text-color: "1C1C1C"
 titlepage-rule-color: "1C1C1C"
 titlepage-rule-height: 0
-titlepage-background: "../../plantilla-markdown/background4V.pdf" # modificar si el doc es horizontal
+titlepage-background: "../../../plantilla-markdown/background4V.pdf" # modificar si el doc es horizontal
 toc: true
 toc-own-page: true
 footer-left: "Pueblista - PGPI"
@@ -23,6 +23,8 @@ header-includes:
   - \usepackage{xcolor}
   - \usepackage{placeins}
 ---
+
+\definecolor{purple1}{HTML}{9B59B6}
 
 **INFORME DE SEGUIMIENTO Y CIERRE**
 
@@ -39,7 +41,9 @@ header-includes:
 
 | Fecha       | Realizada por | Breve descripción de los cambios |
 |-------------|---------------|----------------------------------|
-|5/12/24             | Ramón Gavira Sánchez              |   Creación y elaboración del documento.                              |
+|05/12/24             | Ramón Gavira Sánchez              |   Creación y elaboración del documento.                              |
+|05/12/24             | Antonio Macías Ferrera              |   Correciones de formato en latex y reestructuración de imágenes. .                              |
+
 
 
 
@@ -85,6 +89,10 @@ A continuación se indica las fechas en las que se realizó el seguimiento de ca
 - **Ejecución (Sprint 3)**: 28/11/2024
 - **Cierre**: 5/12/2024
 
+
+\newpage
+
+
 # 3. SEGUIMIENTO DE CADA ETAPA
 
 ## 3.1 Inicio
@@ -92,12 +100,15 @@ A continuación se indica las fechas en las que se realizó el seguimiento de ca
 En las siguientes imágenes se muestra el porcentaje de avance del proyecto en la fase de Inicio y las tareas retrasadas:
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../img/inicio/porcentaje_inicio.png}
+    \includegraphics[width=0.5\textwidth]{./img/inicio/porcentaje_inicio.png}
     \caption{Porcentaje de avance en la fase de Inicio}
+\end{figure}
 
-    \includegraphics[width=0.8\textwidth]{../img/inicio/retraso_inicio.png}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{./img/inicio/retraso_inicio.png}
+    \caption{Retrasos en la fase de Inicio}
+\end{figure}
 
 A pesar del retraso en algunas tareas, los entregables clave e hitos se completaron a tiempo y con la calidad esperada.
 
@@ -109,7 +120,7 @@ A continuación se muestra el avance del proyecto en la fase de Planificación:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/planificacion/porcentaje_planificacion.png}
+    \includegraphics[width=0.5\textwidth]{./img/planificacion/porcentaje_planificacion.png}
     \caption{Porcentaje de avance en la fase de Planificación}
 \end{figure}
 
@@ -120,7 +131,7 @@ En cuanto a los costes, se adjunta en la siguiente figura el *Informe General de
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/planificacion/costos.png}
+    \includegraphics[width=0.5\textwidth]{./img/planificacion/costos.png}
     \caption{Informe General de Costos en la fase de Planificación}
 \end{figure}
 
@@ -128,10 +139,10 @@ En la siguiente tabla se detallan las desviaciones en costes observadas en la fa
 
 \begin{table}[!ht]
 \centering
-\rowcolors{1}{blue1!25}{white}
-\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\rowcolors{1}{purple1!25}{white}
+\begin{tabular}{|p{4cm}|p{4cm}|p{3.5cm}|p{3.5cm}|}
 \hline
-\rowcolor{blue1!50}
+\rowcolor{purple1!50}
 \textbf{ACTIVIDAD} & \textbf{DURACIÓN ESTIMADA} & \textbf{DURACIÓN REAL} & \textbf{DESVIACIÓN} \\
 \hline
  PUEB01-1.1: Elaboración del Acta de constitución & 8 horas   & 6 horas  &  -2 horas \\
@@ -152,10 +163,10 @@ En la siguiente tabla se detallan las desviaciones en costes observadas en la fa
 
 \begin{table}[!ht]
 \centering
-\rowcolors{1}{blue1!25}{white}
-\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\rowcolors{1}{purple1!25}{white}
+\begin{tabular}{|p{4cm}|p{4cm}|p{3.5cm}|p{3.5cm}|}
 \hline
-\rowcolor{blue1!50}
+\rowcolor{purple1!50}
 \textbf{PAQUETE DE TRABAJO / ACTIVIDAD / RECURSO} & \textbf{COSTE ESTIMADO} & \textbf{COSTE REAL} & \textbf{DESVIACIÓN} \\
 \hline
 PUEB01-1.1: Elaboración del Acta de constitución & 336,00 € & 6 horas & -166,00 € \\
@@ -179,7 +190,7 @@ El primer sprint se completó con éxito, cumpliendo con los plazos y entregable
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/sprint1/porcentaje_sprint1.png}
+    \includegraphics[width=0.5\textwidth]{./img/sprint1/porcentaje_sprint1.png}
     \caption{Porcentaje de avance en el Sprint 1}
 \end{figure}
 
@@ -196,10 +207,10 @@ En la siguiente tabla mostramos las desviaciones en costes observadas en el Spri
 
 \begin{table}[!ht]
 \centering
-\rowcolors{1}{blue1!25}{white}
-\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\rowcolors{1}{purple1!25}{white}
+\begin{tabular}{|p{4cm}|p{4cm}|p{3.5cm}|p{3.5cm}|}
 \hline
-\rowcolor{blue1!50}
+\rowcolor{purple1!50}
 \textbf{PAQUETE DE TRABAJO / ACTIVIDAD / RECURSO} & \textbf{COSTE ESTIMADO} & \textbf{COSTE REAL} & \textbf{DESVIACIÓN} \\
 \hline
 PUEB01-3.4: Tareas asociadas al Sprint 1 & 1.360,80 € & 1.343,87 € & +16,93 € \\
@@ -214,10 +225,10 @@ El segundo Sprint se completó con éxito en cuanto a entregables e hitos, pero 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/sprint2/porcentaje_sprint2.png}
+    \includegraphics[width=0.5\textwidth]{./img/sprint2/porcentaje_sprint2.png}
     \caption{Porcentaje de avance en el Sprint 2}
 
-    \includegraphics[width=0.8\textwidth]{../img/sprint2/retraso_sprint2.png}
+    \includegraphics[width=0.8\textwidth]{./img/sprint2/retraso_sprint2.png}
     \caption{Tareas retrasadas en el Sprint 2}
 \end{figure}
 
@@ -229,7 +240,7 @@ El tercer Sprint se completó con éxito en cuanto a entregables e hitos. A cont
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/sprint2/porcentaje_sprint3.png}
+    \includegraphics[width=0.5\textwidth]{./img/sprint2/porcentaje_sprint3.png}
     \caption{Porcentaje de avance en el Sprint 3}
 \end{figure}
 
@@ -242,10 +253,10 @@ En la siguiente tabla mostramos las desviaciones en costes observadas en el Spri
 
 \begin{table}[!ht]
 \centering
-\rowcolors{1}{blue1!25}{white}
-\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|p{4cm}|}
+\rowcolors{1}{purple1!25}{white}
+\begin{tabular}{|p{4cm}|p{4cm}|p{3.5cm}|p{3.5cm}|}
 \hline
-\rowcolor{blue1!50}
+\rowcolor{purple1!50}
 \textbf{PAQUETE DE TRABAJO / ACTIVIDAD / RECURSO} & \textbf{COSTE ESTIMADO} & \textbf{COSTE REAL} & \textbf{DESVIACIÓN} \\
 \hline
 PUEB01-3.7: Tareas asociadas al Sprint 2 & 1.366,40 € & 1.413,08 € & +46,68 € \\
@@ -261,7 +272,7 @@ Se realiza el informe de seguimiento con fecha 5/12/2024, y se procede a la elab
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/cierre/porcentaje_cierre.png}
+    \includegraphics[width=0.5\textwidth]{./img/cierre/porcentaje_cierre.png}
     \caption{Porcentaje de avance en la fase de Cierre}
 \end{figure}
 
@@ -276,7 +287,7 @@ A continuación se muestra el informe de costes del proyecto en la fase de Cierr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../img/cierre/costos.png}
+    \includegraphics[width=0.5\textwidth]{./img/cierre/costos.png}
     \caption{Informe General de Costos en la fase de Cierre}
 \end{figure}
 
