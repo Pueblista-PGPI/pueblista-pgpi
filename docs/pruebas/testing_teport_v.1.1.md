@@ -32,8 +32,9 @@ header-includes:
 
 |Fecha	|Realizada por	|Breve descripción de los cambios |
 | ----- | ------------- | ----------------- |
-|01/12/2024	| Daniel Fernández Caballero |	Elaboración de la primera versión del documento |
+|01/12/2024	| Daniel Fernández Caballero |Elaboración de la primera versión del documento |
 |02/12/2024	| Antonio Macías Ferrera |	Correciones de formato. |
+|07/12/2024| José Miguel Iborra Conejo| Adición de datos sobre el testing de interfaz
 
 
 \newpage
@@ -79,7 +80,7 @@ Aplicando esta fórmula a nuestros datos el porcentaje de éxito es del 100%.
 | **Tipo de Prueba** | **Planeadas** | **Ejecutadas** | **Exitosas** | **Porcentaje de éxito** |
 |---------------------|---------------|----------------|--------------|--------------------------|
 | Unitarias           | 80            | 107            | 107           | 100%                      |
-| UI                  | 10            | X             | 10           | 97%                      |
+| UI                  | 10            | 5             | 5           | 100%                      |
 | Carga               | 10             |  19             | 19            | 100%                      |
 
 
@@ -225,7 +226,7 @@ No se han producido errores críticos durante el testing. \newline
 - **Entorno**:
   - Sistema operativo (Windows 11).
   - Versión de Django (p. ej., Django 5.1.2).
-  - Navegadores probados ( X ).
+  - Navegadores probados ( Google Chrome, Mozilla Firefox).
 
 
 
@@ -247,8 +248,8 @@ No se han producido errores críticos durante el testing. \newline
 | **Tipo de Prueba** | **Planeadas** | **Ejecutadas** | **Exitosas** | **Porcentaje de éxito** |
 |---------------------|---------------|----------------|--------------|--------------------------|
 | Unitarias           | 80            | 107             | 107           | 100%                      |
-| UI                  | 10            | 30             | 29           | 97%                      |
-| Carga               | 10             | 19              | 419           | 100%                      |
+| UI                  | 10            | 5            | 5          | 100%                      |
+| Carga               | 10             | 19              | 19           | 100%                      |
 
 
 
