@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
-            {% if user.tipo_usuario == 'personal_administrativo' %}
+            {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
             <div class="col">
                 <div class="card shadow-sm">
                     <div class="card-body text-center">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="text-center">
-            {% if user.tipo_usuario == 'personal_administrativo' %}
+            {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
                 <a class="btn btn-lg me-2 zoom-on-hover" style="background: linear-gradient(to right, #000000, #434343); color: white;" href="https://tinyurl.com/encuesta-admins" target="_blank">Encuesta de administrador</a>
             {% endif %}
             <a class="btn btn-lg me-2 zoom-on-hover" style="background: linear-gradient(to left, #000000, #434343); color: white;" href="https://tinyurl.com/encuesta-satisfaccion-usuarios" target="_blank">Encuesta de usuario</a>
