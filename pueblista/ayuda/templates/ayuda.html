@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  <title>Ayuda - Pueblista</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+        <p class="fw-bold text-primary mb-2" style="text-align: center">Recursos para ti</p>    
+        <h1 class="fw-bold mb-4" style="text-align: center">Manuales de la aplicación y <br> Encuesta de satisfacción</h1>
+    </div>
+    <hr style="width: 40%; border-top: 2px solid #000; margin: 20px auto;">
+    <div class="container mt-5 mb-5">
+        <div class="row mb-2">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2>Manuales Disponibles</h2>
+                <p>Consulta los manuales para aprender a usar nuestra aplicación.</p>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+            {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><strong>Manual de Administrador</strong></h5>
+                        <p class="card-text">
+                            Este manual incluye instrucciones detalladas sobre cómo gestionar espacios, supervisar reservas y administrar usuarios en Pueblista.
+                        </p>
+                        <a class="btn btn-primary mt-2" href="{% static 'manuales/Manual de administrador - Pueblista.pdf' %}" target="_blank">Descargar PDF</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><strong>Manual de Usuario</strong></h5>
+                        <p class="card-text">
+                            Este manual guía a los ciudadanos en el uso de Pueblista, desde cómo realizar reservas hasta consultar notificaciones y gestionar sus datos personales.
+                        </p>
+                        <a class="btn btn-primary mt-2" href="{% static 'manuales/Manual de usuario - Pueblista.pdf' %}" target="_blank">Descargar PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr style="width: 40%; border-top: 2px solid #000; margin: 20px auto;">
+    <div class="container mt-5">
+        <div class="row mb-2">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2>Encuesta anónima de satisfacción</h2>
+                <p>Queremos conocer tu opinión. <br>
+                    Haz clic abajo para completar la/s encuesta/s</p>
+            </div>
+        </div>
+        <div class="text-center">
+            {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+                <a class="btn btn-lg me-2 zoom-on-hover" style="background: linear-gradient(to right, #000000, #434343); color: white;" href="https://tinyurl.com/encuesta-admins" target="_blank">Encuesta de administrador</a>
+            {% endif %}
+            <a class="btn btn-lg me-2 zoom-on-hover" style="background: linear-gradient(to left, #000000, #434343); color: white;" href="https://tinyurl.com/encuesta-satisfaccion-usuarios" target="_blank">Encuesta de usuario</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
