@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Lista de Espacios - Pueblista</title>
+{% endblock title %}
+
+
+{% block content %}
+{% if messages %}
+    <div class="alert-container" style="margin: 20px;">
+        {% for message in messages %}
+            <div 
+                class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" 
+                role="alert" style="margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                var fadeEffect = setInterval(function () {
+                    if (!alert.style.opacity) {
+                        alert.style.opacity = 1;
+                    }
+                    if (alert.style.opacity > 0) {
+                        alert.style.opacity -= 0.1;
+                    } else {
+                        clearInterval(fadeEffect);
+                        alert.remove();
+                    }
+                }, 50);
+            });
+        }, 1500);
+    </script>
+{% endif %}
+
+    <section class="py-4 py-xl-5">
+
+        <div class="container">
+            <h2 style="text-align: center;"><strong>Espacios disponibles</strong></h2>
+            <p class="w-lg-50" style="text-align: center;">Aquí encontrarás toda la información necesaria para reservar de forma fácil y rápida cualquier espacio</p>
+            <form method="GET" action="{% url 'list' %}">
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <input class="form-control" type="text" name="q" placeholder="Introduce el nombre de un espacio" value="{{ query|default_if_none:'' }}">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+            </form>
+        </div>
+
+        {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+            <div class="container" style="text-align: center;">
+                <a href="{% url 'create' %}" class="btn btn-lg me-2 zoom-on-hover" role="button" style="background: linear-gradient(to right, #000000, #434343); color: white;">Crear Nuevo Espacio</a>
+            </div>
+        {% endif %}
+
+        <section class="py-4 py-xl-5">
+            {% for space in spaces %}
+            <div class="container mb-4">
+                <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
+                    <div class="row g-0">
+
+                        <div class="col-md-6">
+                            <div class="text-white p-4 p-md-5">
+                                {% if space.espacio_especial %}
+                                    <p class="text-warning card-text mb-2">Espacio especial</p>
+                                {% endif %}
+                                <h2 class="fw-bold text-white mb-3">{{ space.nombre }}</h2>
+                                {% if space.estado == 'no_disponible' %}
+                                    <p class="text-danger card-text mb-2"><strong>Estado:</strong> No Disponible</p>
+                                {% else %}
+                                    <p class="text-success card-text mb-2"><strong>Estado:</strong> Disponible</p>
+                                {% endif %}
+                                <p class="mb-4">{{ space.descripcion }}</p>
+                                <p><strong>Teléfono:</strong> {{ space.telefono }}</p>
+                                <p><strong>Horario:</strong> {{ space.horario }}</p>
+                                <p><strong>Limpieza:</strong> 
+                                    {% if space.limpieza == True %} 
+                                        Este espacio requiere limpieza. El día antes y después de una reserva, no estará disponible.
+                                    {% else %}
+                                        Este espacio no requiere limpieza.
+                                    {% endif %}
+                                </p>
+                               <div class="mb-1">
+                                    <a class="btn btn-success btn-lg me-2 mb-1" role="button" href="/espacios/{{ space.id }}/reservas/">
+                                        <i class="fa fa-plus"></i> Reservar
+                                    </a>
+                                    {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+                                        <a class="btn btn-primary btn-lg me-2 mb-1" role="button" href="{% url 'edit' space.id %}">
+                                            <i class="fa fa-edit"></i> Editar
+                                        </a>
+                                        <form action="{% url 'delete' space.id %}" method="post" style="display: inline;" class="delete-form">
+                                            {% csrf_token %}
+                                            <button type="button" class="btn btn-danger btn-lg mb-1" role="button" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-space-name="{{ space.nombre }}">
+                                                <i class="fa fa-trash"></i> Eliminar 
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-1">
+                                    {% if user.tipo_usuario == 'personal_administrativo' or user.tipo_usuario == 'superusuario' %}
+                                        {% if space.espacio_especial %}
+                                            <a class="btn btn-warning btn-lg me-2 mb-1" role="button" href="{% url 'solicitudes_pendientes' space.id %}">
+                                                <i class="fa fa-exclamation-circle"></i> Solicitudes
+                                            </a>
+                                        {% endif %}
+                                        <a class="btn btn-primary btn-lg me-2 mb-1 zoom-on-hover" role="button" href="{% url 'reservas_fecha' space.id %}" style="background: linear-gradient(to right, #000000, #434343); color: white; border-color: white">
+                                            <i class="fa fa-calendar"></i> Reservas
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 order-first order-md-last d-flex align-items-center justify-content-center" style="min-height: 250px; position: relative; padding: 15px;">
+                            {% if space.fotos %}
+                                <img src="data:image/jpeg;base64,{{ space.fotos }}" alt="Imagen de {{ space.nombre }}" style="width:100%; border-radius: 15px; object-fit: cover;">
+                            {% else %}
+                                <p style="color: white">No hay imagen disponible</p>
+                            {% endif %}
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </section>
+
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Para confirmar la eliminación, por favor escribe el nombre del espacio:</p>
+                    <input type="text" id="confirmSpaceName" class="form-control">
+                    <input type="hidden" id="spaceNameToDelete">
+                    <p class="text-danger mt-3"><strong>Nota:</strong> Esta acción es irreversible y eliminará todas las reservas asociadas a este espacio.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var confirmDeleteModal = document.getElementById('confirmDeleteModal');
+        confirmDeleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var spaceName = button.getAttribute('data-space-name');
+            var modal = this;
+            modal.querySelector('#spaceNameToDelete').value = spaceName;
+        });
+
+        document.getElementById('confirmDeleteButton').addEventListener('click', function () {
+            var spaceNameToDelete = document.getElementById('spaceNameToDelete').value;
+            var confirmSpaceName = document.getElementById('confirmSpaceName').value;
+            if (spaceNameToDelete === confirmSpaceName) {
+                var forms = document.getElementsByClassName('delete-form');
+                for (var i = 0; i < forms.length; i++) {
+                    if (forms[i].querySelector('button[data-space-name="' + spaceNameToDelete + '"]')) {
+                        forms[i].submit();
+                        break;
+                    }
+                }
+            } else {
+                alert('El nombre del espacio no coincide.');
+            }
+        });
+    </script>
+
+    <style>
+        .zoom-on-hover {
+            transition: transform 0.3s ease;
+        }
+        .zoom-on-hover:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+{% endblock content %}
+

@@ -14,18 +14,25 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 toc: true
 toc-own-page: true
+documentclass: scrartcl
+classoption: "table"        
+header-includes:        # para los colores en las tablas
+    - \usepackage{colortbl}
+    - \usepackage{xcolor}
+    - \usepackage{placeins}
+    - \usepackage{graphicx}
+    - \usepackage{changepage}
 ---
+\definecolor{blue1}{HTML}{5DADE2}
 
-# PLAN DE GESTIÓN DE LAS ADQUISICIONES
+
+**PLAN DE GESTIÓN DE LAS ADQUISICIONES**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
 - **FECHA DE CREACIÓN:** 30/10/2024
-- **VERSIÓN DEL DOCUMENTO:** 1.1
+- **VERSIÓN DEL DOCUMENTO:** 1.1 \newline \newline
 
-<br>
-
-<br>
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO**
 
@@ -130,5 +137,4 @@ Al finalizar cada adquisición, se llevará a cabo un proceso de cierre formal q
   - **Proveedores Cualificados**: Solo se contratarán proveedores que cumplan con las políticas internas y estén calificados para garantizar la calidad y disponibilidad de los recursos.
   - **Cumplimiento de Plazos**: Todas las adquisiciones deben realizarse en las fechas establecidas para evitar retrasos en el cronograma general del proyecto.
   - **Presupuesto Limitado**: Las adquisiciones deben ajustarse al presupuesto disponible, limitando la posibilidad de licencias adicionales o alternativas a las herramientas definidas.
-
 

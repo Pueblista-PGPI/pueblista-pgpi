@@ -1,0 +1,64 @@
+body {
+    /* Gradiente sutil de azul a blanco y luego a amarillo */
+    background: linear-gradient(180deg, rgba(13, 110, 253, 0.2), rgba(255, 255, 255, 1), rgba(244, 212, 100, 0.2));
+    color: #000; /* Texto negro para buen contraste */
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Asegura que cubra toda la altura de la página */
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed; /* Fija el fondo al scroll */
+}
+
+header, footer {
+    background-color: #FFD700; /* Amarillo dorado */
+    color: #000; /* Texto oscuro para contraste */
+}
+
+a {
+    color: #FF0000; /* Rojo del escudo */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FFD700; /* Cambia a amarillo al pasar el cursor */
+}
+
+nav {
+    background-color: linear-gradient(180deg, rgba(13, 110, 253, 0.2), rgba(255, 255, 255, 1), rgba(13, 110, 253, 0.2)); /* Amarillo dorado */
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+.grid-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-link.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.zoom-on-hover {
+    transition: transform 0.3s ease;
+}
+.zoom-on-hover:hover {
+    transform: scale(1.05);
+}
+
+.circular-button {
+    background: linear-gradient(to right, #000000, #ffffff);
+    color: white;
+    border-radius: 50%;
+    padding: 10px 20px;
+    transition: transform 0.3s ease;
+}

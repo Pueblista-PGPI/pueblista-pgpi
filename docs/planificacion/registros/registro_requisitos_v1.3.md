@@ -32,7 +32,7 @@ header-includes:        # para los colores en las tablas
 \definecolor{red1}{HTML}{EA2223}
 
 
-# REGISTRO DE REQUISITOS
+**REGISTRO DE REQUISITOS**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15

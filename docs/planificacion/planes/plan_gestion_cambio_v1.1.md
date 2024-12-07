@@ -49,9 +49,13 @@ Atendiendo al tipo de cambio, la gestión será de la siguiente forma:
 - **Cambios externos solicitados por el cliente**: Las solicitudes de cambio provenientes del cliente se documentarán en el listado de solicitudes de cambio, donde se analizará su impacto en el tiempo, los costos y el alcance establecidos en el proyecto. Además, se evaluará si afectan la calidad, los recursos asignados al proyecto y las adquisiciones necesarias.
 - **Cambios relacionados con la gestión de la configuración del proyecto**: Estos cambios deben describirse en detalle. Se consideran modificaciones de configuración aquellas que afectan la estructura organizativa del proyecto, como ajustes en la estructura de carpetas, cambios en las nomenclaturas, creación de documentos nuevos o la adopción de una plantilla distinta.
 
+
+\newpage
+
+
 # 3\. METODOLOGÍA Y FASES
 
-Según ITIL, un cambio implica la adición, modificación o eliminación de cualquier elemento que pueda influir en los servicios, ya sea para resolver problemas detectados o en la búsqueda continua de mejoras en los servicios TIC. El procedimiento para gestionar una solicitud de cambio sigue un flujo estructurado de seis etapas consecutivas:
+Según ITIL, un cambio implica la adición, modificación o eliminación de cualquier elemento que pueda influir en los servicios. El procedimiento para gestionar una solicitud de cambio sigue un flujo de seis etapas consecutivas:
 
 1. **Evaluación:** Se evalúa el riesgo y el impacto potencial del cambio en los servicios, considerando factores como la criticidad del cambio y los recursos necesarios para su implementación.
     - **Cambios dentro del alcance**: Si los cambios no afectan las líneas base del proyecto o, aunque tengan un impacto sustancial, aún se mantienen dentro de los límites de tiempo y costos autorizados, el Director del proyecto tendrá la autoridad para aprobar o rechazar dichos cambios.
@@ -64,7 +68,6 @@ Según ITIL, un cambio implica la adición, modificación o eliminación de cual
 4. **Planificación:** Según su clasificación, se desarrolla un plan para la implementación del cambio, estableciendo actividades, cronograma y asignación de recursos.
 5. **Implantación:** Se ejecuta el cambio, coordinando y supervisando todas las actividades necesarias para asegurar su correcta implementación y minimizando cualquier interrupción en los servicios.
 
-Este proceso garantiza que cada cambio se maneje de forma estructurada y controlada, minimizando riesgos.
 
 # 4\. PETICIONES DE CAMBIO
 
@@ -72,7 +75,8 @@ Las peticiones de cambio suelen originarse tanto de clientes y usuarios, quienes
 
 Cuando se presente una petición de cambio en los requisitos (PCR), esta deberá ser debidamente registrada para que el Director de proyecto o el Patrocinador pueda evaluar su aceptación o rechazo. Esta decisión se tomará tras el análisis exhaustivo del impacto del cambio en el proyecto definido en las fases de gestión del cambio, considerando aspectos como alcance, costo y cronograma.
 
-La plantilla para los cambios en los requisitos es la siguiente
+
+La plantilla para los cambios en los requisitos es la siguiente: \newline
 
 | <_id_>-999 | <_nombre descriptivo_> |
 | --- | --- |

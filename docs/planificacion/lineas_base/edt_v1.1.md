@@ -15,22 +15,17 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
 
-<br>
-
-# EDT
+**EDT**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces 
 - **CÓDIGO DEL PROYECTO:** 2.15
-- **PROPIETARIO DEL PROYECTO:** Ayuntamiento de Villanueva de las cruces
+- **PROPIETARIO DEL PROYECTO:** Ayuntamiento de Villanueva de las Cruces
 - **PATROCINADOR DEL PROYECTO:** María José Escalona (alcaldesa)
 - **DIRECTOR DEL PROYECTO:** Ramón Gavira Sánchez
 - **FECHA DE CREACIÓN:** 15/10/2024
 - **ELABORADO POR:** Antonio Macías Ferrera, Ramón Gavira Sánchez
-- **VERSIÓN DEL DOCUMENTO:** 1.0
+- **VERSIÓN DEL DOCUMENTO:** 1.1 \newline \newline
 
-<br>
-
-<br>
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO** 
 

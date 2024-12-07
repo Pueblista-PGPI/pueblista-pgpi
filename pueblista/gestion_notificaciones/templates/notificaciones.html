@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Mis Notificaciones - Pueblista</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container py-4 py-xl-5">
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Mis Notificaciones</strong></h2>
+        <p class="w-lg-50" style="text-align: center;">Aquí puedes ver todas las notificaciones que has recibido en la plataforma Pueblista. Marca como leídas las que ya hayas revisado.</p>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="text-muted">{{ notificaciones.count }} notificaciones </p>
+        <form method="post" action="{% url 'borrar_todas_leidas' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-sm">Borrar todas las leídas</button>
+        </form>
+    </div>
+
+    <div class="row">
+        {% for notificacion in notificaciones %}
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm {% if notificacion.leida %}border-success{% else %}border-danger{% endif %}">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="d-flex align-items-center row">
+                        <div class="col">
+                            <h5 class="card-title mb-1">{{ notificacion.mensaje }}</h5>
+                            <p class="text-muted mb-0" style="font-size: 0.8rem;">Recibida: {{ notificacion.fecha|date:"d/m/Y H:i" }}</p>
+                        </div>
+                        <div class="col text-end" style="margin-left:-450px">
+                            {% if notificacion.leida %}
+                                <p class="mb-1 badge bg-success" style="font-size: 0.6rem;">Leída</p>
+                            {% else %}
+                                <p class="mb-1 badge bg-danger" style="font-size: 0.6rem;">No Leída</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col d-flex justify-content-between align-items-center">
+                            <form method="post" action="{% url 'marcar_leida' notificacion.id %}">
+                                {% csrf_token %}
+                                {% if notificacion.leida %}
+                                    <button type="button" class="btn btn-outline-success btn-sm" disabled>Leída</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Marcar como leída</button>
+                                {% endif %}
+                            </form>
+                            <form method="post" action="{% url 'borrar_notificacion' notificacion.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link text-danger p-0" style="font-size: 1.2rem;" title="Eliminar notificación">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center">No tienes notificaciones en este momento.</p>
+        {% endfor %}
+    </div>
+    
+    
+</div>
+{% endblock content %}

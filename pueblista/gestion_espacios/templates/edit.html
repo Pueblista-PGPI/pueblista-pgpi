@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Editar Espacio - Pueblista</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="text-center p-4 p-lg-5">
+        <h2 class="fw-bold">Editar Espacio</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data" class="w-75" style="max-width: 600px;">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_nombre" class="form-label"><strong>Nombre:</strong></label>
+                {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label for="id_horario" class="form-label"><strong>Horario:</strong></label>
+                {{ form.horario }}
+            </div>
+            <div class="mb-3">
+                <label for="id_descripcion" class="form-label"><strong>Descripción:</strong></label>
+                {{ form.descripcion }}
+            </div>
+            <div class="mb-3">
+                <label for="id_telefono" class="form-label"><strong>Teléfono:</strong></label>
+                {{ form.telefono }}
+            </div>
+            <div class="mb-3">
+                <label for="id_estado" class="form-label"><strong>Estado:</strong></label>
+                {{ form.estado }}
+            </div>
+            <div class="mb-3">
+                <label for="id_fotos" class="form-label"><strong>Fotos:</strong></label>
+                <br></br>
+                {% if espacio.fotos %}
+                    <img src="data:image/jpeg;base64,{{ espacio.fotos }}" alt="Imagen de {{ espacio.nombre }}" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+                {% else %}
+                    <p>No hay imagen disponible</p>
+                {% endif %}
+                <br></br>
+                {{ form.fotos }}
+            </div>
+            <div class="mb-3 form-check form-switch">
+                {{ form.espacio_especial }}
+                <label for="id_espacio_especial" class="form-check-label"><strong>Espacio Especial</strong></label>
+            </div>
+            <div class="mb-3 form-check form-switch">
+                {{ form.limpieza }}
+                <label for="id_limpieza" class="form-check-label"><strong>Requiere Limpieza</strong></label>
+            </div>
+            <small class="text-muted">¡Atención! Este espacio contiene subespacios, los cuales no se pueden editar.</small>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const espacioEspecialCheckbox = document.getElementById('id_espacio_especial');
+        const limpiezaCheckbox = document.getElementById('id_limpieza');
+
+        function toggleLimpiezaCheckbox() {
+            if (espacioEspecialCheckbox.checked) {
+                limpiezaCheckbox.disabled = false;
+            } else {
+                limpiezaCheckbox.checked = false;
+                limpiezaCheckbox.disabled = true;
+            }
+        }
+
+        // Initialize state on page load
+        toggleLimpiezaCheckbox();
+
+        // Add event listener to toggle on change
+        espacioEspecialCheckbox.addEventListener('change', toggleLimpiezaCheckbox);
+    });
+</script>
+{% endblock content %}

@@ -13,11 +13,17 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from decouple import config
 
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# directorio donde se crean los archivos muñltimedia
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_URL = "/media/"
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +35,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com', 'https://pueblista-pgpi.onrender.com']
+
+
+# REDIRECT TO LOGIN PAGE IF NOT LOGGED IN
+LOGIN_URL = 'login'
 
 
 # Application definition
@@ -43,13 +53,29 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gestion_espacios',
     'gestion_usuarios',
-    'gestion_contactos',
+    'gestion_reservas',
+    'home',
+    'debug_toolbar',
+    'listado_reservas',
+    'gestion_notificaciones',
+    'ayuda',
+    # 'storages',
 ]
 
-# Añadir el backend personalizado a la lista de backends de autenticación en settings.py:
+
+# Configuración para GCS
+# GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+#     os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+# )
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# GS_BUCKET_NAME = 'pueblista-media'
+# GS_DEFAULT_ACL = 'publicRead'
+# MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+
 
 AUTHENTICATION_BACKENDS = [
-    'gestion_usuarios.backends.DNIFechaNacimientoBackend',  # Nuestro backend personalizado
+    'gestion_usuarios.backends.DNIFechaNacimientoBackend',  # Backend personalizado
     'django.contrib.auth.backends.ModelBackend',  # El backend predeterminado
 ]
 
@@ -65,7 +91,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+MIDDLEWARE_CLASSES = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = '127.0.0.1'
 
 ROOT_URLCONF = 'pueblista.urls'
 
@@ -80,6 +113,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'gestion_notificaciones.context_processors.notificaciones',
             ],
         },
     },
@@ -108,16 +142,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -125,9 +163,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES_SUPPORTED = ["en", "es"]
+DEFAULT_LANGUAGE = "es"
+LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
@@ -137,16 +177,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # Add whitenoise to the STATICFILES_STORAGE setting
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # Add the static directory to the STATICFILES_DIRS setting
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Add the staticfiles directory to the STATIC_ROOT setting
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+CONTACT_EMAIL = config('CONTACT_EMAIL')

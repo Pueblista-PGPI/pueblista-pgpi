@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Lista de reservas - Pueblista </title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container py-4 py-xl-5">
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Reservas de {{ espacio.nombre }}</strong></h2>
+        <p class="w-lg-50" style="text-align: center;">Aquí se muestra un panel de control con las reservas realizadas de este espacio.</p>
+        <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva, busca en el día deseado.</p>
+    </div>
+
+    <div class="container">
+        <form method="GET" action="/espacios/reservas_fecha/{{ espacio.id }}/">
+            <div class="input-group mb-4">
+                <input 
+                    class="form-control" 
+                    type="date" 
+                    name="date" 
+                    value="{{ fecha }}"
+                    required
+                    id="date">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        {% if reservas|length == 0 %}
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="container">
+                    {% if request.GET.date %}
+                        <p class="w-lg-50" style="text-align: center;"><strong>No se encontraron reservas en este día.</strong></p>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="/espacios/reservas_fecha/{{ espacio.id }}/" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Atrás
+                            </a>
+                        </div>
+                    {% else %}
+                        <p class="w-lg-50" style="text-align: center;"><strong>No se encontraron reservas en este espacio.</strong></p>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="container mt-5">
+                <div class="row mt-4">
+                    {% for reserva in reservas %}
+                        {% if reserva.estado != 'Finalizada' %}
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center row">
+                                            <div class="col">
+                                                {% if reserva.nombre != None %}
+                                                    <h5 class="card-title mb-1">{{ reserva.nombre }}</h5>
+                                                {% endif %}
+                                                <h5 class="card-title mb-1">{{ reserva.usuario.nombre }} {{ reserva.usuario.apellidos }}</h5>
+                                                <p class="text-muted mb-0">{{ reserva.usuario.dni }}</p>
+                                                <p class="text-muted mb-0"> Teléfono: {{ reserva.usuario.telefono }}</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="text-muted mb-0">{{ reserva.fecha }}</p>
+                                                {% if reserva.subespacio != "No procede" %}
+                                                    <p class="mb-1"><strong>Subespacio:</strong> {{ reserva.subespacio }}</p>
+                                                {% endif %}
+                                                <p class="mb-1"><strong>Hora de Inicio:</strong> {{ reserva.hora_inicio }}</p>
+                                                <p class="mb-1"><strong>Hora de Fin:</strong> {{ reserva.hora_fin }}</p>
+                                                <form method="post" action="/mis_reservas/modificar_estado/{{ reserva.id }}/">
+                                                    {% csrf_token %}
+                                                    <label for="id_estado_{{ reserva.id }}" class="form-label"><strong>Estado:</strong></label>
+                                                    <select id="id_estado_{{ reserva.id }}" name="id_estado" class="form-select" style="width: auto; display: inline;">
+                                                        <option value="Realizada" {% if reserva.estado == 'Realizada' %}selected{% endif %}>Realizada</option>
+                                                        <option value="Cancelada" {% if reserva.estado == 'Cancelada' %}selected{% endif %}>Cancelada</option>
+                                                        <option value="En curso" {% if reserva.estado == 'En curso' %}selected{% endif %}>En curso</option>
+                                                        <option value="Finalizada" {% if reserva.estado == 'Finalizada' %}selected{% endif %}>Finalizada</option>
+                                                    </select>
+                                                </form>
+
+                                                <!-- Modal de Confirmación -->
+                                                <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="confirmCancelModalLabel">Confirmar Cancelación</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ¿Estás seguro de que deseas cancelar esta reserva?<br>
+                                                                Esta acción borrará la reserva
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                <button type="button" class="btn btn-danger" id="confirmCancelButton">Sí, cancelar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdowns = document.querySelectorAll('select[id^="id_estado_"]');
+    var confirmCancelModal = new bootstrap.Modal(document.getElementById('confirmCancelModal'));
+    var confirmCancelButton = document.getElementById('confirmCancelButton');
+    var previousValue = {};
+
+    dropdowns.forEach(function(dropdown) {
+        dropdown.addEventListener('focus', function() {
+            previousValue[dropdown.id] = dropdown.value;
+        });
+
+        dropdown.addEventListener('change', function(event) {
+            if (dropdown.value === 'Cancelada') {
+                event.preventDefault();
+                confirmCancelModal.show();
+                confirmCancelButton.onclick = function() {
+                    dropdown.closest('form').submit();
+                    confirmCancelModal.hide();
+                };
+                confirmCancelModal._element.addEventListener('hidden.bs.modal', function () {
+                    if (dropdown.value === 'Cancelada') {
+                        dropdown.value = previousValue[dropdown.id];
+                    }
+                }, { once: true });
+            } else {
+                dropdown.closest('form').submit();
+            }
+        });
+    });
+});
+</script>
+
+{% endblock content %}

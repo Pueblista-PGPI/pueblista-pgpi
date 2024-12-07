@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Calendario de Reservas - Pueblista</title>
+{% endblock title %}
+
+{% block content %}
+{% if messages %}
+    <div class="alert-container" style="margin: 20px;">
+        {% for message in messages %}
+            <div 
+                class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" 
+                role="alert" style="margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+<div class="container py-4 py-xl-5">
+    <div class="container">
+        <h2 style="text-align: center;"><strong>Calendario de Reservas</strong></h2>
+    </div>
+
+{% if subespacios %}
+<div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if subespacio_seleccionado %}
+            {{ subespacio_seleccionado }}
+        {% else %}
+            Selecciona un subespacio
+        {% endif %}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {% for subespacio in subespacios %}
+            <li><a class="dropdown-item" href="?subespacio={{ subespacio }}">{{ subespacio }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+    {% if espacio.espacio_especial%}
+        <p class="w-lg-50" style="text-align: center;">Este es un espacio especial, para reservarlo se debe enviar una solicitud al administrador del espacio </p>
+    {% endif %}
+    <div class="text-center my-4">
+        <form method="get">
+            <label for="fecha"><strong>Seleccione un día:</strong></label>
+            <input type="date" id="fecha" name="fecha" value="{{ fecha_seleccionada }}" class="form-control w-auto d-inline" onchange="this.form.submit()">
+        </form>
+    </div>
+
+
+
+    {% if fecha_seleccionada %}
+        {% if not espacio.espacio_especial %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-reservas">
+                <thead>
+                    <tr>
+                        <th>Horario</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for horario in horarios_reservas %}
+                        <tr>
+                            <td>{{ horario.hora_inicio }} - {{ horario.hora_fin }}</td>
+                            {% if horario.reserva %}
+                                <td class="reservada">Reservado</td>
+                                <td>
+                                    {% if horario.mia %}
+                                        {% if horario.reserva.estado == 'Realizada' %}
+                                        <button type="button" class="btn btn-danger btn-sm" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#cancelarModal"
+                                                data-fecha="{{ fecha_seleccionada }}"
+                                                data-hora-inicio="{{ horario.hora_inicio }}"
+                                                data-hora-fin="{{ horario.hora_fin }}"
+                                                data-reserva-id="{{ horario.reserva.id }}">
+                                            Cancelar
+                                        </button>
+                                        {%elif horario.reserva.estado == 'En curso'%}
+                                            <button class="btn btn-secondary btn-sm" disabled>En curso</button>
+                                        {% else %}
+                                            <button class="btn btn-secondary btn-sm" disabled>Finalizada</button>
+                                        {% endif %}
+                                    {% else %}
+                                        <button class="btn btn-secondary btn-sm" disabled>Ya reservado</button>
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td class="disponible">Disponible</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#reservaModal"
+                                            data-fecha="{{ fecha_seleccionada }}"
+                                            data-hora-inicio="{{ horario.hora_inicio }}"
+                                            data-hora-fin="{{ horario.hora_fin }}">
+                                        Reservar
+                                    </button>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="container text-center">
+                <a href="{% url 'solicitud_reserva_especial' espacio.id %}" class="btn btn-primary">Solicitar Reserva Especial</a>
+                <a href="{% url 'mis_solicitudes' espacio.id %}" class="btn btn-secondary">Ver mis solicitudes</a>
+                <hr class="my-4 mx-auto" style="max-width: 500px">
+                {% if reservas|length == 0 %}
+                    <h4 class="mt-4"><strong>No hay ninguna reserva programada para el {{ fecha_seleccionada_formateada }}</strong></h4>
+                {% else %}
+                    <h4 class="mt-4"><strong>Otras reservas programadas para el {{ fecha_seleccionada_formateada}}</strong></h4>
+                    <div class="row mt-4">
+                        {% if reservas|length == 1 %}
+                            <div class="col-md-4 offset-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Nombre:</strong> {{ reservas.0.nombre }}</h5>
+                                        <p class="mb-1"><strong>Fecha:</strong> {{ reservas.0.fecha }}</p>
+                                        <p class="mb-1"><strong>Horario:</strong> {{ reservas.0.hora_inicio }} - {{ reservas.0.hora_fin }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            {% for reserva in reservas %}
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Nombre:</strong> {{ reserva.nombre }}</h5>
+                                        <p class="mb-1"><strong>Fecha:</strong> {{ reserva.fecha }}</p>
+                                        <p class="mb-1"><strong>Horario:</strong> {{ reserva.hora_inicio }} - {{ reserva.hora_fin }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <!-- Modal reserva-->
+    <div class="modal fade" id="reservaModal" tabindex="-1" aria-labelledby="reservaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reservaModalLabel">Realizar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-reserva" method="post" action="{% url 'crear_reserva' espacio.id %}">
+                        {% csrf_token %}
+                        <p>¿Estás seguro de realizar la reserva en el siguiente horario?<br>
+                            <strong>Espacio:</strong> {{ espacio.nombre }}<br>
+                            {% if subespacio_seleccionado %}
+                            <strong> Subespacio seleccionado:</strong> {{ subespacio_seleccionado }}<br>
+                            <input id="subespacio-seleccionado" name="subespacio_seleccionado" type="hidden" value="{{ subespacio_seleccionado }}">
+                            {% endif %}
+                            <strong>Fecha:</strong> <span id="modal-fecha"></span>
+                        </p>
+                        <div class="mb-3">
+                            <strong> Usuario:</strong> {{ nombre_completo }}<br>
+                        </div>
+                        <input id="hidden-fecha" name="fecha" type="hidden">
+                        <input id="hidden-hora_inicio" name="hora_inicio" type="hidden">
+                        <input id="hidden-hora_fin" name="hora_fin" type="hidden">
+                        
+                        <button type="submit" class="btn btn-success">Confirmar Reserva</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cancelación -->
+    <div class="modal fade" id="cancelarModal" tabindex="-1" aria-labelledby="cancelarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelarModalLabel">Cancelar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-cancelar" method="post" action="#">
+                        {% csrf_token %}
+                        <p>¿Estás seguro de cancelar la reserva en el siguiente horario?<br>
+                            <strong>Espacio:</strong> {{ espacio.nombre }}<br>
+                            <strong>Fecha:</strong> <span id="cancel-modal-fecha"></span>
+                        </p>
+                        <p>
+                            <strong>Horario:</strong> <span id="cancel-modal-hora_inicio"></span> - <span id="cancel-modal-hora_fin"></span>
+                        </p>
+                        <input id="hidden-cancel-fecha" name="fecha" type="hidden">
+                        <input id="hidden-cancel-hora_inicio" name="hora_inicio" type="hidden">
+                        <input id="hidden-cancel-hora_fin" name="hora_fin" type="hidden">
+                        <input id="hidden-reserva_id" name="reserva_id" type="hidden">
+                        <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Manejo del modal de reserva
+    const reservaModal = document.getElementById('reservaModal');
+    reservaModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const fecha = button.getAttribute('data-fecha');
+        const horaInicio = button.getAttribute('data-hora-inicio');
+        const horaFin = button.getAttribute('data-hora-fin');
+
+        document.getElementById('modal-fecha').textContent = fecha;
+        document.getElementById('hidden-fecha').value = fecha;
+        document.getElementById('hidden-hora_inicio').value = horaInicio;
+        document.getElementById('hidden-hora_fin').value = horaFin;
+    });
+
+    // Manejo del modal de cancelación
+    const cancelarModal = document.getElementById('cancelarModal');
+    cancelarModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const fecha = button.getAttribute('data-fecha');
+        const horaInicio = button.getAttribute('data-hora-inicio');
+        const horaFin = button.getAttribute('data-hora-fin');
+        const reservaId = button.getAttribute('data-reserva-id');
+
+        document.getElementById('cancel-modal-fecha').textContent = fecha;
+        document.getElementById('cancel-modal-hora_inicio').textContent = horaInicio;
+        document.getElementById('cancel-modal-hora_fin').textContent = horaFin;
+        document.getElementById('hidden-cancel-fecha').value = fecha;
+        document.getElementById('hidden-cancel-hora_inicio').value = horaInicio;
+        document.getElementById('hidden-cancel-hora_fin').value = horaFin;
+        document.getElementById('hidden-reserva_id').value = reservaId;
+
+        const form = document.getElementById('form-cancelar');
+        form.action = `/espacios/{{ espacio.id }}/reservas/cancelar/${reservaId}/`;
+    });
+
+    setTimeout(function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            var bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        });
+    }, 2000);
+</script>
+
+{% endblock content %}

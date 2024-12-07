@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Solicitud Reserva Especial - Pueblista</title>
+{% endblock title %}
+
+{% block content %}
+{% if messages %}
+    <div class="alert-container" style="margin: 20px;">
+        {% for message in messages %}
+            <div 
+                class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% endif %} alert-dismissible fade show" 
+                role="alert" style="margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="container mt-5">
+    <div class="text-center p-4 p-lg-3">
+        <h1 class="fw-bold mb-3">Solicitud de Reserva Especial</h1>
+    </div>
+
+    <div class="text-center mb-4">
+        <h3>Espacio: {{ espacio.nombre }}</h3>
+    </div>
+
+    <form method="post" class="w-50 mx-auto mb-5">
+        {% csrf_token %}
+
+        <!-- Mostrar mensajes de error generales -->
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <!-- Campo de Fecha -->
+        <div class="mb-3">
+            <label for="id_fecha" class="form-label">{{ form.fecha.label }}:</label>
+            {{ form.fecha }}
+            {% if form.fecha.errors %}
+            <div class="form-text text-danger">
+                {{ form.fecha.errors }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Campo de Hora de Inicio -->
+        <div class="mb-3">
+            <label for="id_hora_inicio" class="form-label">{{ form.hora_inicio.label }}:</label>
+            {{ form.hora_inicio }}
+            {% if form.hora_inicio.errors %}
+            <div class="form-text text-danger">
+                {{ form.hora_inicio.errors }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Campo de Hora de Fin -->
+        <div class="mb-3">
+            <label for="id_hora_fin" class="form-label">{{ form.hora_fin.label }}:</label>
+            {{ form.hora_fin }}
+            {% if form.hora_fin.errors %}
+            <div class="form-text text-danger">
+                {{ form.hora_fin.errors }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Campo de Motivo -->
+        <div class="mb-3">
+            <label for="id_motivo" class="form-label">{{ form.motivo.label }}:</label>
+            {{ form.motivo }}
+            {% if form.motivo.errors %}
+            <div class="form-text text-danger">
+                {{ form.motivo.errors }}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Espacio y Usuario (ocultos) -->
+        {{ form.espacio }}
+        {{ form.usuario }}
+
+        <!-- Botón de Enviar -->
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

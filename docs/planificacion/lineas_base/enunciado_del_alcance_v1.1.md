@@ -18,12 +18,12 @@ footer-left: "Pueblista - PGPI"
 footer-right: "\\thepage"
 ---
 
-# PLAN DE GESTIÓN DEL ALCANCE
+**PLAN DE GESTIÓN DEL ALCANCE**
 
 - **NOMBRE DEL PROYECTO:** Pueblista: Diseño, desarrollo e implantación de una aplicación web para la reserva de espacios públicos en pequeños municipios andaluces
 - **CÓDIGO DEL PROYECTO:** 2.15
 - **FECHA DE CREACIÓN:** 14/10/2024
-- **VERSIÓN DEL DOCUMENTO:** 1.0
+- **VERSIÓN DEL DOCUMENTO:** 1.0 \newline \newline
 
 **HISTÓRICO DE MODIFICACIONES DEL DOCUMENTO**
 
@@ -32,17 +32,20 @@ footer-right: "\\thepage"
 |14/10/2024	| Daniel Fernández Caballero, Rafael Pulido Cifuentes |	Elaboración de la primera versión del Plan de Gestión del Alcance |
 
 
-## ENUNCIADO DEL ALCANCE DEL PROYECTO
+\newpage
+
+
+# 1. ENUNCIADO DEL ALCANCE DEL PROYECTO
 
 El proyecto consiste en el diseño, desarrollo e implantación de una aplicación web accesible (AA) para gestionar y reservar espacios públicos municipales en Villanueva de las Cruces. La aplicación digitalizará el proceso de reserva, permitiendo a los usuarios consultar la disponibilidad de los espacios, realizar y cancelar reservas de manera sencilla. 
 
-La información necesaria, definida y detallada para la elaboración del enunciado del alcance se encuentra ya recopilada en los siguientes documentos del proyecto. En el Acta de Constitución, quedan specificados, por un lado, las exclusiones del proyecto, clarificando lo que queda fuera del alcance, y por otro lado, los entregables del proyecto, proporcionando una visión clara de lo que se debe entregar al finalizar el trabajo. Igualmente, los supuestos y restricciones relevantes se encuentran documentados tanto en el Acta de Constitución como en el Registro de Supuestos, asegurando que se han identificado las condiciones bajo las cuales se desarrollará el proyecto. 
+La información necesaria, definida y detallada para la elaboración del enunciado del alcance se encuentra ya recopilada en los siguientes documentos del proyecto. En el Acta de Constitución, quedan especificados, por un lado, las exclusiones del proyecto, clarificando lo que queda fuera del alcance, y por otro lado, los entregables del proyecto, proporcionando una visión clara de lo que se debe entregar al finalizar el trabajo. Igualmente, los supuestos y restricciones relevantes se encuentran documentados tanto en el Acta de Constitución como en el Registro de Supuestos, asegurando que se han identificado las condiciones bajo las cuales se desarrollará el proyecto. 
 
 El alcance también queda definido por los requisitos recogidos en el Registro de Requisitos, asegurando que las necesidades identificadas durante la fase de planificación están incluidas en el proyecto. Cualquier adición que se salga del alcance previamente definido será considerada como un cambio de alcance y, por tanto, deberá ser evaluada y aprobada a través del proceso formal de gestión de cambios, llegando a poder ser excluida del proyecto. 
 
 Además, los criterios de aceptación que se utilizarán para validar el éxito del proyecto se basarán en tres factores clave: coste, tiempo y satisfacción del cliente. El cumplimiento del presupuesto establecido será fundamental para garantizar que el proyecto no supere los recursos financieros previstos. En cuanto al tiempo, se evaluará si los entregables se completan dentro de los plazos acordados, manteniendo el cronograma sin retrasos significativos. Finalmente, la satisfacción del cliente será el criterio esencial para asegurar que los resultados cumplen con las expectativas y necesidades establecidas, asegurando una aceptación final del producto o servicio entregado. 
 
-## ENTREGABLES DEL PROYECTO
+# 2. ENTREGABLES DEL PROYECTO
 
 - Plan de dirección del proyecto
 - Acta de Constitución
@@ -52,7 +55,7 @@ Además, los criterios de aceptación que se utilizarán para validar el éxito 
 - Manuales de uso de la aplicación
 
 
-## SUPUESTOS DEL PROYECTO
+# 3. SUPUESTOS DEL PROYECTO
 
 - La infraestructura para el alojamiento de la aplicación será proporcionada por el cliente.
 
@@ -62,16 +65,14 @@ Además, los criterios de aceptación que se utilizarán para validar el éxito 
 
 - Los recursos económicos necesarios serán proporcionados por el ayuntamiento de Villanueva de las Cruces.
 
-- La información proporcionada por el cliente será la principal fuente de requisitos, siendo el proyecto planificado y gestionado en torno a esto.
+- La información proporcionada por el cliente será la principal fuente de requisitos.
 
 
-## EXCLUSIONES DEL PROYECTO
+# 4. EXCLUSIONES DEL PROYECTO
 
 - Formación de los usuarios
 
 - Instalación y configuración de entornos y máquinas, así como de servicios de alojamiento y hosting
-
-- Servicio de mantenimiento postimplantación del sistema en entorno productivo
 
 - Servicio de mantenimiento postimplantación del sistema en entorno productivo 
 
@@ -81,11 +82,13 @@ Además, los criterios de aceptación que se utilizarán para validar el éxito 
 
 - Requisitos fuera del alcance del proyecto 
 
-## RESTRICCIONES DEL PROYECTO
+
+# 5. RESTRICCIONES DEL PROYECTO
 
 No se contempla la migración de datos ni importación de información desde otros sistemas municipales.
 
-## CRITERIOS DE ACEPTACIÓN
+
+# 6. CRITERIOS DE ACEPTACIÓN
 
 - **Coste**: Se valorará que el coste final del proyecto se mantenga dentro del rango inicial acordado con el cliente.
 

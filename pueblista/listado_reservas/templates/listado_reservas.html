@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Reservas - Pueblista</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if reservas|length != 0 and query == None %}
+        <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+            <h2 style="text-align: center;"><strong>Tus reservas</strong></h2>
+            <p class="w-lg-50" style="text-align: center;">Si no encuentras una reserva prueba a buscar por fechas</p>
+        </div>
+        <form method="GET" action="{% url 'listado_reservas' %}">
+            <div class="input-group" style="margin-bottom: 40px;">
+                <input class="form-control" type="date" name="fecha_inicio" placeholder="Fecha de inicio" value="{{ fecha_inicio|default_if_none:'' }}">
+                <input class="form-control" type="date" name="fecha_fin" placeholder="Fecha de fin" value="{{ fecha_fin|default_if_none:'' }}">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+        {% if query != None %}
+            <div class="d-flex justify-content-center align-items-center" style="height: 30vh;">
+                <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+                    <h2 style="text-align: center;"><strong>No se encontró ninguna reserva</strong></h2>
+                    <p class="w-lg-50" style="text-align: center;">Intenta buscar otras fechas</p>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="container" style="margin-top: 10px; margin-bottom: 20px">
+            <h2 style="text-align: center;"><strong>No tienes ninguna reserva realizada</strong></h2>
+            <p class="w-lg-50" style="text-align: center;">Prueba a realizar tu primera reserva en tu espacio favorito</p>
+        </div>
+        <form method="GET" action="{% url 'listado_reservas' %}">
+            <div class="input-group" style="margin-bottom: 40px;">
+                <input class="form-control" type="date" name="fecha_inicio" placeholder="Fecha de inicio" value="{{ fecha_inicio|default_if_none:'' }}">
+                <input class="form-control" type="date" name="fecha_fin" placeholder="Fecha de fin" value="{{ fecha_fin|default_if_none:'' }}">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    {% endif %}
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        {% for reserva in reservas %}
+            {% if reserva.nombre != 'LIMPIEZA' and reserva.estado == 'Realizada' %}
+                <div class="col mb-4">
+                    <div class="card">
+                        {% if reserva.foto %}
+                            <img class="card-img-top w-100 d-block fit-cover" style="width:100%;" src="data:image/jpeg;base64,{{ reserva.foto }}" alt="Foto del espacio">
+                        {% endif %}
+                        <div class="card-body p-4">
+                            <p class="text-primary card-text mb-0">Reserva</p>
+                            <h4 class="card-title">{{ reserva.espacio }}</h4>
+                            <p class="card-text">
+                                <strong>DÍA:</strong> {{ reserva.fecha }}<br>
+                                <strong>HORA:</strong> De {{ reserva.hora_inicio }} a {{ reserva.hora_fin }}<br>
+                                <strong>ESTADO:</strong> {{ reserva.estado }}<br>
+                                {% if reserva.subespacio %}
+                                <strong>SUBESPACIO:</strong> {{ reserva.subespacio }}<br>
+                                {% endif %}
+                            </p>
+                            <div class="d-flex">
+                                <div>
+                                    <button class="btn btn-primary" type="button" style="background: #b30000; color: white; border-color: #b30000;" data-toggle="modal" data-target="#confirmCancelModal" onclick="setCancelFormAction({{ reserva.id }})"><strong>Cancelar</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmCancelModal" tabindex="-1" role="dialog" aria-labelledby="confirmCancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmCancelModalLabel">Confirmar Cancelación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas cancelar esta reserva?
+            </div>
+            <div class="modal-footer">
+                <form id="cancelForm" method="POST" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setCancelFormAction(reservaId) {
+        const form = document.getElementById('cancelForm');
+        form.action = `eliminar_reserva/${reservaId}/`;
+    }
+
+</script>
+{% endblock %}

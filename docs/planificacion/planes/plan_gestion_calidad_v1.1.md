@@ -83,19 +83,11 @@ Los objetivos a alcanzar con el Plan de Calidad son:
 |4\.1.1|Manuales|Revisar los manuales para asegurar que están completos, son claros y cumplen con las normas de redacción técnica.|Equipo de desarrollo|
 |4\.1.2|Entregable final|Verificar que todos los entregables cumplen con los criterios de aceptación antes de la entrega final.|Equipo de desarrollo| \newline
 
-## 4\. LISTA DE CONTROL
-
-|**LISTAS DE CONTROL**|||
-| :- | :- | :- |
-|**#**|**FASES IMPLICADAS (EDT)**|**DESCRIPCIÓN**|
-|01|Planificación, Ejecución y Cierre|Lista de elementos a inspeccionar.|
-|02|Planificación, Ejecución y Cierre|Lista de pasos a realizar.|
-
 
 \newpage
 
 
-## 5\. PLAN DE MEJORA CONTINUA DE LOS PROCESOS DE GESTIÓN
+## 4\. PLAN DE MEJORA CONTINUA DE LOS PROCESOS DE GESTIÓN
 El equipo de desarrollo mejora continuamente la eficacia de su sistema de gestión de la calidad mediante el uso del ciclo de Deming, una metodología que se basa en un ciclo compuesto de 4 fases que se repiten de forma iterativa, cada una de ellas con un propósito específico dentro del proceso de mejora.
 
 1. **Planificar**: En esta etapa se identifican los problemas o áreas de mejora y se desarrollan soluciones o estrategias para abordarlos. Esta fase es crucial porque aquí es donde se determina qué cambios o mejoras deben implementarse.
@@ -117,7 +109,7 @@ Esta metodología proporciona un enfoque proactivo que soluciona problemas tal y
 \newpage
 
 
-## 6\. HITOS A INCLUIR
+## 5\. HITOS A INCLUIR
 
 |**#**|**HITO**|**DESCRIPCIÓN**|
 | :-: | :-: | :-: |
@@ -143,7 +135,7 @@ Esta metodología proporciona un enfoque proactivo que soluciona problemas tal y
 \newpage
 
 
-## 7. REUNIONES A REALIZAR
+## 6. REUNIONES A REALIZAR
 Gran parte del monitoreo de la calidad en el proyecto se llevará a cabo mediante una serie de reuniones periódicas diseñadas para asegurar un control continuo y detallado de los entregables. Estas reuniones se estructuran en función de la necesidad de obtener retroalimentación oportuna, identificar y corregir problemas rápidamente, y garantizar que las expectativas del cliente se mantengan alineadas con los estándares de calidad del proyecto.
 
 - **Reuniones diarias breves** de 15 minutos con el equipo del proyecto. Permitirán revisar los avances del día anterior, planificar las tareas del día en curso y discutir cualquier obstáculo o problema relacionado con la calidad que haya surgido. 
@@ -161,7 +153,7 @@ Puesto que el equipo utiliza el ciclo de Deming para la mejora continua de los p
 \newpage
 
 
-## 8\. INFORMES A ELABORAR
+## 7\. INFORMES A ELABORAR
 
 |**#**|**NOMBRE**|**DESCRIPCIÓN**|
 | :-: | :-: | :-: |
@@ -175,7 +167,7 @@ Puesto que el equipo utiliza el ciclo de Deming para la mejora continua de los p
 \newpage
 
 
-## 9\. LISTAS DE CONTROL
+## 8\. LISTAS DE CONTROL
 A lo largo del proceso, el equipo de desarrollo hará uso de las listas de control para establecer qué entregables quedan sujetos a revisiones de calidad y definir los pasos a seguir para garantizar la calidad esperada en cada uno de ellos.
 
 Se emplearán dos listas de control, una para los elementos a inspeccionar y otra para los pasos a realizar, de manera que cada elemento de la primera deberá ser inspeccionado siguiendo los pasos definidos en la segunda.
@@ -208,14 +200,20 @@ Se emplearán dos listas de control, una para los elementos a inspeccionar y otr
     - Evaluar si los cambios correctivos propuestos han sido efectivos para mejorar la calidad.
     - Ajustar el plan de gestión de la calidad si es necesario.
 
-En cada lista se deberá anotar los defectos más significativos encontrados, principalmente en la segunda lista donde se indicará el paso en el que se ha detectado el defecto y el elemento bajo inspección en el que ha producido. 
+En cada lista se deberá anotar los defectos más significativos encontrados, principalmente en la segunda lista donde se indicará el paso en el que se ha detectado el defecto y el elemento bajo inspección en el que ha producido. \newline
 
+
+|**LISTAS DE CONTROL**|||
+| :- | :- | :- |
+|**#**|**FASES IMPLICADAS (EDT)**|**DESCRIPCIÓN**|
+|01|Planificación, Ejecución y Cierre|Lista de elementos a inspeccionar.|
+|02|Planificación, Ejecución y Cierre|Lista de pasos a realizar.|
 
 
 \newpage
 
 
-## 10. AUDITORÍAS A REALIZAR
+## 9. AUDITORÍAS A REALIZAR
 
 Las auditorías validarán que los procesos y procedimientos aplicados están alineados con la metodología de gestión de proyectos utilizada, como la recogida en el PMBOK Guide.
 
@@ -242,7 +240,7 @@ Más específicamente, en este proyecto se realizarán tanto auditorías interna
 \newpage
 
 
-## 11\. HERRAMIENTAS PARA LA GESTIÓN DE LA CALIDAD
+## 10\. HERRAMIENTAS PARA LA GESTIÓN DE LA CALIDAD
 En este punto se relaciona el conjunto de herramientas que son sugeridas con el objetivo de garantizar la calidad de los entregables:
 
 - **Gestión de configuración: Git y GitHub**. A lo largo del presente documento se detalla cómo utilizar los mecanismos de control de versiones, ramificación y gestión de pull requests para facilitar el trabajo colaborativo y garantizar un seguimiento efectivo de los cambios en el código fuente y la documentación del proyecto.

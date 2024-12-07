@@ -1,5 +1,5 @@
 ---
-title: "Plan de Gestión de los recursos"  # modificar
+title: "Plan de Gestión de los Recursos"  # modificar
 subtitle: "Proyecto Pueblista - PGPI"
 date: "04/11/2024"  # modificar
 subject: "PGPI"
@@ -46,13 +46,13 @@ Para una correcta gestión de los recursos: primero se deberá establecer una co
 
 
 # 2\. CUMPLIMIENTO DE ESTÁNDARES Y REGLAMENTACIONES 
-### Recursos Humanos 
+## 2.1. Recursos Humanos 
 Los recursos humanos (RRHH), estarán conformados por el **personal que se encargará de llevar a cabo el proyecto** o intervenir en él en mayor o menor medida. De entre ellos, los participantes explícitos del proyecto tendrán asignados un rol y una serie de responsabilidades. Estos recursos humanos se dividen a su vez en dos equipos: **equipo de dirección y equipo de ejecución**. 
 
-### Recursos Materiales 
+## 2.2. Recursos Materiales 
 Dentro de un proyecto software, determinamos como recursos materiales a todos aquellos **recursos no humanos, que no tiene por qué ser físicos**. Con estos, entran dentro de esta definición las licencias software, programas, suscripciones, equipos y otros materiales que son necesarios de manera directa o indirecta para que el proyecto se lleve a cabo. 
 
-### Roles y responsabilidades
+## 2.3. Roles y responsabilidades
 Cada equipo de trabajo o miembro individual del proyecto deberá acometer uno o varios roles dentro de este. Cada rol llevará asociadas una serie de responsabilidades en relación con la ejecución del proyecto y la elaboración del producto. 
 
 Se debe realizar una trazabilidad de los roles respecto a las tareas de la EDT en las que deben trabajar. Para ello, se cuenta con una **matriz de asignación de responsabilidades** en la que, por cada tarea de la EDT de cada uno de los paquetes, se designará un rol **Responsable**, **Consultado**, **Aprobador** e **Informado** al respecto. 
@@ -63,7 +63,7 @@ Se debe realizar una trazabilidad de los roles respecto a las tareas de la EDT e
 
 # 3\. RECURSOS HUMANOS 
 
-### Equipo de Dirección
+## 3.1. Equipo de Dirección
 
 |**ROL**|**RESPONSABILIDADES**|**HABILIDADES**|
 | - | - | - |
@@ -77,11 +77,11 @@ Se debe realizar una trazabilidad de los roles respecto a las tareas de la EDT e
 \newpage
 
 
-## Equipo de Desarrollo
+## 3.2. Equipo de Desarrollo
 
 |**ROL**|**RESPONSABILIDADES**|**HABILIDADES**|
 | - | - | - |
-|*Analista-programador*| - Recopilar y analizar los requisitos del sistema, asegurando que sean claros y alcanzables. \newline - Documentar los requisitos y especificaciones del sistema, junto con el alcance de este. \newline - Elaborar la documentación de la fase de planificación. \newline - Facilitar la comunicación de requerimientos entre stakeholders y el equipo de desarrollo.- Colaborar con el Director de Proyecto para asegurar que los entregables cumplan con las expectativas.|- Análisis de sistemas y documentación de requisitos. \newline - Comunicación y negociación con stakeholders. \newline - Pensamiento crítico y atención al detalle. \newline - Conocimiento en metodologías de análisis y modelado de sistemas. \newline - Conocimiento en negocios y dominios de tecnología. \newline - Habilidad de absorber y entender rápidamente cualquier información.|
+|*Analista-programador*| - Recopilar y analizar los requisitos del sistema, asegurando que sean claros y alcanzables. \newline - Documentar los requisitos y especificaciones del sistema, junto con el alcance de este. \newline - Elaborar la documentación de la fase de planificación. \newline - Facilitar la comunicación de requerimientos entre stakeholders y el equipo de desarrollo. \newline - Colaborar con el Director de Proyecto para asegurar que los entregables cumplan con las expectativas.|- Análisis de sistemas y documentación de requisitos. \newline - Comunicación y negociación con stakeholders. \newline - Pensamiento crítico y atención al detalle. \newline - Conocimiento en metodologías de análisis y modelado de sistemas. \newline - Conocimiento en negocios y dominios de tecnología. \newline - Habilidad de absorber y entender rápidamente cualquier información.|
 |*Programador*| - Desarrollar el código del sistema conforme a los requisitos técnicos y funcionales. \newline - Documentar el código para facilitar su mantenimiento y futuras mejoras. \newline - Realizar pruebas unitarias y de integración para verificar el funcionamiento del sistema. \newline - Colaborar con el Analista para resolver dudas técnicas y cumplir con los requisitos. \newline - Optimizar el rendimiento del código y seguir estándares de calidad.| - Dominio de programación en el stack tecnológico del proyecto (Python, Django). \newline - Experiencia en pruebas unitarias e integradas. \newline - Conocimiento de buenas prácticas de desarrollo (Clean Code). \newline - Capacidad para resolver problemas técnicos de manera eficiente.|
 |*Tester*| - Diseñar y ejecutar casos de prueba para evaluar la funcionalidad y rendimiento del sistema. \newline - Documentar y reportar errores, colaborando con el equipo de desarrollo para solucionarlos. \newline - Realizar pruebas de regresión para asegurar la estabilidad del sistema tras cada cambio. \newline - Asegurar que el producto final cumpla con los requisitos de funcionalidad y calidad definidos.| - Conocimiento en técnicas y herramientas de pruebas (como Selenium, JUnit). \newline - Capacidad para diseñar casos de prueba y scripts de pruebas automatizadas. \newline - Orientación al detalle y habilidades analíticas. \newline - Capacidad de comunicación para documentar y explicar errores.|
 |*Diseñador de UI/UX*| - Diseñar la interfaz de usuario enfocándose en la usabilidad y experiencia de usuario. \newline - Crear prototipos y wireframes. \newline - Colaborar con el equipo de desarrollo para implementar las interfaces. \newline - Iterar y mejorar el diseño según feedback de usuarios y pruebas de usabilidad.| - Diseño de interfaces de usuario y experiencia de usuario (UI/UX). \newline - Habilidad en herramientas de diseño (Bootstrap Studio). \newline - Conocimientos básicos en frontend para facilitar la implementación.|
@@ -101,9 +101,9 @@ La empresa aplicará las siguientes políticas de recursos humanos para la organ
   - Habrá flexibilidad en el número de horas diarias trabajadas; en algunos días se podrá extender la jornada del proyecto, mientras que en otros el equipo podrá tomar horas libres para asegurar el equilibrio de las 40 horas. Además, cada persona, mantendrá una tarde libre fija a la semana, previamente notificada al equipo del proyecto.
 - **Guardias y disponibilidad en festivos:**
   - En función de las necesidades del proyecto, podrán solicitarse guardias para fines de semana o días festivos específicos.
-  - La programación de estas guardias será previa y consensuada con los miembros del equipo, respetando la normativa vigente en cuanto a remuneración y descansos compensatorios
+  - La programación de estas guardias será previa y consensuada con los miembros del equipo, respetando la normativa vigente en cuanto a remuneración y descansos compensatorios.
   - En caso de requerirse trabajo en un festivo, el equipo recibirá aviso con suficiente antelación, y la empresa compensará este tiempo mediante pago adicional o días libres según el convenio correspondiente.
-- **Modalidad de Trabajo:** Aunque se fomenta el teletrabajo, las instalaciones están disponibles para aquellos que deseen combinar esta modalidad con la presencialidad
+- **Modalidad de Trabajo:** Aunque se fomenta el teletrabajo, las instalaciones están disponibles para aquellos que deseen combinar esta modalidad con la presencialidad.
 - **Reuniones de seguimiento del proyecto:** 
   - Se realizarán dos reuniones semanales: **lunes a las 16:00 y miércoles a las 18:30.** La asistencia es obligatoria, salvo circunstancias excepcionales.
 - **Vacaciones y Festivos:**
@@ -123,16 +123,16 @@ Dado que se entiende que los integrantes no estarán al 100% activos en cada mom
 
 El proyecto contempla un período de formación interna, ya que la formación a los usuarios finales queda excluida del alcance. No obstante, al equipo de la organización se le ofrecerá una formación que aborde tanto competencias técnicas como habilidades blandas, de modo que se prepare adecuadamente para la ejecución eficiente y efectiva del proyecto.
 
-## Objetivos de la Formación
+## 5.1. Objetivos de la Formación
 - **Mejorar las Competencias Técnicas**: Asegurar que todos los miembros del equipo dominen las herramientas y tecnologías necesarias para el desarrollo del proyecto.
 - **Desarrollar Habilidades Blandas**: Fomentar la comunicación efectiva, trabajo en equipo y liderazgo.
 - **Preparación para Entregas Rápidas**: Asegurar que el equipo esté preparado para realizar entregas continuas y de alta calidad.
 
-## Identificación de Necesidades
+## 5.2. Identificación de Necesidades
 - **Análisis de Competencias**: Realizar una evaluación inicial de las habilidades del equipo para identificar áreas de mejora.
 - **Reunión de Kick-off**: Discutir las necesidades formativas específicas durante la reunión inicial.
 
-## Contenidos de la Formación
+## 5.3. Contenidos de la Formación
 - **Formación Técnica**:
   - **Lenguajes de Programación**: Capacitación en Python y Django.
   - **Herramientas de Gestión**: Formación en MS Project y metodologías ágiles.
@@ -142,13 +142,13 @@ El proyecto contempla un período de formación interna, ya que la formación a 
   - **Trabajo en Equipo**: Actividades para fortalecer la colaboración y cohesión del grupo.
   - **Liderazgo**: Talleres para el desarrollo de habilidades de liderazgo y gestión de conflictos.
 
-## Metodología
+## 5.4. Metodología
 - **Sesiones Presenciales y Virtuales**: Alternar entre cursos en línea y talleres presenciales para maximizar la accesibilidad.
 - **Proyectos Prácticos**: Integrar ejercicios prácticos relacionados con el trabajo real del equipo para aplicar los conocimientos adquiridos.
 - **Mentoría**: Asignar mentores para guiar a los miembros del equipo menos experimentados.
 
 
-## Calendario de Formación
+## 5.5. Calendario de Formación
 Para este proyecto, debido a su corta duración y magnitud, el plan de formación será de un mes siguiendo el siguiente esquema: 
 
 - **Semana 1**:
@@ -160,12 +160,12 @@ Para este proyecto, debido a su corta duración y magnitud, el plan de formació
 - **Semanas 3-4**:
   - Aplicación práctica de conocimientos y revisión semanal de progreso.
 
-## Evaluación de Resultados
+## 5.6. Evaluación de Resultados
 - **Feedback de los Participantes**: Encuestas post-formación para medir la satisfacción y aplicabilidad de lo aprendido.
 - **Medición de Impacto**: Comparar el rendimiento del equipo antes y después de la formación a través de indicadores clave de rendimiento (KPI).
 - **Ajustes Necesarios**: Revisión del plan de formación y ajustes según las necesidades identificadas en las evaluaciones.
 
-## Presupuesto
+## 5.7. Presupuesto
 - **Costos de Formación**: Incluir honorarios de formadores, materiales y recursos necesarios.
 - **Inversión en Herramientas**: Presupuestar licencias para plataformas de formación y herramientas de gestión.
 
@@ -176,7 +176,7 @@ Para este proyecto, debido a su corta duración y magnitud, el plan de formació
 # 6\. PLAN DE RECONOCIMIENTO Y RECOMPENSA
 Fomentar el desarrollo del equipo de proyecto contribuye a fortalecer tanto las habilidades individuales de sus miembros como la colaboración entre ellos, con el propósito de optimizar el trabajo en conjunto y mejorar el rendimiento general del proyecto. Para llevar a cabo esta dinámica se ha planteado un sistema que en lugar de fomentar la competitividad individual fomenta la autoevaluación y el autorreconocimiento. 
 
-En concreto, usaremos una dinámica llamada “**Calendarios Niko Niko**” que se empezará a realizar cuando comience la fase de ejecución del proyecto y consistirá en un calendario diario en el que cada miembro del equipo deberá evaluar y describir su estado de ánimo en los días de trabajo con respeto al proyecto. Tras cada reunión semana, se evaluará la moral del grupo y se tomarán medidas de forma conjunta e individual para conseguir mejorar el trabajo del equipo si fuera necesario. Para facilitar la descripción del estado de ánimo se usarán una serie de “emojis” en escala de los más negativos a los más positivos. A continuación, se muestra un ejemplo: 
+En concreto, usaremos una dinámica llamada “**Calendarios Niko Niko**” que se empezará a realizar cuando comience la fase de ejecución del proyecto y consistirá en un calendario diario en el que cada miembro del equipo deberá evaluar y describir su estado de ánimo en los días de trabajo con respecto al proyecto. Tras cada reunión semanal, se evaluará la moral del grupo y se tomarán medidas de forma conjunta e individual para conseguir mejorar el trabajo del equipo si fuera necesario. Para facilitar la descripción del estado de ánimo se usarán una serie de “emojis” en escala de los más negativos a los más positivos. A continuación, se muestra un ejemplo: 
 
 
 \begin{figure}[H]
@@ -188,7 +188,7 @@ En concreto, usaremos una dinámica llamada “**Calendarios Niko Niko**” que 
 
 Algunos de los puntos positivos de esta dinámica son:
 
-1. **Detección temprana de problemas**: El calendario Niko-Niko permite a los gestores de proyecto detectar cambios en el ánimo. Esto puede alertar sobre posibles problemas y tensiones o puede a la detección temprana de problemas.
+1. **Detección temprana de problemas**: El calendario Niko-Niko permite a los gestores de proyecto detectar cambios en el ánimo. Esto puede alertar sobre posibles problemas y tensiones, o contribuir a la detección temprana de problemas.
 1. **Mejora la comunicación y la empatía**: Facilita un espacio seguro para expresar cómo se siente cada miembro del equipo, fomentando la empatía y abriendo la posibilidad de abordar problemas interpersonales o dificultades individuales de manera oportuna.
 1. **Fomento de la autoevaluación y la autoconciencia**: Los miembros del equipo reflexionan diariamente sobre su estado de ánimo, lo cual les ayuda a ser más conscientes de su propio bienestar y las circunstancias que afectan su rendimiento.
 1. **Mejora del clima laboral**: Un calendario Niko-Niko crea un ambiente de transparencia, mostrando que el bienestar del equipo es una prioridad para la organización. Esto puede mejorar la moral y la motivación del equipo, generando un entorno laboral más positivo.
@@ -198,7 +198,7 @@ Algunos de los puntos positivos de esta dinámica son:
 
 
 # 7\. RECURSOS MATERIALES
-Como se ha mencionado anteriormente en el punto tal, dentro de los recursos materiales, se encontrarán tanto recursos físicos (hardware), como lo son los equipos de trabajo o los periféricos, como productos, software necesarios para el desarrollo del producto, como lo son licencias, software, aplicaciones, servicios en la nube, o entornos de desarrollo.
+Como se ha mencionado anteriormente en el punto 2. , dentro de los recursos materiales, se encontrarán tanto recursos físicos (hardware), como lo son los equipos de trabajo o los periféricos, así como software necesario para el desarrollo del producto, tales como licencias, aplicaciones, servicios en la nube o entornos de desarrollo.
 
 |**SOFTWARE**|**CANTIDAD**|**DESCRIPCIÓN**|
 | - | - | - |
@@ -208,8 +208,8 @@ Como se ha mencionado anteriormente en el punto tal, dentro de los recursos mate
 |CHATGPT 4|1|Modelo avanzado de inteligencia artificial que proporciona asistencia mediante respuestas precisas y detalladas en múltiples contextos, útil para generar contenido y resolver dudas técnicas.|
 |COPILOT |3|Herramienta de asistencia de programación basada en IA, integrada en editores como Visual Studio Code, que sugiere fragmentos de código en tiempo real para mejorar la productividad del desarrollador.|
 |PANDOC|5|Convertidor de documentos universal que permite transformar archivos de texto en diferentes formatos, como Markdown, HTML, PDF, entre otros.|
-|CLOCKIFY|10|Aplicación de seguimiento de tiempo que permite monitorizar la duración de tareas y proyectos, ideal para la gestión del tiempo y la facturación en entornos de trabajo.|
-|MS OFFICE SUITE|10|Conjunto de aplicaciones de productividad de Microsoft que incluye Word, Excel, PowerPoint y otros, esenciales para la creación y gestión de documentos, hojas de cálculo y presentaciones|
+|CLOCKIFY|5|Aplicación de seguimiento de tiempo que permite monitorizar la duración de tareas y proyectos, ideal para la gestión del tiempo y la facturación en entornos de trabajo.|
+|MS OFFICE SUITE|5|Conjunto de aplicaciones de productividad de Microsoft que incluye Word, Excel, PowerPoint y otros, esenciales para la creación y gestión de documentos, hojas de cálculo y presentaciones.|
 |MS PROJECT|2|Herramienta de gestión de proyectos de Microsoft, que permite planificar, asignar recursos, realizar seguimiento y controlar proyectos complejos de manera eficiente.|
 
 
@@ -228,12 +228,12 @@ Como se ha mencionado anteriormente en el punto tal, dentro de los recursos mate
 |CASCOS INALÁMBRICOS|5|2/10/2024|6/12/2024|Equipo de Desarrollo, Equipo de Dirección|
 |VISUAL STUDIO CODE|5|7/11/2024|27/11/2024|Equipo de Desarrollo|
 |GIT|5|2/10/2024|6/12/2024|Equipo de Desarrollo, Equipo de Dirección|
-|CITHUB|5|2/10/2024|6/12/2024|Equipo de Desarrollo, Equipo de Dirección|
+|GITHUB|5|2/10/2024|6/12/2024|Equipo de Desarrollo, Equipo de Dirección|
 |CHATGPT 4|1|2/10/2024|6/12/2024|Equipo de Desarrollo, Equipo de Dirección|
 |COPILOT |3|7/11/2024|27/11/2024|Equipo de Desarrollo|
-|PANDOC|5| 2/10/2024  28/11/2024| 6/11/2024  6/12/2024| Equipo de Dirección|
+|PANDOC|5| 2/10/2024|28/11/2024| 6/11/2024  6/12/2024| Equipo de Dirección|
 |CLOCKIFY|5|2/10/2024|6/12/2024|Equipo de Desarrollo, Equipo de Dirección|
-|MS OFFICE SUITE|5|  2/10/2024   28/11/2024 | 6/11/2024   6/12/2024|Equipo de Dirección|
+|MS OFFICE SUITE|5|  2/10/2024|28/11/2024 | 6/11/2024   6/12/2024|Equipo de Dirección|
 |MS PROJECT|5|2/10/2024|6/12/2024|Equipo de Dirección|
 
 
