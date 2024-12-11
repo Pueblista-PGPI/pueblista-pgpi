@@ -23,17 +23,17 @@
 
 ##  Table of Contents
 
-- [ Descripción general ](#-descripcion-general)
-- [ Características ](#-caracteristicas)
-- [ Estructura del proyecto ](#-estructura-del-proyecto)
-  - [ Índice del proyecto ](#-indice-del-proyecto)
-- [ Empezando ](#-empezando)
-  - [ Prerrequisitos ](#-prerrequisitos)
-  - [ Instalación ](#-instalacion)
-  - [ Uso ](#-uso)
-  - [ Pruebas ](#-pruebas)
-- [ Licencia ](#-licencia)
-- [ Autores ](#-autores)
+- [ Descripción general ](#descripcion-general)
+- [ Características ](#caracteristicas)
+- [ Estructura del proyecto ](#estructura-del-proyecto)
+  - [ Índice del proyecto ](#indice-del-proyecto)
+- [ Empezando ](#empezando)
+  - [ Prerrequisitos ](#prerrequisitos)
+  - [ Instalación ](#instalacion)
+  - [ Uso ](#uso)
+  - [ Pruebas ](#pruebas)
+- [ Licencia ](#licencia)
+- [ Autores ](#autores)
 
 ---
 
